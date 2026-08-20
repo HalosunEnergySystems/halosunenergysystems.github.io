@@ -11,14 +11,25 @@ const CALC_CONFIG = {
   roundToKw: 0.5,
   fixedChargeEstimate: 200,       // ₹ minimum monthly bill even with solar
   degradationFactor: 0.9,         // rough allowance for panel output decline over 25 yrs
+  // Subsidy slabs (residential only) — PM Surya Ghar (central) + UPNEDA (UP state):
+  //   1 kW  → ₹30,000 central + ₹15,000 state = ₹45,000
+  //   2 kW  → ₹60,000 central + ₹30,000 state = ₹90,000
+  //   3 kW+ → ₹78,000 central + ₹30,000 state = ₹1,08,000 (both capped)
 };
 
 function calcSubsidy(kw, propertyType) {
-  if (propertyType === 'commercial') return 0; // PM Surya Ghar targets residential rooftop
-  if (kw <= 0) return 0;
-  let subsidy = Math.min(kw, 2) * 30000;
-  if (kw > 2) subsidy += Math.min(kw - 2, 1) * 18000;
-  return Math.min(subsidy, 78000);
+  // Matches PM Surya Ghar (central) + UPNEDA (UP state) slabs for residential rooftop.
+  if (propertyType === 'commercial') return { central: 0, state: 0, total: 0 };
+  if (kw <= 0) return { central: 0, state: 0, total: 0 };
+
+  let central = Math.min(kw, 2) * 30000;
+  if (kw > 2) central += Math.min(kw - 2, 1) * 18000;
+  central = Math.min(central, 78000);
+
+  let state = Math.min(kw, 2) * 15000;
+  state = Math.min(state, 30000);
+
+  return { central, state, total: central + state };
 }
 
 function formatINR(n) {
@@ -51,7 +62,7 @@ function runCalculator() {
     : CALC_CONFIG.costPerKwResidential;
   const systemCost = kw * costPerKw;
   const subsidy = calcSubsidy(kw, propertyType);
-  const netCost = systemCost - subsidy;
+  const netCost = systemCost - subsidy.total;
 
   const monthlySavings = Math.min(generatedUnits, monthlyUnits) * tariff;
   const newBill = Math.max(bill - monthlySavings, CALC_CONFIG.fixedChargeEstimate);
@@ -61,7 +72,9 @@ function runCalculator() {
   document.getElementById('res-size').textContent = kw + ' kWp';
   document.getElementById('res-units').textContent = Math.round(generatedUnits) + ' units/month';
   document.getElementById('res-cost').textContent = formatINR(systemCost);
-  document.getElementById('res-subsidy').textContent = subsidy > 0 ? formatINR(subsidy) : 'Not applicable';
+  document.getElementById('res-subsidy-central').textContent = subsidy.central > 0 ? formatINR(subsidy.central) : 'Not applicable';
+  document.getElementById('res-subsidy-state').textContent = subsidy.state > 0 ? formatINR(subsidy.state) : 'Not applicable';
+  document.getElementById('res-subsidy-total').textContent = subsidy.total > 0 ? formatINR(subsidy.total) : 'Not applicable';
   document.getElementById('res-net').textContent = formatINR(netCost);
   document.getElementById('res-savings').textContent = formatINR(monthlySavings) + '/month';
   document.getElementById('res-payback').textContent = paybackYears > 0 ? paybackYears.toFixed(1) + ' years' : '—';
