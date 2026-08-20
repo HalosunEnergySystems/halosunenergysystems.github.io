@@ -4,7 +4,7 @@
    See apps-script/Code.gs and README.md for setup instructions.
 =================================================================== */
 const FORM_CONFIG = {
-  endpointUrl: https://script.google.com/macros/s/AKfycbz6pPce1eTVj4WYkrC6jslRFw1ruCHh4GZ5Bt8TlE_yzvFmewf44ZGC4tqBEoY08V8/exec,
+  endpointUrl: 'https://script.google.com/macros/s/AKfycbz6pPce1eTVj4WYkrC6jslRFw1ruCHh4GZ5Bt8TlE_yzvFmewf44ZGC4tqBEoY08V8/exec',
 };
 
 document.getElementById('lead-form').addEventListener('submit', async function (e) {
