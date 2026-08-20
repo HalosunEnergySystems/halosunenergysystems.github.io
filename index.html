@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halosun Energy Systems — Solar EPC for Homes &amp; Businesses</title>
+<meta name="description" content="Halosun Energy Systems designs, builds and maintains rooftop and commercial solar power plants. Get an instant savings estimate and a free site visit.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="#top" class="logo">
+      <img class="logo-mark" src="assets/logo-mark-square.png" alt="Halosun Energy Systems">
+      <span>Halosun <em>Energy Systems</em></span>
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#gallery">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary btn-small nav-cta">Get a Free Quote</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="halo-arcs" aria-hidden="true">
+      <svg viewBox="0 0 900 900">
+        <circle cx="450" cy="450" r="260" class="arc arc-1"/>
+        <circle cx="450" cy="450" r="340" class="arc arc-2"/>
+        <circle cx="450" cy="450" r="410" class="arc arc-3"/>
+      </svg>
+    </div>
+    <div class="wrap hero-content">
+      <img src="assets/logo-mark-wide.png" alt="Halosun Energy Systems" class="hero-badge">
+      <p class="eyebrow">Design. Build. Power.</p>
+      <h1>Your rooftop has a second job.</h1>
+      <p class="hero-sub">Halosun Energy Systems designs, builds and maintains solar power plants for homes and businesses — from the first site survey to the day your meter starts running backward.</p>
+      <div class="hero-actions">
+        <a href="#calculator" class="btn btn-primary">Calculate My Savings</a>
+        <a href="#contact" class="btn btn-ghost">Request a Free Site Visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services" class="section">
+    <div class="wrap">
+      <p class="eyebrow">What we do</p>
+      <h2>Solar, engineered end to end</h2>
+      <div class="grid grid-4">
+        <div class="card">
+          <div class="card-mark">01</div>
+          <h3>Residential Solar</h3>
+          <p>Rooftop systems sized to your electricity bill, not a sales quota. On-grid and hybrid options for homes.</p>
+        </div>
+        <div class="card">
+          <div class="card-mark">02</div>
+          <h3>Commercial &amp; Industrial</h3>
+          <p>Rooftop and ground-mount plants engineered for uptime, with financing routes and O&amp;M built in from day one.</p>
+        </div>
+        <div class="card">
+          <div class="card-mark">03</div>
+          <h3>Turnkey EPC</h3>
+          <p>One firm for design, procurement and construction. No handoffs and no finger-pointing between contractors.</p>
+        </div>
+        <div class="card">
+          <div class="card-mark">04</div>
+          <h3>Operations &amp; Maintenance</h3>
+          <p>Scheduled cleaning, remote monitoring and repairs that keep your plant generating at rated capacity for 25 years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section id="process" class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">How a project runs</p>
+      <h2>Six steps from roof to running meter</h2>
+      <ol class="process-list">
+        <li>
+          <span class="ring">1</span>
+          <div><h3>Site Survey</h3><p>An engineer visits your roof or land to check shading, structure and available load.</p></div>
+        </li>
+        <li>
+          <span class="ring">2</span>
+          <div><h3>System Design</h3><p>We size the plant to your actual consumption and roof, and prepare drawings and layout.</p></div>
+        </li>
+        <li>
+          <span class="ring">3</span>
+          <div><h3>Approvals &amp; Subsidy Filing</h3><p>We handle net-metering paperwork and government subsidy applications on your behalf.</p></div>
+        </li>
+        <li>
+          <span class="ring">4</span>
+          <div><h3>Installation</h3><p>Certified crews install panels, inverter and wiring — most rooftop jobs finish in three to seven days.</p></div>
+        </li>
+        <li>
+          <span class="ring">5</span>
+          <div><h3>Commissioning</h3><p>Utility inspection, net meter installation, and formal handover of your plant.</p></div>
+        </li>
+        <li>
+          <span class="ring">6</span>
+          <div><h3>Monitoring &amp; Maintenance</h3><p>Ongoing performance tracking and scheduled service to protect your generation over time.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CALCULATOR ============ -->
+  <section id="calculator" class="section">
+    <div class="wrap">
+      <p class="eyebrow">Instant estimate</p>
+      <h2>What could solar save you?</h2>
+      <p class="section-sub">Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote — book a free site visit for exact numbers.</p>
+
+      <div class="calc-panel">
+        <div class="calc-inputs">
+          <label class="field">
+            <span>Average monthly electricity bill (₹)</span>
+            <input type="number" id="calc-bill" inputmode="numeric" placeholder="e.g. 4000" min="0" step="1">
+          </label>
+          <label class="field">
+            <span>Your electricity tariff (₹ per unit)</span>
+            <input type="number" id="calc-tariff" inputmode="decimal" value="8" min="1" step="0.1">
+          </label>
+          <label class="field">
+            <span>Property type</span>
+            <select id="calc-type">
+              <option value="residential">Residential</option>
+              <option value="commercial">Commercial / Industrial</option>
+            </select>
+          </label>
+          <button class="btn btn-primary btn-full" id="calc-run">Calculate</button>
+          <p class="calc-note">Assumes ~4 sun-hours/day generation and current PM Surya Ghar subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.</p>
+        </div>
+
+        <div class="calc-results" id="calc-results" hidden>
+          <div class="result-row result-highlight">
+            <span>Recommended system size</span>
+            <strong id="res-size">—</strong>
+          </div>
+          <div class="result-row">
+            <span>Estimated generation</span>
+            <strong id="res-units">—</strong>
+          </div>
+          <div class="result-row">
+            <span>System cost (before subsidy)</span>
+            <strong id="res-cost">—</strong>
+          </div>
+          <div class="result-row" id="res-subsidy-row">
+            <span>Government subsidy</span>
+            <strong id="res-subsidy">—</strong>
+          </div>
+          <div class="result-row">
+            <span>Your cost after subsidy</span>
+            <strong id="res-net">—</strong>
+          </div>
+          <div class="result-row result-highlight">
+            <span>Estimated monthly savings</span>
+            <strong id="res-savings">—</strong>
+          </div>
+          <div class="result-row">
+            <span>Payback period</span>
+            <strong id="res-payback">—</strong>
+          </div>
+          <div class="result-row">
+            <span>Estimated 25-year savings</span>
+            <strong id="res-lifetime">—</strong>
+          </div>
+          <a href="#contact" class="btn btn-primary btn-full" id="calc-cta">Get an Exact Quote for This System</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section id="gallery" class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Projects</p>
+      <h2>On the roof</h2>
+      <p class="section-sub">Photos from recent installations go here — replace the placeholders in <code>assets/</code> and update the tiles below.</p>
+      <div class="grid grid-3 gallery-grid">
+        <figure class="gallery-tile"><span>Residential rooftop</span></figure>
+        <figure class="gallery-tile"><span>Commercial rooftop</span></figure>
+        <figure class="gallery-tile"><span>Ground-mount plant</span></figure>
+        <figure class="gallery-tile"><span>Inverter &amp; wiring</span></figure>
+        <figure class="gallery-tile"><span>Net meter install</span></figure>
+        <figure class="gallery-tile"><span>Commissioning day</span></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY HALO ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Why Halo</p>
+      <h2>What you get, in plain terms</h2>
+      <div class="grid grid-4">
+        <div class="why-item"><h3>One firm, start to finish</h3><p>Design, equipment and construction under a single contract and a single point of contact.</p></div>
+        <div class="why-item"><h3>Transparent quotes</h3><p>Line-item pricing with no hidden costs added after signing.</p></div>
+        <div class="why-item"><h3>Subsidy handled for you</h3><p>We file the net-metering and subsidy paperwork so you don't have to.</p></div>
+        <div class="why-item"><h3>25-year monitoring</h3><p>Remote performance tracking so a drop in generation gets caught early.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEAD FORM ============ -->
+  <section id="contact" class="section section-form">
+    <div class="wrap">
+      <div class="form-grid">
+        <div class="form-intro">
+          <p class="eyebrow">Get started</p>
+          <h2>Request a free site visit</h2>
+          <p>Tell us a little about your property and we'll get back to you to schedule a free survey and detailed quote.</p>
+          <div class="contact-details">
+            <p><strong>Phone:</strong> <a href="tel:+919250678826">+91 92506 78826</a></p>
+            <p><strong>Email:</strong> <a href="mailto:contact.halosunenergy@gmail.com">contact.halosunenergy@gmail.com</a></p>
+            <p><strong>Address:</strong> 743/7, Tilak Nagar, Raebareli</p>
+            <p><strong>Proprietor:</strong> Shishir Srivastava</p>
+          </div>
+        </div>
+
+        <form id="lead-form" class="lead-form">
+          <label class="field">
+            <span>Full name *</span>
+            <input type="text" name="name" id="lf-name" required>
+          </label>
+          <label class="field">
+            <span>Phone number *</span>
+            <input type="tel" name="phone" id="lf-phone" required>
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" id="lf-email">
+          </label>
+          <label class="field">
+            <span>City / Address *</span>
+            <input type="text" name="city" id="lf-city" required>
+          </label>
+          <label class="field">
+            <span>Property type</span>
+            <select name="propertyType" id="lf-property">
+              <option value="Residential">Residential</option>
+              <option value="Commercial">Commercial / Industrial</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Average monthly bill (₹)</span>
+            <input type="number" name="monthlyBill" id="lf-bill" min="0">
+          </label>
+          <label class="field field-full">
+            <span>Message</span>
+            <textarea name="message" id="lf-message" rows="3"></textarea>
+          </label>
+          <!-- Honeypot field to reduce spam bots -->
+          <input type="text" name="company_website" id="lf-hp" class="hp-field" tabindex="-1" autocomplete="off">
+          <button type="submit" class="btn btn-primary btn-full" id="lf-submit">Request Free Visit</button>
+          <p class="form-status" id="lf-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div class="footer-brand">
+      <span class="logo">
+        <img class="logo-mark" src="assets/logo-mark-square.png" alt="Halosun Energy Systems">
+        Halosun Energy Systems
+      </span>
+      <p>Solar Installation &amp; Energy Solutions.</p>
+      <p class="footer-contact">
+        743/7, Tilak Nagar, Raebareli<br>
+        <a href="tel:+919250678826">+91 92506 78826</a><br>
+        <a href="mailto:contact.halosunenergy@gmail.com">contact.halosunenergy@gmail.com</a>
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <p class="footer-tagline">Design <span>·</span> Execute <span>·</span> Energized</p>
+  <p class="footer-copy">© <span id="year"></span> Halosun Energy Systems. All rights reserved.</p>
+</footer>
+
+<script src="js/calculator.js"></script>
+<script src="js/form.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
