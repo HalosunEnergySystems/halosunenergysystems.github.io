@@ -399,3 +399,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media(max-width:460px){.footer-grid{grid-template-columns:1fr;}.footer-social-col{grid-column:auto;}.meta-dot{display:none;}}
 
 .index-faq-card{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;background:linear-gradient(135deg,#fff,#f5f8fa);}.index-faq-action{display:flex;justify-content:flex-end;}@media(max-width:720px){.index-faq-card{grid-template-columns:1fr;}.index-faq-action{justify-content:flex-start;}}
+/* === Gallery photo tile fix (replaces the previous gallery-fix block) === */
+
+.gallery-tile{
+  position: relative;
+}
+
+.gallery-tile img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.gallery-tile span{
+  position: relative;
+  z-index: 2;
+}
