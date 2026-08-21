@@ -82,9 +82,12 @@ function runCalculator() {
 
   resultsEl.hidden = false;
 
-  // Carry the bill amount over to the lead form for convenience
-  const leadBillField = document.getElementById('lf-bill');
-  if (leadBillField && !leadBillField.value) leadBillField.value = Math.round(bill);
+  // Carry the bill amount over to the contact page's lead form via URL param,
+  // since the calculator and the lead form now live on separate pages.
+  const ctaLink = document.getElementById('calc-cta');
+  if (ctaLink) {
+    ctaLink.href = 'contact.html?bill=' + Math.round(bill);
+  }
 
   resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }

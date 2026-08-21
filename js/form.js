@@ -7,6 +7,16 @@ const FORM_CONFIG = {
   endpointUrl: 'https://script.google.com/macros/s/AKfycbz6pPce1eTVj4WYkrC6jslRFw1ruCHh4GZ5Bt8TlE_yzvFmewf44ZGC4tqBEoY08V8/exec',
 };
 
+// If arriving from the calculator page with ?bill=4000, prefill the field.
+(function prefillBillFromCalculator() {
+  const params = new URLSearchParams(window.location.search);
+  const bill = params.get('bill');
+  const billField = document.getElementById('lf-bill');
+  if (bill && billField && !billField.value) {
+    billField.value = bill;
+  }
+})();
+
 document.getElementById('lead-form').addEventListener('submit', async function (e) {
   e.preventDefault();
 
