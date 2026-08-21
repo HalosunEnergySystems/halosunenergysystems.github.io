@@ -117,20 +117,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   margin-right:auto;
 }
 .logo em{font-style:normal; font-weight:500; color:var(--mist);}
-.company-logo{
-  width:122px;
-  height:auto;
-  max-height:68px;
-  object-fit:contain;
-  flex:none;
-  border-radius:8px;
-  box-shadow:0 5px 18px rgba(10,24,40,0.16);
-}
-.site-header .logo{min-width:122px;}
-.footer-brand .company-logo{width:190px; max-height:122px;}
-.footer-brand .logo{display:inline-flex;}
-.footer-brand .company-logo{box-shadow:none;}
-
+.logo-mark{width:38px; height:auto; flex:none; border-radius:8px;}
 .main-nav{display:flex; gap:28px;}
 .main-nav a{text-decoration:none; font-size:0.92rem; font-weight:500; color:var(--slate);}
 .main-nav a:hover{color:var(--ember);}
@@ -161,15 +148,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .arc{transform-origin:450px 450px;}
 
 .hero-content{position:relative; max-width:700px;}
-.hero-badge{
-  width:300px;
-  max-width:min(82vw, 300px);
-  height:auto;
-  margin-bottom:30px;
-  border-radius:14px;
-  box-shadow:0 18px 45px rgba(0,0,0,0.24);
-}
-
+.hero-badge{width:220px; height:auto; margin-bottom:28px; border-radius:12px;}
 .hero .eyebrow{color:var(--sun);}
 .hero h1{color:#fff;}
 .hero-sub{color:rgba(255,255,255,0.75); font-size:1.08rem; max-width:560px;}
@@ -420,11 +399,3 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media(max-width:460px){.footer-grid{grid-template-columns:1fr;}.footer-social-col{grid-column:auto;}.meta-dot{display:none;}}
 
 .index-faq-card{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;background:linear-gradient(135deg,#fff,#f5f8fa);}.index-faq-action{display:flex;justify-content:flex-end;}@media(max-width:720px){.index-faq-card{grid-template-columns:1fr;}.index-faq-action{justify-content:flex-start;}}
-
-
-@media (max-width: 760px){
-  .site-header .company-logo{width:104px; max-height:66px;}
-  .site-header .logo{min-width:104px;}
-  .hero-badge{width:235px; max-width:72vw;}
-  .footer-brand .company-logo{width:165px; max-height:105px;}
-}
