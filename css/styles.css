@@ -120,7 +120,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .logo em{font-style:normal; font-weight:500; color:var(--mist);}
 .logo-mark{width:60px; height:auto; flex:none; border-radius:8px;}
 .main-nav{display:flex; gap:28px;}
-.main-nav a{text-decoration:none; font-size:0.92rem; font-weight:500; color:var(--slate);}
+.main-nav a{text-decoration:none; font-size:0.92rem; font-weight:500; color:var(--slate); white-space:nowrap;}
 .main-nav a:hover{color:var(--ember);}
 .main-nav a.active{color:var(--ember);}
 .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
