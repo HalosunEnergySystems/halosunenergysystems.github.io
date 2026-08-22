@@ -64,7 +64,8 @@ img{max-width:100%; display:block;}
   text-transform:uppercase;
   color:var(--ember);
   margin:0 0 0.9em;
-  font-weight:600;
+  font-weight:600;   
+ .hero-brand .eyebrow{margin:0;
 }
 
 .section-sub{max-width:640px; color:var(--mist);}
