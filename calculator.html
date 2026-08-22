@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Solar Savings Calculator — Halosun Energy Systems</title>
 <meta name="description" content="Estimate your solar system size, subsidy and monthly savings with Halosun Energy Systems' free calculator.">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 <header class="site-header">
   <div class="wrap header-row">
     <a href="index.html" class="logo">
-      <img class="logo-mark" src="assets/logo-mark.svg" alt="Halosun Energy Systems">
+      <img class="logo-mark" src="assets/logo-header-footer.png" alt="Halosun Energy Systems">
       <span>Halosun <em>Energy Systems</em></span>
     </a>
     <nav class="main-nav" id="main-nav">
@@ -103,6 +103,41 @@
             <span>Estimated 25-year savings</span>
             <strong id="res-lifetime">&mdash;</strong>
           </div>
+
+          <!-- ============ EMI / FINANCING ============ -->
+          <div class="emi-panel" id="emi-panel">
+            <p class="emi-heading">Prefer to pay monthly? See the EMI</p>
+            <div class="emi-inputs">
+              <label class="field emi-field">
+                <span>Down payment (%)</span>
+                <input type="number" id="emi-downpayment" min="0" max="100" step="5" value="20">
+              </label>
+              <label class="field emi-field">
+                <span>Loan tenure (years)</span>
+                <input type="number" id="emi-tenure" min="1" max="15" step="1" value="5">
+              </label>
+              <label class="field emi-field">
+                <span>Interest rate (% p.a.)</span>
+                <input type="number" id="emi-rate" min="1" max="20" step="0.1" value="10">
+              </label>
+            </div>
+            <div class="emi-output">
+              <div class="result-row">
+                <span>Loan amount</span>
+                <strong id="emi-loan-amount">&mdash;</strong>
+              </div>
+              <div class="result-row result-highlight">
+                <span>Estimated monthly EMI</span>
+                <strong id="emi-monthly">&mdash;</strong>
+              </div>
+              <div class="result-row emi-vs-bill">
+                <span>Your old electricity bill</span>
+                <strong id="emi-old-bill">&mdash;</strong>
+              </div>
+            </div>
+            <p class="calc-note">Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems.</p>
+          </div>
+
           <a href="contact.html" class="btn btn-primary btn-full" id="calc-cta">Get an Exact Quote for This System</a>
         </div>
       </div>
@@ -114,7 +149,7 @@
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <a href="index.html" class="logo">
-        <img class="logo-mark" src="assets/logo-mark.svg" alt="Halosun Energy Systems">
+        <img class="logo-mark" src="assets/logo-header-footer.png" alt="Halosun Energy Systems">
         <span>Halosun <em>Energy Systems</em></span>
       </a>
       <p class="footer-lead">Professional solar engineering, installation and maintenance for homes and businesses.</p>
@@ -172,6 +207,7 @@
   <span>WhatsApp</span>
 </a>
 <script src="js/calculator.js"></script>
+<script src="js/emi-calculator.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
