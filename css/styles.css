@@ -96,7 +96,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .btn-ghost{background:transparent; color:inherit; border-color:currentColor;}
 .hero .btn-ghost{border-color:rgba(255,255,255,0.5); color:#fff;}
 .hero .btn-ghost:hover{border-color:#fff;}
-.btn-small{padding:9px 18px; font-size:0.85rem;}
+.btn-small{padding:9px 18px; font-size:0.85rem; white-space:nowrap;}
 .btn-full{width:100%;}
 
 /* ---------- Header ---------- */
