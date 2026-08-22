@@ -112,7 +112,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .logo{
   display:flex; align-items:center; gap:10px;
-  font-family:var(--font-display); font-weight:600; font-size:1.25rem;
+  font-family:var(--font-display); font-weight:600; font-size:1.40rem;
   text-decoration:none; color:var(--ink);
   margin-right:auto;
 }
