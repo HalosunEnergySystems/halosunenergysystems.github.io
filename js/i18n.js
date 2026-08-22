@@ -166,7 +166,126 @@ const TRANSLATIONS = {
 
   'footer-process':   { en: 'Our Process',          hi: 'हमारी प्रक्रिया' },
   'footer-calc':      { en: 'Savings Calculator',   hi: 'बचत कैलकुलेटर' },
-  'footer-faq-myths': { en: 'Solar FAQ & Myths',    hi: 'सोलर सवाल-जवाब और भ्रांतियाँ' }
+  'footer-faq-myths': { en: 'Solar FAQ & Myths',    hi: 'सोलर सवाल-जवाब और भ्रांतियाँ' },
+
+  // ---- shared CTA band title fragments reuse hero-cta-1 / hero-cta-2 for buttons ----
+
+  // ---- Services page ----
+  'svc-hero-eyebrow': { en: 'What we do', hi: 'हम क्या करते हैं' },
+  'svc-hero-title':   { en: 'Solar, engineered end to end', hi: 'सोलर, शुरू से आखिर तक इंजीनियर्ड' },
+  'svc-hero-sub':     { en: 'From a single rooftop to a full commercial plant, one firm handles design, procurement and construction.',
+                        hi: 'एक अकेली छत से लेकर पूर्ण व्यावसायिक प्लांट तक, एक ही कंपनी डिज़ाइन, खरीद और निर्माण संभालती है।' },
+
+  'svc-card-01-title': { en: 'Residential Solar', hi: 'आवासीय सोलर' },
+  'svc-card-01-desc':  { en: 'Rooftop systems sized to your electricity bill, not a sales quota. On-grid and hybrid options for homes.',
+                         hi: 'रूफटॉप सिस्टम आपके बिजली बिल के अनुसार तय किए जाते हैं, सेल्स कोटा के अनुसार नहीं। घरों के लिए ऑन-ग्रिड और हाइब्रिड विकल्प।' },
+  'svc-card-02-title': { en: 'Commercial & Industrial', hi: 'व्यावसायिक और औद्योगिक' },
+  'svc-card-02-desc':  { en: 'Rooftop and ground-mount plants engineered for uptime, with financing routes and O&M built in from day one.',
+                         hi: 'अपटाइम के लिए इंजीनियर किए गए रूफटॉप और ग्राउंड-माउंट प्लांट, पहले दिन से ही फाइनेंसिंग विकल्प और O&M शामिल।' },
+  'svc-card-03-title': { en: 'Turnkey EPC', hi: 'टर्नकी ईपीसी' },
+  'svc-card-03-desc':  { en: 'One firm for design, procurement and construction. No handoffs and no finger-pointing between contractors.',
+                         hi: 'डिज़ाइन, खरीद और निर्माण के लिए एक ही कंपनी। कोई हैंडऑफ नहीं और ठेकेदारों के बीच एक-दूसरे पर दोष मढ़ने की नौबत नहीं।' },
+  'svc-card-04-title': { en: 'Operations & Maintenance', hi: 'संचालन और रखरखाव' },
+  'svc-card-04-desc':  { en: 'Scheduled cleaning, remote monitoring and repairs that keep your plant generating at rated capacity for 25 years.',
+                         hi: 'निर्धारित सफ़ाई, रिमोट मॉनिटरिंग और मरम्मत जो आपके प्लांट को 25 वर्षों तक निर्धारित क्षमता पर जनरेट करते रहने में मदद करते हैं।' },
+  'cta-band-services-title': { en: 'Ready to see what solar could look like for you?', hi: 'देखना चाहते हैं कि आपके लिए सोलर कैसा दिखेगा?' },
+
+  // ---- Process page ----
+  'process-eyebrow': { en: 'How a project runs', hi: 'एक प्रोजेक्ट कैसे चलता है' },
+  'process-title':   { en: 'Six steps from roof to running meter', hi: 'छत से चलते मीटर तक, छह चरण' },
+
+  'process-step1-title': { en: 'Site Survey', hi: 'साइट सर्वे' },
+  'process-step1-desc':  { en: 'An engineer visits your roof or land to check shading, structure and available load.',
+                           hi: 'एक इंजीनियर छाया, संरचना और उपलब्ध लोड जांचने के लिए आपकी छत या ज़मीन पर आता है।' },
+  'process-step2-title': { en: 'System Design', hi: 'सिस्टम डिज़ाइन' },
+  'process-step2-desc':  { en: 'We size the plant to your actual consumption and roof, and prepare drawings and layout.',
+                           hi: 'हम प्लांट को आपकी वास्तविक खपत और छत के अनुसार तय करते हैं, और ड्रॉइंग व लेआउट तैयार करते हैं।' },
+  'process-step3-title': { en: 'Approvals & Subsidy Filing', hi: 'अनुमोदन और सब्सिडी आवेदन' },
+  'process-step3-desc':  { en: 'We handle net-metering paperwork and government subsidy applications on your behalf.',
+                           hi: 'हम आपकी ओर से नेट-मीटरिंग कागज़ात और सरकारी सब्सिडी आवेदन संभालते हैं।' },
+  'process-step4-title': { en: 'Installation', hi: 'इंस्टॉलेशन' },
+  'process-step4-desc':  { en: 'Certified crews install panels, inverter and wiring — most rooftop jobs finish in three to seven days.',
+                           hi: 'प्रमाणित टीमें पैनल, इनवर्टर और वायरिंग इंस्टॉल करती हैं — अधिकांश रूफटॉप काम तीन से सात दिनों में पूरे हो जाते हैं।' },
+  'process-step5-title': { en: 'Commissioning', hi: 'कमीशनिंग' },
+  'process-step5-desc':  { en: 'Utility inspection, net meter installation, and formal handover of your plant.',
+                           hi: 'यूटिलिटी निरीक्षण, नेट मीटर इंस्टॉलेशन, और आपके प्लांट की औपचारिक सुपुर्दगी।' },
+  'process-step6-title': { en: 'Monitoring & Maintenance', hi: 'निगरानी और रखरखाव' },
+  'process-step6-desc':  { en: 'Ongoing performance tracking and scheduled service to protect your generation over time.',
+                           hi: 'समय के साथ आपकी जनरेशन सुरक्षित रखने के लिए निरंतर प्रदर्शन ट्रैकिंग और निर्धारित सर्विस।' },
+
+  'cta-band-process-title': { en: 'Curious what your system would look like?', hi: 'जानना चाहते हैं कि आपका सिस्टम कैसा दिखेगा?' },
+
+  // ---- Gallery page ----
+  'gallery-title': { en: 'On the roof', hi: 'छत पर' },
+  'gallery-sub':   { en: 'Explore our recent solar installations', hi: 'हमारी हाल की सोलर इंस्टॉलेशन देखें' },
+  'gallery-tile-1': { en: 'Residential rooftop', hi: 'आवासीय रूफटॉप' },
+  'gallery-tile-2': { en: 'Commercial plant', hi: 'व्यावसायिक प्लांट' },
+  'gallery-tile-3': { en: 'Ground-mount plant', hi: 'ग्राउंड-माउंट प्लांट' },
+  'gallery-tile-4': { en: 'Inverter & wiring', hi: 'इनवर्टर और वायरिंग' },
+  'gallery-tile-5': { en: 'Net meter install', hi: 'नेट मीटर इंस्टॉल' },
+  'gallery-tile-6': { en: 'Commissioning day', hi: 'कमीशनिंग दिवस' },
+  'cta-band-gallery-title': { en: 'Want a plant like this on your roof?', hi: 'अपनी छत पर ऐसा प्लांट चाहते हैं?' },
+
+  // ---- Contact page ----
+  'contact-eyebrow': { en: 'Get started', hi: 'शुरू करें' },
+  'contact-title':   { en: 'Request a free site visit', hi: 'मुफ़्त साइट विज़िट का अनुरोध करें' },
+  'contact-intro':   { en: "Tell us a little about your property and we'll get back to you to schedule a free survey and detailed quote.",
+                       hi: 'अपनी संपत्ति के बारे में हमें थोड़ी जानकारी दें और हम मुफ़्त सर्वे व विस्तृत कोटेशन के लिए आपसे संपर्क करेंगे।' },
+
+  'contact-label-phone':      { en: 'Phone:', hi: 'फ़ोन:' },
+  'contact-label-email':      { en: 'Email:', hi: 'ईमेल:' },
+  'contact-label-address':    { en: 'Address:', hi: 'पता:' },
+  'contact-label-proprietor': { en: 'Proprietor:', hi: 'प्रोप्राइटर:' },
+
+  'form-name':          { en: 'Full name *', hi: 'पूरा नाम *' },
+  'form-phone':         { en: 'Phone number *', hi: 'फ़ोन नंबर *' },
+  'form-email':         { en: 'Email', hi: 'ईमेल' },
+  'form-city':          { en: 'City / Address *', hi: 'शहर / पता *' },
+  'form-property-type': { en: 'Property type', hi: 'संपत्ति का प्रकार' },
+  'field-residential':  { en: 'Residential', hi: 'आवासीय' },
+  'field-commercial':   { en: 'Commercial / Industrial', hi: 'व्यावसायिक / औद्योगिक' },
+  'form-bill':          { en: 'Average monthly bill (₹)', hi: 'औसत मासिक बिल (₹)' },
+  'form-message':       { en: 'Message', hi: 'संदेश' },
+  'form-submit':        { en: 'Request Free Visit', hi: 'मुफ़्त विज़िट का अनुरोध करें' },
+  'contact-footer-desc': { en: 'Solar Installation & Energy Solutions.', hi: 'सोलर इंस्टॉलेशन और ऊर्जा समाधान।' },
+
+  // ---- Calculator page ----
+  'calc-eyebrow': { en: 'Instant estimate', hi: 'तुरंत अनुमान' },
+  'calc-title':   { en: 'What could solar save you?', hi: 'सोलर से आपको कितनी बचत हो सकती है?' },
+  'calc-sub':     { en: 'Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote — book a free site visit for exact numbers.',
+                   hi: 'मोटे आकार और बचत अनुमान के लिए अपना औसत मासिक बिजली बिल दर्ज करें। यह एक मार्गदर्शन है, कोटेशन नहीं — सटीक आंकड़ों के लिए मुफ़्त साइट विज़िट बुक करें।' },
+
+  'calc-field-bill':   { en: 'Average monthly electricity bill (₹)', hi: 'औसत मासिक बिजली बिल (₹)' },
+  'calc-field-tariff': { en: 'Your electricity tariff (₹ per unit)', hi: 'आपका बिजली टैरिफ (₹ प्रति यूनिट)' },
+  'calc-btn':          { en: 'Calculate', hi: 'गणना करें' },
+  'calc-note-main':    { en: 'Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.',
+                        hi: 'लगभग 4 सन-आवर/दिन जनरेशन और मौजूदा PM सूर्य घर (केंद्रीय) + UPNEDA (यूपी राज्य) सब्सिडी स्लैब आवासीय रूफटॉप के लिए मानते हुए। संपादन योग्य डिफ़ॉल्ट — साइट-विशिष्ट आंकड़े के लिए हमसे पूछें।' },
+
+  'res-size-label':            { en: 'Recommended system size', hi: 'अनुशंसित सिस्टम आकार' },
+  'res-units-label':           { en: 'Estimated generation', hi: 'अनुमानित जनरेशन' },
+  'res-cost-label':            { en: 'System cost (before subsidy)', hi: 'सिस्टम लागत (सब्सिडी से पहले)' },
+  'res-subsidy-central-label': { en: 'Central subsidy (PM Surya Ghar)', hi: 'केंद्रीय सब्सिडी (PM सूर्य घर)' },
+  'res-subsidy-state-label':   { en: 'State subsidy (UPNEDA)', hi: 'राज्य सब्सिडी (UPNEDA)' },
+  'res-subsidy-total-label':   { en: 'Total subsidy', hi: 'कुल सब्सिडी' },
+  'res-net-label':             { en: 'Your cost after subsidy', hi: 'सब्सिडी के बाद आपकी लागत' },
+  'res-savings-label':         { en: 'Estimated monthly savings', hi: 'अनुमानित मासिक बचत' },
+  'res-payback-label':         { en: 'Payback period', hi: 'पेबैक अवधि' },
+  'res-lifetime-label':        { en: 'Estimated 25-year savings', hi: 'अनुमानित 25-वर्षीय बचत' },
+
+  'emi-heading-1':             { en: 'Prefer to pay monthly? See the EMI', hi: 'मासिक भुगतान पसंद करते हैं? EMI देखें' },
+  'emi-downpayment-label':     { en: 'Down payment (%)', hi: 'डाउन पेमेंट (%)' },
+  'emi-tenure-label':          { en: 'Loan tenure (years)', hi: 'लोन अवधि (वर्ष)' },
+  'emi-rate-label':            { en: 'Interest rate (% p.a.)', hi: 'ब्याज दर (% प्रति वर्ष)' },
+  'emi-loan-amount-label':     { en: 'Loan amount', hi: 'लोन राशि' },
+  'emi-monthly-label':         { en: 'Estimated monthly EMI', hi: 'अनुमानित मासिक EMI' },
+  'emi-old-bill-label':        { en: 'Your old electricity bill', hi: 'आपका पुराना बिजली बिल' },
+  'emi-heading-2':             { en: 'Once your subsidy is credited', hi: 'जब आपकी सब्सिडी जमा हो जाए' },
+  'emi-loan-amount-post-label': { en: 'Reduced loan amount after subsidy disbursal', hi: 'सब्सिडी वितरण के बाद घटी हुई लोन राशि' },
+  'emi-monthly-post-label':    { en: 'Reduced monthly EMI', hi: 'घटी हुई मासिक EMI' },
+  'emi-note':                  { en: "Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).",
+                                hi: 'यह केवल उदाहरण है, ऊपर दिए गए डाउन पेमेंट, अवधि और दर पर आधारित — आपकी वास्तविक लोन शर्तें ऋणदाता पर निर्भर करती हैं। यह हैलोसन एनर्जी सिस्टम्स की ओर से लोन ऑफ़र नहीं है। लोन पूरे सिस्टम की लागत पर तय किया जाता है क्योंकि सब्सिडी आमतौर पर इंस्टॉलेशन के बाद जमा होती है; एक बार जमा होने पर, आपका बकाया लोन और EMI ऊपर दिखाए अनुसार घटाया जा सकता है (वही अवधि और दर)।' },
+
+  'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' }
 };
 
 function applyLanguage(lang) {
