@@ -38,8 +38,8 @@ function updateEMI() {
   const netCost = resNetEl ? parseRupeevalue(resNetEl.textContent) : 0;
 
   const downPaymentPct = parseFloat(document.getElementById('emi-downpayment').value) || 0;
-  const tenureYears = parseFloat(document.getElementById('emi-tenure').value) || 5;
-  const ratePct = parseFloat(document.getElementById('emi-rate').value) || 10;
+  const tenureYears = parseFloat(document.getElementById('emi-tenure').value) || 10;
+  const ratePct = parseFloat(document.getElementById('emi-rate').value) || 5.75;
 
   // --- Primary EMI: financed on full system cost, before subsidy ---
   const loanAmount = systemCost * (1 - downPaymentPct / 100);
