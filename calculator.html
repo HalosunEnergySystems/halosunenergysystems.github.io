@@ -41,121 +41,121 @@
 <main>
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Instant estimate</p>
-      <h1>What could solar save you?</h1>
-      <p class="section-sub">Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote — book a free site visit for exact numbers.</p>
+      <p class="eyebrow" data-i18n="calc-eyebrow">Instant estimate</p>
+      <h1 data-i18n="calc-title">What could solar save you?</h1>
+      <p class="section-sub" data-i18n="calc-sub">Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote — book a free site visit for exact numbers.</p>
 
       <div class="calc-panel">
         <div class="calc-inputs">
           <label class="field">
-            <span>Average monthly electricity bill (&#8377;)</span>
+            <span data-i18n="calc-field-bill">Average monthly electricity bill (&#8377;)</span>
             <input type="number" id="calc-bill" inputmode="numeric" placeholder="e.g. 4000" min="0" step="1">
           </label>
           <label class="field">
-            <span>Your electricity tariff (&#8377; per unit)</span>
+            <span data-i18n="calc-field-tariff">Your electricity tariff (&#8377; per unit)</span>
             <input type="number" id="calc-tariff" inputmode="decimal" value="8" min="1" step="0.1">
           </label>
           <label class="field">
-            <span>Property type</span>
+            <span data-i18n="form-property-type">Property type</span>
             <select id="calc-type">
-              <option value="residential">Residential</option>
-              <option value="commercial">Commercial / Industrial</option>
+              <option value="residential" data-i18n="field-residential">Residential</option>
+              <option value="commercial" data-i18n="field-commercial">Commercial / Industrial</option>
             </select>
           </label>
-          <button class="btn btn-primary btn-full" id="calc-run">Calculate</button>
-          <p class="calc-note">Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.</p>
+          <button class="btn btn-primary btn-full" id="calc-run" data-i18n="calc-btn">Calculate</button>
+          <p class="calc-note" data-i18n="calc-note-main">Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.</p>
         </div>
 
         <div class="calc-results" id="calc-results" hidden>
           <div class="result-row result-highlight">
-            <span>Recommended system size</span>
+            <span data-i18n="res-size-label">Recommended system size</span>
             <strong id="res-size">&mdash;</strong>
           </div>
           <div class="result-row">
-            <span>Estimated generation</span>
+            <span data-i18n="res-units-label">Estimated generation</span>
             <strong id="res-units">&mdash;</strong>
           </div>
           <div class="result-row">
-            <span>System cost (before subsidy)</span>
+            <span data-i18n="res-cost-label">System cost (before subsidy)</span>
             <strong id="res-cost">&mdash;</strong>
           </div>
           <div class="result-row" id="res-subsidy-row">
-            <span>Central subsidy (PM Surya Ghar)</span>
+            <span data-i18n="res-subsidy-central-label">Central subsidy (PM Surya Ghar)</span>
             <strong id="res-subsidy-central">&mdash;</strong>
           </div>
           <div class="result-row">
-            <span>State subsidy (UPNEDA)</span>
+            <span data-i18n="res-subsidy-state-label">State subsidy (UPNEDA)</span>
             <strong id="res-subsidy-state">&mdash;</strong>
           </div>
           <div class="result-row">
-            <span>Total subsidy</span>
+            <span data-i18n="res-subsidy-total-label">Total subsidy</span>
             <strong id="res-subsidy-total">&mdash;</strong>
           </div>
           <div class="result-row">
-            <span>Your cost after subsidy</span>
+            <span data-i18n="res-net-label">Your cost after subsidy</span>
             <strong id="res-net">&mdash;</strong>
           </div>
           <div class="result-row result-highlight">
-            <span>Estimated monthly savings</span>
+            <span data-i18n="res-savings-label">Estimated monthly savings</span>
             <strong id="res-savings">&mdash;</strong>
           </div>
           <div class="result-row">
-            <span>Payback period</span>
+            <span data-i18n="res-payback-label">Payback period</span>
             <strong id="res-payback">&mdash;</strong>
           </div>
           <div class="result-row">
-            <span>Estimated 25-year savings</span>
+            <span data-i18n="res-lifetime-label">Estimated 25-year savings</span>
             <strong id="res-lifetime">&mdash;</strong>
           </div>
 
           <!-- ============ EMI / FINANCING ============ -->
           <div class="emi-panel" id="emi-panel">
-            <p class="emi-heading">Prefer to pay monthly? See the EMI</p>
+            <p class="emi-heading" data-i18n="emi-heading-1">Prefer to pay monthly? See the EMI</p>
             <div class="emi-inputs">
               <label class="field emi-field">
-                <span>Down payment (%)</span>
+                <span data-i18n="emi-downpayment-label">Down payment (%)</span>
                 <input type="number" id="emi-downpayment" min="0" max="100" step="5" value="10">
               </label>
               <label class="field emi-field">
-                <span>Loan tenure (years)</span>
+                <span data-i18n="emi-tenure-label">Loan tenure (years)</span>
                 <input type="number" id="emi-tenure" min="1" max="15" step="1" value="10">
               </label>
               <label class="field emi-field">
-                <span>Interest rate (% p.a.)</span>
+                <span data-i18n="emi-rate-label">Interest rate (% p.a.)</span>
                 <input type="number" id="emi-rate" min="1" max="20" step="0.1" value="5.75">
               </label>
             </div>
             <div class="emi-output">
               <div class="result-row">
-                <span>Loan amount</span>
+                <span data-i18n="emi-loan-amount-label">Loan amount</span>
                 <strong id="emi-loan-amount">&mdash;</strong>
               </div>
               <div class="result-row result-highlight">
-                <span>Estimated monthly EMI</span>
+                <span data-i18n="emi-monthly-label">Estimated monthly EMI</span>
                 <strong id="emi-monthly">&mdash;</strong>
               </div>
               <div class="result-row emi-vs-bill">
-                <span>Your old electricity bill</span>
+                <span data-i18n="emi-old-bill-label">Your old electricity bill</span>
                 <strong id="emi-old-bill">&mdash;</strong>
               </div>
             </div>
 
             <div class="emi-output" id="emi-post-subsidy-block" hidden>
-              <p class="emi-heading">Once your subsidy is credited</p>
+              <p class="emi-heading" data-i18n="emi-heading-2">Once your subsidy is credited</p>
               <div class="result-row">
-                <span>Reduced loan amount after subsidy disbursal</span>
+                <span data-i18n="emi-loan-amount-post-label">Reduced loan amount after subsidy disbursal</span>
                 <strong id="emi-loan-amount-post">&mdash;</strong>
               </div>
               <div class="result-row result-highlight">
-                <span>Reduced monthly EMI</span>
+                <span data-i18n="emi-monthly-post-label">Reduced monthly EMI</span>
                 <strong id="emi-monthly-post">&mdash;</strong>
               </div>
             </div>
 
-            <p class="calc-note">Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).
+            <p class="calc-note" data-i18n="emi-note">Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).</p>
           </div>
 
-          <a href="contact.html" class="btn btn-primary btn-full" id="calc-cta">Get an Exact Quote for This System</a>
+          <a href="contact.html" class="btn btn-primary btn-full" id="calc-cta" data-i18n="calc-cta-btn">Get an Exact Quote for This System</a>
         </div>
       </div>
     </div>
@@ -174,12 +174,12 @@
     </div>
 
     <div class="footer-col">
-      <h3>Explore</h3>
+      <h3 data-i18n="footer-explore">Explore</h3>
       <a href="services.html" data-i18n="nav-services">Services</a>
-      <a href="process.html">Our Process</a>
-      <a href="calculator.html">Savings Calculator</a>
+      <a href="process.html" data-i18n="footer-process">Our Process</a>
+      <a href="calculator.html" data-i18n="footer-calc">Savings Calculator</a>
       <a href="gallery.html" data-i18n="nav-projects">Projects</a>
-      <a href="faq.html">Solar FAQ &amp; Myths</a>
+      <a href="faq.html" data-i18n="footer-faq-myths">Solar FAQ &amp; Myths</a>
       <a href="contact.html" data-i18n="nav-contact">Contact</a>
     </div>
 
