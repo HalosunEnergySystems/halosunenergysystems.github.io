@@ -20,13 +20,18 @@
       <span>Halosun <em>Energy Systems</em></span>
     </a>
     <nav class="main-nav" id="main-nav">
-      <a href="services.html">Services</a>
-      <a href="process.html">Process</a>
-      <a href="calculator.html">Calculator</a>
-      <a href="gallery.html">Projects</a>
-      <a href="contact.html" class="active">Contact</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="process.html" data-i18n="nav-process">Process</a>
+      <a href="calculator.html" data-i18n="nav-calculator">Calculator</a>
+      <a href="gallery.html" data-i18n="nav-projects">Projects</a>
+      <a href="faq.html" data-i18n="nav-faq">Solar FAQ</a>
+      <a href="contact.html" class="active" data-i18n="nav-contact">Contact</a>
     </nav>
-    <a href="contact.html" class="btn btn-primary btn-small nav-cta">Get a Free Quote</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="hi">हि</button>
+    </div>
+    <a href="contact.html" class="btn btn-primary btn-small nav-cta" data-i18n="nav-cta">Get a Free Quote</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -106,16 +111,17 @@
       </p>
     </div>
     <div class="footer-links">
-      <a href="services.html">Services</a>
-      <a href="process.html">Process</a>
-      <a href="calculator.html">Calculator</a>
-      <a href="contact.html">Contact</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="process.html" data-i18n="card-02-title">Process</a>
+      <a href="calculator.html" data-i18n="nav-calculator">Calculator</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
     </div>
   </div>
-  <p class="footer-tagline">Design <span>&middot;</span> Build <span>&middot;</span> Power</p>
+  <p class="footer-tagline" data-i18n="footer-tagline">Design <span>&middot;</span> Build <span>&middot;</span> Power</p>
   <p class="footer-copy">&copy; <span id="year"></span> Halosun Energy Systems. All rights reserved.</p>
 </footer>
 <script src="js/form.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

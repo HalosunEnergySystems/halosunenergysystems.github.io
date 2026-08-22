@@ -20,14 +20,18 @@
       <span>Halosun <em>Energy Systems</em></span>
     </a>
     <nav class="main-nav" id="main-nav">
-      <a href="services.html">Services</a>
-      <a href="process.html">Process</a>
-      <a href="calculator.html">Calculator</a>
-      <a href="gallery.html" class="active">Projects</a>
-      <a href="faq.html">Solar FAQ</a>
-      <a href="contact.html">Contact</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="process.html" data-i18n="nav-process">Process</a>
+      <a href="calculator.html" data-i18n="nav-calculator">Calculator</a>
+      <a href="gallery.html" class="active" data-i18n="nav-projects">Projects</a>
+      <a href="faq.html" data-i18n="nav-faq">Solar FAQ</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
     </nav>
-    <a href="contact.html" class="btn btn-primary btn-small nav-cta">Get a Free Quote</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="hi">हि</button>
+    </div>
+    <a href="contact.html" class="btn btn-primary btn-small nav-cta" data-i18n="nav-cta">Get a Free Quote</a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -85,31 +89,31 @@
         <img class="logo-mark" src="assets/logo-mark.svg" alt="Halosun Energy Systems">
         <span>Halosun <em>Energy Systems</em></span>
       </a>
-      <p class="footer-lead">Professional solar engineering, installation and maintenance for homes and businesses.</p>
+      <p class="footer-lead" data-i18n="footer-lead">Professional solar engineering, installation and maintenance for homes and businesses.</p>
       <div class="footer-badge"><span>UPNEDA Registered</span><strong>RBL2605181404</strong></div>
     </div>
 
     <div class="footer-col">
       <h3>Explore</h3>
-      <a href="services.html">Services</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
       <a href="process.html">Our Process</a>
       <a href="calculator.html">Savings Calculator</a>
-      <a href="gallery.html">Projects</a>
+      <a href="gallery.html" data-i18n="nav-projects">Projects</a>
       <a href="faq.html">Solar FAQ &amp; Myths</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
     </div>
 
     <div class="footer-col">
-      <h3>Contact</h3>
+      <h3 data-i18n="footer-contact">Contact</h3>
       <a href="tel:+919250678826">+91 92506 78826</a>
       <a href="mailto:info@halosunenergysystems.com">info@halosunenergysystems.com</a>
       <span>743/7, Tilak Nagar<br>Raebareli, Uttar Pradesh</span>
-      <a class="footer-wa-link" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener">Chat on WhatsApp →</a>
+      <a class="footer-wa-link" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener" data-i18n="footer-wa">Chat on WhatsApp →</a>
     </div>
 
     <div class="footer-col footer-social-col">
-      <h3>Connect</h3>
-      <p>Follow Halosun for solar projects, engineering insights and updates.</p>
+      <h3 data-i18n="footer-connect">Connect</h3>
+      <p data-i18n="footer-connect-desc">Follow Halosun for solar projects, engineering insights and updates.</p>
       <div class="social-links" aria-label="Social media links">
         <a class="social-link" href="https://www.facebook.com/profile.php?id=61590382589778" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.67.33-1 1-1Z"/></svg>
@@ -126,7 +130,7 @@
   </div>
 
   <div class="wrap footer-bottom">
-    <p class="footer-tagline">Design <span>·</span> Build <span>·</span> Power</p>
+    <p class="footer-tagline" data-i18n="footer-tagline">Design <span>·</span> Build <span>·</span> Power</p>
     <div class="footer-meta">
       <span>© <span id="year"></span> Halosun Energy Systems</span>
       <span class="meta-dot">•</span>
@@ -139,6 +143,7 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.7 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.6h-.1c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.3 2.9 7 0 5.4-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"/></svg>
   <span>WhatsApp</span>
 </a>
+<script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
