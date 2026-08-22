@@ -156,7 +156,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .arc{transform-origin:450px 450px;}
 
 .hero-content{position:relative; max-width:700px;}
-.hero-brand{display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:10px;}
+.hero-brand{display:inline-flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:10px;}
 .hero-badge{width:180px; height:auto; margin-bottom:-8px; border-radius:12px;}
 .hero-brand-name{
   font-family:var(--font-display); font-weight:600; font-size:1.3rem;
@@ -169,7 +169,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-style:normal; font-weight:500; color:rgba(255,255,255,0.55);
   font-size:0.6em; margin-top:2px;
 }
-.hero .eyebrow{color:var(--sun);}
+.hero .eyebrow{color:var(--sun); text-align:center;}
 .hero h1{color:#fff;}
 .hero-sub{color:rgba(255,255,255,0.75); font-size:1.08rem; max-width:560px;}
 .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
