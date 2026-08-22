@@ -115,6 +115,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-family:var(--font-display); font-weight:600; font-size:1.40rem;
   text-decoration:none; color:var(--ink);
   margin-right:auto;
+  white-space:nowrap;
 }
 .logo em{font-style:normal; font-weight:500; color:var(--mist);}
 .logo-mark{width:60px; height:auto; flex:none; border-radius:8px;}
