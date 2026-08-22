@@ -307,7 +307,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .calc-results{border-left:none; border-top:1px solid var(--line-dark);}
   .form-grid{grid-template-columns:1fr;}
 }
-@media (max-width:720px){
+@media (max-width:860px){
   .main-nav{
     position:absolute; top:100%; left:0; right:0;
     background:var(--paper); border-bottom:1px solid var(--line);
