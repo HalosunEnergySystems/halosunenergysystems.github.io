@@ -1,0 +1,97 @@
+/* ===========================================================
+   Halosun — Feature additions: Impact Counter + Language Toggle
+   Colors match the brand mark: navy #0f2038 / gold #f2a52c
+   =========================================================== */
+
+/* ---------- Language toggle (sits in header) ---------- */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(15, 32, 56, 0.18);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+  background: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 12px;
+}
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #0f2038;
+  opacity: 0.55;
+  transition: all 0.2s ease;
+}
+.lang-toggle button.active {
+  background: #0f2038;
+  color: #fbd34d;
+  opacity: 1;
+}
+.lang-toggle button:hover:not(.active) {
+  opacity: 0.85;
+}
+
+/* ---------- Impact counter section ---------- */
+.impact-section {
+  background: #0f2038;
+  background-image: radial-gradient(circle at 20% 20%, rgba(242, 165, 44, 0.08), transparent 55%);
+  padding: 72px 0;
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+@media (max-width: 900px) {
+  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .impact-grid { grid-template-columns: 1fr; }
+}
+.impact-stat {
+  text-align: center;
+  padding: 28px 16px;
+  border: 1px solid rgba(251, 211, 77, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+}
+.impact-stat .impact-icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+  display: block;
+}
+.impact-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1;
+  background: linear-gradient(90deg, #e8722a, #fbd34d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.impact-unit {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fbd34d;
+  margin-left: 2px;
+}
+.impact-label {
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.02em;
+}
+.impact-note {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+}
