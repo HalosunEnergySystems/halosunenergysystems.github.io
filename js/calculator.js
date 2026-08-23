@@ -70,6 +70,19 @@ function validateLead() {
 
 let hasAutoOpenedWhatsapp = false;
 
+// Defaults used by the Reset button — keep in sync with the HTML's
+// initial values (calc-tariff="8", calc-type="residential", etc.)
+const CALC_FIELD_DEFAULTS = {
+  'calc-name': '',
+  'calc-phone': '',
+  'calc-bill': '',
+  'calc-tariff': '8',
+  'calc-type': 'residential',
+  'emi-downpayment': '10',
+  'emi-tenure': '10',
+  'emi-rate': '5.75',
+};
+
 function buildWhatsappUrl(lead, summary) {
   const lines = [
     `Hello Halosun Energy Systems,`,
@@ -136,6 +149,8 @@ function runCalculator() {
   document.getElementById('res-lifetime').textContent = formatINR(Math.max(lifetimeSavings, 0));
 
   resultsEl.hidden = false;
+  const placeholderEl = document.getElementById('calc-placeholder');
+  if (placeholderEl) placeholderEl.hidden = true;
 
   // Carry the bill amount over to the contact page's lead form via URL param,
   // since the calculator and the lead form now live on separate pages.
@@ -151,6 +166,8 @@ function runCalculator() {
   const whatsappBtn = document.getElementById('calc-whatsapp-btn');
   if (whatsappBtn) {
     whatsappBtn.href = whatsappUrl;
+    whatsappBtn.classList.remove('is-disabled');
+    whatsappBtn.removeAttribute('aria-disabled');
   }
   // Auto-open once per visit, right after the first successful calculation —
   // this is the "mandatory" part: getting results also opens WhatsApp with
@@ -165,6 +182,48 @@ function runCalculator() {
   resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+/* ---------- Reset ----------
+   Clears every field the user filled in (lead + calculator + EMI panel)
+   back to defaults, hides the results, restores the "fill in your
+   details" placeholder, and disables the WhatsApp button again until
+   the user recalculates. */
+function resetCalculator() {
+  Object.keys(CALC_FIELD_DEFAULTS).forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.value = CALC_FIELD_DEFAULTS[id];
+  });
+
+  const errorEl = document.getElementById('calc-lead-error');
+  if (errorEl) errorEl.hidden = true;
+
+  const resultsEl = document.getElementById('calc-results');
+  if (resultsEl) resultsEl.hidden = true;
+
+  const placeholderEl = document.getElementById('calc-placeholder');
+  if (placeholderEl) placeholderEl.hidden = false;
+
+  const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
+  if (postSubsidyBlock) postSubsidyBlock.hidden = true;
+
+  ['emi-loan-amount', 'emi-monthly', 'emi-old-bill', 'emi-loan-amount-post', 'emi-monthly-post'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '\u2014';
+  });
+
+  const whatsappBtn = document.getElementById('calc-whatsapp-btn');
+  if (whatsappBtn) {
+    whatsappBtn.classList.add('is-disabled');
+    whatsappBtn.setAttribute('aria-disabled', 'true');
+    whatsappBtn.removeAttribute('href');
+  }
+
+  // Let the next successful calculation auto-open WhatsApp again.
+  hasAutoOpenedWhatsapp = false;
+
+  const nameInput = document.getElementById('calc-name');
+  if (nameInput) nameInput.focus();
+}
+
 document.getElementById('calc-run').addEventListener('click', runCalculator);
 document.getElementById('calc-bill').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
@@ -172,3 +231,14 @@ document.getElementById('calc-bill').addEventListener('keydown', (e) => {
 document.getElementById('calc-phone').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
 });
+const calcResetBtn = document.getElementById('calc-reset');
+if (calcResetBtn) calcResetBtn.addEventListener('click', resetCalculator);
+
+// Belt-and-braces guard in case the CSS pointer-events rule is ever
+// overridden — the button shouldn't be clickable while disabled.
+const calcWhatsappBtn = document.getElementById('calc-whatsapp-btn');
+if (calcWhatsappBtn) {
+  calcWhatsappBtn.addEventListener('click', (e) => {
+    if (calcWhatsappBtn.classList.contains('is-disabled')) e.preventDefault();
+  });
+}
