@@ -169,17 +169,24 @@ function runCalculator() {
     whatsappBtn.classList.remove('is-disabled');
     whatsappBtn.removeAttribute('aria-disabled');
   }
+  // Scroll/paint the revealed results BEFORE we potentially switch focus
+  // away to a new WhatsApp tab below — otherwise the browser can defer
+  // repainting this now-background tab until the user switches back to it.
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
   // Auto-open once per visit, right after the first successful calculation —
   // this is the "mandatory" part: getting results also opens WhatsApp with
   // the request pre-filled, and the visitor just needs to tap Send there.
   // Later recalculations (e.g. adjusting the bill) just refresh the button
   // above rather than re-opening a tab each time.
   if (!hasAutoOpenedWhatsapp) {
-    window.open(whatsappUrl, '_blank', 'noopener');
     hasAutoOpenedWhatsapp = true;
+    // Deferred slightly so this tab finishes painting the results (and the
+    // scroll above) before we switch focus away to the new WhatsApp tab.
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank', 'noopener');
+    }, 300);
   }
-
-  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 /* ---------- Reset ----------
