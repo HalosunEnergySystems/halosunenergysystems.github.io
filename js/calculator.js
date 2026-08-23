@@ -338,8 +338,21 @@ async function generatePdfEstimate() {
     let textStartX = marginX;
     try {
       const logoDataUrl = await loadImageAsDataURL('assets/logo-header-footer.png');
-      doc.addImage(logoDataUrl, 'PNG', marginX, 12, 14, 14);
-      textStartX = marginX + 18;
+      // Fit the logo inside a 14mm box while preserving its real aspect
+      // ratio — a fixed 14x14 square was stretching non-square logos
+      // (e.g. a taller, stacked mark) to fill it.
+      const logoProps = doc.getImageProperties(logoDataUrl);
+      const maxBoxSize = 14; // mm
+      const aspectRatio = logoProps.width / logoProps.height;
+      let logoW = maxBoxSize;
+      let logoH = maxBoxSize;
+      if (aspectRatio >= 1) {
+        logoH = maxBoxSize / aspectRatio;
+      } else {
+        logoW = maxBoxSize * aspectRatio;
+      }
+      doc.addImage(logoDataUrl, 'PNG', marginX, 12, logoW, logoH);
+      textStartX = marginX + logoW + 4;
     } catch (e) {
       // Logo unavailable — fall back to text-only header, no big deal.
     }
