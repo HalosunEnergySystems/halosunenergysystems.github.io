@@ -404,7 +404,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .floating-whatsapp svg{width:21px;height:21px;fill:currentColor;}
 .floating-whatsapp:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(0,0,0,.28);color:#fff;}
 /* FAQ */
-.faq-intro{max-width:720px;}
+/* .faq-intro previously set max-width:720px here, which overrode .wrap's
+   1160px width and re-centered this block independently — shifting the
+   hero heading/subtitle/chips out of alignment with the FAQ list and
+   every other section below. The paragraph's line-length is already
+   handled by .section-sub (max-width:640px, used site-wide), so this
+   rule isn't needed and is left empty intentionally. */
 .faq-filter{display:flex;gap:9px;flex-wrap:wrap;margin:28px 0 20px;}
 .faq-chip{border:1px solid var(--line);background:#fff;color:var(--slate);padding:9px 15px;border-radius:999px;font:500 .82rem var(--font-body);cursor:pointer;transition:.2s ease;}
 .faq-chip:hover,.faq-chip.active{background:var(--ink);border-color:var(--ink);color:#fff;}
