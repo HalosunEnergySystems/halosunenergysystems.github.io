@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.addEventListener('input', updateEMI);
   });
   // Also catch the case where results become visible via any other trigger
-  const resultsPanel = document.getElementById('calc-results');
+  const resultsPanel = document.getElementById('calc-results-content');
   if (resultsPanel) {
     const observer = new MutationObserver(() => {
       if (!resultsPanel.hidden) updateEMI();

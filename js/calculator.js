@@ -108,7 +108,7 @@ function runCalculator() {
   const billInput = document.getElementById('calc-bill');
   const tariffInput = document.getElementById('calc-tariff');
   const typeInput = document.getElementById('calc-type');
-  const resultsEl = document.getElementById('calc-results');
+  const resultsEl = document.getElementById('calc-results-content');
 
   const bill = parseFloat(billInput.value);
   const tariff = parseFloat(tariffInput.value) || 8;
@@ -196,7 +196,7 @@ function resetCalculator() {
   const errorEl = document.getElementById('calc-lead-error');
   if (errorEl) errorEl.hidden = true;
 
-  const resultsEl = document.getElementById('calc-results');
+  const resultsEl = document.getElementById('calc-results-content');
   if (resultsEl) resultsEl.hidden = true;
 
   const placeholderEl = document.getElementById('calc-placeholder');
