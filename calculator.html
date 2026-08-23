@@ -63,6 +63,13 @@
     color: #94a3b8 !important;
     opacity: 1 !important;
   }
+  /* Native <select> option list renders on a white background regardless
+     of the page's dark theme; without an explicit color, options were
+     inheriting white text and staying invisible until hovered. */
+  #calc-type option {
+    color: #111827 !important;
+    background-color: #ffffff !important;
+  }
 </style>
 </head>
 <body>
