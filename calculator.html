@@ -49,6 +49,16 @@
       <div class="calc-panel">
         <div class="calc-inputs">
           <label class="field">
+            <span data-i18n="calc-field-name">Your name</span>
+            <input type="text" id="calc-name" placeholder="e.g. Rohit Sharma" autocomplete="name">
+          </label>
+          <label class="field">
+            <span data-i18n="calc-field-phone">WhatsApp number (required to view results)</span>
+            <input type="tel" id="calc-phone" inputmode="numeric" placeholder="e.g. 9876543210" maxlength="10" autocomplete="tel">
+          </label>
+          <p class="calc-field-error" id="calc-lead-error" hidden></p>
+
+          <label class="field">
             <span data-i18n="calc-field-bill">Average monthly electricity bill (&#8377;)</span>
             <input type="number" id="calc-bill" inputmode="numeric" placeholder="e.g. 4000" min="0" step="1">
           </label>
@@ -68,6 +78,8 @@
         </div>
 
         <div class="calc-results" id="calc-results" hidden>
+          <a href="#" class="btn btn-whatsapp btn-full" id="calc-whatsapp-btn" target="_blank" rel="noopener" data-i18n="calc-whatsapp-btn">Send My Estimate via WhatsApp →</a>
+
           <div class="result-row result-highlight">
             <span data-i18n="res-size-label">Recommended system size</span>
             <strong id="res-size">&mdash;</strong>
@@ -156,7 +168,7 @@
             <p class="calc-note" data-i18n="emi-note">Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).</p>
           </div>
 
-          <a href="contact.html" class="btn btn-primary btn-full" id="calc-cta" data-i18n="calc-cta-btn">Get an Exact Quote for This System</a>
+          <a href="contact.html" class="btn btn-ghost btn-full" id="calc-cta" data-i18n="calc-cta-btn">Or Request a Detailed Written Quote</a>
         </div>
       </div>
     </div>
