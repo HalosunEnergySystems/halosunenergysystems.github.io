@@ -303,7 +303,12 @@ function resetCalculator() {
    what the visitor sees (including any EMI inputs they've adjusted). */
 function pdfText(id, fallback) {
   const el = document.getElementById(id);
-  const text = el ? el.textContent.trim() : '';
+  let text = el ? el.textContent.trim() : '';
+  // jsPDF's built-in fonts only cover basic Latin (WinAnsi) characters —
+  // the ₹ Rupee sign (added to Unicode in 2010) isn't in that set, so it
+  // was rendering as a garbled glyph (looked like a stray quote/"1").
+  // Swap it for plain "Rs." wherever this text ends up in the PDF.
+  text = text.replace(/\u20B9/g, 'Rs. ');
   return text && text !== '—' && text !== '\u2014' ? text : (fallback || '\u2014');
 }
 
@@ -317,6 +322,19 @@ function loadImageAsDataURL(url) {
       reader.readAsDataURL(blob);
     }));
 }
+
+// Brand palette (matches css/styles.css design tokens)
+const PDF_COLOR = {
+  ink: [15, 32, 56],        // --ink
+  inkSoft: [24, 47, 76],    // --ink-soft
+  sun: [217, 169, 78],      // --sun
+  sunTint: [250, 243, 229], // pale wash of --sun for card backgrounds
+  ember: [232, 93, 44],     // --ember
+  slate: [36, 48, 61],      // --slate
+  mist: [124, 139, 155],    // --mist
+  line: [225, 220, 205],    // warm-tinted hairline
+  zebra: [247, 244, 236],   // faint warm stripe for alternating rows
+};
 
 async function generatePdfEstimate() {
   if (!window.jspdf || !window.jspdf.jsPDF) {
@@ -332,17 +350,23 @@ async function generatePdfEstimate() {
     const pageWidth = doc.internal.pageSize.getWidth();
     const marginX = 18;
     const rightX = pageWidth - marginX;
-    let y = 20;
+    let y;
 
-    // ---- Header: logo (best effort) + company name ----
+    // ---- Header band: full-width navy strip with logo + name ----
+    const bandH = 34;
+    doc.setFillColor(...PDF_COLOR.ink);
+    doc.rect(0, 0, pageWidth, bandH, 'F');
+    doc.setFillColor(...PDF_COLOR.sun);
+    doc.rect(0, bandH, pageWidth, 1.2, 'F'); // thin gold seam under the band
+
     let textStartX = marginX;
     try {
       const logoDataUrl = await loadImageAsDataURL('assets/logo-header-footer.png');
-      // Fit the logo inside a 14mm box while preserving its real aspect
-      // ratio — a fixed 14x14 square was stretching non-square logos
-      // (e.g. a taller, stacked mark) to fill it.
+      // Fit the logo inside an 18mm box while preserving its real aspect
+      // ratio, so non-square logos (e.g. a taller, stacked mark) don't
+      // get stretched to fill a fixed square.
       const logoProps = doc.getImageProperties(logoDataUrl);
-      const maxBoxSize = 14; // mm
+      const maxBoxSize = 18; // mm
       const aspectRatio = logoProps.width / logoProps.height;
       let logoW = maxBoxSize;
       let logoH = maxBoxSize;
@@ -351,70 +375,92 @@ async function generatePdfEstimate() {
       } else {
         logoW = maxBoxSize * aspectRatio;
       }
-      doc.addImage(logoDataUrl, 'PNG', marginX, 12, logoW, logoH);
-      textStartX = marginX + logoW + 4;
+      doc.addImage(logoDataUrl, 'PNG', marginX, (bandH - logoH) / 2, logoW, logoH);
+      textStartX = marginX + logoW + 5;
     } catch (e) {
       // Logo unavailable — fall back to text-only header, no big deal.
     }
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(16);
-    doc.setTextColor(20, 30, 45);
-    doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 19);
+    doc.setFontSize(17);
+    doc.setTextColor(255, 255, 255);
+    doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 18);
     const nameWidth = doc.getTextWidth('HALOSUN ENERGY SYSTEMS');
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    doc.setTextColor(110, 120, 135);
+    doc.setFontSize(9.5);
+    doc.setTextColor(...PDF_COLOR.sun);
     doc.text('Design \u00b7 Build \u00b7 Power', textStartX + nameWidth / 2, 25, { align: 'center' });
 
-    doc.setDrawColor(210, 210, 210);
-    doc.line(marginX, 30, rightX, 30);
-
-    // ---- Title + date ----
-    y = 40;
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(14);
-    doc.setTextColor(20, 30, 45);
-    doc.text('Solar Savings Estimate', marginX, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    doc.setTextColor(130, 130, 130);
     const today = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-    doc.text('Generated: ' + today, rightX, y, { align: 'right' });
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(210, 217, 227);
+    doc.text('Solar Savings Estimate', rightX, 15, { align: 'right' });
+    doc.text('Generated: ' + today, rightX, 20.5, { align: 'right' });
 
-    y += 8;
+    // ---- Title + prepared-for line ----
+    y = bandH + 13;
     const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || 'Valued Customer';
     const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
-    doc.setFontSize(10.5);
-    doc.setTextColor(60, 70, 85);
-    doc.text('Prepared for: ' + leadName + (leadPhone ? ' (' + leadPhone + ')' : ''), marginX, y);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.setTextColor(...PDF_COLOR.ink);
+    doc.text('Prepared for ' + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : ''), marginX, y);
 
-    // ---- Helper to draw a label/value row ----
+    // ---- Hero stat cards: the two numbers a visitor cares about most ---
+    y += 8;
+    const cardGap = 8;
+    const cardW = (rightX - marginX - cardGap) / 2;
+    const cardH = 24;
+    function heroCard(x, label, value) {
+      doc.setFillColor(...PDF_COLOR.sunTint);
+      doc.setDrawColor(...PDF_COLOR.sun);
+      doc.roundedRect(x, y, cardW, cardH, 3, 3, 'FD');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(7.5);
+      doc.setTextColor(...PDF_COLOR.ember);
+      doc.text(label.toUpperCase(), x + 6, y + 8);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(16);
+      doc.setTextColor(...PDF_COLOR.ink);
+      doc.text(value, x + 6, y + 18);
+    }
+    heroCard(marginX, 'Est. Monthly Savings', pdfText('res-savings'));
+    heroCard(marginX + cardW + cardGap, 'Payback Period', pdfText('res-payback'));
+    y += cardH + 10;
+
+    // ---- Helpers to draw a section heading and label/value rows ----
+    let rowIndex = 0;
     function row(label, value, opts) {
       opts = opts || {};
       const bold = opts.bold;
+      if (rowIndex % 2 === 1) {
+        doc.setFillColor(...PDF_COLOR.zebra);
+        doc.rect(marginX - 2, y - 5.3, (rightX - marginX) + 4, 7.8, 'F');
+      }
+      rowIndex += 1;
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10.5);
-      doc.setTextColor(70, 80, 95);
+      doc.setTextColor(...PDF_COLOR.mist);
       doc.text(label, marginX, y);
       doc.setFont('helvetica', bold ? 'bold' : 'normal');
-      doc.setTextColor(20, 30, 45);
+      doc.setTextColor(...(bold ? PDF_COLOR.ember : PDF_COLOR.slate));
       doc.text(value, rightX, y, { align: 'right' });
-      doc.setDrawColor(230, 230, 230);
-      doc.line(marginX, y + 2.2, rightX, y + 2.2);
-      y += 8;
+      y += 7.8;
     }
     function sectionHeading(label) {
       y += 3;
-      doc.setFillColor(235, 240, 245);
-      doc.rect(marginX, y - 5, rightX - marginX, 7.5, 'F');
+      doc.setFillColor(...PDF_COLOR.sunTint);
+      doc.rect(marginX, y - 5, rightX - marginX, 8, 'F');
+      doc.setFillColor(...PDF_COLOR.ember);
+      doc.rect(marginX, y - 5, 2.2, 8, 'F'); // colored accent tab on the left edge
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10.5);
-      doc.setTextColor(20, 30, 45);
-      doc.text(label, marginX + 2, y);
-      y += 8;
+      doc.setTextColor(...PDF_COLOR.ink);
+      doc.text(label, marginX + 6, y + 0.6);
+      y += 9;
+      rowIndex = 0;
     }
 
-    y += 6;
     sectionHeading('System & Savings Summary');
     row('Recommended system size', pdfText('res-size'));
     row('Estimated generation', pdfText('res-units'));
@@ -423,8 +469,6 @@ async function generatePdfEstimate() {
     row('State subsidy (UPNEDA)', pdfText('res-subsidy-state'));
     row('Total subsidy', pdfText('res-subsidy-total'));
     row('Your cost after subsidy', pdfText('res-net'), { bold: true });
-    row('Estimated monthly savings', pdfText('res-savings'), { bold: true });
-    row('Payback period', pdfText('res-payback'));
     row('Estimated 25-year savings', pdfText('res-lifetime'), { bold: true });
 
     // ---- EMI section (only if the visitor has actually calculated an EMI) ----
@@ -448,22 +492,28 @@ async function generatePdfEstimate() {
     }
 
     // ---- Footer disclaimer + contact ----
-    y += 4;
-    doc.setDrawColor(210, 210, 210);
+    y += 3;
+    doc.setDrawColor(...PDF_COLOR.sun);
+    doc.setLineWidth(0.6);
     doc.line(marginX, y, rightX, y);
+    doc.setLineWidth(0.2);
     y += 6;
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
-    doc.setTextColor(130, 130, 130);
+    doc.setTextColor(...PDF_COLOR.mist);
     const disclaimer = 'This is an illustrative estimate only, based on the figures you entered — not a final quotation. '
       + 'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.';
     const wrapped = doc.splitTextToSize(disclaimer, rightX - marginX);
     doc.text(wrapped, marginX, y);
-    y += wrapped.length * 4 + 4;
+    y += wrapped.length * 4 + 5;
 
-    doc.setFontSize(9);
-    doc.setTextColor(70, 80, 95);
-    doc.text('Halosun Energy Systems  \u2022  +91 92506 78826  \u2022  info@halosunenergysystems.com', marginX, y);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9.5);
+    doc.setTextColor(...PDF_COLOR.ink);
+    doc.text('Halosun Energy Systems', marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(...PDF_COLOR.mist);
+    doc.text('  \u2022  +91 92506 78826  \u2022  info@halosunenergysystems.com', marginX + doc.getTextWidth('Halosun Energy Systems'), y);
 
     const safeName = leadName.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'estimate';
     doc.save('Halosun-Solar-Estimate-' + safeName + '.pdf');
