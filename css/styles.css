@@ -360,7 +360,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .hero .btn-primary{box-shadow:0 12px 28px rgba(217,169,78,.25);}
 .hero-badge{filter:drop-shadow(0 14px 30px rgba(0,0,0,.18));}
 .footer-grid{display:grid;grid-template-columns:1.45fr .85fr 1fr 1fr;gap:42px;padding-bottom:44px;}
-.footer-brand .logo{margin:0 0 12px; align-items:flex-start; text-align:left;}
+.footer-brand .logo{margin:0 0 12px; align-items:flex-start;}
 .footer-lead{max-width:320px;color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.7;margin:0 0 18px;}
 .footer-badge{display:inline-flex;flex-direction:column;gap:3px;padding:10px 13px;border:1px solid rgba(217,169,78,.25);border-radius:10px;background:rgba(255,255,255,.035);}
 .footer-badge span{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sun);}
