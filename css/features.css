@@ -79,18 +79,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 14px;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
   border-radius: 50%;
-  background: rgba(217, 169, 78, 0.12);
-  border: 1px solid rgba(217, 169, 78, 0.25);
+  background: rgba(217, 169, 78, 0.1);
+  border: 1px solid rgba(217, 169, 78, 0.3);
+  color: var(--sun);
+  flex: none;
 }
 .impact-icon svg {
+  display: block;
   width: 24px;
   height: 24px;
-  stroke: var(--sun);
   fill: none;
+  stroke: currentColor;
 }
 
 .impact-number {
