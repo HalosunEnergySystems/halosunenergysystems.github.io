@@ -360,10 +360,11 @@ async function generatePdfEstimate() {
     doc.setFontSize(16);
     doc.setTextColor(20, 30, 45);
     doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 19);
+    const nameWidth = doc.getTextWidth('HALOSUN ENERGY SYSTEMS');
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     doc.setTextColor(110, 120, 135);
-    doc.text('Design \u00b7 Build \u00b7 Power', textStartX, 25);
+    doc.text('Design \u00b7 Build \u00b7 Power', textStartX + nameWidth / 2, 25, { align: 'center' });
 
     doc.setDrawColor(210, 210, 210);
     doc.line(marginX, 30, rightX, 30);
