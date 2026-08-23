@@ -14,7 +14,7 @@ const TRANSLATIONS = {
   'nav-cta':         { en: 'Get a Free Quote',      hi: 'मुफ़्त कोटेशन पाएं' },
 
   'hero-eyebrow':    { en: 'Design. Build. Power.', hi: 'डिज़ाइन. निर्माण. ऊर्जा.' },
-  'hero-title':      { en: 'Your rooftop has a second job.', hi: 'आपकी छत की एक दूसरी नौकरी भी है।' },
+  'hero-title':      { en: 'Your rooftop has a second job.', hi: 'आपकी छत को भी दीजिए एक नई नौकरी।' },
   'hero-sub':        { en: "Halosun Energy Systems designs, builds and maintains solar power plants for homes and businesses — from the first site survey to the day your meter starts running backward.",
                         hi: 'हैलोसन एनर्जी सिस्टम्स घरों और व्यवसायों के लिए सोलर पावर प्लांट डिज़ाइन, निर्माण और रखरखाव करता है — पहली साइट विज़िट से लेकर उस दिन तक जब आपका मीटर उल्टा चलना शुरू करे।' },
   'hero-cta-1':      { en: 'Calculate My Savings',  hi: 'मेरी बचत जानें' },
