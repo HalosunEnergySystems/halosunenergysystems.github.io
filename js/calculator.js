@@ -69,6 +69,7 @@ function validateLead() {
 }
 
 let hasAutoOpenedWhatsapp = false;
+let lastLead = null; // set on successful calculation, cleared on reset
 
 // Defaults used by the Reset button — keep in sync with the HTML's
 // initial values (calc-tariff="8", calc-type="residential", etc.)
@@ -152,6 +153,10 @@ function runCalculator() {
   const placeholderEl = document.getElementById('calc-placeholder');
   if (placeholderEl) placeholderEl.hidden = true;
 
+  lastLead = lead;
+  const pdfBtn = document.getElementById('calc-pdf-btn');
+  if (pdfBtn) pdfBtn.disabled = false;
+
   // Carry the bill amount over to the contact page's lead form via URL param,
   // since the calculator and the lead form now live on separate pages.
   const ctaLink = document.getElementById('calc-cta');
@@ -226,9 +231,179 @@ function resetCalculator() {
 
   // Let the next successful calculation auto-open WhatsApp again.
   hasAutoOpenedWhatsapp = false;
+  lastLead = null;
+
+  const pdfBtn = document.getElementById('calc-pdf-btn');
+  if (pdfBtn) pdfBtn.disabled = true;
 
   const nameInput = document.getElementById('calc-name');
   if (nameInput) nameInput.focus();
+}
+
+/* ---------- PDF estimate ----------
+   Builds a one-page branded PDF from whatever is currently on screen —
+   it reads the already-formatted result/EMI text straight out of the
+   DOM rather than recomputing anything, so it always matches exactly
+   what the visitor sees (including any EMI inputs they've adjusted). */
+function pdfText(id, fallback) {
+  const el = document.getElementById(id);
+  const text = el ? el.textContent.trim() : '';
+  return text && text !== '—' && text !== '\u2014' ? text : (fallback || '\u2014');
+}
+
+function loadImageAsDataURL(url) {
+  return fetch(url)
+    .then((res) => (res.ok ? res.blob() : Promise.reject(new Error('image fetch failed'))))
+    .then((blob) => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    }));
+}
+
+async function generatePdfEstimate() {
+  if (!window.jspdf || !window.jspdf.jsPDF) {
+    alert('The PDF library did not load — please check your internet connection and try again.');
+    return;
+  }
+  const pdfBtn = document.getElementById('calc-pdf-btn');
+  if (pdfBtn) pdfBtn.disabled = true;
+
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const marginX = 18;
+    const rightX = pageWidth - marginX;
+    let y = 20;
+
+    // ---- Header: logo (best effort) + company name ----
+    let textStartX = marginX;
+    try {
+      const logoDataUrl = await loadImageAsDataURL('assets/logo-header-footer.png');
+      doc.addImage(logoDataUrl, 'PNG', marginX, 12, 14, 14);
+      textStartX = marginX + 18;
+    } catch (e) {
+      // Logo unavailable — fall back to text-only header, no big deal.
+    }
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.setTextColor(20, 30, 45);
+    doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 19);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(110, 120, 135);
+    doc.text('Design \u00b7 Build \u00b7 Power', textStartX, 25);
+
+    doc.setDrawColor(210, 210, 210);
+    doc.line(marginX, 30, rightX, 30);
+
+    // ---- Title + date ----
+    y = 40;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(20, 30, 45);
+    doc.text('Solar Savings Estimate', marginX, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(130, 130, 130);
+    const today = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    doc.text('Generated: ' + today, rightX, y, { align: 'right' });
+
+    y += 8;
+    const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || 'Valued Customer';
+    const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
+    doc.setFontSize(10.5);
+    doc.setTextColor(60, 70, 85);
+    doc.text('Prepared for: ' + leadName + (leadPhone ? ' (' + leadPhone + ')' : ''), marginX, y);
+
+    // ---- Helper to draw a label/value row ----
+    function row(label, value, opts) {
+      opts = opts || {};
+      const bold = opts.bold;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10.5);
+      doc.setTextColor(70, 80, 95);
+      doc.text(label, marginX, y);
+      doc.setFont('helvetica', bold ? 'bold' : 'normal');
+      doc.setTextColor(20, 30, 45);
+      doc.text(value, rightX, y, { align: 'right' });
+      doc.setDrawColor(230, 230, 230);
+      doc.line(marginX, y + 2.2, rightX, y + 2.2);
+      y += 8;
+    }
+    function sectionHeading(label) {
+      y += 3;
+      doc.setFillColor(235, 240, 245);
+      doc.rect(marginX, y - 5, rightX - marginX, 7.5, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10.5);
+      doc.setTextColor(20, 30, 45);
+      doc.text(label, marginX + 2, y);
+      y += 8;
+    }
+
+    y += 6;
+    sectionHeading('System & Savings Summary');
+    row('Recommended system size', pdfText('res-size'));
+    row('Estimated generation', pdfText('res-units'));
+    row('System cost (before subsidy)', pdfText('res-cost'));
+    row('Central subsidy (PM Surya Ghar)', pdfText('res-subsidy-central'));
+    row('State subsidy (UPNEDA)', pdfText('res-subsidy-state'));
+    row('Total subsidy', pdfText('res-subsidy-total'));
+    row('Your cost after subsidy', pdfText('res-net'), { bold: true });
+    row('Estimated monthly savings', pdfText('res-savings'), { bold: true });
+    row('Payback period', pdfText('res-payback'));
+    row('Estimated 25-year savings', pdfText('res-lifetime'), { bold: true });
+
+    // ---- EMI section (only if the visitor has actually calculated an EMI) ----
+    const emiLoanAmount = pdfText('emi-loan-amount');
+    if (emiLoanAmount !== '\u2014') {
+      sectionHeading('Financing (EMI) \u2014 Optional');
+      const downPct = document.getElementById('emi-downpayment').value || '10';
+      const tenureYrs = document.getElementById('emi-tenure').value || '10';
+      const ratePct = document.getElementById('emi-rate').value || '5.75';
+      row('Down payment', downPct + '%');
+      row('Loan tenure', tenureYrs + ' years');
+      row('Interest rate', ratePct + '% p.a.');
+      row('Loan amount', emiLoanAmount);
+      row('Estimated monthly EMI', pdfText('emi-monthly'), { bold: true });
+
+      const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
+      if (postSubsidyBlock && !postSubsidyBlock.hidden) {
+        row('Reduced loan amount after subsidy disbursal', pdfText('emi-loan-amount-post'));
+        row('Reduced monthly EMI', pdfText('emi-monthly-post'), { bold: true });
+      }
+    }
+
+    // ---- Footer disclaimer + contact ----
+    y += 4;
+    doc.setDrawColor(210, 210, 210);
+    doc.line(marginX, y, rightX, y);
+    y += 6;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(130, 130, 130);
+    const disclaimer = 'This is an illustrative estimate only, based on the figures you entered — not a final quotation. '
+      + 'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.';
+    const wrapped = doc.splitTextToSize(disclaimer, rightX - marginX);
+    doc.text(wrapped, marginX, y);
+    y += wrapped.length * 4 + 4;
+
+    doc.setFontSize(9);
+    doc.setTextColor(70, 80, 95);
+    doc.text('Halosun Energy Systems  \u2022  +91 92506 78826  \u2022  info@halosunenergysystems.com', marginX, y);
+
+    const safeName = leadName.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'estimate';
+    doc.save('Halosun-Solar-Estimate-' + safeName + '.pdf');
+  } catch (err) {
+    console.error('PDF generation failed:', err);
+    alert('Sorry, something went wrong generating the PDF. Please try again.');
+  } finally {
+    const btn = document.getElementById('calc-pdf-btn');
+    if (btn) btn.disabled = false;
+  }
 }
 
 document.getElementById('calc-run').addEventListener('click', runCalculator);
@@ -240,6 +415,9 @@ document.getElementById('calc-phone').addEventListener('keydown', (e) => {
 });
 const calcResetBtn = document.getElementById('calc-reset');
 if (calcResetBtn) calcResetBtn.addEventListener('click', resetCalculator);
+
+const calcPdfBtn = document.getElementById('calc-pdf-btn');
+if (calcPdfBtn) calcPdfBtn.addEventListener('click', generatePdfEstimate);
 
 // Belt-and-braces guard in case the CSS pointer-events rule is ever
 // overridden — the button shouldn't be clickable while disabled.
