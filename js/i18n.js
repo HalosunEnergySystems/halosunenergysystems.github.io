@@ -257,6 +257,12 @@ const TRANSLATIONS = {
 
   'calc-field-bill':   { en: 'Average monthly electricity bill (₹)', hi: 'औसत मासिक बिजली बिल (₹)' },
   'calc-field-tariff': { en: 'Your electricity tariff (₹ per unit)', hi: 'आपका बिजली टैरिफ (₹ प्रति यूनिट)' },
+  'calc-field-name':   { en: 'Your name', hi: 'आपका नाम' },
+  'calc-field-phone':  { en: 'WhatsApp number (required to view results)', hi: 'व्हाट्सएप नंबर (परिणाम देखने के लिए आवश्यक)' },
+  'calc-reset-btn':    { en: 'Reset', hi: 'रीसेट करें' },
+  'calc-placeholder-text': { en: 'Fill in your details on the left to see your solar savings estimate here.', hi: 'अपना सोलर बचत अनुमान यहाँ देखने के लिए बाईं ओर अपना विवरण भरें।' },
+  'calc-whatsapp-btn': { en: 'Send My Estimate via WhatsApp →', hi: 'व्हाट्सएप के ज़रिए मेरा अनुमान भेजें →' },
+  'calc-pdf-btn':      { en: 'Download PDF Estimate', hi: 'PDF अनुमान डाउनलोड करें' },
   'calc-btn':          { en: 'Calculate', hi: 'गणना करें' },
   'calc-note-main':    { en: 'Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.',
                         hi: 'लगभग 4 सन-आवर/दिन जनरेशन और मौजूदा PM सूर्य घर (केंद्रीय) + UPNEDA (यूपी राज्य) सब्सिडी स्लैब आवासीय रूफटॉप के लिए मानते हुए। संपादन योग्य डिफ़ॉल्ट — साइट-विशिष्ट आंकड़े के लिए हमसे पूछें।' },
