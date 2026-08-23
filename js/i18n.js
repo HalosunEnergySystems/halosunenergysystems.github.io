@@ -291,7 +291,25 @@ const TRANSLATIONS = {
   'emi-note':                  { en: "Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).",
                                 hi: 'यह केवल उदाहरण है, ऊपर दिए गए डाउन पेमेंट, अवधि और दर पर आधारित — आपकी वास्तविक लोन शर्तें ऋणदाता पर निर्भर करती हैं। यह हैलोसन एनर्जी सिस्टम्स की ओर से लोन ऑफ़र नहीं है। लोन पूरे सिस्टम की लागत पर तय किया जाता है क्योंकि सब्सिडी आमतौर पर इंस्टॉलेशन के बाद जमा होती है; एक बार जमा होने पर, आपका बकाया लोन और EMI ऊपर दिखाए अनुसार घटाया जा सकता है (वही अवधि और दर)।' },
 
-  'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' }
+  'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' },
+
+  // ---- PDF-only strings (used by generatePdfEstimate() in calculator.js;
+  //      these have no matching on-page element, so they're not tagged
+  //      with data-i18n — calculator.js reads them directly via
+  //      TRANSLATIONS['key'][lang]) ----
+  'pdf-doc-title':        { en: 'Solar Savings Estimate', hi: 'सोलर बचत अनुमान' },
+  'pdf-generated':        { en: 'Generated:', hi: 'तैयार किया गया:' },
+  'pdf-prepared-for':     { en: 'Prepared for', hi: 'ग्राहक' },
+  'pdf-valued-customer':  { en: 'Valued Customer', hi: 'माननीय ग्राहक' },
+  'pdf-section-summary':  { en: 'System & Savings Summary', hi: 'सिस्टम और बचत सारांश' },
+  'pdf-section-emi':      { en: 'Financing (EMI) \u2014 Optional', hi: 'फाइनेंसिंग (EMI) \u2014 वैकल्पिक' },
+  'pdf-down-payment':     { en: 'Down payment', hi: 'डाउन पेमेंट' },
+  'pdf-loan-tenure':      { en: 'Loan tenure', hi: 'लोन अवधि' },
+  'pdf-years-suffix':     { en: 'years', hi: 'वर्ष' },
+  'pdf-interest-rate':    { en: 'Interest rate', hi: 'ब्याज दर' },
+  'pdf-pa-suffix':        { en: '% p.a.', hi: '% प्रति वर्ष' },
+  'pdf-disclaimer':       { en: 'This is an illustrative estimate only, based on the figures you entered \u2014 not a final quotation. Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.',
+                             hi: 'यह केवल एक उदाहरणात्मक अनुमान है, आपके द्वारा दर्ज आंकड़ों पर आधारित \u2014 यह अंतिम कोटेशन नहीं है। वास्तविक सिस्टम आकार, कीमत, सब्सिडी पात्रता और लोन शर्तें साइट विज़िट और ऋणदाता की मंज़ूरी पर निर्भर करती हैं।' }
 };
 
 function applyLanguage(lang) {

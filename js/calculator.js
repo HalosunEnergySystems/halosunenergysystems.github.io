@@ -300,16 +300,90 @@ function resetCalculator() {
    Builds a one-page branded PDF from whatever is currently on screen —
    it reads the already-formatted result/EMI text straight out of the
    DOM rather than recomputing anything, so it always matches exactly
-   what the visitor sees (including any EMI inputs they've adjusted). */
-function pdfText(id, fallback) {
+   what the visitor sees (including any EMI inputs they've adjusted).
+
+   Language: the PDF follows whatever language is currently selected on
+   the page (js/i18n.js, persisted in localStorage under 'halosun-lang').
+   English uses jsPDF's built-in Helvetica font. Hindi needs a real
+   Unicode font embedded into the PDF — Helvetica has no Devanagari
+   glyphs at all — so for 'hi' we lazy-load a subset of Noto Sans
+   Devanagari (js/fonts/*.b64.js) and embed it via jsPDF's addFont(). */
+function pdfText(id, fallback, opts) {
   const el = document.getElementById(id);
   let text = el ? el.textContent.trim() : '';
-  // jsPDF's built-in fonts only cover basic Latin (WinAnsi) characters —
-  // the ₹ Rupee sign (added to Unicode in 2010) isn't in that set, so it
-  // was rendering as a garbled glyph (looked like a stray quote/"1").
-  // Swap it for plain "Rs." wherever this text ends up in the PDF.
-  text = text.replace(/\u20B9/g, 'Rs. ');
-  return text && text !== '—' && text !== '\u2014' ? text : (fallback || '\u2014');
+  const keepRupeeSign = opts && opts.keepRupeeSign;
+  if (!keepRupeeSign) {
+    // Helvetica (WinAnsi) doesn't include the ₹ Rupee sign (Unicode 2010) —
+    // it rendered as a garbled glyph. Swap it for plain "Rs." in that case.
+    text = text.replace(/\u20B9/g, 'Rs. ');
+  }
+  text = text && text !== '—' && text !== '\u2014' ? text : (fallback || '\u2014');
+  return fixDevanagariOrder(text);
+}
+
+// Looks up a PDF label from the same TRANSLATIONS dictionary js/i18n.js
+// uses for on-page text (falls back to the English string if a key or
+// the whole dictionary isn't available for any reason).
+function pdfLabel(key, lang, fallbackEn) {
+  const entry = typeof TRANSLATIONS !== 'undefined' ? TRANSLATIONS[key] : null;
+  if (entry && entry[lang]) return entry[lang];
+  return (entry && entry.en) || fallbackEn || key;
+}
+
+// jsPDF draws each character glyph in raw string order — it has no
+// Indic text-shaping engine, so it doesn't reorder Devanagari's
+// pre-base vowel sign ि (U+093F). Unicode stores ि AFTER the consonant
+// (or conjunct cluster) it belongs to, but it must be drawn BEFORE it
+// (e.g. सिस्टम is typed स+ि+स+्+ट+म but ि visually precedes स). Without
+// this fix words like "सिस्टम" or "अनुशंसित" render with the vowel
+// sign in the wrong place. This swaps ि to the front of the consonant
+// cluster (base consonant plus any conjunct chain before it) it
+// attaches to, so it lands in the correct visual position.
+const DEVANAGARI_MATRA_FIX_RE = /([\u0900-\u0939\u0958-\u095F](?:\u094D[\u0900-\u0939\u0958-\u095F])*)(\u093F)/g;
+function fixDevanagariOrder(text) {
+  if (!text) return text;
+  return String(text).replace(DEVANAGARI_MATRA_FIX_RE, '$2$1');
+}
+
+function getCurrentPdfLang() {
+  try {
+    return localStorage.getItem('halosun-lang') === 'hi' ? 'hi' : 'en';
+  } catch (e) {
+    return 'en';
+  }
+}
+
+// Loads a base64 font file (js/fonts/*.b64.js, each sets one
+// window.NOTO_DEVANAGARI_*_BASE64 global) by injecting a <script> tag,
+// only once per page load, and returns a promise that resolves once
+// the corresponding global is available.
+const _loadedFontScripts = {};
+function loadFontScript(src, globalVarName) {
+  if (window[globalVarName]) return Promise.resolve();
+  if (_loadedFontScripts[src]) return _loadedFontScripts[src];
+  _loadedFontScripts[src] = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error('Failed to load font script: ' + src));
+    document.head.appendChild(script);
+  });
+  return _loadedFontScripts[src];
+}
+
+// Registers the Devanagari font (regular + bold) with a jsPDF doc
+// instance so `doc.setFont('NotoDevanagari', 'normal' | 'bold')` works.
+// Fonts are fetched lazily (only when a Hindi PDF is actually being
+// generated) so the ~460KB of font data never loads for English visitors.
+async function registerDevanagariFont(doc) {
+  await Promise.all([
+    loadFontScript('js/fonts/NotoSansDevanagari-Regular.b64.js', 'NOTO_DEVANAGARI_REGULAR_BASE64'),
+    loadFontScript('js/fonts/NotoSansDevanagari-Bold.b64.js', 'NOTO_DEVANAGARI_BOLD_BASE64'),
+  ]);
+  doc.addFileToVFS('NotoSansDevanagari-Regular.ttf', window.NOTO_DEVANAGARI_REGULAR_BASE64);
+  doc.addFont('NotoSansDevanagari-Regular.ttf', 'NotoDevanagari', 'normal');
+  doc.addFileToVFS('NotoSansDevanagari-Bold.ttf', window.NOTO_DEVANAGARI_BOLD_BASE64);
+  doc.addFont('NotoSansDevanagari-Bold.ttf', 'NotoDevanagari', 'bold');
 }
 
 function loadImageAsDataURL(url) {
@@ -345,8 +419,27 @@ async function generatePdfEstimate() {
   if (pdfBtn) pdfBtn.disabled = true;
 
   try {
+    const lang = getCurrentPdfLang();
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+    // Base font family for this document: Helvetica for English, the
+    // embedded Devanagari font for Hindi. setFont() calls below all use
+    // this instead of hardcoding 'helvetica' so the whole PDF switches.
+    let fontFamily = 'helvetica';
+    if (lang === 'hi') {
+      try {
+        await registerDevanagariFont(doc);
+        fontFamily = 'NotoDevanagari';
+      } catch (fontErr) {
+        // Font failed to load (e.g. offline) — fall back to Helvetica
+        // rather than blocking the PDF. Hindi text just won't render
+        // correctly in this fallback case; English text still will.
+        console.error('Devanagari font load failed, falling back to Helvetica:', fontErr);
+      }
+    }
+    const t = (key, fallbackEn) => fixDevanagariOrder(pdfLabel(key, lang, fallbackEn));
+
     const pageWidth = doc.internal.pageSize.getWidth();
     const marginX = 18;
     const rightX = pageWidth - marginX;
@@ -380,31 +473,33 @@ async function generatePdfEstimate() {
     } catch (e) {
       // Logo unavailable — fall back to text-only header, no big deal.
     }
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(fontFamily, 'bold');
     doc.setFontSize(17);
     doc.setTextColor(255, 255, 255);
     doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 18);
     const nameWidth = doc.getTextWidth('HALOSUN ENERGY SYSTEMS');
-    doc.setFont('helvetica', 'normal');
+    doc.setFont(fontFamily, 'normal');
     doc.setFontSize(9.5);
     doc.setTextColor(...PDF_COLOR.sun);
-    doc.text('Design \u00b7 Build \u00b7 Power', textStartX + nameWidth / 2, 25, { align: 'center' });
+    doc.text(t('footer-tagline', 'Design \u00b7 Build \u00b7 Power'), textStartX + nameWidth / 2, 25, { align: 'center' });
 
-    const today = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-    doc.setFont('helvetica', 'normal');
+    const today = new Date().toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    doc.setFont(fontFamily, 'normal');
     doc.setFontSize(8.5);
     doc.setTextColor(210, 217, 227);
-    doc.text('Solar Savings Estimate', rightX, 15, { align: 'right' });
-    doc.text('Generated: ' + today, rightX, 20.5, { align: 'right' });
+    doc.text(t('pdf-doc-title', 'Solar Savings Estimate'), rightX, 15, { align: 'right' });
+    doc.text(t('pdf-generated', 'Generated:') + ' ' + today, rightX, 20.5, { align: 'right' });
 
     // ---- Title + prepared-for line ----
     y = bandH + 13;
-    const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || 'Valued Customer';
+    const leadName = fixDevanagariOrder((lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || t('pdf-valued-customer', 'Valued Customer'));
     const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(fontFamily, 'bold');
     doc.setFontSize(13);
     doc.setTextColor(...PDF_COLOR.ink);
-    doc.text('Prepared for ' + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : ''), marginX, y);
+    const preparedForLine = t('pdf-prepared-for', 'Prepared for') + (lang === 'hi' ? ': ' : ' ')
+      + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
+    doc.text(preparedForLine, marginX, y);
 
     // ---- Hero stat cards: the two numbers a visitor cares about most ---
     y += 8;
@@ -415,17 +510,17 @@ async function generatePdfEstimate() {
       doc.setFillColor(...PDF_COLOR.sunTint);
       doc.setDrawColor(...PDF_COLOR.sun);
       doc.roundedRect(x, y, cardW, cardH, 3, 3, 'FD');
-      doc.setFont('helvetica', 'bold');
+      doc.setFont(fontFamily, 'bold');
       doc.setFontSize(7.5);
       doc.setTextColor(...PDF_COLOR.ember);
       doc.text(label.toUpperCase(), x + 6, y + 8);
-      doc.setFont('helvetica', 'bold');
+      doc.setFont(fontFamily, 'bold');
       doc.setFontSize(16);
       doc.setTextColor(...PDF_COLOR.ink);
       doc.text(value, x + 6, y + 18);
     }
-    heroCard(marginX, 'Est. Monthly Savings', pdfText('res-savings'));
-    heroCard(marginX + cardW + cardGap, 'Payback Period', pdfText('res-payback'));
+    heroCard(marginX, t('res-savings-label', 'Est. Monthly Savings'), pdfText('res-savings', null, { keepRupeeSign: lang === 'hi' }));
+    heroCard(marginX + cardW + cardGap, t('res-payback-label', 'Payback Period'), pdfText('res-payback'));
     y += cardH + 10;
 
     // ---- Helpers to draw a section heading and label/value rows ----
@@ -438,11 +533,11 @@ async function generatePdfEstimate() {
         doc.rect(marginX - 2, y - 5.3, (rightX - marginX) + 4, 7.8, 'F');
       }
       rowIndex += 1;
-      doc.setFont('helvetica', 'normal');
+      doc.setFont(fontFamily, 'normal');
       doc.setFontSize(10.5);
       doc.setTextColor(...PDF_COLOR.mist);
       doc.text(label, marginX, y);
-      doc.setFont('helvetica', bold ? 'bold' : 'normal');
+      doc.setFont(fontFamily, bold ? 'bold' : 'normal');
       doc.setTextColor(...(bold ? PDF_COLOR.ember : PDF_COLOR.slate));
       doc.text(value, rightX, y, { align: 'right' });
       y += 7.8;
@@ -453,7 +548,7 @@ async function generatePdfEstimate() {
       doc.rect(marginX, y - 5, rightX - marginX, 8, 'F');
       doc.setFillColor(...PDF_COLOR.ember);
       doc.rect(marginX, y - 5, 2.2, 8, 'F'); // colored accent tab on the left edge
-      doc.setFont('helvetica', 'bold');
+      doc.setFont(fontFamily, 'bold');
       doc.setFontSize(10.5);
       doc.setTextColor(...PDF_COLOR.ink);
       doc.text(label, marginX + 6, y + 0.6);
@@ -461,33 +556,34 @@ async function generatePdfEstimate() {
       rowIndex = 0;
     }
 
-    sectionHeading('System & Savings Summary');
-    row('Recommended system size', pdfText('res-size'));
-    row('Estimated generation', pdfText('res-units'));
-    row('System cost (before subsidy)', pdfText('res-cost'));
-    row('Central subsidy (PM Surya Ghar)', pdfText('res-subsidy-central'));
-    row('State subsidy (UPNEDA)', pdfText('res-subsidy-state'));
-    row('Total subsidy', pdfText('res-subsidy-total'));
-    row('Your cost after subsidy', pdfText('res-net'), { bold: true });
-    row('Estimated 25-year savings', pdfText('res-lifetime'), { bold: true });
+    const keepRupee = { keepRupeeSign: lang === 'hi' };
+    sectionHeading(t('pdf-section-summary', 'System & Savings Summary'));
+    row(t('res-size-label', 'Recommended system size'), pdfText('res-size'));
+    row(t('res-units-label', 'Estimated generation'), pdfText('res-units'));
+    row(t('res-cost-label', 'System cost (before subsidy)'), pdfText('res-cost', null, keepRupee));
+    row(t('res-subsidy-central-label', 'Central subsidy (PM Surya Ghar)'), pdfText('res-subsidy-central', null, keepRupee));
+    row(t('res-subsidy-state-label', 'State subsidy (UPNEDA)'), pdfText('res-subsidy-state', null, keepRupee));
+    row(t('res-subsidy-total-label', 'Total subsidy'), pdfText('res-subsidy-total', null, keepRupee));
+    row(t('res-net-label', 'Your cost after subsidy'), pdfText('res-net', null, keepRupee), { bold: true });
+    row(t('res-lifetime-label', 'Estimated 25-year savings'), pdfText('res-lifetime', null, keepRupee), { bold: true });
 
     // ---- EMI section (only if the visitor has actually calculated an EMI) ----
-    const emiLoanAmount = pdfText('emi-loan-amount');
+    const emiLoanAmount = pdfText('emi-loan-amount', null, keepRupee);
     if (emiLoanAmount !== '\u2014') {
-      sectionHeading('Financing (EMI) \u2014 Optional');
+      sectionHeading(t('pdf-section-emi', 'Financing (EMI) \u2014 Optional'));
       const downPct = document.getElementById('emi-downpayment').value || '10';
       const tenureYrs = document.getElementById('emi-tenure').value || '10';
       const ratePct = document.getElementById('emi-rate').value || '5.75';
-      row('Down payment', downPct + '%');
-      row('Loan tenure', tenureYrs + ' years');
-      row('Interest rate', ratePct + '% p.a.');
-      row('Loan amount', emiLoanAmount);
-      row('Estimated monthly EMI', pdfText('emi-monthly'), { bold: true });
+      row(t('pdf-down-payment', 'Down payment'), downPct + '%');
+      row(t('pdf-loan-tenure', 'Loan tenure'), tenureYrs + ' ' + t('pdf-years-suffix', 'years'));
+      row(t('pdf-interest-rate', 'Interest rate'), ratePct + t('pdf-pa-suffix', '% p.a.'));
+      row(t('emi-loan-amount-label', 'Loan amount'), emiLoanAmount);
+      row(t('emi-monthly-label', 'Estimated monthly EMI'), pdfText('emi-monthly', null, keepRupee), { bold: true });
 
       const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
       if (postSubsidyBlock && !postSubsidyBlock.hidden) {
-        row('Reduced loan amount after subsidy disbursal', pdfText('emi-loan-amount-post'));
-        row('Reduced monthly EMI', pdfText('emi-monthly-post'), { bold: true });
+        row(t('emi-loan-amount-post-label', 'Reduced loan amount after subsidy disbursal'), pdfText('emi-loan-amount-post', null, keepRupee));
+        row(t('emi-monthly-post-label', 'Reduced monthly EMI'), pdfText('emi-monthly-post', null, keepRupee), { bold: true });
       }
     }
 
@@ -498,20 +594,21 @@ async function generatePdfEstimate() {
     doc.line(marginX, y, rightX, y);
     doc.setLineWidth(0.2);
     y += 6;
-    doc.setFont('helvetica', 'normal');
+    doc.setFont(fontFamily, 'normal');
     doc.setFontSize(8);
     doc.setTextColor(...PDF_COLOR.mist);
-    const disclaimer = 'This is an illustrative estimate only, based on the figures you entered — not a final quotation. '
-      + 'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.';
+    const disclaimer = t('pdf-disclaimer',
+      'This is an illustrative estimate only, based on the figures you entered — not a final quotation. '
+      + 'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.');
     const wrapped = doc.splitTextToSize(disclaimer, rightX - marginX);
     doc.text(wrapped, marginX, y);
     y += wrapped.length * 4 + 5;
 
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(fontFamily, 'bold');
     doc.setFontSize(9.5);
     doc.setTextColor(...PDF_COLOR.ink);
     doc.text('Halosun Energy Systems', marginX, y);
-    doc.setFont('helvetica', 'normal');
+    doc.setFont(fontFamily, 'normal');
     doc.setTextColor(...PDF_COLOR.mist);
     doc.text('  \u2022  +91 92506 78826  \u2022  info@halosunenergysystems.com', marginX + doc.getTextWidth('Halosun Energy Systems'), y);
 
