@@ -10,7 +10,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/features.css">   
+<link rel="stylesheet" href="css/features.css">
+<style>
+  /* Placeholder shown in the results pane before the user has calculated */
+  .calc-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 220px;
+    padding: 2rem 1.5rem;
+    border: 1px dashed rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  /* Disabled state for the WhatsApp button until a calculation has run */
+  #calc-whatsapp-btn.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+</style>
 </head>
 <body>
 <!-- ============ HEADER ============ -->
@@ -74,11 +96,16 @@
             </select>
           </label>
           <button class="btn btn-primary btn-full" id="calc-run" data-i18n="calc-btn">Calculate</button>
+          <button class="btn btn-ghost btn-full" id="calc-reset" type="button" data-i18n="calc-reset-btn">Reset</button>
           <p class="calc-note" data-i18n="calc-note-main">Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.</p>
         </div>
 
+        <div class="calc-placeholder" id="calc-placeholder">
+          <p data-i18n="calc-placeholder-text">Fill in your details on the left to see your solar savings estimate here.</p>
+        </div>
+
         <div class="calc-results" id="calc-results" hidden>
-          <a href="#" class="btn btn-whatsapp btn-full" id="calc-whatsapp-btn" target="_blank" rel="noopener" data-i18n="calc-whatsapp-btn">Send My Estimate via WhatsApp →</a>
+          <a href="#" class="btn btn-whatsapp btn-full is-disabled" id="calc-whatsapp-btn" target="_blank" rel="noopener" aria-disabled="true" data-i18n="calc-whatsapp-btn">Send My Estimate via WhatsApp →</a>
 
           <div class="result-row result-highlight">
             <span data-i18n="res-size-label">Recommended system size</span>
