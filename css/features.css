@@ -1,18 +1,20 @@
 /* ===========================================================
    Halosun — Feature additions: Impact Counter + Language Toggle
-   Colors match the brand mark: navy #0f2038 / gold #f2a52c
+   Now pulls colors/type/radius from the shared tokens in styles.css
+   (--ink, --ink-soft, --sun, --ember, --line-dark, --font-display,
+   --font-mono, --radius) so this section matches the rest of the site.
    =========================================================== */
 
 /* ---------- Language toggle (sits in header) ---------- */
 .lang-toggle {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(15, 32, 56, 0.18);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 3px;
   gap: 2px;
   background: #fff;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 600;
   margin-left: 12px;
@@ -23,13 +25,13 @@
   padding: 5px 12px;
   border-radius: 999px;
   cursor: pointer;
-  color: #0f2038;
+  color: var(--ink);
   opacity: 0.55;
   transition: all 0.2s ease;
 }
 .lang-toggle button.active {
-  background: #0f2038;
-  color: #fbd34d;
+  background: var(--ink);
+  color: var(--sun);
   opacity: 1;
 }
 .lang-toggle button:hover:not(.active) {
@@ -37,11 +39,12 @@
 }
 
 /* ---------- Impact counter section ---------- */
+/* Section itself: markup carries class="section section-dark impact-section"
+   so the eyebrow/h2/p colors come for free from the shared .section-dark rules. */
 .impact-section {
-  background: #0f2038;
-  background-image: radial-gradient(circle at 20% 20%, rgba(242, 165, 44, 0.08), transparent 55%);
-  padding: 72px 0;
+  background-image: radial-gradient(circle at 20% 20%, rgba(217, 169, 78, 0.07), transparent 55%);
 }
+
 .impact-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -54,61 +57,85 @@
 @media (max-width: 520px) {
   .impact-grid { grid-template-columns: 1fr; }
 }
+
+/* Same recipe as .myth-card elsewhere on the site, for a consistent
+   "dark section card" look across pages. */
 .impact-stat {
   text-align: center;
-  padding: 28px 16px;
-  border: 1px solid rgba(251, 211, 77, 0.18);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.03);
+  padding: 28px 20px;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.045);
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
-.impact-stat .impact-icon {
-  font-size: 28px;
-  margin-bottom: 10px;
-  display: block;
+.impact-stat:hover {
+  transform: translateY(-3px);
+  border-color: rgba(217, 169, 78, 0.4);
 }
+
+/* Icon badge: mirrors the circular treatment used on the footer's
+   social-link icons, tinted gold instead of neutral. */
+.impact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: rgba(217, 169, 78, 0.12);
+  border: 1px solid rgba(217, 169, 78, 0.25);
+}
+.impact-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--sun);
+  fill: none;
+}
+
 .impact-number {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 40px;
   line-height: 1;
-  background: linear-gradient(90deg, #e8722a, #fbd34d);
+  background: linear-gradient(90deg, var(--ember), var(--sun));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .impact-unit {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 22px;
-  color: #fbd34d;
+  color: var(--sun);
   margin-left: 2px;
 }
 .impact-label {
   margin-top: 8px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.02em;
 }
 .impact-note {
   text-align: center;
   margin-top: 28px;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* ---------- EMI panel (inside calculator results) ---------- */
 .emi-panel {
   margin: 24px 0;
   padding: 20px;
-  border: 1px solid rgba(15, 32, 56, 0.12);
-  border-radius: 14px;
-  background: rgba(242, 165, 44, 0.05);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(217, 169, 78, 0.05);
 }
 .emi-heading {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 16px;
-  color: #0f2038;
+  color: var(--ink);
   margin: 0 0 14px 0;
 }
 .emi-inputs {
@@ -126,7 +153,7 @@
   color: rgba(15, 32, 56, 0.65);
 }
 .emi-output {
-  border-top: 1px dashed rgba(15, 32, 56, 0.15);
+  border-top: 1px dashed var(--line);
   padding-top: 10px;
 }
 .emi-vs-bill strong {
