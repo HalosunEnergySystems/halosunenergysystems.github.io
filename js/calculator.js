@@ -15,6 +15,7 @@ const CALC_CONFIG = {
   //   1 kW  → ₹30,000 central + ₹15,000 state = ₹45,000
   //   2 kW  → ₹60,000 central + ₹30,000 state = ₹90,000
   //   3 kW+ → ₹78,000 central + ₹30,000 state = ₹1,08,000 (both capped)
+  whatsappNumber: '919250678826', // Halosun business WhatsApp — no country "+" here
 };
 
 function calcSubsidy(kw, propertyType) {
@@ -36,7 +37,61 @@ function formatINR(n) {
   return '₹' + Math.round(n).toLocaleString('en-IN');
 }
 
+/* ---------- Lead capture (name + WhatsApp number) ----------
+   Required before results are shown. This is the only "verification"
+   step: a working WhatsApp number is needed to actually receive the
+   pre-filled message, which is what filters out junk/fake entries —
+   there's no paid OTP service involved. */
+function validateLead() {
+  const nameInput = document.getElementById('calc-name');
+  const phoneInput = document.getElementById('calc-phone');
+  const errorEl = document.getElementById('calc-lead-error');
+
+  const name = nameInput.value.trim();
+  const phone = phoneInput.value.trim().replace(/\D/g, '');
+  const phoneValid = /^[6-9]\d{9}$/.test(phone);
+
+  if (!name) {
+    errorEl.textContent = 'Please enter your name to see your estimate.';
+    errorEl.hidden = false;
+    nameInput.focus();
+    return null;
+  }
+  if (!phoneValid) {
+    errorEl.textContent = 'Please enter a valid 10-digit mobile number — this is where we\u2019ll send your estimate on WhatsApp.';
+    errorEl.hidden = false;
+    phoneInput.focus();
+    return null;
+  }
+
+  errorEl.hidden = true;
+  return { name, phone };
+}
+
+let hasAutoOpenedWhatsapp = false;
+
+function buildWhatsappUrl(lead, summary) {
+  const lines = [
+    `Hello Halosun Energy Systems,`,
+    `I'm ${lead.name} (${lead.phone}).`,
+    ``,
+    `My savings calculator estimate:`,
+    `\u2022 Monthly bill: ${formatINR(summary.bill)}`,
+    `\u2022 Recommended system size: ${summary.kw} kWp`,
+    `\u2022 Estimated monthly savings: ${formatINR(summary.monthlySavings)}`,
+    `\u2022 Payback period: ${summary.paybackYears > 0 ? summary.paybackYears.toFixed(1) + ' years' : '\u2014'}`,
+    `\u2022 Property type: ${summary.propertyType === 'commercial' ? 'Commercial / Industrial' : 'Residential'}`,
+    ``,
+    `Please share an exact quote for my property.`,
+  ];
+  const text = encodeURIComponent(lines.join('\n'));
+  return `https://wa.me/${CALC_CONFIG.whatsappNumber}?text=${text}`;
+}
+
 function runCalculator() {
+  const lead = validateLead();
+  if (!lead) return;
+
   const billInput = document.getElementById('calc-bill');
   const tariffInput = document.getElementById('calc-tariff');
   const typeInput = document.getElementById('calc-type');
@@ -89,10 +144,31 @@ function runCalculator() {
     ctaLink.href = 'contact.html?bill=' + Math.round(bill);
   }
 
+  // ---- WhatsApp send: build/refresh the link every time results change ----
+  const whatsappUrl = buildWhatsappUrl(lead, {
+    bill, kw, monthlySavings, paybackYears, propertyType,
+  });
+  const whatsappBtn = document.getElementById('calc-whatsapp-btn');
+  if (whatsappBtn) {
+    whatsappBtn.href = whatsappUrl;
+  }
+  // Auto-open once per visit, right after the first successful calculation —
+  // this is the "mandatory" part: getting results also opens WhatsApp with
+  // the request pre-filled, and the visitor just needs to tap Send there.
+  // Later recalculations (e.g. adjusting the bill) just refresh the button
+  // above rather than re-opening a tab each time.
+  if (!hasAutoOpenedWhatsapp) {
+    window.open(whatsappUrl, '_blank', 'noopener');
+    hasAutoOpenedWhatsapp = true;
+  }
+
   resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 document.getElementById('calc-run').addEventListener('click', runCalculator);
 document.getElementById('calc-bill').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
+});
+document.getElementById('calc-phone').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
 });
