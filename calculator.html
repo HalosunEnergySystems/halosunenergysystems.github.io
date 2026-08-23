@@ -42,6 +42,17 @@
     background: rgba(229, 231, 235, 0.1);
     border-color: rgba(229, 231, 235, 0.8);
   }
+  /* Bring the EMI panel's text up to the same brightness as the rest of
+     the results — it was rendering visibly dimmer/more muted, making the
+     whole section look like it was sitting behind the main results. */
+  .emi-panel .emi-heading {
+    color: #e2e8f0 !important;
+    opacity: 1 !important;
+  }
+  .emi-panel .emi-field span {
+    color: #cbd5e1 !important;
+    opacity: 1 !important;
+  }
 </style>
 </head>
 <body>
