@@ -12,8 +12,11 @@
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/features.css">
 <style>
-  /* Placeholder shown in the results pane before the user has calculated */
-  .calc-placeholder {
+  /* Placeholder shown in the results pane before the user has calculated.
+     Scoped to :not([hidden]) so setting the hidden attribute in JS
+     actually hides it — an unscoped `display: flex` here would otherwise
+     override the browser's default [hidden] { display: none } rule. */
+  .calc-placeholder:not([hidden]) {
     display: flex;
     align-items: center;
     justify-content: center;
