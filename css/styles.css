@@ -99,6 +99,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .hero .btn-ghost:hover{border-color:#fff;}
 .btn-small{padding:9px 18px; font-size:0.85rem; white-space:nowrap;}
 .btn-full{width:100%;}
+.btn-whatsapp{background:#168c4b; color:#fff;}
+.btn-whatsapp:hover{background:#1aa859;}
+
+.calc-field-error{
+  font-size:0.85rem;
+  color:var(--ember);
+  margin:-8px 0 6px;
+  font-weight:500;
+}
 
 /* ---------- Header ---------- */
 .site-header{
