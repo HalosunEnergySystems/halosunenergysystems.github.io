@@ -18,6 +18,18 @@ const CALC_CONFIG = {
   whatsappNumber: '919250678826', // Halosun business WhatsApp — no country "+" here
 };
 
+/* ---------- Lead notification (Google Apps Script) ----------
+   Reuses the SAME Apps Script Web App endpoint the contact form
+   (js/form.js) already posts to — no new service to set up.
+   Sent using the same field names Code.gs already expects
+   (name, phone, email, city, propertyType, monthlyBill, message,
+   submittedAt); the calculator-specific numbers (system size,
+   savings, payback) are folded into "message" as readable text so
+   nothing on the Apps Script side needs to change. */
+const FORM_CONFIG = {
+  endpointUrl: 'https://script.google.com/macros/s/AKfycbz6pPce1eTVj4WYkrC6jslRFw1ruCHh4GZ5Bt8TlE_yzvFmewf44ZGC4tqBEoY08V8/exec',
+};
+
 function calcSubsidy(kw, propertyType) {
   // Matches PM Surya Ghar (central) + UPNEDA (UP state) slabs for residential rooftop.
   if (propertyType === 'commercial') return { central: 0, state: 0, total: 0 };
@@ -102,6 +114,49 @@ function buildWhatsappUrl(lead, summary) {
   return `https://wa.me/${CALC_CONFIG.whatsappNumber}?text=${text}`;
 }
 
+/* ---------- Lead notification (Google Apps Script) ----------
+   Fires once per successful calculation (i.e. every time the visitor
+   clicks Calculate with a valid name/phone/bill). Uses the same
+   no-cors POST pattern as js/form.js — Apps Script Web Apps don't
+   return CORS headers, so the response can't be read, but the
+   request still reaches the script and it does the rest (email +
+   Sheet row, same as the contact form). Never blocks or breaks the
+   calculator itself if this fails. */
+function sendLeadToBackend(lead, summary) {
+  if (!FORM_CONFIG.endpointUrl || FORM_CONFIG.endpointUrl.includes('PASTE_YOUR')) {
+    console.warn('Apps Script endpoint not configured — skipping lead notification.');
+    return;
+  }
+
+  const messageLines = [
+    'Submitted from the Savings Calculator.',
+    `Recommended system size: ${summary.kw} kWp`,
+    `Estimated monthly savings: ${formatINR(summary.monthlySavings)}`,
+    `Payback period: ${summary.paybackYears > 0 ? summary.paybackYears.toFixed(1) + ' years' : '\u2014'}`,
+    `Property type: ${summary.propertyType === 'commercial' ? 'Commercial / Industrial' : 'Residential'}`,
+  ];
+
+  const payload = {
+    name: lead.name,
+    phone: lead.phone,
+    email: '', // calculator doesn't currently collect this
+    city: '',  // calculator doesn't currently collect this
+    propertyType: summary.propertyType === 'commercial' ? 'Commercial' : 'Residential',
+    monthlyBill: summary.bill,
+    message: messageLines.join('\n'),
+    submittedAt: new Date().toISOString(),
+  };
+
+  fetch(FORM_CONFIG.endpointUrl, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+  }).catch((err) => {
+    console.error('Lead notification failed:', err);
+  });
+}
+
 function runCalculator() {
   const lead = validateLead();
   if (!lead) return;
@@ -164,10 +219,11 @@ function runCalculator() {
     ctaLink.href = 'contact.html?bill=' + Math.round(bill);
   }
 
-  // ---- WhatsApp send: build/refresh the link every time results change ----
-  const whatsappUrl = buildWhatsappUrl(lead, {
-    bill, kw, monthlySavings, paybackYears, propertyType,
-  });
+  // ---- WhatsApp send + backend lead notification: built from the same
+  //      summary so both channels always show identical figures ----
+  const summary = { bill, kw, monthlySavings, paybackYears, propertyType };
+  const whatsappUrl = buildWhatsappUrl(lead, summary);
+  sendLeadToBackend(lead, summary);
   const whatsappBtn = document.getElementById('calc-whatsapp-btn');
   if (whatsappBtn) {
     whatsappBtn.href = whatsappUrl;
