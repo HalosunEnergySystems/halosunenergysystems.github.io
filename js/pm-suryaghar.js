@@ -1,6 +1,7 @@
 /* PM Surya Ghar page-specific behaviour */
 
 (function () {
+  // Mobile Navigation Toggle
   const navToggle = document.getElementById("nav-toggle");
   const nav = document.getElementById("main-nav");
 
@@ -19,11 +20,11 @@
     });
   }
 
+  // Dynamic Copyright Year
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  /* Keep the page's language buttons visually consistent with the site.
-     Full translations can be added to i18n.js later without changing this page. */
+  // Language Toggle State Handler
   document.querySelectorAll(".lang-toggle button").forEach(function (button) {
     button.addEventListener("click", function () {
       document.querySelectorAll(".lang-toggle button").forEach(function (b) {
