@@ -368,15 +368,6 @@ function pdfLabel(key, lang, fallbackEn) {
   return (entry && entry.en) || fallbackEn || key;
 }
 
-// jsPDF draws each character glyph in raw string order — it has no
-// Indic text-shaping engine, so it doesn't reorder Devanagari's
-// pre-base vowel sign ि (U+093F). Unicode stores ि AFTER the consonant
-// (or conjunct cluster) it belongs to, but it must be drawn BEFORE it
-// (e.g. सिस्टम is typed स+ि+स+्+ट+म but ि visually precedes स). Without
-// this fix words like "सिस्टम" or "अनुशंसित" render with the vowel
-// sign in the wrong place. This swaps ि to the front of the consonant
-// cluster (base consonant plus any conjunct chain before it) it
-// attaches to, so it lands in the correct visual position.
 /* -------------------------------------------------------------------
    Devanagari PDF text ordering for jsPDF
 
@@ -403,11 +394,10 @@ function pdfLabel(key, lang, fallbackEn) {
        सि       -> िस
        सिस्टम   -> िसस्टम
        अनुशंसित -> अनुशंिसत
-       सब्सिडी  -> सिब्सडी
+       सब्सिडी  -> सिibsडी
 
    Other Devanagari marks remain in their Unicode order.
 ------------------------------------------------------------------- */
-
 
 function getCurrentPdfLang() {
   try {
@@ -541,6 +531,7 @@ async function createHindiTextImage(text, fontSizePx, fontWeight) {
     heightPx: canvas.height
   };
 }
+
 async function generatePdfEstimate() {
   if (!window.jspdf || !window.jspdf.jsPDF) {
     alert('The PDF library did not load — please check your internet connection and try again.');
