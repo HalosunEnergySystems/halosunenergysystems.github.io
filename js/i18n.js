@@ -63,7 +63,7 @@ const TRANSLATIONS = {
   'footer-contact':  { en: 'Contact',               hi: 'संपर्क करें' },
   'footer-contactAdd': { 
   en: 'Tilak Nagar,<br>Raebareli, Uttar Pradesh', 
-  hi: 'तिलक नगर,<br>रायबरेली, उत्तर प्रदेश' 
+  hi: 'तिलक नगर, रायबरेली, उत्तर प्रदेश' 
 },
   
   'footer-connect':  { en: 'Connect',                hi: 'जुड़ें' },
