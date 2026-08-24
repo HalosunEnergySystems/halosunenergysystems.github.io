@@ -24,10 +24,6 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/features.css">
   <link rel="stylesheet" href="css/pm-suryaghar.css">
-  <!-- Reuse your existing Halosun design system -->
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/features.css">
-  <link rel="stylesheet" href="css/pm-suryaghar.css">
 
   <link rel="canonical" href="https://halosunenergysystems.com/pm-suryaghar.html">
 
@@ -57,13 +53,13 @@
     </a>
 
     <nav class="main-nav" id="main-nav">
-      <a href="services.html">Services</a>
-      <a href="process.html">Process</a>
-      <a href="calculator.html">Calculator</a>
-      <a href="gallery.html">Projects</a>
-      <a href="faq.html">Solar FAQ</a>
-      <a href="pm-suryaghar.html" class="pm-nav-active">PM Surya Ghar</a>
-      <a href="contact.html">Contact</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="pm-suryaghar.html" class="pm-nav-active" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
+      <a href="process.html" data-i18n="nav-process">Process</a>
+      <a href="calculator.html" data-i18n="nav-calculator">Calculator</a>
+      <a href="gallery.html" data-i18n="nav-projects">Projects</a>
+      <a href="faq.html" data-i18n="nav-faq">Solar FAQ</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
     </nav>
 
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -81,8 +77,8 @@
 
 <main>
 
- <!-- HERO SECTION (LIGHT THEME MATCH) -->
-  <section class="pm-hero">
+ <!-- HERO SECTION (matches homepage: dark .hero, large centered logo) -->
+  <section class="hero pm-hero">
     <div class="halo-arcs" aria-hidden="true">
       <svg viewBox="0 0 900 900">
         <circle cx="450" cy="450" r="260" class="arc arc-1"/>
@@ -91,23 +87,21 @@
       </svg>
     </div>
 
-    <div class="wrap pm-hero-content">
-      <div class="pm-hero-brand">
-        <img src="assets/logo-hero.png" alt="Halosun Energy Systems" class="pm-hero-logo">
-        <div>
-          <p class="eyebrow">PM SURYA GHAR · RESIDENTIAL SOLAR</p>
-          <p class="pm-hero-brand-name">Halosun <em>Energy Systems</em></p>
-        </div>
+    <div class="wrap hero-content">
+      <div class="hero-brand">
+        <img src="assets/logo-hero.png" alt="Halosun Energy Systems" class="hero-badge">
+        <span class="hero-brand-name"><span class="brand-halosun">Halosun</span> <em>Energy Systems</em></span>
+        <p class="eyebrow">PM Surya Ghar · Residential Solar</p>
       </div>
 
       <p class="eyebrow">A practical guide for homeowners</p>
-      
+
       <h1>
         PM Surya Ghar<br>
         <span>from application to subsidy.</span>
       </h1>
 
-      <p class="pm-hero-sub">
+      <p class="hero-sub">
         Thinking about rooftop solar under PM Surya Ghar Muft Bijli Yojana?
         Here is the complete journey — eligibility, documents, portal application,
         installation, DISCOM inspection, net meter and Central Financial Assistance.
@@ -553,8 +547,5 @@
 
 <script src="js/main.js"></script>
 <script src="js/pm-suryaghar.js"></script>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/features.css">
-  <link rel="stylesheet" href="css/pm-suryaghar.css">
 </body>
 </html>
