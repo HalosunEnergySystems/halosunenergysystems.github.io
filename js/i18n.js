@@ -65,7 +65,7 @@ const TRANSLATIONS = {
   'footer-connect-desc': { en: 'Follow Halosun for solar projects, engineering insights and updates.',
                         hi: 'सोलर परियोजनाओं, इंजीनियरिंग जानकारी और अपडेट के लिए हैलोसन को फॉलो करें।' },
   'footer-wa':       { en: 'Chat on WhatsApp →',    hi: 'व्हाट्सएप पर बात करें →' },
-  'footer-tagline':  { en: 'Design · Build · Power', hi: 'डिज़ाइन · इंस्टॉलेशन · पावर' },
+  'footer-tagline':  { en: 'Design · Build · Power', hi: 'डिज़ाइन · बिल्ड · पावर' },
 
   // ---- FAQ page ----
   'faq-page-eyebrow': { en: 'Solar, explained clearly', hi: 'सोलर, सीधी भाषा में समझाया गया' },
