@@ -21,6 +21,24 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/features.css">
 
+  <style>
+    /* ============ DEADLINE COUNTDOWN — red accent variant ============
+       Keeps body text in the site's normal theme color (readability first);
+       red is used only as an accent — left border, icon and the countdown
+       digits — so it draws the eye without turning the whole banner into
+       a "sale" wall of red text. */
+    .deadline-banner.deadline-banner-alert {
+      border-left: 4px solid #ef4444;
+      box-shadow: inset 0 0 0 9999px rgba(239, 68, 68, 0.06);
+    }
+    .deadline-banner-alert .deadline-icon {
+      color: #ef4444;
+    }
+    .deadline-banner-alert .deadline-num {
+      color: #ef4444;
+    }
+  </style>
+
   <script type="application/ld+json"> {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
@@ -74,7 +92,7 @@
 </header>
 
 <!-- ============ DEADLINE COUNTDOWN ============ -->
-<div class="deadline-banner" data-countdown="2027-03-31T23:59:59+05:30">
+<div class="deadline-banner deadline-banner-alert" data-countdown="2027-03-31T23:59:59+05:30">
   <div class="wrap">
     <p class="deadline-text">
       <span class="deadline-icon" aria-hidden="true">⚡</span>
