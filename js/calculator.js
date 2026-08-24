@@ -484,6 +484,14 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
   };
 }
 
+function formatPdfCurrency(text, lang) {
+  if (!text) return text;
+  // Replace Rupee symbol with "Rs. " for English to prevent font rendering bugs
+  if (lang === 'en') {
+    return text.replace(/₹\s?/, 'Rs. ');
+  }
+  return text;
+}
 async function generatePdfEstimate() {
   if (!window.jspdf || !window.jspdf.jsPDF) {
     alert('The PDF library did not load — please check your internet connection and try again.');
