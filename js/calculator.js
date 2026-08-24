@@ -457,6 +457,7 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
+  const scale = 3; // 3x Supersampling for Retina/Crisp vector-like rendering
   const weight = fontWeight || '400';
   const fontStyle = `${weight} ${fontSizePx}px "Noto Sans Devanagari", "Mangal", "Devanagari Sangam MN", sans-serif`;
 
@@ -464,22 +465,23 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
 
   const metrics = ctx.measureText(text);
   const paddingX = Math.ceil(fontSizePx * 0.5);
-  const width = Math.ceil(metrics.width + paddingX * 2);
-  const height = Math.ceil(fontSizePx * 1.8);
+  const baseWidth = Math.ceil(metrics.width + paddingX * 2);
+  const baseHeight = Math.ceil(fontSizePx * 1.8);
 
-  canvas.width = Math.max(width, 1);
-  canvas.height = Math.max(height, 1);
+  canvas.width = Math.max(baseWidth * scale, 1);
+  canvas.height = Math.max(baseHeight * scale, 1);
 
+  ctx.scale(scale, scale);
   ctx.font = fontStyle;
   ctx.textBaseline = 'alphabetic';
-  ctx.fillStyle = textColor; // Dynamic text color apply point
+  ctx.fillStyle = textColor;
 
   ctx.fillText(text, paddingX, fontSizePx * 1.2);
 
   return {
     dataUrl: canvas.toDataURL('image/png'),
-    widthPx: canvas.width,
-    heightPx: canvas.height,
+    widthPx: baseWidth,
+    heightPx: baseHeight,
     paddingX: paddingX
   };
 }
@@ -553,35 +555,26 @@ async function generatePdfEstimate() {
     doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 18);
     const nameWidth = doc.getTextWidth('HALOSUN ENERGY SYSTEMS');
     
-    // Tagline in Header
-    const taglineText = lang === 'hi' ? 'डिजाइन \u00b7 इंस्टॉलेशन \u00b7 पावर' : t('footer-tagline', 'Design \u00b7 Build \u00b7 Power');
-    
-    if (containsDevanagari(taglineText)) {
-      const tagRender = await createHindiTextImage(taglineText, 32, '500', 'rgb(241, 161, 0)');
-      const tagH = 3.8;
-      const tagW = (tagRender.widthPx / tagRender.heightPx) * tagH;
-      const tagX = textStartX + (nameWidth / 2) - (tagW / 2);
-      doc.addImage(tagRender.dataUrl, 'PNG', tagX, 21.5, tagW, tagH, undefined, 'FAST');
-    } else {
-      doc.setFont(fontFamily, 'normal');
-      doc.setFontSize(9.5);
-      doc.setTextColor(...PDF_COLOR.sun);
-      doc.text(taglineText, textStartX + nameWidth / 2, 25, { align: 'center' });
-    }
+    // Tagline ALWAYS in English as requested ("Design · Build · Power")
+    const taglineText = 'Design \u00b7 Build \u00b7 Power';
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9.5);
+    doc.setTextColor(...PDF_COLOR.sun);
+    doc.text(taglineText, textStartX + nameWidth / 2, 25, { align: 'center' });
 
     const today = new Date().toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
     
     if (lang === 'hi') {
-      const headerTitleImg = await createHindiTextImage('सोलार बचत अनुमान', 28, '700', 'rgb(255, 255, 255)');
-      const htH = 3.5;
+      const headerTitleImg = await createHindiTextImage('सोलार बचत अनुमान', 36, '700', 'rgb(255, 255, 255)');
+      const htH = 4.2;
       const htW = (headerTitleImg.widthPx / headerTitleImg.heightPx) * htH;
-      doc.addImage(headerTitleImg.dataUrl, 'PNG', rightX - htW, 11.5, htW, htH, undefined, 'FAST');
+      doc.addImage(headerTitleImg.dataUrl, 'PNG', rightX - htW, 11, htW, htH, undefined, 'FAST');
 
       const dateStr = 'तैयार किया गया: ' + today;
-      const headerDateImg = await createHindiTextImage(dateStr, 26, '400', 'rgb(210, 217, 227)');
-      const hdH = 3.2;
+      const headerDateImg = await createHindiTextImage(dateStr, 30, '400', 'rgb(210, 217, 227)');
+      const hdH = 3.6;
       const hdW = (headerDateImg.widthPx / headerDateImg.heightPx) * hdH;
-      doc.addImage(headerDateImg.dataUrl, 'PNG', rightX - hdW, 17, hdW, hdH, undefined, 'FAST');
+      doc.addImage(headerDateImg.dataUrl, 'PNG', rightX - hdW, 17.5, hdW, hdH, undefined, 'FAST');
     } else {
       doc.setFont(fontFamily, 'normal');
       doc.setFontSize(8.5);
@@ -623,10 +616,10 @@ async function generatePdfEstimate() {
       doc.roundedRect(x, y, cardW, cardH, 3, 3, 'FD');
 
       if (containsDevanagari(label)) {
-        const lblImg = await createHindiTextImage(label, 28, '700', 'rgb(217, 83, 30)');
-        const lH = 3.6;
+        const lblImg = await createHindiTextImage(label, 32, '700', 'rgb(217, 83, 30)');
+        const lH = 4.0;
         const lW = (lblImg.widthPx / lblImg.heightPx) * lH;
-        doc.addImage(lblImg.dataUrl, 'PNG', x + 6, y + 4.0, lW, lH, undefined, 'FAST');
+        doc.addImage(lblImg.dataUrl, 'PNG', x + 6, y + 3.8, lW, lH, undefined, 'FAST');
       } else {
         doc.setFont(fontFamily, 'bold');
         doc.setFontSize(7.5);
@@ -635,10 +628,10 @@ async function generatePdfEstimate() {
       }
 
       if (containsDevanagari(value)) {
-        const valImg = await createHindiTextImage(value, 52, '700', 'rgb(36, 48, 61)');
-        const vH = 6.5;
+        const valImg = await createHindiTextImage(value, 56, '700', 'rgb(36, 48, 61)');
+        const vH = 7.0;
         const vW = (valImg.widthPx / valImg.heightPx) * vH;
-        doc.addImage(valImg.dataUrl, 'PNG', x + 6, y + 11.5, vW, vH, undefined, 'FAST');
+        doc.addImage(valImg.dataUrl, 'PNG', x + 6, y + 11.2, vW, vH, undefined, 'FAST');
       } else {
         doc.setFont(fontFamily, 'bold');
         doc.setFontSize(15);
@@ -670,7 +663,7 @@ async function generatePdfEstimate() {
       }
 
       const rgbStr = `rgb(${color.join(',')})`;
-      const rendered = await createHindiTextImage(text, Math.round(fontSize * 3.4), bold ? '700' : '400', rgbStr);
+      const rendered = await createHindiTextImage(text, Math.round(fontSize * 3.6), bold ? '700' : '400', rgbStr);
       const targetHeight = 5.2;
       const targetWidth = (rendered.widthPx / rendered.heightPx) * targetHeight;
       let imageX = x;
@@ -758,7 +751,7 @@ async function generatePdfEstimate() {
         );
 
     if (lang === 'hi') {
-      const discImg = await createHindiTextImage(disclaimer, 24, '400', 'rgb(108, 117, 125)');
+      const discImg = await createHindiTextImage(disclaimer, 28, '400', 'rgb(108, 117, 125)');
       const dH = 8.5; 
       const dW = (discImg.widthPx / discImg.heightPx) * dH;
       const clampedW = Math.min(dW, rightX - marginX);
