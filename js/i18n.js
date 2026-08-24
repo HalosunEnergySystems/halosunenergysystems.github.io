@@ -61,7 +61,10 @@ const TRANSLATIONS = {
                         hi: 'घरों और व्यवसायों के लिए पेशेवर सोलर इंजीनियरिंग, इंस्टॉलेशन और रखरखाव।' },
   'footer-explore':  { en: 'Explore',               hi: 'जानिए' },
   'footer-contact':  { en: 'Contact',               hi: 'संपर्क करें' },
-  'footer-contactAdd':  { en: 'Tilak Nagar Raebareli, Uttar Pradesh',               hi: 'तिलक नगर, रायबरेली, उत्तर प्रदेश' },
+  'footer-contactAdd': { 
+  en: 'Tilak Nagar,<br>Raebareli, Uttar Pradesh', 
+  hi: 'तिलक नगर,<br>रायबरेली, उत्तर प्रदेश' 
+},
   
   'footer-connect':  { en: 'Connect',                hi: 'जुड़ें' },
   'footer-connect-desc': { en: 'Follow Halosun for solar projects, engineering insights and updates.',
