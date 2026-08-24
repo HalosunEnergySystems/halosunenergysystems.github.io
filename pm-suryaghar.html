@@ -25,6 +25,39 @@
   <link rel="stylesheet" href="css/features.css">
   <link rel="stylesheet" href="css/pm-suryaghar.css">
 
+  <style>
+    /* ============ DEADLINE COUNTDOWN — red accent variant ============
+       Keeps body text in the site's normal theme color (readability first);
+       red is used only as an accent — left border, icon and the countdown
+       digits — so it draws the eye without turning the whole banner into
+       a "sale" wall of red text. */
+    .deadline-banner.deadline-banner-alert {
+      border-left: 4px solid #ef4444;
+      box-shadow: inset 0 0 0 9999px rgba(239, 68, 68, 0.06);
+    }
+    .deadline-banner-alert .deadline-icon {
+      color: #ef4444;
+    }
+    .deadline-banner-alert .deadline-num {
+      color: #ef4444;
+    }
+
+    /* ============ OFFICIAL PORTAL LINK — highlight ============
+       Distinct accent color (amber/gold, matches the solar theme) so this
+       link stands out from regular body/nav links without looking like an
+       alert — it's a helpful pointer, not an urgent warning. */
+    .pm-official a {
+      color: #f59e0b;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .pm-official a:hover,
+    .pm-official a:focus-visible {
+      color: #d97706;
+    }
+  </style>
+
   <link rel="canonical" href="https://halosunenergysystems.com/pm-suryaghar.html">
 
   <script type="application/ld+json">
@@ -67,7 +100,7 @@
       <button type="button" data-lang="hi">हि</button>
     </div>
 
-    <a href="contact.html" class="btn btn-primary btn-small nav-cta" data-i18n="nav-cta">Get a Free Quote</a>
+    <a href="contact.html" class="btn btn-primary btn-small nav-cta">Get a Free Quote</a>
 
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -76,7 +109,7 @@
 </header>
 
 <!-- ============ DEADLINE COUNTDOWN ============ -->
-<div class="deadline-banner" data-countdown="2027-03-31T23:59:59+05:30">
+<div class="deadline-banner deadline-banner-alert" data-countdown="2027-03-31T23:59:59+05:30">
   <div class="wrap">
     <p class="deadline-text">
       <span class="deadline-icon" aria-hidden="true">⚡</span>
@@ -123,29 +156,29 @@
       <div class="hero-brand">
         <img src="assets/logo-hero.png" alt="Halosun Energy Systems" class="hero-badge">
         <span class="hero-brand-name"><span class="brand-halosun">Halosun</span> <em>Energy Systems</em></span>
-        <p class="eyebrow" data-i18n="pm-hero-eyebrow-badge">PM Surya Ghar · Residential Solar</p>
+        <p class="eyebrow">PM Surya Ghar · Residential Solar</p>
       </div>
 
-      <p class="eyebrow" data-i18n="pm-hero-eyebrow-guide">A practical guide for homeowners</p>
+      <p class="eyebrow">A practical guide for homeowners</p>
 
       <h1>
-        <span data-i18n="pm-hero-h1-line1">PM Surya Ghar</span><br>
-        <span data-i18n="pm-hero-h1-line2">from application to subsidy.</span>
+        PM Surya Ghar<br>
+        <span>from application to subsidy.</span>
       </h1>
 
-      <p class="hero-sub" data-i18n="pm-hero-sub">
+      <p class="hero-sub">
         Thinking about rooftop solar under PM Surya Ghar Muft Bijli Yojana?
         Here is the complete journey — eligibility, documents, portal application,
         installation, DISCOM inspection, net meter and Central Financial Assistance.
       </p>
 
       <div class="hero-actions">
-        <a href="calculator.html" class="btn btn-primary" data-i18n="pm-hero-cta-1">Calculate My Savings</a>
-        <a href="contact.html" class="btn btn-ghost" data-i18n="pm-hero-cta-2">Talk to Halosun</a>
+        <a href="calculator.html" class="btn btn-primary">Calculate My Savings</a>
+        <a href="contact.html" class="btn btn-ghost">Talk to Halosun</a>
       </div>
 
       <div class="pm-hero-note">
-        <span>✓</span> <span data-i18n="pm-hero-note">Residential rooftop solar · Uttar Pradesh · UPNEDA registered vendor</span>
+        <span>✓</span> Residential rooftop solar · Uttar Pradesh · UPNEDA registered vendor
       </div>
     </div>
   </section>
@@ -153,9 +186,9 @@
   <!-- SUBSIDY -->
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="pm-subsidy-eyebrow">The headline number</p>
-      <h2 data-i18n="pm-subsidy-h2">Up to ₹78,000 central subsidy</h2>
-      <p class="section-sub" data-i18n="pm-subsidy-sub">
+      <p class="eyebrow">The headline number</p>
+      <h2>Up to ₹78,000 central subsidy</h2>
+      <p class="section-sub">
         Under the central scheme, residential consumers can receive CFA for the first
         2 kW and an additional 1 kW. Capacity beyond 3 kW does not receive additional
         central CFA under the standard residential structure.
@@ -163,28 +196,27 @@
 
       <div class="pm-subsidy-grid">
         <div class="card pm-money-card">
-          <span class="pm-card-kicker" data-i18n="pm-subsidy-card1-kicker">1 kW</span>
+          <span class="pm-card-kicker">1 kW</span>
           <strong>₹30,000</strong>
-          <p data-i18n="pm-subsidy-card-desc">Indicative central CFA</p>
+          <p>Indicative central CFA</p>
         </div>
         <div class="card pm-money-card">
-          <span class="pm-card-kicker" data-i18n="pm-subsidy-card2-kicker">2 kW</span>
+          <span class="pm-card-kicker">2 kW</span>
           <strong>₹60,000</strong>
-          <p data-i18n="pm-subsidy-card-desc">Indicative central CFA</p>
+          <p>Indicative central CFA</p>
         </div>
         <div class="card pm-money-card pm-money-featured">
-          <span class="pm-card-kicker" data-i18n="pm-subsidy-card3-kicker">3 kW or more</span>
+          <span class="pm-card-kicker">3 kW or more</span>
           <strong>₹78,000</strong>
-          <p data-i18n="pm-subsidy-card3-desc">Maximum standard central CFA for a residential system</p>
+          <p>Maximum standard central CFA for a residential system</p>
         </div>
       </div>
 
       <div class="pm-disclaimer">
-        <strong data-i18n="pm-subsidy-disclaimer-strong">Important:</strong>
-        <span data-i18n="pm-subsidy-disclaimer-text">Subsidy/CFA is subject to the applicable PM Surya Ghar
+        <strong>Important:</strong> Subsidy/CFA is subject to the applicable PM Surya Ghar
         guidelines, eligible system capacity, approved equipment and DISCOM verification.
         Do not treat the subsidy as an instant discount unless your specific financing/
-        vendor arrangement explicitly provides one.</span>
+        vendor arrangement explicitly provides one.
       </div>
     </div>
   </section>
@@ -192,29 +224,29 @@
   <!-- WHO IS ELIGIBLE -->
   <section class="section section-dark">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="pm-eligible-eyebrow">01 · Before you apply</p>
-      <h2 data-i18n="pm-eligible-h2">Who can benefit?</h2>
+      <p class="eyebrow">01 · Before you apply</p>
+      <h2>Who can benefit?</h2>
 
       <div class="grid grid-4 pm-check-grid">
         <div class="why-item">
           <span class="pm-number">01</span>
-          <h3 data-i18n="pm-eligible-1-title">Residential electricity connection</h3>
-          <p data-i18n="pm-eligible-1-desc">The scheme's central residential CFA is intended for eligible residential electricity consumers.</p>
+          <h3>Residential electricity connection</h3>
+          <p>The scheme's central residential CFA is intended for eligible residential electricity consumers.</p>
         </div>
         <div class="why-item">
           <span class="pm-number">02</span>
-          <h3 data-i18n="pm-eligible-2-title">Suitable rooftop</h3>
-          <p data-i18n="pm-eligible-2-desc">Your roof should have adequate usable area, structural suitability and reasonable solar access.</p>
+          <h3>Suitable rooftop</h3>
+          <p>Your roof should have adequate usable area, structural suitability and reasonable solar access.</p>
         </div>
         <div class="why-item">
           <span class="pm-number">03</span>
-          <h3 data-i18n="pm-eligible-3-title">Eligible DISCOM area</h3>
-          <p data-i18n="pm-eligible-3-desc">Your electricity connection must fall under a participating distribution utility/process.</p>
+          <h3>Eligible DISCOM area</h3>
+          <p>Your electricity connection must fall under a participating distribution utility/process.</p>
         </div>
         <div class="why-item">
           <span class="pm-number">04</span>
-          <h3 data-i18n="pm-eligible-4-title">Bank & identity details</h3>
-          <p data-i18n="pm-eligible-4-desc">Keep the required consumer, bank and electricity-account details ready for portal processing.</p>
+          <h3>Bank & identity details</h3>
+          <p>Keep the required consumer, bank and electricity-account details ready for portal processing.</p>
         </div>
       </div>
     </div>
@@ -223,40 +255,40 @@
   <!-- DOCUMENTS -->
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="pm-docs-eyebrow">02 · Keep these ready</p>
-      <h2 data-i18n="pm-docs-h2">Documents & information checklist</h2>
-      <p class="section-sub" data-i18n="pm-docs-sub">Exact requirements can vary by DISCOM and application stage. Halosun can help you prepare the submission.</p>
+      <p class="eyebrow">02 · Keep these ready</p>
+      <h2>Documents & information checklist</h2>
+      <p class="section-sub">Exact requirements can vary by DISCOM and application stage. Halosun can help you prepare the submission.</p>
 
       <div class="pm-docs">
         <div class="card pm-doc">
           <span>01</span>
-          <h3 data-i18n="pm-doc-1-title">Electricity bill</h3>
-          <p data-i18n="pm-doc-1-desc">Latest electricity bill / consumer account details.</p>
+          <h3>Electricity bill</h3>
+          <p>Latest electricity bill / consumer account details.</p>
         </div>
         <div class="card pm-doc">
           <span>02</span>
-          <h3 data-i18n="pm-doc-2-title">Consumer details</h3>
-          <p data-i18n="pm-doc-2-desc">Name, mobile number and identity information matching the electricity connection where required.</p>
+          <h3>Consumer details</h3>
+          <p>Name, mobile number and identity information matching the electricity connection where required.</p>
         </div>
         <div class="card pm-doc">
           <span>03</span>
-          <h3 data-i18n="pm-doc-3-title">Bank details</h3>
-          <p data-i18n="pm-doc-3-desc">Bank account information as required for CFA/subsidy processing.</p>
+          <h3>Bank details</h3>
+          <p>Bank account information as required for CFA/subsidy processing.</p>
         </div>
         <div class="card pm-doc">
           <span>04</span>
-          <h3 data-i18n="pm-doc-4-title">Roof / property details</h3>
-          <p data-i18n="pm-doc-4-desc">Ownership/occupancy information and NOC or consent where applicable.</p>
+          <h3>Roof / property details</h3>
+          <p>Ownership/occupancy information and NOC or consent where applicable.</p>
         </div>
         <div class="card pm-doc">
           <span>05</span>
-          <h3 data-i18n="pm-doc-5-title">Portal credentials</h3>
-          <p data-i18n="pm-doc-5-desc">Mobile number, application details and OTP access for the National Portal.</p>
+          <h3>Portal credentials</h3>
+          <p>Mobile number, application details and OTP access for the National Portal.</p>
         </div>
         <div class="card pm-doc">
           <span>06</span>
-          <h3 data-i18n="pm-doc-6-title">Installation records</h3>
-          <p data-i18n="pm-doc-6-desc">Vendor invoice, system details, photographs and commissioning documents as applicable.</p>
+          <h3>Installation records</h3>
+          <p>Vendor invoice, system details, photographs and commissioning documents as applicable.</p>
         </div>
       </div>
     </div>
@@ -265,87 +297,87 @@
   <!-- END TO END PROCESS -->
   <section class="section section-dark">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="pm-journey-eyebrow">03 · The complete journey</p>
-      <h2 data-i18n="pm-journey-h2">From application to subsidy</h2>
-      <p class="section-sub" data-i18n="pm-journey-sub">The exact time at each stage depends on the portal, DISCOM workload, site conditions and inspection/verification schedule.</p>
+      <p class="eyebrow">03 · The complete journey</p>
+      <h2>From application to subsidy</h2>
+      <p class="section-sub">The exact time at each stage depends on the portal, DISCOM workload, site conditions and inspection/verification schedule.</p>
 
       <div class="pm-timeline">
 
         <article class="pm-step">
           <div class="pm-step-marker">01</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-1-label">APPLICATION</span>
-            <h3 data-i18n="pm-step-1-title">Register on the National Portal</h3>
-            <p data-i18n="pm-step-1-desc">Start the rooftop solar application using your electricity consumer details and the applicable DISCOM selection.</p>
-            <div class="pm-role"><b data-i18n="pm-step-1-role-label">Halosun:</b> <span data-i18n="pm-step-1-role-text">Can guide you through the application and information required.</span></div>
+            <span class="pm-step-label">APPLICATION</span>
+            <h3>Register on the National Portal</h3>
+            <p>Start the rooftop solar application using your electricity consumer details and the applicable DISCOM selection.</p>
+            <div class="pm-role"><b>Halosun:</b> Can guide you through the application and information required.</div>
           </div>
         </article>
 
         <article class="pm-step">
           <div class="pm-step-marker">02</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-2-label">TECHNICAL APPROVAL</span>
-            <h3 data-i18n="pm-step-2-title">DISCOM reviews the application</h3>
-            <p data-i18n="pm-step-2-desc">The electricity distribution utility processes the request according to its technical and portal workflow.</p>
-            <div class="pm-role"><b data-i18n="pm-step-2-role-label">You:</b> <span data-i18n="pm-step-2-role-text">Keep your consumer details and documents available if clarification is requested.</span></div>
+            <span class="pm-step-label">TECHNICAL APPROVAL</span>
+            <h3>DISCOM reviews the application</h3>
+            <p>The electricity distribution utility processes the request according to its technical and portal workflow.</p>
+            <div class="pm-role"><b>You:</b> Keep your consumer details and documents available if clarification is requested.</div>
           </div>
         </article>
 
         <article class="pm-step">
           <div class="pm-step-marker">03</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-3-label">DESIGN</span>
-            <h3 data-i18n="pm-step-3-title">System design & quotation</h3>
-            <p data-i18n="pm-step-3-desc">Halosun assesses your load, roof, orientation, available area and expected generation before finalising the system design.</p>
-            <div class="pm-role"><b data-i18n="pm-step-3-role-label">Halosun:</b> <span data-i18n="pm-step-3-role-text">System sizing, engineering, quotation and installation planning.</span></div>
+            <span class="pm-step-label">DESIGN</span>
+            <h3>System design & quotation</h3>
+            <p>Halosun assesses your load, roof, orientation, available area and expected generation before finalising the system design.</p>
+            <div class="pm-role"><b>Halosun:</b> System sizing, engineering, quotation and installation planning.</div>
           </div>
         </article>
 
         <article class="pm-step">
           <div class="pm-step-marker">04</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-4-label">INSTALLATION</span>
-            <h3 data-i18n="pm-step-4-title">Solar plant is installed</h3>
-            <p data-i18n="pm-step-4-desc">Panels, mounting structure, inverter, protection equipment, cabling and earthing are installed according to the approved design and applicable requirements.</p>
-            <div class="pm-role"><b data-i18n="pm-step-4-role-label">Halosun:</b> <span data-i18n="pm-step-4-role-text">EPC execution, documentation and commissioning support.</span></div>
+            <span class="pm-step-label">INSTALLATION</span>
+            <h3>Solar plant is installed</h3>
+            <p>Panels, mounting structure, inverter, protection equipment, cabling and earthing are installed according to the approved design and applicable requirements.</p>
+            <div class="pm-role"><b>Halosun:</b> EPC execution, documentation and commissioning support.</div>
           </div>
         </article>
 
         <article class="pm-step">
           <div class="pm-step-marker">05</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-5-label">INSPECTION</span>
-            <h3 data-i18n="pm-step-5-title">DISCOM verification / inspection</h3>
-            <p data-i18n="pm-step-5-desc">The completed installation is submitted for the applicable DISCOM verification process. Additional information or corrections may be requested.</p>
-            <div class="pm-role"><b data-i18n="pm-step-5-role-label">Important:</b> <span data-i18n="pm-step-5-role-text">Inspection timing is controlled by the DISCOM, not the installer.</span></div>
+            <span class="pm-step-label">INSPECTION</span>
+            <h3>DISCOM verification / inspection</h3>
+            <p>The completed installation is submitted for the applicable DISCOM verification process. Additional information or corrections may be requested.</p>
+            <div class="pm-role"><b>Important:</b> Inspection timing is controlled by the DISCOM, not the installer.</div>
           </div>
         </article>
 
         <article class="pm-step">
           <div class="pm-step-marker">06</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-6-label">METERING</span>
-            <h3 data-i18n="pm-step-6-title">Net meter / meter process</h3>
-            <p data-i18n="pm-step-6-desc">After the applicable technical and verification steps, the meter/net-metering process is completed according to the DISCOM workflow.</p>
+            <span class="pm-step-label">METERING</span>
+            <h3>Net meter / meter process</h3>
+            <p>After the applicable technical and verification steps, the meter/net-metering process is completed according to the DISCOM workflow.</p>
           </div>
         </article>
 
         <article class="pm-step">
           <div class="pm-step-marker">07</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-7-label">COMMISSIONING</span>
-            <h3 data-i18n="pm-step-7-title">Commissioning documents submitted</h3>
-            <p data-i18n="pm-step-7-desc">Required commissioning, installation and vendor documentation is completed and submitted through the applicable process.</p>
+            <span class="pm-step-label">COMMISSIONING</span>
+            <h3>Commissioning documents submitted</h3>
+            <p>Required commissioning, installation and vendor documentation is completed and submitted through the applicable process.</p>
           </div>
         </article>
 
         <article class="pm-step">
           <div class="pm-step-marker">08</div>
           <div class="pm-step-body">
-            <span class="pm-step-label" data-i18n="pm-step-8-label">CFA</span>
-            <h3 data-i18n="pm-step-8-title">Central Financial Assistance is processed</h3>
-            <p data-i18n="pm-step-8-desc">After successful installation and verification, the eligible CFA is processed according to the scheme and portal requirements.</p>
-            <div class="pm-role"><b data-i18n="pm-step-8-role-label">Note:</b> <span data-i18n="pm-step-8-role-text">The actual credit date depends on government/portal processing and successful verification.</span></div>
+            <span class="pm-step-label">CFA</span>
+            <h3>Central Financial Assistance is processed</h3>
+            <p>After successful installation and verification, the eligible CFA is processed according to the scheme and portal requirements.</p>
+            <div class="pm-role"><b>Note:</b> The actual credit date depends on government/portal processing and successful verification.</div>
           </div>
         </article>
 
@@ -356,43 +388,42 @@
   <!-- TIMELINE -->
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="pm-timeline-eyebrow">04 · How long does it take?</p>
-      <h2 data-i18n="pm-timeline-h2">A realistic way to think about the timeline</h2>
+      <p class="eyebrow">04 · How long does it take?</p>
+      <h2>A realistic way to think about the timeline</h2>
 
       <div class="pm-time-grid">
         <div class="card pm-time-card">
-          <span class="pm-time" data-i18n="pm-time-1-tag">Day 0</span>
-          <h3 data-i18n="pm-time-1-title">Application</h3>
-          <p data-i18n="pm-time-1-desc">Customer application and initial documentation.</p>
+          <span class="pm-time">Day 0</span>
+          <h3>Application</h3>
+          <p>Customer application and initial documentation.</p>
         </div>
         <div class="card pm-time-card">
-          <span class="pm-time" data-i18n="pm-time-2-tag">Next</span>
-          <h3 data-i18n="pm-time-2-title">DISCOM stage</h3>
-          <p data-i18n="pm-time-2-desc">Technical approval / applicable portal workflow.</p>
+          <span class="pm-time">Next</span>
+          <h3>DISCOM stage</h3>
+          <p>Technical approval / applicable portal workflow.</p>
         </div>
         <div class="card pm-time-card">
-          <span class="pm-time" data-i18n="pm-time-3-tag">After approval</span>
-          <h3 data-i18n="pm-time-3-title">Installation</h3>
-          <p data-i18n="pm-time-3-desc">Site preparation, installation and commissioning.</p>
+          <span class="pm-time">After approval</span>
+          <h3>Installation</h3>
+          <p>Site preparation, installation and commissioning.</p>
         </div>
         <div class="card pm-time-card">
-          <span class="pm-time" data-i18n="pm-time-4-tag">After installation</span>
-          <h3 data-i18n="pm-time-4-title">Inspection & meter</h3>
-          <p data-i18n="pm-time-4-desc">DISCOM verification and applicable metering process.</p>
+          <span class="pm-time">After installation</span>
+          <h3>Inspection & meter</h3>
+          <p>DISCOM verification and applicable metering process.</p>
         </div>
         <div class="card pm-time-card pm-time-featured">
-          <span class="pm-time" data-i18n="pm-time-5-tag">After successful verification</span>
-          <h3 data-i18n="pm-time-5-title">CFA processing</h3>
-          <p data-i18n="pm-time-5-desc">Eligible subsidy/CFA is processed through the applicable system.</p>
+          <span class="pm-time">After successful verification</span>
+          <h3>CFA processing</h3>
+          <p>Eligible subsidy/CFA is processed through the applicable system.</p>
         </div>
       </div>
 
       <div class="pm-disclaimer">
-        <strong data-i18n="pm-timeline-disclaimer-strong">Why we don't promise “subsidy in X days”:</strong>
-        <span data-i18n="pm-timeline-disclaimer-text">installation is within the
+        <strong>Why we don't promise “subsidy in X days”:</strong> installation is within the
         vendor's control; DISCOM inspection, meter work and government/portal processing are
         external stages. A professional installer should give you a process estimate, not a
-        guaranteed subsidy-credit date.</span>
+        guaranteed subsidy-credit date.
       </div>
     </div>
   </section>
@@ -400,29 +431,29 @@
   <!-- HALOSUN ROLE -->
   <section class="section section-dark">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="pm-role-eyebrow">05 · What Halosun handles</p>
-      <h2 data-i18n="pm-role-h2">One team. Fewer things for you to chase.</h2>
+      <p class="eyebrow">05 · What Halosun handles</p>
+      <h2>One team. Fewer things for you to chase.</h2>
 
       <div class="grid grid-4">
         <div class="why-item">
           <span class="pm-icon">01</span>
-          <h3 data-i18n="pm-role-1-title">Site assessment</h3>
-          <p data-i18n="pm-role-1-desc">Roof, shade, orientation, access and electrical considerations.</p>
+          <h3>Site assessment</h3>
+          <p>Roof, shade, orientation, access and electrical considerations.</p>
         </div>
         <div class="why-item">
           <span class="pm-icon">02</span>
-          <h3 data-i18n="pm-role-2-title">Engineering</h3>
-          <p data-i18n="pm-role-2-desc">System sizing, equipment selection, protection and installation planning.</p>
+          <h3>Engineering</h3>
+          <p>System sizing, equipment selection, protection and installation planning.</p>
         </div>
         <div class="why-item">
           <span class="pm-icon">03</span>
-          <h3 data-i18n="pm-role-3-title">Portal assistance</h3>
-          <p data-i18n="pm-role-3-desc">Guidance with the application, documentation and required project information.</p>
+          <h3>Portal assistance</h3>
+          <p>Guidance with the application, documentation and required project information.</p>
         </div>
         <div class="why-item">
           <span class="pm-icon">04</span>
-          <h3 data-i18n="pm-role-4-title">Installation & support</h3>
-          <p data-i18n="pm-role-4-desc">Professional installation, commissioning support and coordination through the applicable process.</p>
+          <h3>Installation & support</h3>
+          <p>Professional installation, commissioning support and coordination through the applicable process.</p>
         </div>
       </div>
     </div>
@@ -433,9 +464,9 @@
     <div class="wrap">
       <div class="card pm-example">
         <div>
-          <p class="eyebrow" data-i18n="pm-example-eyebrow">06 · Simple example</p>
-          <h2 data-i18n="pm-example-h2">What does the subsidy actually mean?</h2>
-          <p data-i18n="pm-example-text">
+          <p class="eyebrow">06 · Simple example</p>
+          <h2>What does the subsidy actually mean?</h2>
+          <p>
             Suppose your eligible residential system is 3 kW. The standard central CFA
             structure provides up to ₹78,000 for the eligible capacity. Your actual project
             price is determined by the system specification and quotation; subsidy eligibility
@@ -443,9 +474,9 @@
           </p>
         </div>
         <div class="pm-example-number">
-          <span data-i18n="pm-example-number-label">Maximum standard central CFA</span>
+          <span>Maximum standard central CFA</span>
           <strong>₹78,000</strong>
-          <small data-i18n="pm-example-number-sub">for eligible residential capacity</small>
+          <small>for eligible residential capacity</small>
         </div>
       </div>
     </div>
@@ -454,39 +485,39 @@
   <!-- FAQ -->
   <section class="section section-dark">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="pm-faq-eyebrow">07 · Common questions</p>
-      <h2 data-i18n="pm-faq-h2">PM Surya Ghar FAQ</h2>
+      <p class="eyebrow">07 · Common questions</p>
+      <h2>PM Surya Ghar FAQ</h2>
 
       <div class="pm-faq">
 
         <details open>
-          <summary data-i18n="pm-faq-q1-q">Is ₹78,000 guaranteed for every solar installation?</summary>
-          <p data-i18n="pm-faq-q1-a">No. ₹78,000 is the maximum standard central CFA for eligible residential capacity under the stated structure. Actual eligibility depends on the scheme requirements, system capacity, approved equipment and successful verification.</p>
+          <summary>Is ₹78,000 guaranteed for every solar installation?</summary>
+          <p>No. ₹78,000 is the maximum standard central CFA for eligible residential capacity under the stated structure. Actual eligibility depends on the scheme requirements, system capacity, approved equipment and successful verification.</p>
         </details>
 
         <details>
-          <summary data-i18n="pm-faq-q2-q">Can I install more than 3 kW?</summary>
-          <p data-i18n="pm-faq-q2-a">Yes, a residential system can be larger where technically and financially appropriate. However, under the standard central CFA structure, additional central CFA is not provided beyond the eligible 3 kW threshold.</p>
+          <summary>Can I install more than 3 kW?</summary>
+          <p>Yes, a residential system can be larger where technically and financially appropriate. However, under the standard central CFA structure, additional central CFA is not provided beyond the eligible 3 kW threshold.</p>
         </details>
 
         <details>
-          <summary data-i18n="pm-faq-q3-q">Does Halosun directly give me the government subsidy?</summary>
-          <p data-i18n="pm-faq-q3-a">No. Halosun is the solar EPC/vendor. The CFA is a government scheme benefit processed through the applicable portal and verification workflow.</p>
+          <summary>Does Halosun directly give me the government subsidy?</summary>
+          <p>No. Halosun is the solar EPC/vendor. The CFA is a government scheme benefit processed through the applicable portal and verification workflow.</p>
         </details>
 
         <details>
-          <summary data-i18n="pm-faq-q4-q">Who controls the inspection and meter timeline?</summary>
-          <p data-i18n="pm-faq-q4-a">The applicable DISCOM controls its inspection and metering workflow. Halosun can coordinate and assist, but cannot honestly guarantee a government/DISCOM date.</p>
+          <summary>Who controls the inspection and meter timeline?</summary>
+          <p>The applicable DISCOM controls its inspection and metering workflow. Halosun can coordinate and assist, but cannot honestly guarantee a government/DISCOM date.</p>
         </details>
 
         <details>
-          <summary data-i18n="pm-faq-q5-q">Can I take a loan for the solar system?</summary>
-          <p data-i18n="pm-faq-q5-a">Financing may be available through participating financial institutions and scheme-linked arrangements. Loan approval, interest rate and disbursement remain subject to the lender's terms.</p>
+          <summary>Can I take a loan for the solar system?</summary>
+          <p>Financing may be available through participating financial institutions and scheme-linked arrangements. Loan approval, interest rate and disbursement remain subject to the lender's terms.</p>
         </details>
 
         <details>
-          <summary data-i18n="pm-faq-q6-q">Do I need to visit government offices?</summary>
-          <p data-i18n="pm-faq-q6-a">Many steps are handled through the portal and coordinated digitally, but some DISCOM processes may still require field verification or additional documentation. Halosun can help you understand what is required at each stage.</p>
+          <summary>Do I need to visit government offices?</summary>
+          <p>Many steps are handled through the portal and coordinated digitally, but some DISCOM processes may still require field verification or additional documentation. Halosun can help you understand what is required at each stage.</p>
         </details>
 
       </div>
@@ -497,18 +528,18 @@
   <section class="section pm-final-cta">
     <div class="wrap">
       <div class="card">
-        <p class="eyebrow" data-i18n="pm-cta-eyebrow">Ready to check your roof?</p>
-        <h2 data-i18n="pm-cta-h2">Let's work out your solar requirement first.</h2>
-        <p class="section-sub" data-i18n="pm-cta-sub">
+        <p class="eyebrow">Ready to check your roof?</p>
+        <h2>Let's work out your solar requirement first.</h2>
+        <p class="section-sub">
           Get an estimate of system size, generation, subsidy and payback before you commit.
         </p>
         <div class="hero-actions">
-          <a href="calculator.html" class="btn btn-primary" data-i18n="pm-cta-btn-1">Open Solar Calculator</a>
-          <a href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20want%20to%20know%20about%20PM%20Surya%20Ghar%20solar." class="btn btn-ghost" target="_blank" rel="noopener" data-i18n="pm-cta-btn-2">WhatsApp Halosun</a>
+          <a href="calculator.html" class="btn btn-primary">Open Solar Calculator</a>
+          <a href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20want%20to%20know%20about%20PM%20Surya%20Ghar%20solar." class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp Halosun</a>
         </div>
         <p class="pm-official">
-          <span data-i18n="pm-cta-official-text">Want to verify the scheme directly?</span>
-          <a href="https://pmsuryaghar.gov.in/" target="_blank" rel="noopener" data-i18n="pm-cta-official-link">Visit the official PM Surya Ghar portal →</a>
+          Want to verify the scheme directly?
+          <a href="https://pmsuryaghar.gov.in/" target="_blank" rel="noopener">Visit the official PM Surya Ghar portal →</a>
         </p>
       </div>
     </div>
