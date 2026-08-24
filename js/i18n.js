@@ -13,7 +13,7 @@ const TRANSLATIONS = {
   'nav-contact':     { en: 'Contact',               hi: 'संपर्क करें' },
   'nav-cta':         { en: 'Get a Free Quote',      hi: 'मुफ़्त कोटेशन पाएं' },
 
-  'hero-eyebrow':    { en: 'Design. Build. Power.', hi: 'डिज़ाइन. निर्माण. ऊर्जा.' },
+  'hero-eyebrow':    { en: 'Design. Build. Power.', hi: 'डिज़ाइन. इंस्टॉलेशन. पावर.' },
   'hero-title':      { en: 'Your rooftop has a second job.', hi: '“आपकी छत अब सिर्फ छत नहीं, बचत और कमाई का ज़रिया है।”' },
   'hero-sub':        { en: "Halosun Energy Systems designs, builds and maintains solar power plants for homes and businesses — from the first site survey to the day your meter starts running backward.",
                         hi: 'हैलोसन एनर्जी सिस्टम्स घरों और व्यवसायों के लिए सोलर पावर प्लांट डिज़ाइन, निर्माण और रखरखाव करता है — पहली साइट विज़िट से लेकर उस दिन तक जब आपका मीटर उल्टा चलना शुरू करे।' },
@@ -65,7 +65,7 @@ const TRANSLATIONS = {
   'footer-connect-desc': { en: 'Follow Halosun for solar projects, engineering insights and updates.',
                         hi: 'सोलर परियोजनाओं, इंजीनियरिंग जानकारी और अपडेट के लिए हैलोसन को फॉलो करें।' },
   'footer-wa':       { en: 'Chat on WhatsApp →',    hi: 'व्हाट्सएप पर बात करें →' },
-  'footer-tagline':  { en: 'Design · Build · Power', hi: 'डिज़ाइन · निर्माण · ऊर्जा' },
+  'footer-tagline':  { en: 'Design · Build · Power', hi: 'डिज़ाइन · इंस्टॉलेशन · पावर' },
 
   // ---- FAQ page ----
   'faq-page-eyebrow': { en: 'Solar, explained clearly', hi: 'सोलर, सीधी भाषा में समझाया गया' },
@@ -269,19 +269,19 @@ const TRANSLATIONS = {
 
   'res-size-label':            { en: 'Recommended system size', hi: 'अनुशंसित सिस्टम आकार' },
   'res-units-label':           { en: 'Estimated generation', hi: 'अनुमानित जनरेशन' },
-  'res-cost-label':            { en: 'System cost (before subsidy)', hi: 'सिस्टम लागत (सब्सिडी से पहले)' },
+  'res-cost-label':            { en: 'System cost (before subsidy)', hi: 'सिस्टम की कीमत (सब्सिडी से पहले)' },
   'res-subsidy-central-label': { en: 'Central subsidy (PM Surya Ghar)', hi: 'केंद्रीय सब्सिडी (PM सूर्य घर)' },
   'res-subsidy-state-label':   { en: 'State subsidy (UPNEDA)', hi: 'राज्य सब्सिडी (UPNEDA)' },
   'res-subsidy-total-label':   { en: 'Total subsidy', hi: 'कुल सब्सिडी' },
   'res-net-label':             { en: 'Your cost after subsidy', hi: 'सब्सिडी के बाद आपकी लागत' },
   'res-savings-label':         { en: 'Estimated monthly savings', hi: 'अनुमानित मासिक बचत' },
   'res-payback-label':         { en: 'Payback period', hi: 'पेबैक अवधि' },
-  'res-lifetime-label':        { en: 'Estimated 25-year savings', hi: 'अनुमानित 25-वर्षीय बचत' },
+  'res-lifetime-label':        { en: 'Estimated 25-year savings', hi: '25 साल की अनुमानित बचत' },
 
   'emi-heading-1':             { en: 'Prefer to pay monthly? See the EMI', hi: 'मासिक भुगतान पसंद करते हैं? EMI देखें' },
   'emi-downpayment-label':     { en: 'Down payment (%)', hi: 'डाउन पेमेंट (%)' },
   'emi-tenure-label':          { en: 'Loan tenure (years)', hi: 'लोन अवधि (वर्ष)' },
-  'emi-rate-label':            { en: 'Interest rate (% p.a.)', hi: 'ब्याज दर (% प्रति वर्ष)' },
+  'emi-rate-label':            { en: 'Interest rate (% p.a.)', hi: 'ब्याज दर (% सालाना)' },
   'emi-loan-amount-label':     { en: 'Loan amount', hi: 'लोन राशि' },
   'emi-monthly-label':         { en: 'Estimated monthly EMI', hi: 'अनुमानित मासिक EMI' },
   'emi-old-bill-label':        { en: 'Your old electricity bill', hi: 'आपका पुराना बिजली बिल' },
@@ -311,7 +311,7 @@ const TRANSLATIONS = {
   'pdf-per-mo-suffix':      { en: '/mo', hi: '/माह' },
   'pdf-not-applicable':     { en: 'Not applicable', hi: 'लागू नहीं' },
   'pdf-interest-rate':    { en: 'Interest rate', hi: 'ब्याज दर' },
-  'pdf-pa-suffix':        { en: '% p.a.', hi: '% प्रति वर्ष' },
+  'pdf-pa-suffix':        { en: '% p.a.', hi: '% सालाना' },
   'pdf-disclaimer':       { en: 'This is an illustrative estimate only, based on the figures you entered \u2014 not a final quotation. Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.',
                              hi: 'यह केवल एक उदाहरणात्मक अनुमान है, आपके द्वारा दर्ज आंकड़ों पर आधारित \u2014 यह अंतिम कोटेशन नहीं है। वास्तविक सिस्टम आकार, कीमत, सब्सिडी पात्रता और लोन शर्तें साइट विज़िट और ऋणदाता की मंज़ूरी पर निर्भर करती हैं।' }
 };
