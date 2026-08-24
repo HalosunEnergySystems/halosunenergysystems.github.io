@@ -94,6 +94,22 @@
     color: #111827 !important;
     background-color: #ffffff !important;
   }
+
+  /* ============ DEADLINE COUNTDOWN — red accent variant ============
+     Keeps body text in the site's normal theme color (readability first);
+     red is used only as an accent — left border, icon and the countdown
+     digits — so it draws the eye without turning the whole banner into
+     a "sale" wall of red text. */
+  .deadline-banner.deadline-banner-alert {
+    border-left: 4px solid #ef4444;
+    box-shadow: inset 0 0 0 9999px rgba(239, 68, 68, 0.06);
+  }
+  .deadline-banner-alert .deadline-icon {
+    color: #ef4444;
+  }
+  .deadline-banner-alert .deadline-num {
+    color: #ef4444;
+  }
 </style>
 </head>
 <body>
@@ -123,6 +139,38 @@
     </button>
   </div>
 </header>
+
+<!-- ============ DEADLINE COUNTDOWN ============ -->
+<div class="deadline-banner deadline-banner-alert" data-countdown="2027-03-31T23:59:59+05:30">
+  <div class="wrap">
+    <p class="deadline-text">
+      <span class="deadline-icon" aria-hidden="true">⚡</span>
+      <span data-i18n="deadline-text">PM Surya Ghar subsidy window closes in</span>
+    </p>
+    <div class="deadline-timer">
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="days">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-days">Days</span>
+      </div>
+      <span class="deadline-colon">:</span>
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="hours">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-hours">Hours</span>
+      </div>
+      <span class="deadline-colon">:</span>
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="minutes">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-min">Min</span>
+      </div>
+      <span class="deadline-colon">:</span>
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="seconds">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-sec">Sec</span>
+      </div>
+    </div>
+    <span class="deadline-closed-msg" data-i18n="deadline-closed">This subsidy window has closed.</span>
+  </div>
+</div>
 
 <main>
   <section class="section">
@@ -333,6 +381,7 @@
 <script src="js/calculator.js"></script>
 <script src="js/emi-calculator.js"></script>
 <script src="js/i18n.js"></script>
+<script src="js/countdown.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
