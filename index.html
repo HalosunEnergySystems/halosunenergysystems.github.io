@@ -274,5 +274,23 @@
 <script src="js/i18n.js"></script>
 <script src="js/impact-counter.js"></script>
 <script src="js/main.js"></script>
+  <script>
+  // Automatically fetch the last modified date of the current page
+  fetch(window.location.href, { method: 'HEAD' })
+    .then(response => {
+      const lastModified = response.headers.get('Last-Modified');
+      if (lastModified) {
+        const date = new Date(lastModified);
+        
+        // Format date: "22 August 2026"
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const formattedDate = date.toLocaleDateString('en-GB', options);
+        
+        document.getElementById('last-updated').textContent = formattedDate;
+      }
+    })
+    .catch(err => console.error('Error fetching last modified date:', err));
+</script>
+
 </body>
 </html>
