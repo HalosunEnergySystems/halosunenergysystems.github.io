@@ -306,6 +306,10 @@ const TRANSLATIONS = {
   'pdf-down-payment':     { en: 'Down payment', hi: 'डाउन पेमेंट' },
   'pdf-loan-tenure':      { en: 'Loan tenure', hi: 'लोन अवधि' },
   'pdf-years-suffix':     { en: 'years', hi: 'वर्ष' },
+  'pdf-units-month-suffix': { en: 'units/month', hi: 'यूनिट/माह' },
+  'pdf-per-month-suffix':   { en: '/month', hi: '/माह' },
+  'pdf-per-mo-suffix':      { en: '/mo', hi: '/माह' },
+  'pdf-not-applicable':     { en: 'Not applicable', hi: 'लागू नहीं' },
   'pdf-interest-rate':    { en: 'Interest rate', hi: 'ब्याज दर' },
   'pdf-pa-suffix':        { en: '% p.a.', hi: '% प्रति वर्ष' },
   'pdf-disclaimer':       { en: 'This is an illustrative estimate only, based on the figures you entered \u2014 not a final quotation. Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.',
@@ -325,6 +329,11 @@ function applyLanguage(lang) {
   document.querySelectorAll('.lang-toggle button').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+  // Re-render any already-calculated results (calculator.js) so numbers
+  // shown on screen — and therefore in the PDF, which reads the DOM —
+  // switch language too, instead of staying in whatever language was
+  // active when Calculate was last clicked.
+  if (typeof refreshCalcResultsLanguage === 'function') refreshCalcResultsLanguage();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

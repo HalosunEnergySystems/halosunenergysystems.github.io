@@ -42,14 +42,17 @@ function updateEMI() {
   const ratePct = parseFloat(document.getElementById('emi-rate').value) || 5.75;
 
   // --- Primary EMI: financed on full system cost, before subsidy ---
+  const emiLang = (typeof getCurrentPdfLang === 'function') ? getCurrentPdfLang() : 'en';
+  const moSuffix = (typeof pdfLabel === 'function') ? pdfLabel('pdf-per-mo-suffix', emiLang, ' /mo') : ' /mo';
+
   const loanAmount = systemCost * (1 - downPaymentPct / 100);
   const monthlyEMI = computeEMI(loanAmount, ratePct, tenureYears);
   document.getElementById('emi-loan-amount').textContent = formatRupees(loanAmount);
-  document.getElementById('emi-monthly').textContent = formatRupees(monthlyEMI) + ' /mo';
+  document.getElementById('emi-monthly').textContent = formatRupees(monthlyEMI) + ' ' + moSuffix;
 
   const oldBillEl = document.getElementById('emi-old-bill');
   if (billEl && billEl.value) {
-    oldBillEl.textContent = formatRupees(parseFloat(billEl.value)) + ' /mo';
+    oldBillEl.textContent = formatRupees(parseFloat(billEl.value)) + ' ' + moSuffix;
   } else {
     oldBillEl.textContent = '—';
   }
@@ -66,7 +69,7 @@ function updateEMI() {
       const loanAmountPost = netCost * (1 - downPaymentPct / 100);
       const monthlyEMIPost = computeEMI(loanAmountPost, ratePct, tenureYears);
       document.getElementById('emi-loan-amount-post').textContent = formatRupees(loanAmountPost);
-      document.getElementById('emi-monthly-post').textContent = formatRupees(monthlyEMIPost) + ' /mo';
+      document.getElementById('emi-monthly-post').textContent = formatRupees(monthlyEMIPost) + ' ' + moSuffix;
       postSubsidyBlock.hidden = false;
     } else {
       postSubsidyBlock.hidden = true;

@@ -82,6 +82,41 @@ function validateLead() {
 
 let hasAutoOpenedWhatsapp = false;
 let lastLead = null; // set on successful calculation, cleared on reset
+let lastCalcValues = null; // raw numbers from the last calculation, used to re-render results text if the language is switched afterwards
+
+// Writes the calculated numbers into the result DOM elements, using
+// whatever language is currently selected. Pulled out of runCalculator()
+// so a later language switch can re-render the same numbers in the new
+// language (via refreshCalcResultsLanguage) without recalculating or
+// resubmitting the lead.
+function renderCalcResults(values) {
+  const { kw, generatedUnits, systemCost, subsidy, netCost, monthlySavings, paybackYears, lifetimeSavings } = values;
+  const calcLang = getCurrentPdfLang();
+  const unitsMonthSuffix = pdfLabel('pdf-units-month-suffix', calcLang, 'units/month');
+  const perMonthSuffix = pdfLabel('pdf-per-month-suffix', calcLang, '/month');
+  const yearsSuffix = pdfLabel('pdf-years-suffix', calcLang, 'years');
+  const notApplicableText = pdfLabel('pdf-not-applicable', calcLang, 'Not applicable');
+
+  document.getElementById('res-size').textContent = kw + ' kWp';
+  document.getElementById('res-units').textContent = Math.round(generatedUnits) + ' ' + unitsMonthSuffix;
+  document.getElementById('res-cost').textContent = formatINR(systemCost);
+  document.getElementById('res-subsidy-central').textContent = subsidy.central > 0 ? formatINR(subsidy.central) : notApplicableText;
+  document.getElementById('res-subsidy-state').textContent = subsidy.state > 0 ? formatINR(subsidy.state) : notApplicableText;
+  document.getElementById('res-subsidy-total').textContent = subsidy.total > 0 ? formatINR(subsidy.total) : notApplicableText;
+  document.getElementById('res-net').textContent = formatINR(netCost);
+  document.getElementById('res-savings').textContent = formatINR(monthlySavings) + perMonthSuffix;
+  document.getElementById('res-payback').textContent = paybackYears > 0 ? paybackYears.toFixed(1) + ' ' + yearsSuffix : '—';
+  document.getElementById('res-lifetime').textContent = formatINR(Math.max(lifetimeSavings, 0));
+}
+
+// Called from js/i18n.js's applyLanguage() whenever the visitor toggles
+// language, so numbers already on screen (and therefore the PDF, which
+// just reads the DOM) switch language too instead of staying stuck in
+// whichever language was active at calculation time.
+function refreshCalcResultsLanguage() {
+  if (lastCalcValues) renderCalcResults(lastCalcValues);
+  if (typeof updateEMI === 'function') updateEMI();
+}
 
 // Defaults used by the Reset button — keep in sync with the HTML's
 // initial values (calc-tariff="8", calc-type="residential", etc.)
@@ -193,16 +228,12 @@ function runCalculator() {
   const paybackYears = monthlySavings > 0 ? netCost / (monthlySavings * 12) : 0;
   const lifetimeSavings = (monthlySavings * 12 * 25 * CALC_CONFIG.degradationFactor) - netCost;
 
-  document.getElementById('res-size').textContent = kw + ' kWp';
-  document.getElementById('res-units').textContent = Math.round(generatedUnits) + ' units/month';
-  document.getElementById('res-cost').textContent = formatINR(systemCost);
-  document.getElementById('res-subsidy-central').textContent = subsidy.central > 0 ? formatINR(subsidy.central) : 'Not applicable';
-  document.getElementById('res-subsidy-state').textContent = subsidy.state > 0 ? formatINR(subsidy.state) : 'Not applicable';
-  document.getElementById('res-subsidy-total').textContent = subsidy.total > 0 ? formatINR(subsidy.total) : 'Not applicable';
-  document.getElementById('res-net').textContent = formatINR(netCost);
-  document.getElementById('res-savings').textContent = formatINR(monthlySavings) + '/month';
-  document.getElementById('res-payback').textContent = paybackYears > 0 ? paybackYears.toFixed(1) + ' years' : '—';
-  document.getElementById('res-lifetime').textContent = formatINR(Math.max(lifetimeSavings, 0));
+  // Store the raw numbers (not pre-formatted strings) so the display
+  // can be re-rendered later — e.g. if the visitor switches language
+  // AFTER calculating, without re-running the calculation or
+  // resubmitting the lead to WhatsApp/backend.
+  lastCalcValues = { kw, generatedUnits, systemCost, subsidy, netCost, monthlySavings, paybackYears, lifetimeSavings };
+  renderCalcResults(lastCalcValues);
 
   resultsEl.hidden = false;
   const placeholderEl = document.getElementById('calc-placeholder');
