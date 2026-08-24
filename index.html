@@ -55,7 +55,7 @@
     </a>
     <nav class="main-nav" id="main-nav">
       <a href="services.html" data-i18n="nav-services">Services</a>
-      <a href="pm-suryaghar.html" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
+      <a href="pm-suryaghar.html" class="nav-highlight" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
       <a href="process.html" data-i18n="nav-process">Process</a>
       <a href="calculator.html" data-i18n="nav-calculator">Calculator</a>
       <a href="gallery.html" data-i18n="nav-projects">Projects</a>
@@ -72,6 +72,38 @@
     </button>
   </div>
 </header>
+
+<!-- ============ DEADLINE COUNTDOWN ============ -->
+<div class="deadline-banner" data-countdown="2027-03-31T23:59:59+05:30">
+  <div class="wrap">
+    <p class="deadline-text">
+      <span class="deadline-icon" aria-hidden="true">⚡</span>
+      <span data-i18n="deadline-text">PM Surya Ghar subsidy window closes in</span>
+    </p>
+    <div class="deadline-timer">
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="days">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-days">Days</span>
+      </div>
+      <span class="deadline-colon">:</span>
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="hours">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-hours">Hours</span>
+      </div>
+      <span class="deadline-colon">:</span>
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="minutes">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-min">Min</span>
+      </div>
+      <span class="deadline-colon">:</span>
+      <div class="deadline-unit">
+        <span class="deadline-num" data-unit="seconds">00</span>
+        <span class="deadline-unit-label" data-i18n="deadline-sec">Sec</span>
+      </div>
+    </div>
+    <span class="deadline-closed-msg" data-i18n="deadline-closed">This subsidy window has closed.</span>
+  </div>
+</div>
 
 <main id="top">
 
@@ -275,6 +307,7 @@
 
 <script src="js/i18n.js"></script>
 <script src="js/impact-counter.js"></script>
+<script src="js/countdown.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
