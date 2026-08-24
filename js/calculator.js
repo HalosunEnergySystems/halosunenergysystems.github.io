@@ -368,37 +368,6 @@ function pdfLabel(key, lang, fallbackEn) {
   return (entry && entry.en) || fallbackEn || key;
 }
 
-/* -------------------------------------------------------------------
-   Devanagari PDF text ordering for jsPDF
-
-   jsPDF does not perform full Indic/Devanagari shaping. In particular,
-   the pre-base vowel sign ि (U+093F) is stored AFTER its consonant
-   in Unicode but needs to be drawn BEFORE the consonant glyph.
-
-   IMPORTANT:
-   Do NOT move ि in front of an arbitrary consonant+virama chain.
-   The matra belongs to the consonant immediately before it. Moving it
-   across an earlier conjunct can corrupt words such as:
-
-       सब्सिडी
-       स्थिति
-       शक्ति
-       व्यक्ति
-
-   This function therefore performs only the minimum reordering needed
-   for the pre-base ि sign.
-
-   Examples:
-
-       कि       -> िक
-       सि       -> िस
-       सिस्टम   -> िसस्टम
-       अनुशंसित -> अनुशंिसत
-       सब्सिडी  -> सिibsडी
-
-   Other Devanagari marks remain in their Unicode order.
-------------------------------------------------------------------- */
-
 function getCurrentPdfLang() {
   try {
     return localStorage.getItem('halosun-lang') === 'hi' ? 'hi' : 'en';
@@ -464,20 +433,6 @@ const PDF_COLOR = {
   zebra: [247, 244, 236],   // faint warm stripe for alternating rows
 };
 
-/* -------------------------------------------------------------------
-   Browser-based Devanagari rendering
-
-   jsPDF does not perform the OpenType shaping required for Hindi.
-   The browser does.
-
-   Therefore Hindi PDF strings are rendered using a canvas and then
-   inserted into the PDF as an image. This preserves the correct
-   visual shaping of Devanagari instead of manually rearranging
-   Unicode characters.
-
-   English continues to use normal jsPDF text.
-------------------------------------------------------------------- */
-
 function containsDevanagari(text) {
   return /[\u0900-\u097F]/.test(String(text || ''));
 }
@@ -519,10 +474,6 @@ async function createHindiTextImage(text, fontSizePx, fontWeight) {
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = 'rgb(36, 48, 61)';
 
-  /*
-     Use a little extra top space because Devanagari glyphs can extend
-     above the normal Latin cap-height.
-  */
   ctx.fillText(text, padding, fontSizePx + 4);
 
   return {
@@ -586,7 +537,7 @@ async function generatePdfEstimate() {
     } catch (e) {
       // Logo unavailable fallback
     }
-    
+
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(17);
     doc.setTextColor(255, 255, 255);
@@ -608,7 +559,7 @@ async function generatePdfEstimate() {
     y = bandH + 13;
     const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || t('pdf-valued-customer', 'Valued Customer');
     const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
-    
+
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(13);
     doc.setTextColor(...PDF_COLOR.ink);
@@ -687,7 +638,7 @@ async function generatePdfEstimate() {
     }
 
     const keepRupee = { keepRupeeSign: lang === 'hi' };
-    
+
     // ---- System Summary ----
     await sectionHeading(t('pdf-section-summary', 'System & Savings Summary'));
     await row(t('res-size-label', 'Recommended system size'), pdfText('res-size'));
@@ -763,24 +714,53 @@ async function generatePdfEstimate() {
   }
 }
 
-document.getElementById('calc-run').addEventListener('click', runCalculator);
-document.getElementById('calc-bill').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
-});
-document.getElementById('calc-phone').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
-});
-const calcResetBtn = document.getElementById('calc-reset');
-if (calcResetBtn) calcResetBtn.addEventListener('click', resetCalculator);
+/* ---------- Event binding ----------
+   FIX: previously this ran as soon as the script tag executed, and
+   the calc-run listener had no null guard. If this script loads/runs
+   before the buttons exist in the DOM (script not deferred, or placed
+   above the markup), `document.getElementById('calc-run')` returned
+   null and `.addEventListener` on null threw — which stopped the rest
+   of the script from running, so Reset and PDF (bound further down)
+   never got their listeners either. Wrapping in DOMContentLoaded and
+   guarding every lookup fixes all three at once and is safe regardless
+   of script placement going forward. */
+function bindCalculatorEvents() {
+  const runBtn = document.getElementById('calc-run');
+  if (runBtn) runBtn.addEventListener('click', runCalculator);
 
-const calcPdfBtn = document.getElementById('calc-pdf-btn');
-if (calcPdfBtn) calcPdfBtn.addEventListener('click', generatePdfEstimate);
+  const billInput = document.getElementById('calc-bill');
+  if (billInput) {
+    billInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
+    });
+  }
 
-// Belt-and-braces guard in case the CSS pointer-events rule is ever
-// overridden — the button shouldn't be clickable while disabled.
-const calcWhatsappBtn = document.getElementById('calc-whatsapp-btn');
-if (calcWhatsappBtn) {
-  calcWhatsappBtn.addEventListener('click', (e) => {
-    if (calcWhatsappBtn.classList.contains('is-disabled')) e.preventDefault();
-  });
+  const phoneInput = document.getElementById('calc-phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); runCalculator(); }
+    });
+  }
+
+  const calcResetBtn = document.getElementById('calc-reset');
+  if (calcResetBtn) calcResetBtn.addEventListener('click', resetCalculator);
+
+  const calcPdfBtn = document.getElementById('calc-pdf-btn');
+  if (calcPdfBtn) calcPdfBtn.addEventListener('click', generatePdfEstimate);
+
+  // Belt-and-braces guard in case the CSS pointer-events rule is ever
+  // overridden — the button shouldn't be clickable while disabled.
+  const calcWhatsappBtn = document.getElementById('calc-whatsapp-btn');
+  if (calcWhatsappBtn) {
+    calcWhatsappBtn.addEventListener('click', (e) => {
+      if (calcWhatsappBtn.classList.contains('is-disabled')) e.preventDefault();
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bindCalculatorEvents);
+} else {
+  // DOM is already parsed (e.g. script has `defer` or is at end of body)
+  bindCalculatorEvents();
 }
