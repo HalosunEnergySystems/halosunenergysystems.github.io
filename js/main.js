@@ -1,9 +1,25 @@
 /* Halosun global interactions */
-const LAST_UPDATED = '22 August 2026';
+
+// 1. Dynamic Year Update
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// 2. Dynamic Last Modified Date Fetching
 const updatedEl = document.getElementById('last-updated');
-if (updatedEl) updatedEl.textContent = LAST_UPDATED;
+if (updatedEl) {
+  fetch(window.location.href, { method: 'HEAD' })
+    .then(response => {
+      const lastModified = response.headers.get('Last-Modified');
+      if (lastModified) {
+        const date = new Date(lastModified);
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        updatedEl.textContent = date.toLocaleDateString('en-GB', options);
+      }
+    })
+    .catch(err => console.error('Error fetching last modified date:', err));
+}
+
+// Navigation Toggle
 const navToggle = document.getElementById('nav-toggle');
 const mainNav = document.getElementById('main-nav');
 if (navToggle && mainNav) {
@@ -18,12 +34,13 @@ if (navToggle && mainNav) {
     });
   });
 }
+
 // Add a subtle scroll state to the sticky header.
 const header = document.querySelector('.site-header');
 if (header) {
   const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 8);
   updateHeader();
-  window.addEventListener('scroll', updateHeader, {passive:true});
+  window.addEventListener('scroll', updateHeader, { passive: true });
 }
 
 /* ===================================================================
@@ -119,8 +136,6 @@ function maintenanceInjectNoticeBanner(start, end) {
 }
 
 function maintenanceShowTakeover(end) {
-  // Hide every existing top-level element (header, main, footer, floating
-  // buttons, etc.) rather than removing them, so nothing else runs.
   Array.from(document.body.children).forEach((el) => {
     if (el.tagName !== 'SCRIPT') el.style.display = 'none';
   });
@@ -151,6 +166,5 @@ function initMaintenanceBanner() {
   } else if (now < start) {
     maintenanceInjectNoticeBanner(start, end);
   }
-  // now > end: window has passed — page behaves normally, nothing to do.
 }
 initMaintenanceBanner();
