@@ -236,6 +236,11 @@ const TRANSLATIONS = {
   'contact-label-email':      { en: 'Email:', hi: 'ईमेल:' },
   'contact-label-address':    { en: 'Address:', hi: 'पता:' },
   'contact-label-proprietor': { en: 'Proprietor:', hi: 'प्रोप्राइटर:' },
+  'contact-label-Addvalue': { en: 'Tilak Nagar, Raebareli:', hi: 'तिलक नगर, रायबरेली' },
+  'contact-label-proprietorTitle': { en: 'Er.:', hi: 'इंजी.' },
+  'contact-label-proprietorName': { en: 'Shishir Srivastava:', hi: 'शिशिर श्रीवास्तव' },
+  
+  
 
   'form-name':          { en: 'Full name *', hi: 'पूरा नाम *' },
   'form-phone':         { en: 'Phone number *', hi: 'फ़ोन नंबर *' },
