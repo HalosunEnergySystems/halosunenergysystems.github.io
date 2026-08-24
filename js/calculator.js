@@ -624,8 +624,11 @@ async function generatePdfEstimate() {
 
     // ---- Title + prepared-for line ----
     y = bandH + 13;
-    const leadName = fixDevanagariOrder((lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || t('pdf-valued-customer', 'Valued Customer'));
-    const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
+const leadName =
+  (lastLead && lastLead.name) ||
+  document.getElementById('calc-name').value.trim() ||
+  t('pdf-valued-customer', 'Valued Customer');
+  const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(13);
     doc.setTextColor(...PDF_COLOR.ink);
@@ -826,7 +829,7 @@ await row(
 );
 
 
-    // ---- EMI section (only if the visitor has actually calculated an EMI) ----
+// ---- EMI section (only if the visitor has actually calculated an EMI) ----
 const emiLoanAmount = pdfText(
   'emi-loan-amount',
   null,
@@ -875,11 +878,92 @@ if (emiLoanAmount !== '\u2014') {
   );
 }
 
-      const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
-      if (postSubsidyBlock && !postSubsidyBlock.hidden) {
-        row(t('emi-loan-amount-post-label', 'Reduced loan amount after subsidy disbursal'), pdfText('emi-loan-amount-post', null, keepRupee));
-        row(t('emi-monthly-post-label', 'Reduced monthly EMI'), pdfText('emi-monthly-post', null, keepRupee), { bold: true });
-      }
+// ---- Reduced loan after subsidy ----
+const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
+
+if (postSubsidyBlock && !postSubsidyBlock.hidden) {
+
+  await row(
+    t(
+      'emi-loan-amount-post-label',
+      'Reduced loan amount after subsidy disbursal'
+    ),
+    pdfText(
+      'emi-loan-amount-post',
+      null,
+      keepRupee
+    )
+  );
+
+  await row(
+    t(
+      'emi-monthly-post-label',
+      'Reduced monthly EMI'
+    ),
+    pdfText(
+      'emi-monthly-post',
+      null,
+      keepRupee
+    ),
+    { bold: true }
+  );
+}
+
+// ---- Footer disclaimer + contact ----
+y += 3;
+doc.setDrawColor(...PDF_COLOR.sun);
+doc.setLineWidth(0.6);
+doc.line(marginX, y, rightX, y);
+doc.setLineWidth(0.2);
+
+y += 6;
+
+doc.setFont(fontFamily, 'normal');
+doc.setFontSize(8);
+doc.setTextColor(...PDF_COLOR.mist);
+
+const disclaimer = t(
+  'pdf-disclaimer',
+  'This is an illustrative estimate only, based on the figures you entered — not a final quotation. '
+  + 'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.'
+);
+
+const wrapped = doc.splitTextToSize(
+  disclaimer,
+  rightX - marginX
+);
+
+doc.text(wrapped, marginX, y);
+
+y += wrapped.length * 4 + 5;
+
+doc.setFont(fontFamily, 'bold');
+doc.setFontSize(9.5);
+doc.setTextColor(...PDF_COLOR.ink);
+
+doc.text(
+  'Halosun Energy Systems',
+  marginX,
+  y
+);
+
+doc.setFont(fontFamily, 'normal');
+doc.setTextColor(...PDF_COLOR.mist);
+
+doc.text(
+  '  •  +91 92506 78826  •  info@halosunenergysystems.com',
+  marginX + doc.getTextWidth('Halosun Energy Systems'),
+  y
+);
+
+const safeName =
+  leadName
+    .replace(/[^a-z0-9]+/gi, '-')
+    .replace(/^-+|-+$/g, '') || 'estimate';
+
+doc.save(
+  'Halosun-Solar-Estimate-' + safeName + '.pdf'
+);
     
 
     // ---- Footer disclaimer + contact ----
