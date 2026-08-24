@@ -332,7 +332,191 @@ const TRANSLATIONS = {
   'pdf-interest-rate':    { en: 'Interest rate', hi: 'ब्याज दर' },
   'pdf-pa-suffix':        { en: '% p.a.', hi: '% सालाना' },
   'pdf-disclaimer':       { en: 'This is an illustrative estimate only, based on the figures you entered \u2014 not a final quotation. Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.',
-                             hi: 'यह केवल एक उदाहरणात्मक अनुमान है, आपके द्वारा दर्ज आंकड़ों पर आधारित \u2014 यह अंतिम कोटेशन नहीं है। वास्तविक सिस्टम आकार, कीमत, सब्सिडी पात्रता और लोन शर्तें साइट विज़िट और ऋणदाता की मंज़ूरी पर निर्भर करती हैं।' }
+                             hi: 'यह केवल एक उदाहरणात्मक अनुमान है, आपके द्वारा दर्ज आंकड़ों पर आधारित \u2014 यह अंतिम कोटेशन नहीं है। वास्तविक सिस्टम आकार, कीमत, सब्सिडी पात्रता और लोन शर्तें साइट विज़िट और ऋणदाता की मंज़ूरी पर निर्भर करती हैं।' },
+
+  // ---- PM Surya Ghar page ----
+
+  // Hero
+  'pm-hero-eyebrow-badge': { en: 'PM Surya Ghar · Residential Solar', hi: 'PM सूर्य घर · आवासीय सोलर' },
+  'pm-hero-eyebrow-guide': { en: 'A practical guide for homeowners', hi: 'घर के मालिकों के लिए एक व्यावहारिक मार्गदर्शिका' },
+  'pm-hero-h1-line1':      { en: 'PM Surya Ghar', hi: 'PM सूर्य घर' },
+  'pm-hero-h1-line2':      { en: 'from application to subsidy.', hi: 'आवेदन से सब्सिडी तक।' },
+  'pm-hero-sub':            { en: 'Thinking about rooftop solar under PM Surya Ghar Muft Bijli Yojana? Here is the complete journey — eligibility, documents, portal application, installation, DISCOM inspection, net meter and Central Financial Assistance.',
+                              hi: 'PM सूर्य घर मुफ़्त बिजली योजना के तहत रूफटॉप सोलर के बारे में सोच रहे हैं? यहाँ पूरी यात्रा दी गई है — पात्रता, दस्तावेज़, पोर्टल आवेदन, इंस्टॉलेशन, DISCOM निरीक्षण, नेट मीटर और केंद्रीय वित्तीय सहायता।' },
+  'pm-hero-cta-1':          { en: 'Calculate My Savings', hi: 'मेरी बचत जानें' },
+  'pm-hero-cta-2':          { en: 'Talk to Halosun', hi: 'हैलोसन से बात करें' },
+  'pm-hero-note':           { en: 'Residential rooftop solar · Uttar Pradesh · UPNEDA registered vendor', hi: 'आवासीय रूफटॉप सोलर · उत्तर प्रदेश · UPNEDA पंजीकृत वेंडर' },
+
+  // Subsidy headline
+  'pm-subsidy-eyebrow':          { en: 'The headline number', hi: 'सबसे अहम आंकड़ा' },
+  'pm-subsidy-h2':                { en: 'Up to ₹78,000 central subsidy', hi: '₹78,000 तक केंद्रीय सब्सिडी' },
+  'pm-subsidy-sub':                { en: 'Under the central scheme, residential consumers can receive CFA for the first 2 kW and an additional 1 kW. Capacity beyond 3 kW does not receive additional central CFA under the standard residential structure.',
+                                    hi: 'केंद्रीय योजना के तहत, आवासीय उपभोक्ता पहले 2 kW और अतिरिक्त 1 kW के लिए CFA प्राप्त कर सकते हैं। मानक आवासीय संरचना के तहत 3 kW से अधिक क्षमता पर कोई अतिरिक्त केंद्रीय CFA नहीं मिलती।' },
+  'pm-subsidy-card1-kicker':       { en: '1 kW', hi: '1 kW' },
+  'pm-subsidy-card2-kicker':       { en: '2 kW', hi: '2 kW' },
+  'pm-subsidy-card3-kicker':       { en: '3 kW or more', hi: '3 kW या अधिक' },
+  'pm-subsidy-card-desc':          { en: 'Indicative central CFA', hi: 'संकेतात्मक केंद्रीय CFA' },
+  'pm-subsidy-card3-desc':         { en: 'Maximum standard central CFA for a residential system', hi: 'आवासीय सिस्टम के लिए अधिकतम मानक केंद्रीय CFA' },
+  'pm-subsidy-disclaimer-strong':  { en: 'Important:', hi: 'ज़रूरी बात:' },
+  'pm-subsidy-disclaimer-text':    { en: "Subsidy/CFA is subject to the applicable PM Surya Ghar guidelines, eligible system capacity, approved equipment and DISCOM verification. Do not treat the subsidy as an instant discount unless your specific financing/vendor arrangement explicitly provides one.",
+                                    hi: 'सब्सिडी/CFA लागू PM सूर्य घर दिशानिर्देशों, पात्र सिस्टम क्षमता, स्वीकृत उपकरण और DISCOM सत्यापन पर निर्भर करती है। सब्सिडी को तुरंत छूट न समझें, जब तक कि आपकी विशेष फाइनेंसिंग/वेंडर व्यवस्था स्पष्ट रूप से ऐसा प्रावधान न करे।' },
+
+  // Who can benefit
+  'pm-eligible-eyebrow': { en: '01 · Before you apply', hi: '01 · आवेदन करने से पहले' },
+  'pm-eligible-h2':       { en: 'Who can benefit?', hi: 'कौन लाभ उठा सकता है?' },
+  'pm-eligible-1-title':  { en: 'Residential electricity connection', hi: 'आवासीय बिजली कनेक्शन' },
+  'pm-eligible-1-desc':   { en: "The scheme's central residential CFA is intended for eligible residential electricity consumers.", hi: 'योजना की केंद्रीय आवासीय CFA पात्र आवासीय बिजली उपभोक्ताओं के लिए है।' },
+  'pm-eligible-2-title':  { en: 'Suitable rooftop', hi: 'उपयुक्त छत' },
+  'pm-eligible-2-desc':   { en: 'Your roof should have adequate usable area, structural suitability and reasonable solar access.', hi: 'आपकी छत पर पर्याप्त उपयोगी क्षेत्र, संरचनात्मक उपयुक्तता और उचित धूप की पहुँच होनी चाहिए।' },
+  'pm-eligible-3-title':  { en: 'Eligible DISCOM area', hi: 'पात्र DISCOM क्षेत्र' },
+  'pm-eligible-3-desc':   { en: 'Your electricity connection must fall under a participating distribution utility/process.', hi: 'आपका बिजली कनेक्शन किसी सहभागी वितरण उपयोगिता/प्रक्रिया के अंतर्गत होना चाहिए।' },
+  'pm-eligible-4-title':  { en: 'Bank & identity details', hi: 'बैंक और पहचान विवरण' },
+  'pm-eligible-4-desc':   { en: 'Keep the required consumer, bank and electricity-account details ready for portal processing.', hi: 'पोर्टल प्रोसेसिंग के लिए आवश्यक उपभोक्ता, बैंक और बिजली-खाता विवरण तैयार रखें।' },
+
+  // Documents checklist
+  'pm-docs-eyebrow': { en: '02 · Keep these ready', hi: '02 · ये तैयार रखें' },
+  'pm-docs-h2':       { en: 'Documents & information checklist', hi: 'दस्तावेज़ और जानकारी की सूची' },
+  'pm-docs-sub':      { en: 'Exact requirements can vary by DISCOM and application stage. Halosun can help you prepare the submission.', hi: 'सटीक आवश्यकताएँ DISCOM और आवेदन चरण के अनुसार अलग हो सकती हैं। हैलोसन आपकी प्रविष्टि तैयार करने में मदद कर सकता है।' },
+  'pm-doc-1-title':   { en: 'Electricity bill', hi: 'बिजली बिल' },
+  'pm-doc-1-desc':    { en: 'Latest electricity bill / consumer account details.', hi: 'नवीनतम बिजली बिल / उपभोक्ता खाता विवरण।' },
+  'pm-doc-2-title':   { en: 'Consumer details', hi: 'उपभोक्ता विवरण' },
+  'pm-doc-2-desc':    { en: 'Name, mobile number and identity information matching the electricity connection where required.', hi: 'नाम, मोबाइल नंबर और पहचान जानकारी जो आवश्यकतानुसार बिजली कनेक्शन से मेल खाती हो।' },
+  'pm-doc-3-title':   { en: 'Bank details', hi: 'बैंक विवरण' },
+  'pm-doc-3-desc':    { en: 'Bank account information as required for CFA/subsidy processing.', hi: 'CFA/सब्सिडी प्रोसेसिंग के लिए आवश्यक बैंक खाता जानकारी।' },
+  'pm-doc-4-title':   { en: 'Roof / property details', hi: 'छत / संपत्ति विवरण' },
+  'pm-doc-4-desc':    { en: 'Ownership/occupancy information and NOC or consent where applicable.', hi: 'स्वामित्व/निवास जानकारी और लागू होने पर NOC या सहमति।' },
+  'pm-doc-5-title':   { en: 'Portal credentials', hi: 'पोर्टल क्रेडेंशियल्स' },
+  'pm-doc-5-desc':    { en: 'Mobile number, application details and OTP access for the National Portal.', hi: 'राष्ट्रीय पोर्टल के लिए मोबाइल नंबर, आवेदन विवरण और OTP एक्सेस।' },
+  'pm-doc-6-title':   { en: 'Installation records', hi: 'इंस्टॉलेशन रिकॉर्ड' },
+  'pm-doc-6-desc':    { en: 'Vendor invoice, system details, photographs and commissioning documents as applicable.', hi: 'वेंडर इनवॉइस, सिस्टम विवरण, फ़ोटो और लागू होने पर कमीशनिंग दस्तावेज़।' },
+
+  // End-to-end process
+  'pm-journey-eyebrow': { en: '03 · The complete journey', hi: '03 · पूरी यात्रा' },
+  'pm-journey-h2':       { en: 'From application to subsidy', hi: 'आवेदन से सब्सिडी तक' },
+  'pm-journey-sub':      { en: 'The exact time at each stage depends on the portal, DISCOM workload, site conditions and inspection/verification schedule.', hi: 'प्रत्येक चरण में लगने वाला सटीक समय पोर्टल, DISCOM कार्यभार, साइट की स्थिति और निरीक्षण/सत्यापन की समय-सारणी पर निर्भर करता है।' },
+
+  'pm-step-1-label':     { en: 'APPLICATION', hi: 'आवेदन' },
+  'pm-step-1-title':     { en: 'Register on the National Portal', hi: 'राष्ट्रीय पोर्टल पर पंजीकरण करें' },
+  'pm-step-1-desc':      { en: 'Start the rooftop solar application using your electricity consumer details and the applicable DISCOM selection.', hi: 'अपने बिजली उपभोक्ता विवरण और लागू DISCOM चयन का उपयोग करके रूफटॉप सोलर आवेदन शुरू करें।' },
+  'pm-step-1-role-label':{ en: 'Halosun:', hi: 'हैलोसन:' },
+  'pm-step-1-role-text': { en: 'Can guide you through the application and information required.', hi: 'आवेदन और आवश्यक जानकारी में आपका मार्गदर्शन कर सकता है।' },
+
+  'pm-step-2-label':     { en: 'TECHNICAL APPROVAL', hi: 'तकनीकी स्वीकृति' },
+  'pm-step-2-title':     { en: 'DISCOM reviews the application', hi: 'DISCOM आवेदन की समीक्षा करता है' },
+  'pm-step-2-desc':      { en: 'The electricity distribution utility processes the request according to its technical and portal workflow.', hi: 'बिजली वितरण कंपनी अपनी तकनीकी और पोर्टल प्रक्रिया के अनुसार अनुरोध को प्रोसेस करती है।' },
+  'pm-step-2-role-label':{ en: 'You:', hi: 'आप:' },
+  'pm-step-2-role-text': { en: 'Keep your consumer details and documents available if clarification is requested.', hi: 'यदि स्पष्टीकरण माँगा जाए तो अपने उपभोक्ता विवरण और दस्तावेज़ उपलब्ध रखें।' },
+
+  'pm-step-3-label':     { en: 'DESIGN', hi: 'डिज़ाइन' },
+  'pm-step-3-title':     { en: 'System design & quotation', hi: 'सिस्टम डिज़ाइन और कोटेशन' },
+  'pm-step-3-desc':      { en: 'Halosun assesses your load, roof, orientation, available area and expected generation before finalising the system design.', hi: 'हैलोसन सिस्टम डिज़ाइन अंतिम रूप देने से पहले आपके लोड, छत, दिशा, उपलब्ध क्षेत्र और अपेक्षित जनरेशन का आकलन करता है।' },
+  'pm-step-3-role-label':{ en: 'Halosun:', hi: 'हैलोसन:' },
+  'pm-step-3-role-text': { en: 'System sizing, engineering, quotation and installation planning.', hi: 'सिस्टम साइज़िंग, इंजीनियरिंग, कोटेशन और इंस्टॉलेशन योजना।' },
+
+  'pm-step-4-label':     { en: 'INSTALLATION', hi: 'इंस्टॉलेशन' },
+  'pm-step-4-title':     { en: 'Solar plant is installed', hi: 'सोलर प्लांट स्थापित किया जाता है' },
+  'pm-step-4-desc':      { en: 'Panels, mounting structure, inverter, protection equipment, cabling and earthing are installed according to the approved design and applicable requirements.', hi: 'पैनल, माउंटिंग स्ट्रक्चर, इन्वर्टर, सुरक्षा उपकरण, केबलिंग और अर्थिंग स्वीकृत डिज़ाइन और लागू आवश्यकताओं के अनुसार स्थापित की जाती है।' },
+  'pm-step-4-role-label':{ en: 'Halosun:', hi: 'हैलोसन:' },
+  'pm-step-4-role-text': { en: 'EPC execution, documentation and commissioning support.', hi: 'EPC निष्पादन, दस्तावेज़ीकरण और कमीशनिंग सहायता।' },
+
+  'pm-step-5-label':     { en: 'INSPECTION', hi: 'निरीक्षण' },
+  'pm-step-5-title':     { en: 'DISCOM verification / inspection', hi: 'DISCOM सत्यापन / निरीक्षण' },
+  'pm-step-5-desc':      { en: 'The completed installation is submitted for the applicable DISCOM verification process. Additional information or corrections may be requested.', hi: 'पूर्ण इंस्टॉलेशन को लागू DISCOM सत्यापन प्रक्रिया के लिए प्रस्तुत किया जाता है। अतिरिक्त जानकारी या सुधार माँगे जा सकते हैं।' },
+  'pm-step-5-role-label':{ en: 'Important:', hi: 'ज़रूरी बात:' },
+  'pm-step-5-role-text': { en: 'Inspection timing is controlled by the DISCOM, not the installer.', hi: 'निरीक्षण का समय DISCOM द्वारा नियंत्रित होता है, इंस्टॉलर द्वारा नहीं।' },
+
+  'pm-step-6-label':     { en: 'METERING', hi: 'मीटरिंग' },
+  'pm-step-6-title':     { en: 'Net meter / meter process', hi: 'नेट मीटर / मीटर प्रक्रिया' },
+  'pm-step-6-desc':      { en: 'After the applicable technical and verification steps, the meter/net-metering process is completed according to the DISCOM workflow.', hi: 'लागू तकनीकी और सत्यापन चरणों के बाद, मीटर/नेट-मीटरिंग प्रक्रिया DISCOM की कार्यप्रणाली के अनुसार पूरी की जाती है।' },
+
+  'pm-step-7-label':     { en: 'COMMISSIONING', hi: 'कमीशनिंग' },
+  'pm-step-7-title':     { en: 'Commissioning documents submitted', hi: 'कमीशनिंग दस्तावेज़ प्रस्तुत किए जाते हैं' },
+  'pm-step-7-desc':      { en: 'Required commissioning, installation and vendor documentation is completed and submitted through the applicable process.', hi: 'आवश्यक कमीशनिंग, इंस्टॉलेशन और वेंडर दस्तावेज़ीकरण पूरा करके लागू प्रक्रिया के माध्यम से प्रस्तुत किया जाता है।' },
+
+  'pm-step-8-label':     { en: 'CFA', hi: 'CFA' },
+  'pm-step-8-title':     { en: 'Central Financial Assistance is processed', hi: 'केंद्रीय वित्तीय सहायता प्रोसेस की जाती है' },
+  'pm-step-8-desc':      { en: 'After successful installation and verification, the eligible CFA is processed according to the scheme and portal requirements.', hi: 'सफल इंस्टॉलेशन और सत्यापन के बाद, पात्र CFA योजना और पोर्टल आवश्यकताओं के अनुसार प्रोसेस की जाती है।' },
+  'pm-step-8-role-label':{ en: 'Note:', hi: 'नोट:' },
+  'pm-step-8-role-text': { en: 'The actual credit date depends on government/portal processing and successful verification.', hi: 'वास्तविक क्रेडिट तिथि सरकार/पोर्टल प्रोसेसिंग और सफल सत्यापन पर निर्भर करती है।' },
+
+  // Realistic timeline (day cards)
+  'pm-timeline-eyebrow': { en: '04 · How long does it take?', hi: '04 · इसमें कितना समय लगता है?' },
+  'pm-timeline-h2':       { en: 'A realistic way to think about the timeline', hi: 'समय-सीमा को समझने का एक व्यावहारिक तरीका' },
+  'pm-time-1-tag':        { en: 'Day 0', hi: 'दिन 0' },
+  'pm-time-1-title':      { en: 'Application', hi: 'आवेदन' },
+  'pm-time-1-desc':       { en: 'Customer application and initial documentation.', hi: 'ग्राहक आवेदन और प्रारंभिक दस्तावेज़ीकरण।' },
+  'pm-time-2-tag':        { en: 'Next', hi: 'अगला' },
+  'pm-time-2-title':      { en: 'DISCOM stage', hi: 'DISCOM चरण' },
+  'pm-time-2-desc':       { en: 'Technical approval / applicable portal workflow.', hi: 'तकनीकी स्वीकृति / लागू पोर्टल प्रक्रिया।' },
+  'pm-time-3-tag':        { en: 'After approval', hi: 'स्वीकृति के बाद' },
+  'pm-time-3-title':      { en: 'Installation', hi: 'इंस्टॉलेशन' },
+  'pm-time-3-desc':       { en: 'Site preparation, installation and commissioning.', hi: 'साइट तैयारी, इंस्टॉलेशन और कमीशनिंग।' },
+  'pm-time-4-tag':        { en: 'After installation', hi: 'इंस्टॉलेशन के बाद' },
+  'pm-time-4-title':      { en: 'Inspection & meter', hi: 'निरीक्षण और मीटर' },
+  'pm-time-4-desc':       { en: 'DISCOM verification and applicable metering process.', hi: 'DISCOM सत्यापन और लागू मीटरिंग प्रक्रिया।' },
+  'pm-time-5-tag':        { en: 'After successful verification', hi: 'सफल सत्यापन के बाद' },
+  'pm-time-5-title':      { en: 'CFA processing', hi: 'CFA प्रोसेसिंग' },
+  'pm-time-5-desc':       { en: 'Eligible subsidy/CFA is processed through the applicable system.', hi: 'पात्र सब्सिडी/CFA लागू प्रणाली के माध्यम से प्रोसेस की जाती है।' },
+  'pm-timeline-disclaimer-strong': { en: "Why we don't promise “subsidy in X days”:", hi: 'हम "X दिनों में सब्सिडी" का वादा क्यों नहीं करते:' },
+  'pm-timeline-disclaimer-text':   { en: "installation is within the vendor's control; DISCOM inspection, meter work and government/portal processing are external stages. A professional installer should give you a process estimate, not a guaranteed subsidy-credit date.",
+                                     hi: 'इंस्टॉलेशन वेंडर के नियंत्रण में है; DISCOM निरीक्षण, मीटर कार्य और सरकार/पोर्टल प्रोसेसिंग बाहरी चरण हैं। एक पेशेवर इंस्टॉलर को आपको प्रक्रिया का अनुमान देना चाहिए, न कि सब्सिडी-क्रेडिट की गारंटीशुदा तारीख।' },
+
+  // Halosun role
+  'pm-role-eyebrow': { en: '05 · What Halosun handles', hi: '05 · हैलोसन क्या संभालता है' },
+  'pm-role-h2':       { en: 'One team. Fewer things for you to chase.', hi: 'एक टीम। आपको कम चीज़ों के पीछे भागना पड़े।' },
+  'pm-role-1-title':  { en: 'Site assessment', hi: 'साइट मूल्यांकन' },
+  'pm-role-1-desc':   { en: 'Roof, shade, orientation, access and electrical considerations.', hi: 'छत, छाया, दिशा, पहुँच और विद्युत संबंधी बातें।' },
+  'pm-role-2-title':  { en: 'Engineering', hi: 'इंजीनियरिंग' },
+  'pm-role-2-desc':   { en: 'System sizing, equipment selection, protection and installation planning.', hi: 'सिस्टम साइज़िंग, उपकरण चयन, सुरक्षा और इंस्टॉलेशन योजना।' },
+  'pm-role-3-title':  { en: 'Portal assistance', hi: 'पोर्टल सहायता' },
+  'pm-role-3-desc':   { en: 'Guidance with the application, documentation and required project information.', hi: 'आवेदन, दस्तावेज़ीकरण और आवश्यक प्रोजेक्ट जानकारी में मार्गदर्शन।' },
+  'pm-role-4-title':  { en: 'Installation & support', hi: 'इंस्टॉलेशन और सहायता' },
+  'pm-role-4-desc':   { en: 'Professional installation, commissioning support and coordination through the applicable process.', hi: 'पेशेवर इंस्टॉलेशन, कमीशनिंग सहायता और लागू प्रक्रिया के माध्यम से समन्वय।' },
+
+  // Cost / subsidy example
+  'pm-example-eyebrow':      { en: '06 · Simple example', hi: '06 · सरल उदाहरण' },
+  'pm-example-h2':            { en: 'What does the subsidy actually mean?', hi: 'सब्सिडी का वास्तव में क्या मतलब है?' },
+  'pm-example-text':          { en: 'Suppose your eligible residential system is 3 kW. The standard central CFA structure provides up to ₹78,000 for the eligible capacity. Your actual project price is determined by the system specification and quotation; subsidy eligibility does not mean every 3 kW installation costs the same.',
+                               hi: 'मान लीजिए आपका पात्र आवासीय सिस्टम 3 kW का है। मानक केंद्रीय CFA संरचना पात्र क्षमता के लिए ₹78,000 तक प्रदान करती है। आपकी वास्तविक प्रोजेक्ट कीमत सिस्टम विनिर्देश और कोटेशन से तय होती है; सब्सिडी पात्रता का यह मतलब नहीं कि हर 3 kW इंस्टॉलेशन की कीमत एक जैसी होगी।' },
+  'pm-example-number-label':  { en: 'Maximum standard central CFA', hi: 'अधिकतम मानक केंद्रीय CFA' },
+  'pm-example-number-sub':    { en: 'for eligible residential capacity', hi: 'पात्र आवासीय क्षमता के लिए' },
+
+  // FAQ
+  'pm-faq-eyebrow': { en: '07 · Common questions', hi: '07 · सामान्य सवाल' },
+  'pm-faq-h2':       { en: 'PM Surya Ghar FAQ', hi: 'PM सूर्य घर सवाल-जवाब' },
+
+  'pm-faq-q1-q': { en: 'Is ₹78,000 guaranteed for every solar installation?', hi: 'क्या हर सोलर इंस्टॉलेशन के लिए ₹78,000 की गारंटी है?' },
+  'pm-faq-q1-a': { en: 'No. ₹78,000 is the maximum standard central CFA for eligible residential capacity under the stated structure. Actual eligibility depends on the scheme requirements, system capacity, approved equipment and successful verification.',
+                   hi: 'नहीं। ₹78,000 बताई गई संरचना के तहत पात्र आवासीय क्षमता के लिए अधिकतम मानक केंद्रीय CFA है। वास्तविक पात्रता योजना की आवश्यकताओं, सिस्टम क्षमता, स्वीकृत उपकरण और सफल सत्यापन पर निर्भर करती है।' },
+
+  'pm-faq-q2-q': { en: 'Can I install more than 3 kW?', hi: 'क्या मैं 3 kW से अधिक इंस्टॉल कर सकता हूँ?' },
+  'pm-faq-q2-a': { en: 'Yes, a residential system can be larger where technically and financially appropriate. However, under the standard central CFA structure, additional central CFA is not provided beyond the eligible 3 kW threshold.',
+                   hi: 'हाँ, तकनीकी और वित्तीय रूप से उपयुक्त होने पर आवासीय सिस्टम बड़ा हो सकता है। हालांकि, मानक केंद्रीय CFA संरचना के तहत, पात्र 3 kW सीमा से आगे कोई अतिरिक्त केंद्रीय CFA नहीं दी जाती।' },
+
+  'pm-faq-q3-q': { en: 'Does Halosun directly give me the government subsidy?', hi: 'क्या हैलोसन सीधे सरकारी सब्सिडी देता है?' },
+  'pm-faq-q3-a': { en: 'No. Halosun is the solar EPC/vendor. The CFA is a government scheme benefit processed through the applicable portal and verification workflow.',
+                   hi: 'नहीं। हैलोसन सोलर EPC/वेंडर है। CFA एक सरकारी योजना लाभ है जो लागू पोर्टल और सत्यापन प्रक्रिया के माध्यम से प्रोसेस किया जाता है।' },
+
+  'pm-faq-q4-q': { en: 'Who controls the inspection and meter timeline?', hi: 'निरीक्षण और मीटर की समय-सीमा किसके नियंत्रण में होती है?' },
+  'pm-faq-q4-a': { en: 'The applicable DISCOM controls its inspection and metering workflow. Halosun can coordinate and assist, but cannot honestly guarantee a government/DISCOM date.',
+                   hi: 'लागू DISCOM अपनी निरीक्षण और मीटरिंग प्रक्रिया को नियंत्रित करता है। हैलोसन समन्वय और सहायता कर सकता है, लेकिन ईमानदारी से सरकार/DISCOM की तारीख की गारंटी नहीं दे सकता।' },
+
+  'pm-faq-q5-q': { en: 'Can I take a loan for the solar system?', hi: 'क्या मैं सोलर सिस्टम के लिए लोन ले सकता हूँ?' },
+  'pm-faq-q5-a': { en: "Financing may be available through participating financial institutions and scheme-linked arrangements. Loan approval, interest rate and disbursement remain subject to the lender's terms.",
+                   hi: 'सहभागी वित्तीय संस्थानों और योजना-संबद्ध व्यवस्थाओं के माध्यम से फाइनेंसिंग उपलब्ध हो सकती है। लोन स्वीकृति, ब्याज दर और वितरण ऋणदाता की शर्तों पर निर्भर रहते हैं।' },
+
+  'pm-faq-q6-q': { en: 'Do I need to visit government offices?', hi: 'क्या मुझे सरकारी कार्यालयों में जाना होगा?' },
+  'pm-faq-q6-a': { en: 'Many steps are handled through the portal and coordinated digitally, but some DISCOM processes may still require field verification or additional documentation. Halosun can help you understand what is required at each stage.',
+                   hi: 'कई चरण पोर्टल के माध्यम से और डिजिटल रूप से समन्वित होते हैं, लेकिन कुछ DISCOM प्रक्रियाओं में फील्ड सत्यापन या अतिरिक्त दस्तावेज़ीकरण की आवश्यकता हो सकती है। हैलोसन आपको हर चरण में आवश्यक बातें समझने में मदद कर सकता है।' },
+
+  // Final CTA
+  'pm-cta-eyebrow':      { en: 'Ready to check your roof?', hi: 'अपनी छत जाँचने के लिए तैयार हैं?' },
+  'pm-cta-h2':            { en: "Let's work out your solar requirement first.", hi: 'पहले आपकी सोलर आवश्यकता तय करते हैं।' },
+  'pm-cta-sub':           { en: 'Get an estimate of system size, generation, subsidy and payback before you commit.', hi: 'प्रतिबद्ध होने से पहले सिस्टम आकार, जनरेशन, सब्सिडी और पेबैक का अनुमान पाएं।' },
+  'pm-cta-btn-1':         { en: 'Open Solar Calculator', hi: 'सोलर कैलकुलेटर खोलें' },
+  'pm-cta-btn-2':         { en: 'WhatsApp Halosun', hi: 'हैलोसन को व्हाट्सएप करें' },
+  'pm-cta-official-text': { en: 'Want to verify the scheme directly?', hi: 'क्या आप योजना को सीधे सत्यापित करना चाहते हैं?' },
+  'pm-cta-official-link': { en: 'Visit the official PM Surya Ghar portal →', hi: 'आधिकारिक PM सूर्य घर पोर्टल पर जाएँ →' }
 };
 
 function applyLanguage(lang) {
