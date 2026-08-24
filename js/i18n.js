@@ -6,6 +6,7 @@
 // ===========================================================
 const TRANSLATIONS = {
   'nav-services':    { en: 'Services',            hi: 'सेवाएँ' },
+  'nav-pm-suryaghar':{ en: 'PM Surya Ghar',        hi: 'PM सूर्य घर' },
   'nav-process':     { en: 'Process',              hi: 'प्रक्रिया' },
   'nav-calculator':  { en: 'Calculator',           hi: 'कैलकुलेटर' },
   'nav-projects':    { en: 'Projects',             hi: 'परियोजनाएँ' },
