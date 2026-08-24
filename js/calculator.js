@@ -433,22 +433,18 @@ const PDF_COLOR = {
   zebra: [247, 244, 236],   // faint warm stripe for alternating rows
 };
 
+/* -------------------------------------------------------------------
+   Browser-based Devanagari rendering (FIXED SHAPING & TYPOS)
+------------------------------------------------------------------- */
+
 function containsDevanagari(text) {
   return /[\u0900-\u097F]/.test(String(text || ''));
 }
 
-function loadFontForCanvas() {
-  return new Promise((resolve) => {
-    if (!document.fonts || !document.fonts.load) {
-      resolve();
-      return;
-    }
-
-    document.fonts.load(
-      '16px "Noto Sans Devanagari"',
-      'अनुमानित मासिक बचत सिस्टम सब्सिडी'
-    ).then(resolve).catch(resolve);
-  });
+async function loadFontForCanvas() {
+  if (document.fonts && document.fonts.ready) {
+    await document.fonts.ready;
+  }
 }
 
 async function createHindiTextImage(text, fontSizePx, fontWeight) {
@@ -457,29 +453,34 @@ async function createHindiTextImage(text, fontSizePx, fontWeight) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
-  const font = `${fontWeight || '400'} ${fontSizePx}px "Noto Sans Devanagari", sans-serif`;
+  // Proper font string with fallback
+  const weight = fontWeight || '400';
+  const fontStyle = `${weight} ${fontSizePx}px "Noto Sans Devanagari", "Mangal", "Devanagari Sangam MN", sans-serif`;
 
-  ctx.font = font;
+  ctx.font = fontStyle;
 
+  // Extra width padding to prevent glyph clipping at borders (e.g. धि / वर्ष)
   const metrics = ctx.measureText(text);
-
-  const padding = 4;
-  const width = Math.ceil(metrics.width + padding * 2);
-  const height = Math.ceil(fontSizePx * 1.65);
+  const paddingX = Math.ceil(fontSizePx * 0.5);
+  const width = Math.ceil(metrics.width + paddingX * 2);
+  const height = Math.ceil(fontSizePx * 1.8);
 
   canvas.width = Math.max(width, 1);
   canvas.height = Math.max(height, 1);
 
-  ctx.font = font;
+  // Re-apply font context after resize
+  ctx.font = fontStyle;
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = 'rgb(36, 48, 61)';
 
-  ctx.fillText(text, padding, fontSizePx + 4);
+  // Draw with precise padding baseline
+  ctx.fillText(text, paddingX, fontSizePx * 1.2);
 
   return {
     dataUrl: canvas.toDataURL('image/png'),
     widthPx: canvas.width,
-    heightPx: canvas.height
+    heightPx: canvas.height,
+    paddingX: paddingX
   };
 }
 
@@ -537,55 +538,114 @@ async function generatePdfEstimate() {
     } catch (e) {
       // Logo unavailable fallback
     }
-
+    
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(17);
     doc.setTextColor(255, 255, 255);
     doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 18);
     const nameWidth = doc.getTextWidth('HALOSUN ENERGY SYSTEMS');
-    doc.setFont(fontFamily, 'normal');
-    doc.setFontSize(9.5);
-    doc.setTextColor(...PDF_COLOR.sun);
-    doc.text(t('footer-tagline', 'Design \u00b7 Build \u00b7 Power'), textStartX + nameWidth / 2, 25, { align: 'center' });
+    
+    // Tagline: "डिजाइन · इंस्टॉलेशन · पावर"
+    const taglineText = lang === 'hi' ? 'डिजाइन \u00b7 इंस्टॉलेशन \u00b7 पावर' : t('footer-tagline', 'Design \u00b7 Build \u00b7 Power');
+    
+    if (containsDevanagari(taglineText)) {
+      const tagRender = await createHindiTextImage(taglineText, 32, '400');
+      const tagH = 3.8;
+      const tagW = (tagRender.widthPx / tagRender.heightPx) * tagH;
+      const tagX = textStartX + (nameWidth / 2) - (tagW / 2);
+      doc.addImage(tagRender.dataUrl, 'PNG', tagX, 21.5, tagW, tagH, undefined, 'FAST');
+    } else {
+      doc.setFont(fontFamily, 'normal');
+      doc.setFontSize(9.5);
+      doc.setTextColor(...PDF_COLOR.sun);
+      doc.text(taglineText, textStartX + nameWidth / 2, 25, { align: 'center' });
+    }
 
     const today = new Date().toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-    doc.setFont(fontFamily, 'normal');
-    doc.setFontSize(8.5);
-    doc.setTextColor(210, 217, 227);
-    doc.text(t('pdf-doc-title', 'Solar Savings Estimate'), rightX, 15, { align: 'right' });
-    doc.text(t('pdf-generated', 'Generated:') + ' ' + today, rightX, 20.5, { align: 'right' });
+    
+    if (lang === 'hi') {
+      const headerTitleImg = await createHindiTextImage('सोलार बचत अनुमान', 28, '700');
+      const htH = 3.5;
+      const htW = (headerTitleImg.widthPx / headerTitleImg.heightPx) * htH;
+      doc.addImage(headerTitleImg.dataUrl, 'PNG', rightX - htW, 11.5, htW, htH, undefined, 'FAST');
+
+      const dateStr = 'तैयार किया गया: ' + today;
+      const headerDateImg = await createHindiTextImage(dateStr, 26, '400');
+      const hdH = 3.2;
+      const hdW = (headerDateImg.widthPx / headerDateImg.heightPx) * hdH;
+      doc.addImage(headerDateImg.dataUrl, 'PNG', rightX - hdW, 17, hdW, hdH, undefined, 'FAST');
+    } else {
+      doc.setFont(fontFamily, 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(210, 217, 227);
+      doc.text(t('pdf-doc-title', 'Solar Savings Estimate'), rightX, 15, { align: 'right' });
+      doc.text(t('pdf-generated', 'Generated:') + ' ' + today, rightX, 20.5, { align: 'right' });
+    }
 
     // ---- Prepared for section ----
     y = bandH + 13;
     const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || t('pdf-valued-customer', 'Valued Customer');
     const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
+    
+    // Corrected label: "ग्राहक" (Removed nukta)
+    const labelPrepared = lang === 'hi' ? 'ग्राहक: ' : t('pdf-prepared-for', 'Prepared for') + ' ';
+    const preparedForLine = labelPrepared + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
 
-    doc.setFont(fontFamily, 'bold');
-    doc.setFontSize(13);
-    doc.setTextColor(...PDF_COLOR.ink);
-    const preparedForLine = t('pdf-prepared-for', 'Prepared for') + (lang === 'hi' ? ': ' : ' ') + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
-    doc.text(preparedForLine, marginX, y);
+    if (containsDevanagari(preparedForLine)) {
+      const prepImg = await createHindiTextImage(preparedForLine, 42, '700');
+      const pH = 5.2;
+      const pW = (prepImg.widthPx / prepImg.heightPx) * pH;
+      doc.addImage(prepImg.dataUrl, 'PNG', marginX, y - 4, pW, pH, undefined, 'FAST');
+    } else {
+      doc.setFont(fontFamily, 'bold');
+      doc.setFontSize(13);
+      doc.setTextColor(...PDF_COLOR.ink);
+      doc.text(preparedForLine, marginX, y);
+    }
 
     // ---- Hero stat cards ----
     y += 8;
     const cardGap = 8;
     const cardW = (rightX - marginX - cardGap) / 2;
     const cardH = 24;
-    function heroCard(x, label, value) {
+
+    async function heroCard(x, label, value) {
       doc.setFillColor(...PDF_COLOR.sunTint);
       doc.setDrawColor(...PDF_COLOR.sun);
       doc.roundedRect(x, y, cardW, cardH, 3, 3, 'FD');
-      doc.setFont(fontFamily, 'bold');
-      doc.setFontSize(7.5);
-      doc.setTextColor(...PDF_COLOR.ember);
-      doc.text(label.toUpperCase(), x + 6, y + 8);
-      doc.setFont(fontFamily, 'bold');
-      doc.setFontSize(16);
-      doc.setTextColor(...PDF_COLOR.ink);
-      doc.text(value, x + 6, y + 18);
+
+      if (containsDevanagari(label)) {
+        const lblImg = await createHindiTextImage(label, 26, '700');
+        const lH = 3.2;
+        const lW = (lblImg.widthPx / lblImg.heightPx) * lH;
+        doc.addImage(lblImg.dataUrl, 'PNG', x + 6, y + 4.5, lW, lH, undefined, 'FAST');
+      } else {
+        doc.setFont(fontFamily, 'bold');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...PDF_COLOR.ember);
+        doc.text(label.toUpperCase(), x + 6, y + 8);
+      }
+
+      if (containsDevanagari(value)) {
+        const valImg = await createHindiTextImage(value, 52, '700');
+        const vH = 6.5;
+        const vW = (valImg.widthPx / valImg.heightPx) * vH;
+        doc.addImage(valImg.dataUrl, 'PNG', x + 6, y + 11.5, vW, vH, undefined, 'FAST');
+      } else {
+        doc.setFont(fontFamily, 'bold');
+        doc.setFontSize(16);
+        doc.setTextColor(...PDF_COLOR.ink);
+        doc.text(value, x + 6, y + 18);
+      }
     }
-    heroCard(marginX, t('res-savings-label', 'Est. Monthly Savings'), pdfText('res-savings', null, { keepRupeeSign: lang === 'hi' }));
-    heroCard(marginX + cardW + cardGap, t('res-payback-label', 'Payback Period'), pdfText('res-payback'));
+
+    // Fix card labels & values
+    const savLabel = lang === 'hi' ? 'अनुमानित मासिक बचत' : t('res-savings-label', 'Est. Monthly Savings');
+    const payLabel = lang === 'hi' ? 'पेबैक अवधि' : t('res-payback-label', 'Payback Period');
+    
+    await heroCard(marginX, savLabel, pdfText('res-savings', null, { keepRupeeSign: true }));
+    await heroCard(marginX + cardW + cardGap, payLabel, pdfText('res-payback'));
+    
     y += cardH + 10;
 
     // ---- Table Helpers ----
@@ -602,8 +662,8 @@ async function generatePdfEstimate() {
         return;
       }
 
-      const rendered = await createHindiTextImage(text, Math.round(fontSize * 3.2), bold ? '700' : '400');
-      const targetHeight = 5.0;
+      const rendered = await createHindiTextImage(text, Math.round(fontSize * 3.4), bold ? '700' : '400');
+      const targetHeight = 5.2;
       const targetWidth = (rendered.widthPx / rendered.heightPx) * targetHeight;
       let imageX = x;
 
@@ -637,8 +697,8 @@ async function generatePdfEstimate() {
       rowIndex = 0;
     }
 
-    const keepRupee = { keepRupeeSign: lang === 'hi' };
-
+    const keepRupee = { keepRupeeSign: true };
+    
     // ---- System Summary ----
     await sectionHeading(t('pdf-section-summary', 'System & Savings Summary'));
     await row(t('res-size-label', 'Recommended system size'), pdfText('res-size'));
@@ -659,8 +719,8 @@ async function generatePdfEstimate() {
       const ratePct = document.getElementById('emi-rate')?.value || '5.75';
 
       await row(t('pdf-down-payment', 'Down payment'), downPct + '%');
-      await row(t('pdf-loan-tenure', 'Loan tenure'), tenureYrs + ' ' + t('pdf-years-suffix', 'years'));
-      await row(t('pdf-interest-rate', 'Interest rate'), ratePct + t('pdf-pa-suffix', '% p.a.'));
+      await row(t('pdf-loan-tenure', 'Loan tenure'), tenureYrs + ' ' + (lang === 'hi' ? 'वर्ष' : t('pdf-years-suffix', 'years')));
+      await row(t('pdf-interest-rate', 'Interest rate'), ratePct + (lang === 'hi' ? '% सालाना' : t('pdf-pa-suffix', '% p.a.')));
       await row(t('emi-loan-amount-label', 'Loan amount'), emiLoanAmount);
       await row(t('emi-monthly-label', 'Estimated monthly EMI'), pdfText('emi-monthly', null, keepRupee), { bold: true });
     }
@@ -680,20 +740,31 @@ async function generatePdfEstimate() {
     doc.setLineWidth(0.2);
 
     y += 6;
-    doc.setFont(fontFamily, 'normal');
-    doc.setFontSize(8);
-    doc.setTextColor(...PDF_COLOR.mist);
 
-    const disclaimer = t(
-      'pdf-disclaimer',
-      'This is an illustrative estimate only, based on the figures you entered — not a final quotation. ' +
-      'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.'
-    );
+    const disclaimer = lang === 'hi' 
+      ? 'यह केवल एक उदाहरणात्मक अनुमान है, आपके द्वारा दर्ज आंकड़ों पर आधारित — यह अंतिम कोटेशन नहीं है। वास्तविक सिस्टम आकार, कीमत, सब्सिडी पात्रता और लोन शर्तें साइट विजिट और ऋणदाता की मंजूरी पर निर्भर करती हैं।'
+      : t(
+          'pdf-disclaimer',
+          'This is an illustrative estimate only, based on the figures you entered — not a final quotation. ' +
+          'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.'
+        );
 
-    const wrapped = doc.splitTextToSize(disclaimer, rightX - marginX);
-    doc.text(wrapped, marginX, y);
+    if (lang === 'hi') {
+      const discImg = await createHindiTextImage(disclaimer, 24, '400');
+      const dH = 8.5; 
+      const dW = (discImg.widthPx / discImg.heightPx) * dH;
+      const clampedW = Math.min(dW, rightX - marginX);
+      doc.addImage(discImg.dataUrl, 'PNG', marginX, y, clampedW, dH, undefined, 'FAST');
+      y += dH + 6;
+    } else {
+      doc.setFont(fontFamily, 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(...PDF_COLOR.mist);
+      const wrapped = doc.splitTextToSize(disclaimer, rightX - marginX);
+      doc.text(wrapped, marginX, y);
+      y += wrapped.length * 5.5 + 5;
+    }
 
-    y += wrapped.length * 4 + 5;
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(9.5);
     doc.setTextColor(...PDF_COLOR.ink);
