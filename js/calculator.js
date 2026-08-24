@@ -484,6 +484,7 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
   };
 }
 
+/* Helper to safely format currency strings in English vs Hindi */
 function formatPdfCurrency(text, lang) {
   if (!text) return text;
   // Replace Rupee symbol with "Rs. " for English to prevent font rendering bugs
@@ -492,6 +493,7 @@ function formatPdfCurrency(text, lang) {
   }
   return text;
 }
+
 async function generatePdfEstimate() {
   if (!window.jspdf || !window.jspdf.jsPDF) {
     alert('The PDF library did not load — please check your internet connection and try again.');
@@ -543,9 +545,7 @@ async function generatePdfEstimate() {
       }
       doc.addImage(logoDataUrl, 'PNG', marginX, (bandH - logoH) / 2, logoW, logoH);
       textStartX = marginX + logoW + 5;
-    } catch (e) {
-      // Logo fallback
-    }
+    } catch (e) {}
     
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(17);
@@ -553,7 +553,7 @@ async function generatePdfEstimate() {
     doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 18);
     const nameWidth = doc.getTextWidth('HALOSUN ENERGY SYSTEMS');
     
-    // Tagline in Header (Saffron/Gold accent color for dark background)
+    // Tagline in Header
     const taglineText = lang === 'hi' ? 'डिजाइन \u00b7 इंस्टॉलेशन \u00b7 पावर' : t('footer-tagline', 'Design \u00b7 Build \u00b7 Power');
     
     if (containsDevanagari(taglineText)) {
@@ -595,7 +595,7 @@ async function generatePdfEstimate() {
     const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || t('pdf-valued-customer', 'Valued Customer');
     const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
     
-    const labelPrepared = lang === 'hi' ? 'ग्राहक: ' : t('pdf-prepared-for', 'Prepared for') + ' ';
+    const labelPrepared = lang === 'hi' ? 'ग्राहक: ' : t('pdf-prepared-for', 'Prepared for') + ': ';
     const preparedForLine = labelPrepared + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
 
     if (containsDevanagari(preparedForLine)) {
@@ -616,13 +616,13 @@ async function generatePdfEstimate() {
     const cardW = (rightX - marginX - cardGap) / 2;
     const cardH = 24;
 
-    async function heroCard(x, label, value) {
+    async function heroCard(x, label, rawValue) {
+      const value = formatPdfCurrency(rawValue, lang);
       doc.setFillColor(...PDF_COLOR.sunTint);
       doc.setDrawColor(...PDF_COLOR.sun);
       doc.roundedRect(x, y, cardW, cardH, 3, 3, 'FD');
 
       if (containsDevanagari(label)) {
-        // Red Accent color ('rgb(217, 83, 30)') applied to Hindi label
         const lblImg = await createHindiTextImage(label, 28, '700', 'rgb(217, 83, 30)');
         const lH = 3.6;
         const lW = (lblImg.widthPx / lblImg.heightPx) * lH;
@@ -641,7 +641,7 @@ async function generatePdfEstimate() {
         doc.addImage(valImg.dataUrl, 'PNG', x + 6, y + 11.5, vW, vH, undefined, 'FAST');
       } else {
         doc.setFont(fontFamily, 'bold');
-        doc.setFontSize(16);
+        doc.setFontSize(15);
         doc.setTextColor(...PDF_COLOR.ink);
         doc.text(value, x + 6, y + 18);
       }
@@ -659,7 +659,7 @@ async function generatePdfEstimate() {
     let rowIndex = 0;
     async function drawPdfText(text, x, baselineY, options = {}) {
       const { fontSize = 10.5, bold = false, color = PDF_COLOR.slate, align = 'left' } = options;
-      text = String(text ?? '');
+      text = formatPdfCurrency(String(text ?? ''), lang);
 
       if (!containsDevanagari(text)) {
         doc.setFont(fontFamily, bold ? 'bold' : 'normal');
