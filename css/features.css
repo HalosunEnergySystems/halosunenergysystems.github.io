@@ -38,6 +38,37 @@
   opacity: 0.85;
 }
 
+/* ---------- Nav highlight (PM Surya Ghar link) ----------
+   A small pulsing dot + bolder ember color to draw the eye to the
+   PM Surya Ghar link without it looking like a generic "active" state.
+   Applied via class="nav-highlight" on the <a> in the header nav. */
+.main-nav a.nav-highlight {
+  position: relative;
+  color: var(--ember);
+  font-weight: 700;
+}
+.main-nav a.nav-highlight:hover {
+  color: var(--ember);
+}
+.main-nav a.nav-highlight::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  animation: navHighlightPulse 1.8s ease-in-out infinite;
+}
+@keyframes navHighlightPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.7); opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-nav a.nav-highlight::after { animation: none; }
+}
+
 /* ---------- Impact counter section ---------- */
 /* Section itself: markup carries class="section section-dark impact-section"
    so the eyebrow/h2/p colors come for free from the shared .section-dark rules. */
@@ -163,4 +194,91 @@
   color: rgba(15, 32, 56, 0.55);
   font-weight: 500;
   text-decoration: line-through;
+}
+
+/* ---------- Deadline countdown banner (PM Surya Ghar subsidy window) ----------
+   A slim full-width strip with a live day/hour/min/sec countdown.
+   Markup: a wrapper with data-countdown="<ISO date>" containing
+   .deadline-text and .deadline-timer > four .deadline-unit blocks
+   with [data-unit="days|hours|minutes|seconds"] spans — js/countdown.js
+   finds these via data-countdown and updates them every second.
+   Used on index.html and pm-suryaghar.html, right below the header. */
+.deadline-banner {
+  background: linear-gradient(90deg, var(--ink), var(--ink-soft));
+  border-bottom: 1px solid rgba(217, 169, 78, 0.25);
+  padding: 12px 0;
+}
+.deadline-banner .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.deadline-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+.deadline-text .deadline-icon {
+  color: var(--sun);
+}
+.deadline-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.deadline-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 44px;
+  padding: 4px 8px;
+  background: rgba(217, 169, 78, 0.1);
+  border: 1px solid rgba(217, 169, 78, 0.3);
+  border-radius: 8px;
+}
+.deadline-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--sun);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.deadline-unit-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
+}
+.deadline-colon {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.deadline-banner.deadline-ended .deadline-timer,
+.deadline-banner.deadline-ended .deadline-colon {
+  display: none;
+}
+.deadline-closed-msg {
+  display: none;
+}
+.deadline-banner.deadline-ended .deadline-closed-msg {
+  display: inline;
+  color: var(--ember);
+  font-weight: 700;
+}
+@media (max-width: 640px) {
+  .deadline-banner .wrap { flex-direction: column; gap: 8px; }
+  .deadline-unit { min-width: 38px; padding: 3px 6px; }
+  .deadline-num { font-size: 0.92rem; }
 }
