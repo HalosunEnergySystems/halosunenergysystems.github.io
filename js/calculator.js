@@ -880,7 +880,7 @@ if (emiLoanAmount !== '\u2014') {
         row(t('emi-loan-amount-post-label', 'Reduced loan amount after subsidy disbursal'), pdfText('emi-loan-amount-post', null, keepRupee));
         row(t('emi-monthly-post-label', 'Reduced monthly EMI'), pdfText('emi-monthly-post', null, keepRupee), { bold: true });
       }
-    }
+    
 
     // ---- Footer disclaimer + contact ----
     y += 3;
