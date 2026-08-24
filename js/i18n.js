@@ -14,6 +14,14 @@ const TRANSLATIONS = {
   'nav-contact':     { en: 'Contact',               hi: 'संपर्क करें' },
   'nav-cta':         { en: 'Get a Free Quote',      hi: 'मुफ़्त कोटेशन पाएं' },
 
+  // ---- Deadline countdown banner (PM Surya Ghar subsidy window) ----
+  'deadline-text':   { en: 'PM Surya Ghar subsidy window closes in', hi: 'PM सूर्य घर सब्सिडी विंडो बंद होने में' },
+  'deadline-days':   { en: 'Days',  hi: 'दिन' },
+  'deadline-hours':  { en: 'Hours', hi: 'घंटे' },
+  'deadline-min':    { en: 'Min',   hi: 'मिनट' },
+  'deadline-sec':    { en: 'Sec',   hi: 'सेकंड' },
+  'deadline-closed': { en: 'This subsidy window has closed.', hi: 'यह सब्सिडी विंडो बंद हो चुकी है।' },
+
   'hero-eyebrow':    { en: 'Design. Build. Power.', hi: 'डिज़ाइन. इंस्टॉलेशन. पावर.' },
   'hero-title':      { en: 'Your rooftop has a second job.', hi: '“आपकी छत अब सिर्फ छत नहीं, बचत और कमाई का ज़रिया है।”' },
   'hero-sub':        { en: "Halosun Energy Systems designs, builds and maintains solar power plants for homes and businesses — from the first site survey to the day your meter starts running backward.",
