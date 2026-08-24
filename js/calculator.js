@@ -554,44 +554,34 @@ async function generatePdfEstimate() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'mm', format: 'a4' });
 
-    // Base font family for this document: Helvetica for English, the
-    // embedded Devanagari font for Hindi. setFont() calls below all use
-    // this instead of hardcoding 'helvetica' so the whole PDF switches.
     let fontFamily = 'helvetica';
     if (lang === 'hi') {
       try {
         await registerDevanagariFont(doc);
         fontFamily = 'NotoDevanagari';
       } catch (fontErr) {
-        // Font failed to load (e.g. offline) — fall back to Helvetica
-        // rather than blocking the PDF. Hindi text just won't render
-        // correctly in this fallback case; English text still will.
         console.error('Devanagari font load failed, falling back to Helvetica:', fontErr);
       }
     }
-    const t = (key, fallbackEn) =>
-  pdfLabel(key, lang, fallbackEn);
+    const t = (key, fallbackEn) => pdfLabel(key, lang, fallbackEn);
 
     const pageWidth = doc.internal.pageSize.getWidth();
     const marginX = 18;
     const rightX = pageWidth - marginX;
     let y;
 
-    // ---- Header band: full-width navy strip with logo + name ----
+    // ---- Header band ----
     const bandH = 34;
     doc.setFillColor(...PDF_COLOR.ink);
     doc.rect(0, 0, pageWidth, bandH, 'F');
     doc.setFillColor(...PDF_COLOR.sun);
-    doc.rect(0, bandH, pageWidth, 1.2, 'F'); // thin gold seam under the band
+    doc.rect(0, bandH, pageWidth, 1.2, 'F');
 
     let textStartX = marginX;
     try {
       const logoDataUrl = await loadImageAsDataURL('assets/logo-header-footer.png');
-      // Fit the logo inside an 18mm box while preserving its real aspect
-      // ratio, so non-square logos (e.g. a taller, stacked mark) don't
-      // get stretched to fill a fixed square.
       const logoProps = doc.getImageProperties(logoDataUrl);
-      const maxBoxSize = 18; // mm
+      const maxBoxSize = 18;
       const aspectRatio = logoProps.width / logoProps.height;
       let logoW = maxBoxSize;
       let logoH = maxBoxSize;
@@ -603,8 +593,9 @@ async function generatePdfEstimate() {
       doc.addImage(logoDataUrl, 'PNG', marginX, (bandH - logoH) / 2, logoW, logoH);
       textStartX = marginX + logoW + 5;
     } catch (e) {
-      // Logo unavailable — fall back to text-only header, no big deal.
+      // Logo unavailable fallback
     }
+    
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(17);
     doc.setTextColor(255, 255, 255);
@@ -622,21 +613,18 @@ async function generatePdfEstimate() {
     doc.text(t('pdf-doc-title', 'Solar Savings Estimate'), rightX, 15, { align: 'right' });
     doc.text(t('pdf-generated', 'Generated:') + ' ' + today, rightX, 20.5, { align: 'right' });
 
-    // ---- Title + prepared-for line ----
+    // ---- Prepared for section ----
     y = bandH + 13;
-const leadName =
-  (lastLead && lastLead.name) ||
-  document.getElementById('calc-name').value.trim() ||
-  t('pdf-valued-customer', 'Valued Customer');
-  const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
+    const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || t('pdf-valued-customer', 'Valued Customer');
+    const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
+    
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(13);
     doc.setTextColor(...PDF_COLOR.ink);
-    const preparedForLine = t('pdf-prepared-for', 'Prepared for') + (lang === 'hi' ? ': ' : ' ')
-      + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
+    const preparedForLine = t('pdf-prepared-for', 'Prepared for') + (lang === 'hi' ? ': ' : ' ') + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
     doc.text(preparedForLine, marginX, y);
 
-    // ---- Hero stat cards: the two numbers a visitor cares about most ---
+    // ---- Hero stat cards ----
     y += 8;
     const cardGap = 8;
     const cardW = (rightX - marginX - cardGap) / 2;
@@ -658,347 +646,129 @@ const leadName =
     heroCard(marginX + cardW + cardGap, t('res-payback-label', 'Payback Period'), pdfText('res-payback'));
     y += cardH + 10;
 
-    // ---- Helpers to draw a section heading and label/value rows ----
+    // ---- Table Helpers ----
     let rowIndex = 0;
-  async function drawPdfText(text, x, baselineY, options = {}) {
-  const {
-    fontSize = 10.5,
-    bold = false,
-    color = PDF_COLOR.slate,
-    align = 'left'
-  } = options;
+    async function drawPdfText(text, x, baselineY, options = {}) {
+      const { fontSize = 10.5, bold = false, color = PDF_COLOR.slate, align = 'left' } = options;
+      text = String(text ?? '');
 
-  text = String(text ?? '');
+      if (!containsDevanagari(text)) {
+        doc.setFont(fontFamily, bold ? 'bold' : 'normal');
+        doc.setFontSize(fontSize);
+        doc.setTextColor(...color);
+        doc.text(text, x, baselineY, { align });
+        return;
+      }
 
-  if (!containsDevanagari(text)) {
-    doc.setFont(fontFamily, bold ? 'bold' : 'normal');
-    doc.setFontSize(fontSize);
-    doc.setTextColor(...color);
+      const rendered = await createHindiTextImage(text, Math.round(fontSize * 3.2), bold ? '700' : '400');
+      const targetHeight = 5.0;
+      const targetWidth = (rendered.widthPx / rendered.heightPx) * targetHeight;
+      let imageX = x;
 
-    doc.text(text, x, baselineY, { align });
-    return;
-  }
+      if (align === 'right') imageX = x - targetWidth;
+      else if (align === 'center') imageX = x - targetWidth / 2;
 
-  /*
-     Hindi:
-     Let the browser shape the text using Noto Sans Devanagari.
-  */
-  const rendered = await createHindiTextImage(
-    text,
-    Math.round(fontSize * 3.2),
-    bold ? '700' : '400'
-  );
-
-  const targetHeight = 5.0;
-  const targetWidth =
-    rendered.widthPx / rendered.heightPx * targetHeight;
-
-  let imageX = x;
-
-  if (align === 'right') {
-    imageX = x - targetWidth;
-  } else if (align === 'center') {
-    imageX = x - targetWidth / 2;
-  }
-
-  /*
-     Canvas has transparent background, so the text color comes from
-     the canvas renderer above.
-  */
-  doc.addImage(
-    rendered.dataUrl,
-    'PNG',
-    imageX,
-    baselineY - targetHeight + 1.0,
-    targetWidth,
-    targetHeight,
-    undefined,
-    'FAST'
-  );
-}
-
-async function row(label, value, opts) {
-  opts = opts || {};
-  const bold = opts.bold;
-
-  if (rowIndex % 2 === 1) {
-    doc.setFillColor(...PDF_COLOR.zebra);
-    doc.rect(
-      marginX - 2,
-      y - 5.3,
-      (rightX - marginX) + 4,
-      7.8,
-      'F'
-    );
-  }
-
-  rowIndex += 1;
-
-  await drawPdfText(
-    label,
-    marginX,
-    y,
-    {
-      fontSize: 10.5,
-      bold: false,
-      color: PDF_COLOR.mist,
-      align: 'left'
+      doc.addImage(rendered.dataUrl, 'PNG', imageX, baselineY - targetHeight + 1.0, targetWidth, targetHeight, undefined, 'FAST');
     }
-  );
 
-  await drawPdfText(
-    value,
-    rightX,
-    y,
-    {
-      fontSize: 10.5,
-      bold,
-      color: bold ? PDF_COLOR.ember : PDF_COLOR.slate,
-      align: 'right'
+    async function row(label, value, opts = {}) {
+      const bold = opts.bold;
+      if (rowIndex % 2 === 1) {
+        doc.setFillColor(...PDF_COLOR.zebra);
+        doc.rect(marginX - 2, y - 5.3, (rightX - marginX) + 4, 7.8, 'F');
+      }
+      rowIndex += 1;
+
+      await drawPdfText(label, marginX, y, { fontSize: 10.5, bold: false, color: PDF_COLOR.mist, align: 'left' });
+      await drawPdfText(value, rightX, y, { fontSize: 10.5, bold, color: bold ? PDF_COLOR.ember : PDF_COLOR.slate, align: 'right' });
+      y += 7.8;
     }
-  );
 
-  y += 7.8;
-}
     async function sectionHeading(label) {
       y += 3;
       doc.setFillColor(...PDF_COLOR.sunTint);
       doc.rect(marginX, y - 5, rightX - marginX, 8, 'F');
       doc.setFillColor(...PDF_COLOR.ember);
-      doc.rect(marginX, y - 5, 2.2, 8, 'F'); // colored accent tab on the left edge
-     await drawPdfText(
-  label,
-  marginX + 6,
-  y + 0.6,
-  {
-    fontSize: 10.5,
-    bold: true,
-    color: PDF_COLOR.ink,
-    align: 'left'
-  }
-);
+      doc.rect(marginX, y - 5, 2.2, 8, 'F');
+      await drawPdfText(label, marginX + 6, y + 0.6, { fontSize: 10.5, bold: true, color: PDF_COLOR.ink, align: 'left' });
       y += 9;
       rowIndex = 0;
     }
 
     const keepRupee = { keepRupeeSign: lang === 'hi' };
-    await sectionHeading(
-  t('pdf-section-summary', 'System & Savings Summary')
-);
-
-await row(
-  t('res-size-label', 'Recommended system size'),
-  pdfText('res-size')
-);
-
-await row(
-  t('res-units-label', 'Estimated generation'),
-  pdfText('res-units')
-);
-
-await row(
-  t('res-cost-label', 'System cost (before subsidy)'),
-  pdfText('res-cost', null, keepRupee)
-);
-
-await row(
-  t('res-subsidy-central-label', 'Central subsidy (PM Surya Ghar)'),
-  pdfText('res-subsidy-central', null, keepRupee)
-);
-
-await row(
-  t('res-subsidy-state-label', 'State subsidy (UPNEDA)'),
-  pdfText('res-subsidy-state', null, keepRupee)
-);
-
-await row(
-  t('res-subsidy-total-label', 'Total subsidy'),
-  pdfText('res-subsidy-total', null, keepRupee)
-);
-
-await row(
-  t('res-net-label', 'Your cost after subsidy'),
-  pdfText('res-net', null, keepRupee),
-  { bold: true }
-);
-
-await row(
-  t('res-lifetime-label', 'Estimated 25-year savings'),
-  pdfText('res-lifetime', null, keepRupee),
-  { bold: true }
-);
-
-
-// ---- EMI section (only if the visitor has actually calculated an EMI) ----
-const emiLoanAmount = pdfText(
-  'emi-loan-amount',
-  null,
-  keepRupee
-);
-
-if (emiLoanAmount !== '\u2014') {
-
-  await sectionHeading(
-    t('pdf-section-emi', 'Financing (EMI) — Optional')
-  );
-
-  const downPct =
-    document.getElementById('emi-downpayment').value || '10';
-
-  const tenureYrs =
-    document.getElementById('emi-tenure').value || '10';
-
-  const ratePct =
-    document.getElementById('emi-rate').value || '5.75';
-
-  await row(
-    t('pdf-down-payment', 'Down payment'),
-    downPct + '%'
-  );
-
-  await row(
-    t('pdf-loan-tenure', 'Loan tenure'),
-    tenureYrs + ' ' + t('pdf-years-suffix', 'years')
-  );
-
-  await row(
-    t('pdf-interest-rate', 'Interest rate'),
-    ratePct + t('pdf-pa-suffix', '% p.a.')
-  );
-
-  await row(
-    t('emi-loan-amount-label', 'Loan amount'),
-    emiLoanAmount
-  );
-
-  await row(
-    t('emi-monthly-label', 'Estimated monthly EMI'),
-    pdfText('emi-monthly', null, keepRupee),
-    { bold: true }
-  );
-}
-
-// ---- Reduced loan after subsidy ----
-const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
-
-if (postSubsidyBlock && !postSubsidyBlock.hidden) {
-
-  await row(
-    t(
-      'emi-loan-amount-post-label',
-      'Reduced loan amount after subsidy disbursal'
-    ),
-    pdfText(
-      'emi-loan-amount-post',
-      null,
-      keepRupee
-    )
-  );
-
-  await row(
-    t(
-      'emi-monthly-post-label',
-      'Reduced monthly EMI'
-    ),
-    pdfText(
-      'emi-monthly-post',
-      null,
-      keepRupee
-    ),
-    { bold: true }
-  );
-}
-
-// ---- Footer disclaimer + contact ----
-y += 3;
-doc.setDrawColor(...PDF_COLOR.sun);
-doc.setLineWidth(0.6);
-doc.line(marginX, y, rightX, y);
-doc.setLineWidth(0.2);
-
-y += 6;
-
-doc.setFont(fontFamily, 'normal');
-doc.setFontSize(8);
-doc.setTextColor(...PDF_COLOR.mist);
-
-const disclaimer = t(
-  'pdf-disclaimer',
-  'This is an illustrative estimate only, based on the figures you entered — not a final quotation. '
-  + 'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.'
-);
-
-const wrapped = doc.splitTextToSize(
-  disclaimer,
-  rightX - marginX
-);
-
-doc.text(wrapped, marginX, y);
-
-y += wrapped.length * 4 + 5;
-
-doc.setFont(fontFamily, 'bold');
-doc.setFontSize(9.5);
-doc.setTextColor(...PDF_COLOR.ink);
-
-doc.text(
-  'Halosun Energy Systems',
-  marginX,
-  y
-);
-
-doc.setFont(fontFamily, 'normal');
-doc.setTextColor(...PDF_COLOR.mist);
-
-doc.text(
-  '  •  +91 92506 78826  •  info@halosunenergysystems.com',
-  marginX + doc.getTextWidth('Halosun Energy Systems'),
-  y
-);
-
-const safeName =
-  leadName
-    .replace(/[^a-z0-9]+/gi, '-')
-    .replace(/^-+|-+$/g, '') || 'estimate';
-
-doc.save(
-  'Halosun-Solar-Estimate-' + safeName + '.pdf'
-);
     
+    // ---- System Summary ----
+    await sectionHeading(t('pdf-section-summary', 'System & Savings Summary'));
+    await row(t('res-size-label', 'Recommended system size'), pdfText('res-size'));
+    await row(t('res-units-label', 'Estimated generation'), pdfText('res-units'));
+    await row(t('res-cost-label', 'System cost (before subsidy)'), pdfText('res-cost', null, keepRupee));
+    await row(t('res-subsidy-central-label', 'Central subsidy (PM Surya Ghar)'), pdfText('res-subsidy-central', null, keepRupee));
+    await row(t('res-subsidy-state-label', 'State subsidy (UPNEDA)'), pdfText('res-subsidy-state', null, keepRupee));
+    await row(t('res-subsidy-total-label', 'Total subsidy'), pdfText('res-subsidy-total', null, keepRupee));
+    await row(t('res-net-label', 'Your cost after subsidy'), pdfText('res-net', null, keepRupee), { bold: true });
+    await row(t('res-lifetime-label', 'Estimated 25-year savings'), pdfText('res-lifetime', null, keepRupee), { bold: true });
 
-    // ---- Footer disclaimer + contact ----
+    // ---- EMI Section ----
+    const emiLoanAmount = pdfText('emi-loan-amount', null, keepRupee);
+    if (emiLoanAmount !== '\u2014') {
+      await sectionHeading(t('pdf-section-emi', 'Financing (EMI) — Optional'));
+      const downPct = document.getElementById('emi-downpayment')?.value || '10';
+      const tenureYrs = document.getElementById('emi-tenure')?.value || '10';
+      const ratePct = document.getElementById('emi-rate')?.value || '5.75';
+
+      await row(t('pdf-down-payment', 'Down payment'), downPct + '%');
+      await row(t('pdf-loan-tenure', 'Loan tenure'), tenureYrs + ' ' + t('pdf-years-suffix', 'years'));
+      await row(t('pdf-interest-rate', 'Interest rate'), ratePct + t('pdf-pa-suffix', '% p.a.'));
+      await row(t('emi-loan-amount-label', 'Loan amount'), emiLoanAmount);
+      await row(t('emi-monthly-label', 'Estimated monthly EMI'), pdfText('emi-monthly', null, keepRupee), { bold: true });
+    }
+
+    // ---- Post-Subsidy EMI ----
+    const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
+    if (postSubsidyBlock && !postSubsidyBlock.hidden) {
+      await row(t('emi-loan-amount-post-label', 'Reduced loan amount after subsidy disbursal'), pdfText('emi-loan-amount-post', null, keepRupee));
+      await row(t('emi-monthly-post-label', 'Reduced monthly EMI'), pdfText('emi-monthly-post', null, keepRupee), { bold: true });
+    }
+
+    // ---- Footer Disclaimer & Contact ----
     y += 3;
     doc.setDrawColor(...PDF_COLOR.sun);
     doc.setLineWidth(0.6);
     doc.line(marginX, y, rightX, y);
     doc.setLineWidth(0.2);
+
     y += 6;
     doc.setFont(fontFamily, 'normal');
     doc.setFontSize(8);
     doc.setTextColor(...PDF_COLOR.mist);
-    const disclaimer = t('pdf-disclaimer',
-      'This is an illustrative estimate only, based on the figures you entered — not a final quotation. '
-      + 'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.');
+
+    const disclaimer = t(
+      'pdf-disclaimer',
+      'This is an illustrative estimate only, based on the figures you entered — not a final quotation. ' +
+      'Actual system size, pricing, subsidy eligibility and loan terms depend on a site visit and lender approval.'
+    );
+
     const wrapped = doc.splitTextToSize(disclaimer, rightX - marginX);
     doc.text(wrapped, marginX, y);
-    y += wrapped.length * 4 + 5;
 
+    y += wrapped.length * 4 + 5;
     doc.setFont(fontFamily, 'bold');
     doc.setFontSize(9.5);
     doc.setTextColor(...PDF_COLOR.ink);
     doc.text('Halosun Energy Systems', marginX, y);
+
     doc.setFont(fontFamily, 'normal');
     doc.setTextColor(...PDF_COLOR.mist);
     doc.text('  \u2022  +91 92506 78826  \u2022  info@halosunenergysystems.com', marginX + doc.getTextWidth('Halosun Energy Systems'), y);
 
     const safeName = leadName.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'estimate';
     doc.save('Halosun-Solar-Estimate-' + safeName + '.pdf');
+
   } catch (err) {
     console.error('PDF generation failed:', err);
     alert('Sorry, something went wrong generating the PDF. Please try again.');
   } finally {
-    const btn = document.getElementById('calc-pdf-btn');
-    if (btn) btn.disabled = false;
+    if (pdfBtn) pdfBtn.disabled = false;
   }
 }
 
