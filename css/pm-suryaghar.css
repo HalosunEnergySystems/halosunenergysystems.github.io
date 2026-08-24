@@ -1,116 +1,130 @@
 /* ============================================================
-   PM SURYA GHAR PAGE - HALOSUN ENERGY SYSTEMS DESIGN SYSTEM
+   PM SURYA GHAR PAGE - LIGHT THEME MATCH
 ============================================================ */
 
-/* Active Nav State */
 .pm-nav-active {
   color: var(--accent, #f5b82e) !important;
+  font-weight: 600;
 }
 
-/* --- HERO SECTION & TEXT FIXES --- */
+/* --- HERO SECTION --- */
 .pm-hero {
   position: relative;
-  min-height: 72vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--bg-dark, #0b0d0f);
-  color: #ffffff !important; /* Force overall light text inside hero */
+  background-color: #ffffff !important;
+  color: #1a1f2c !important;
 }
 
 .pm-hero-content {
   position: relative;
   z-index: 2;
-  padding-top: 110px;
-  padding-bottom: 90px;
+  padding-top: 100px;
+  padding-bottom: 80px;
   max-width: 920px;
 }
 
 .pm-hero-brand {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 36px;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
-/* Fix dark PNG logo contrast on dark background */
+/* Keep logo natural colored on light theme */
 .pm-hero-logo {
-  width: 68px;
-  height: 68px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
 }
 
 .pm-hero-brand-name {
-  margin: 2px 0 0;
+  margin: 0;
   font-family: "Space Grotesk", sans-serif;
   font-size: 18px;
-  font-weight: 600;
-  color: #ffffff !important;
+  font-weight: 700;
+  color: #0f172a !important;
 }
 
 .pm-hero-brand-name em {
   font-style: normal;
   font-weight: 400;
-  opacity: 0.72;
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: #64748b !important;
 }
 
-/* Hero Typography Contrast Fixes */
+/* Typography matching site theme */
 .pm-hero h1 {
   max-width: 850px;
-  font-size: clamp(3rem, 7vw, 6.4rem);
-  line-height: 0.94;
-  letter-spacing: -0.055em;
-  margin: 12px 0 28px;
-  color: #ffffff !important;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 12px 0 24px;
+  color: #0f172a !important;
+  font-weight: 800;
 }
 
 .pm-hero h1 span {
-  color: rgba(255, 255, 255, 0.65) !important;
+  color: #64748b !important;
+  font-weight: 600;
 }
 
 .pm-hero-sub {
   max-width: 760px;
-  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
-  line-height: 1.75;
-  color: #c9d1d9 !important;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.7;
+  color: #334155 !important;
 }
 
 .pm-hero-note {
   margin-top: 28px;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: #475569 !important;
+  font-weight: 500;
 }
 
 .pm-hero-note span {
-  color: var(--accent, #f5b82e) !important;
-  margin-right: 7px;
+  color: #d97706 !important; /* Rich amber checkmark */
+  font-weight: 700;
+  margin-right: 6px;
 }
 
-/* Ghost / Secondary Button Contrast Fix inside Hero */
+/* Eyebrows & Badges */
+.eyebrow {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d97706 !important;
+  font-weight: 700;
+}
+
+/* Secondary Button Fix for Light Theme */
 .pm-hero .btn-ghost {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  background: #f8fafc !important;
+  font-weight: 600;
 }
 
 .pm-hero .btn-ghost:hover {
-  background-color: rgba(255, 255, 255, 0.12) !important;
-  border-color: #ffffff !important;
+  background-color: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
 }
 
-/* Background Animated Arcs */
+/* Background Subtle Accent Arcs */
 .halo-arcs {
   position: absolute;
   top: 50%;
-  right: -10%;
+  right: -5%;
   transform: translateY(-50%);
-  width: 700px;
-  height: 700px;
+  width: 650px;
+  height: 650px;
   pointer-events: none;
-  opacity: 0.18;
+  opacity: 0.25;
 }
 
 .halo-arcs svg {
@@ -120,401 +134,87 @@
 
 .halo-arcs .arc {
   fill: none;
-  stroke: var(--accent, #f5b82e);
+  stroke: #f5b82e;
   stroke-width: 1.5;
   stroke-dasharray: 8 12;
 }
 
-/* --- SUBSIDY CARDS --- */
-.pm-subsidy-grid {
+/* --- CARDS & GRIDS (LIGHT THEME) --- */
+.pm-subsidy-grid,
+.pm-docs,
+.pm-time-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  margin-top: 38px;
+  margin-top: 36px;
 }
 
-.pm-money-card {
-  padding: 34px;
-  min-height: 190px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.pm-subsidy-grid,
+.pm-docs {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pm-time-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.pm-money-card,
+.pm-doc,
+.pm-time-card {
+  padding: 30px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #0f172a;
 }
 
 .pm-money-card strong {
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  letter-spacing: -0.05em;
-  color: var(--accent, #f5b82e);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: #d97706;
 }
 
-.pm-money-card p {
-  margin: 0;
-  opacity: 0.75;
+.pm-money-card p,
+.pm-doc p,
+.pm-time-card p {
+  color: #475569;
 }
 
-.pm-card-kicker,
-.pm-time,
-.pm-step-label {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent, #f5b82e);
+/* Featured Border */
+.pm-money-featured,
+.pm-time-featured {
+  border: 2px solid #f5b82e !important;
+  background: #fffbeb !important;
 }
 
-.pm-money-featured {
-  border-color: rgba(245, 184, 46, 0.55);
-  box-shadow: 0 0 0 1px rgba(245, 184, 46, 0.08), 0 20px 60px rgba(245, 184, 46, 0.06);
-}
-
-.pm-disclaimer {
-  margin-top: 26px;
-  padding: 18px 20px;
-  border-left: 2px solid var(--accent, #f5b82e);
-  background: rgba(245, 184, 46, 0.055);
-  font-size: 14px;
-  line-height: 1.65;
-  opacity: 0.88;
-}
-
-/* --- ELIGIBILITY & DOCS --- */
-.pm-check-grid .why-item,
-.pm-time-card,
-.pm-doc {
-  position: relative;
-}
-
-.pm-number,
-.pm-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  margin-bottom: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  color: var(--accent, #f5b82e);
-}
-
-.pm-docs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 38px;
-}
-
-.pm-doc {
-  padding: 28px;
-  min-height: 190px;
-}
-
-.pm-doc > span {
-  font-family: "IBM Plex Mono", monospace;
-  color: var(--accent, #f5b82e);
-  font-size: 11px;
-}
-
-.pm-doc h3 {
-  margin-top: 38px;
-}
-
-.pm-doc p {
-  opacity: 0.72;
-  line-height: 1.6;
-}
-
-/* --- TIMELINE --- */
-.pm-timeline {
-  margin-top: 48px;
-  position: relative;
-}
-
+/* Timeline Light Adjustments */
 .pm-timeline:before {
-  content: "";
-  position: absolute;
-  left: 24px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.18);
-}
-
-.pm-step {
-  position: relative;
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  gap: 28px;
-  padding-bottom: 42px;
-}
-
-.pm-step:last-child {
-  padding-bottom: 0;
+  background: #e2e8f0;
 }
 
 .pm-step-marker {
-  position: relative;
-  z-index: 2;
-  width: 49px;
-  height: 49px;
-  border: 1px solid rgba(245, 184, 46, 0.6);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-dark, #0b0d0f);
-  color: var(--accent, #f5b82e);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-}
-
-.pm-step-body {
-  padding: 5px 0 0;
-  max-width: 820px;
-}
-
-.pm-step-label {
-  color: var(--accent, #f5b82e);
-  opacity: 0.95;
+  background: #ffffff;
+  border: 2px solid #f5b82e;
+  color: #d97706;
 }
 
 .pm-step-body h3 {
-  margin: 9px 0;
-  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  color: #0f172a;
 }
 
 .pm-step-body p {
-  margin: 0;
-  line-height: 1.7;
-  opacity: 0.75;
+  color: #475569;
 }
 
-.pm-role {
-  margin-top: 13px;
-  padding: 11px 13px;
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 13px;
-  opacity: 0.85;
-}
-
-.pm-role b {
-  color: var(--accent, #f5b82e);
-}
-
-/* --- TIME ESTIMATE GRID --- */
-.pm-time-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  margin-top: 38px;
-}
-
-.pm-time-card {
-  padding: 25px;
-  min-height: 190px;
-}
-
-.pm-time-card h3 {
-  margin-top: 30px;
-}
-
-.pm-time-card p {
-  opacity: 0.72;
-  line-height: 1.55;
-}
-
-.pm-time-featured {
-  border-color: rgba(245, 184, 46, 0.5);
-}
-
-/* --- EXAMPLE BLOCK --- */
-.pm-example {
-  display: grid;
-  grid-template-columns: 1.5fr 0.8fr;
-  gap: 50px;
-  align-items: center;
-  padding: 45px;
-}
-
-.pm-example p:not(.eyebrow) {
-  max-width: 700px;
-  line-height: 1.7;
-  opacity: 0.78;
-}
-
-.pm-example-number {
-  text-align: center;
-  padding: 28px;
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.pm-example-number span,
-.pm-example-number small {
-  display: block;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 11px;
-  opacity: 0.68;
-}
-
-.pm-example-number strong {
-  display: block;
-  margin: 10px 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4.4rem);
-  letter-spacing: -0.05em;
-  color: var(--accent, #f5b82e);
-}
-
-/* --- FAQ SECTION --- */
-.pm-faq {
-  margin-top: 38px;
-  max-width: 950px;
-}
-
-.pm-faq details {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0;
-}
-
-.pm-faq details:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.pm-faq summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 24px 40px 24px 0;
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  position: relative;
-}
-
-.pm-faq summary::-webkit-details-marker {
-  display: none;
-}
-
-.pm-faq summary:after {
-  content: "+";
-  position: absolute;
-  right: 5px;
-  top: 20px;
-  font-size: 25px;
-  font-weight: 400;
-  opacity: 0.7;
-}
-
-.pm-faq details[open] summary:after {
-  content: "−";
-}
-
-.pm-faq details p {
-  max-width: 850px;
-  padding: 0 0 25px;
-  margin: 0;
-  line-height: 1.7;
-  opacity: 0.75;
-}
-
-/* --- FINAL CTA --- */
-.pm-final-cta .card {
-  padding: 55px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.pm-final-cta .section-sub {
-  max-width: 680px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.pm-final-cta .hero-actions {
-  justify-content: center;
-}
-
-.pm-official {
-  margin-top: 28px;
-  font-size: 13px;
-  opacity: 0.72;
-}
-
-.pm-official a {
-  color: var(--accent, #f5b82e);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-/* --- RESPONSIVE STYLES --- */
+/* --- RESPONSIVE BREAKPOINTS --- */
 @media (max-width: 900px) {
   .pm-subsidy-grid,
-  .pm-docs {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .pm-time-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .pm-example {
-    grid-template-columns: 1fr;
-  }
-
-  .pm-example-number {
-    border-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    padding-top: 30px;
-  }
-
-  .halo-arcs {
-    display: none;
-  }
+  .pm-docs { grid-template-columns: 1fr 1fr; }
+  .pm-time-grid { grid-template-columns: repeat(2, 1fr); }
+  .halo-arcs { display: none; }
 }
 
 @media (max-width: 680px) {
-  .pm-hero-content {
-    padding-top: 90px;
-    padding-bottom: 65px;
-  }
-
-  .pm-hero-brand {
-    margin-bottom: 25px;
-  }
-
-  .pm-hero-logo {
-    width: 54px;
-    height: 54px;
-  }
-
   .pm-subsidy-grid,
   .pm-docs,
-  .pm-time-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .pm-money-card {
-    min-height: 160px;
-  }
-
-  .pm-timeline:before {
-    left: 19px;
-  }
-
-  .pm-step {
-    grid-template-columns: 40px 1fr;
-    gap: 18px;
-  }
-
-  .pm-step-marker {
-    width: 39px;
-    height: 39px;
-  }
-
-  .pm-final-cta .card,
-  .pm-example {
-    padding: 30px 22px;
-  }
+  .pm-time-grid { grid-template-columns: 1fr; }
 }
