@@ -342,14 +342,21 @@ function resetCalculator() {
 function pdfText(id, fallback, opts) {
   const el = document.getElementById(id);
   let text = el ? el.textContent.trim() : '';
+
   const keepRupeeSign = opts && opts.keepRupeeSign;
+
   if (!keepRupeeSign) {
-    // Helvetica (WinAnsi) doesn't include the ₹ Rupee sign (Unicode 2010) —
-    // it rendered as a garbled glyph. Swap it for plain "Rs." in that case.
     text = text.replace(/\u20B9/g, 'Rs. ');
   }
-  text = text && text !== '—' && text !== '\u2014' ? text : (fallback || '\u2014');
-  return fixDevanagariOrder(text);
+
+  text = text && text !== '—' && text !== '\u2014'
+    ? text
+    : (fallback || '\u2014');
+
+  // IMPORTANT:
+  // Never reorder Devanagari Unicode characters here.
+  // The browser/canvas will perform the required shaping.
+  return text;
 }
 
 // Looks up a PDF label from the same TRANSLATIONS dictionary js/i18n.js
@@ -401,63 +408,7 @@ function pdfLabel(key, lang, fallbackEn) {
    Other Devanagari marks remain in their Unicode order.
 ------------------------------------------------------------------- */
 
-const DEVANAGARI_PREBASE_I = '\u093F';
 
-function isDevanagariConsonant(ch) {
-  if (!ch) return false;
-
-  const cp = ch.charCodeAt(0);
-
-  return (
-    (cp >= 0x0915 && cp <= 0x0939) || // क-ह
-    (cp >= 0x0958 && cp <= 0x095F)    // क़-य़
-  );
-}
-
-function fixDevanagariOrder(text) {
-  if (!text) return text;
-
-  const chars = Array.from(String(text));
-  const output = [];
-
-  for (let i = 0; i < chars.length; i++) {
-    const ch = chars[i];
-
-    /*
-       ि normally occurs immediately after the consonant it modifies.
-
-       Example:
-
-           स + ि
-
-       jsPDF receives:
-
-           स ि
-
-       but needs the glyph order:
-
-           ि स
-
-       Move only across that immediately preceding consonant.
-
-       We deliberately DO NOT walk backwards through virama/conjuncts.
-    */
-    if (
-      ch === DEVANAGARI_PREBASE_I &&
-      output.length > 0 &&
-      isDevanagariConsonant(output[output.length - 1])
-    ) {
-      const base = output.pop();
-
-      output.push(ch);
-      output.push(base);
-    } else {
-      output.push(ch);
-    }
-  }
-
-  return output.join('');
-}
 function getCurrentPdfLang() {
   try {
     return localStorage.getItem('halosun-lang') === 'hi' ? 'hi' : 'en';
@@ -523,6 +474,73 @@ const PDF_COLOR = {
   zebra: [247, 244, 236],   // faint warm stripe for alternating rows
 };
 
+/* -------------------------------------------------------------------
+   Browser-based Devanagari rendering
+
+   jsPDF does not perform the OpenType shaping required for Hindi.
+   The browser does.
+
+   Therefore Hindi PDF strings are rendered using a canvas and then
+   inserted into the PDF as an image. This preserves the correct
+   visual shaping of Devanagari instead of manually rearranging
+   Unicode characters.
+
+   English continues to use normal jsPDF text.
+------------------------------------------------------------------- */
+
+function containsDevanagari(text) {
+  return /[\u0900-\u097F]/.test(String(text || ''));
+}
+
+function loadFontForCanvas() {
+  return new Promise((resolve) => {
+    if (!document.fonts || !document.fonts.load) {
+      resolve();
+      return;
+    }
+
+    document.fonts.load(
+      '16px "Noto Sans Devanagari"',
+      'अनुमानित मासिक बचत सिस्टम सब्सिडी'
+    ).then(resolve).catch(resolve);
+  });
+}
+
+async function createHindiTextImage(text, fontSizePx, fontWeight) {
+  await loadFontForCanvas();
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  const font = `${fontWeight || '400'} ${fontSizePx}px "Noto Sans Devanagari", sans-serif`;
+
+  ctx.font = font;
+
+  const metrics = ctx.measureText(text);
+
+  const padding = 4;
+  const width = Math.ceil(metrics.width + padding * 2);
+  const height = Math.ceil(fontSizePx * 1.65);
+
+  canvas.width = Math.max(width, 1);
+  canvas.height = Math.max(height, 1);
+
+  ctx.font = font;
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = 'rgb(36, 48, 61)';
+
+  /*
+     Use a little extra top space because Devanagari glyphs can extend
+     above the normal Latin cap-height.
+  */
+  ctx.fillText(text, padding, fontSizePx + 4);
+
+  return {
+    dataUrl: canvas.toDataURL('image/png'),
+    widthPx: canvas.width,
+    heightPx: canvas.height
+  };
+}
 async function generatePdfEstimate() {
   if (!window.jspdf || !window.jspdf.jsPDF) {
     alert('The PDF library did not load — please check your internet connection and try again.');
@@ -551,7 +569,8 @@ async function generatePdfEstimate() {
         console.error('Devanagari font load failed, falling back to Helvetica:', fontErr);
       }
     }
-    const t = (key, fallbackEn) => fixDevanagariOrder(pdfLabel(key, lang, fallbackEn));
+    const t = (key, fallbackEn) =>
+  pdfLabel(key, lang, fallbackEn);
 
     const pageWidth = doc.internal.pageSize.getWidth();
     const marginX = 18;
@@ -638,60 +657,223 @@ async function generatePdfEstimate() {
 
     // ---- Helpers to draw a section heading and label/value rows ----
     let rowIndex = 0;
-    function row(label, value, opts) {
-      opts = opts || {};
-      const bold = opts.bold;
-      if (rowIndex % 2 === 1) {
-        doc.setFillColor(...PDF_COLOR.zebra);
-        doc.rect(marginX - 2, y - 5.3, (rightX - marginX) + 4, 7.8, 'F');
-      }
-      rowIndex += 1;
-      doc.setFont(fontFamily, 'normal');
-      doc.setFontSize(10.5);
-      doc.setTextColor(...PDF_COLOR.mist);
-      doc.text(label, marginX, y);
-      doc.setFont(fontFamily, bold ? 'bold' : 'normal');
-      doc.setTextColor(...(bold ? PDF_COLOR.ember : PDF_COLOR.slate));
-      doc.text(value, rightX, y, { align: 'right' });
-      y += 7.8;
+  async function drawPdfText(text, x, baselineY, options = {}) {
+  const {
+    fontSize = 10.5,
+    bold = false,
+    color = PDF_COLOR.slate,
+    align = 'left'
+  } = options;
+
+  text = String(text ?? '');
+
+  if (!containsDevanagari(text)) {
+    doc.setFont(fontFamily, bold ? 'bold' : 'normal');
+    doc.setFontSize(fontSize);
+    doc.setTextColor(...color);
+
+    doc.text(text, x, baselineY, { align });
+    return;
+  }
+
+  /*
+     Hindi:
+     Let the browser shape the text using Noto Sans Devanagari.
+  */
+  const rendered = await createHindiTextImage(
+    text,
+    Math.round(fontSize * 3.2),
+    bold ? '700' : '400'
+  );
+
+  const targetHeight = 5.0;
+  const targetWidth =
+    rendered.widthPx / rendered.heightPx * targetHeight;
+
+  let imageX = x;
+
+  if (align === 'right') {
+    imageX = x - targetWidth;
+  } else if (align === 'center') {
+    imageX = x - targetWidth / 2;
+  }
+
+  /*
+     Canvas has transparent background, so the text color comes from
+     the canvas renderer above.
+  */
+  doc.addImage(
+    rendered.dataUrl,
+    'PNG',
+    imageX,
+    baselineY - targetHeight + 1.0,
+    targetWidth,
+    targetHeight,
+    undefined,
+    'FAST'
+  );
+}
+
+async function row(label, value, opts) {
+  opts = opts || {};
+  const bold = opts.bold;
+
+  if (rowIndex % 2 === 1) {
+    doc.setFillColor(...PDF_COLOR.zebra);
+    doc.rect(
+      marginX - 2,
+      y - 5.3,
+      (rightX - marginX) + 4,
+      7.8,
+      'F'
+    );
+  }
+
+  rowIndex += 1;
+
+  await drawPdfText(
+    label,
+    marginX,
+    y,
+    {
+      fontSize: 10.5,
+      bold: false,
+      color: PDF_COLOR.mist,
+      align: 'left'
     }
-    function sectionHeading(label) {
+  );
+
+  await drawPdfText(
+    value,
+    rightX,
+    y,
+    {
+      fontSize: 10.5,
+      bold,
+      color: bold ? PDF_COLOR.ember : PDF_COLOR.slate,
+      align: 'right'
+    }
+  );
+
+  y += 7.8;
+}
+    async function sectionHeading(label) {
       y += 3;
       doc.setFillColor(...PDF_COLOR.sunTint);
       doc.rect(marginX, y - 5, rightX - marginX, 8, 'F');
       doc.setFillColor(...PDF_COLOR.ember);
       doc.rect(marginX, y - 5, 2.2, 8, 'F'); // colored accent tab on the left edge
-      doc.setFont(fontFamily, 'bold');
-      doc.setFontSize(10.5);
-      doc.setTextColor(...PDF_COLOR.ink);
-      doc.text(label, marginX + 6, y + 0.6);
+     await drawPdfText(
+  label,
+  marginX + 6,
+  y + 0.6,
+  {
+    fontSize: 10.5,
+    bold: true,
+    color: PDF_COLOR.ink,
+    align: 'left'
+  }
+);
       y += 9;
       rowIndex = 0;
     }
 
     const keepRupee = { keepRupeeSign: lang === 'hi' };
-    sectionHeading(t('pdf-section-summary', 'System & Savings Summary'));
-    row(t('res-size-label', 'Recommended system size'), pdfText('res-size'));
-    row(t('res-units-label', 'Estimated generation'), pdfText('res-units'));
-    row(t('res-cost-label', 'System cost (before subsidy)'), pdfText('res-cost', null, keepRupee));
-    row(t('res-subsidy-central-label', 'Central subsidy (PM Surya Ghar)'), pdfText('res-subsidy-central', null, keepRupee));
-    row(t('res-subsidy-state-label', 'State subsidy (UPNEDA)'), pdfText('res-subsidy-state', null, keepRupee));
-    row(t('res-subsidy-total-label', 'Total subsidy'), pdfText('res-subsidy-total', null, keepRupee));
-    row(t('res-net-label', 'Your cost after subsidy'), pdfText('res-net', null, keepRupee), { bold: true });
-    row(t('res-lifetime-label', 'Estimated 25-year savings'), pdfText('res-lifetime', null, keepRupee), { bold: true });
+    await sectionHeading(
+  t('pdf-section-summary', 'System & Savings Summary')
+);
+
+await row(
+  t('res-size-label', 'Recommended system size'),
+  pdfText('res-size')
+);
+
+await row(
+  t('res-units-label', 'Estimated generation'),
+  pdfText('res-units')
+);
+
+await row(
+  t('res-cost-label', 'System cost (before subsidy)'),
+  pdfText('res-cost', null, keepRupee)
+);
+
+await row(
+  t('res-subsidy-central-label', 'Central subsidy (PM Surya Ghar)'),
+  pdfText('res-subsidy-central', null, keepRupee)
+);
+
+await row(
+  t('res-subsidy-state-label', 'State subsidy (UPNEDA)'),
+  pdfText('res-subsidy-state', null, keepRupee)
+);
+
+await row(
+  t('res-subsidy-total-label', 'Total subsidy'),
+  pdfText('res-subsidy-total', null, keepRupee)
+);
+
+await row(
+  t('res-net-label', 'Your cost after subsidy'),
+  pdfText('res-net', null, keepRupee),
+  { bold: true }
+);
+
+await row(
+  t('res-lifetime-label', 'Estimated 25-year savings'),
+  pdfText('res-lifetime', null, keepRupee),
+  { bold: true }
+);
+
 
     // ---- EMI section (only if the visitor has actually calculated an EMI) ----
-    const emiLoanAmount = pdfText('emi-loan-amount', null, keepRupee);
-    if (emiLoanAmount !== '\u2014') {
-      sectionHeading(t('pdf-section-emi', 'Financing (EMI) \u2014 Optional'));
-      const downPct = document.getElementById('emi-downpayment').value || '10';
-      const tenureYrs = document.getElementById('emi-tenure').value || '10';
-      const ratePct = document.getElementById('emi-rate').value || '5.75';
-      row(t('pdf-down-payment', 'Down payment'), downPct + '%');
-      row(t('pdf-loan-tenure', 'Loan tenure'), tenureYrs + ' ' + t('pdf-years-suffix', 'years'));
-      row(t('pdf-interest-rate', 'Interest rate'), ratePct + t('pdf-pa-suffix', '% p.a.'));
-      row(t('emi-loan-amount-label', 'Loan amount'), emiLoanAmount);
-      row(t('emi-monthly-label', 'Estimated monthly EMI'), pdfText('emi-monthly', null, keepRupee), { bold: true });
+const emiLoanAmount = pdfText(
+  'emi-loan-amount',
+  null,
+  keepRupee
+);
+
+if (emiLoanAmount !== '\u2014') {
+
+  await sectionHeading(
+    t('pdf-section-emi', 'Financing (EMI) — Optional')
+  );
+
+  const downPct =
+    document.getElementById('emi-downpayment').value || '10';
+
+  const tenureYrs =
+    document.getElementById('emi-tenure').value || '10';
+
+  const ratePct =
+    document.getElementById('emi-rate').value || '5.75';
+
+  await row(
+    t('pdf-down-payment', 'Down payment'),
+    downPct + '%'
+  );
+
+  await row(
+    t('pdf-loan-tenure', 'Loan tenure'),
+    tenureYrs + ' ' + t('pdf-years-suffix', 'years')
+  );
+
+  await row(
+    t('pdf-interest-rate', 'Interest rate'),
+    ratePct + t('pdf-pa-suffix', '% p.a.')
+  );
+
+  await row(
+    t('emi-loan-amount-label', 'Loan amount'),
+    emiLoanAmount
+  );
+
+  await row(
+    t('emi-monthly-label', 'Estimated monthly EMI'),
+    pdfText('emi-monthly', null, keepRupee),
+    { bold: true }
+  );
+}
 
       const postSubsidyBlock = document.getElementById('emi-post-subsidy-block');
       if (postSubsidyBlock && !postSubsidyBlock.hidden) {
