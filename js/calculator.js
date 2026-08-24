@@ -370,12 +370,94 @@ function pdfLabel(key, lang, fallbackEn) {
 // sign in the wrong place. This swaps ि to the front of the consonant
 // cluster (base consonant plus any conjunct chain before it) it
 // attaches to, so it lands in the correct visual position.
-const DEVANAGARI_MATRA_FIX_RE = /([\u0900-\u0939\u0958-\u095F](?:\u094D[\u0900-\u0939\u0958-\u095F])*)(\u093F)/g;
-function fixDevanagariOrder(text) {
-  if (!text) return text;
-  return String(text).replace(DEVANAGARI_MATRA_FIX_RE, '$2$1');
+/* -------------------------------------------------------------------
+   Devanagari PDF text ordering for jsPDF
+
+   jsPDF does not perform full Indic/Devanagari shaping. In particular,
+   the pre-base vowel sign ि (U+093F) is stored AFTER its consonant
+   in Unicode but needs to be drawn BEFORE the consonant glyph.
+
+   IMPORTANT:
+   Do NOT move ि in front of an arbitrary consonant+virama chain.
+   The matra belongs to the consonant immediately before it. Moving it
+   across an earlier conjunct can corrupt words such as:
+
+       सब्सिडी
+       स्थिति
+       शक्ति
+       व्यक्ति
+
+   This function therefore performs only the minimum reordering needed
+   for the pre-base ि sign.
+
+   Examples:
+
+       कि       -> िक
+       सि       -> िस
+       सिस्टम   -> िसस्टम
+       अनुशंसित -> अनुशंिसत
+       सब्सिडी  -> सिब्सडी
+
+   Other Devanagari marks remain in their Unicode order.
+------------------------------------------------------------------- */
+
+const DEVANAGARI_PREBASE_I = '\u093F';
+
+function isDevanagariConsonant(ch) {
+  if (!ch) return false;
+
+  const cp = ch.charCodeAt(0);
+
+  return (
+    (cp >= 0x0915 && cp <= 0x0939) || // क-ह
+    (cp >= 0x0958 && cp <= 0x095F)    // क़-य़
+  );
 }
 
+function fixDevanagariOrder(text) {
+  if (!text) return text;
+
+  const chars = Array.from(String(text));
+  const output = [];
+
+  for (let i = 0; i < chars.length; i++) {
+    const ch = chars[i];
+
+    /*
+       ि normally occurs immediately after the consonant it modifies.
+
+       Example:
+
+           स + ि
+
+       jsPDF receives:
+
+           स ि
+
+       but needs the glyph order:
+
+           ि स
+
+       Move only across that immediately preceding consonant.
+
+       We deliberately DO NOT walk backwards through virama/conjuncts.
+    */
+    if (
+      ch === DEVANAGARI_PREBASE_I &&
+      output.length > 0 &&
+      isDevanagariConsonant(output[output.length - 1])
+    ) {
+      const base = output.pop();
+
+      output.push(ch);
+      output.push(base);
+    } else {
+      output.push(ch);
+    }
+  }
+
+  return output.join('');
+}
 function getCurrentPdfLang() {
   try {
     return localStorage.getItem('halosun-lang') === 'hi' ? 'hi' : 'en';
