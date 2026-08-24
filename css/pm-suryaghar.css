@@ -8,81 +8,17 @@
   font-weight: 600;
 }
 
-/* ---------- HERO SECTION ---------- */
-.pm-hero {
-  position: relative;
-  min-height: 65vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: var(--paper-alt);
-  color: var(--slate);
-  padding: 40px 0 70px;
-}
-
-.pm-hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 860px;
-}
-
-.pm-hero-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 24px;
-}
-
-.pm-hero-logo {
-  width: 52px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-.pm-hero-brand-name {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--ink);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  display: flex;
-  flex-direction: column;
-  line-height: 1.25;
-}
-
-.pm-hero-brand-name em {
-  font-style: normal;
-  font-weight: 500;
-  color: var(--mist);
-  font-size: 0.6em;
-  margin-top: 2px;
-}
-
-/* Hero Typography */
-.pm-hero h1 {
-  max-width: 850px;
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  margin: 12px 0 20px;
-  color: var(--ink);
-  font-weight: 700;
-}
-
+/* ---------- HERO SECTION ----------
+   The hero markup now reuses the homepage's own .hero / .hero-content /
+   .hero-brand / .hero-badge classes directly (dark background, 180px
+   centered logo, white type — see styles.css) so the two pages match
+   exactly instead of drifting. .pm-hero only carries the couple of
+   things unique to this page: the secondary trust-line under the CTAs
+   and the dimmed second line of the H1. Both are re-tinted for the
+   dark background instead of the old light-theme colors. */
 .pm-hero h1 span {
-  color: var(--mist);
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 500;
-}
-
-.pm-hero-sub {
-  max-width: 680px;
-  font-size: 1.08rem;
-  line-height: 1.6;
-  color: var(--mist);
-  margin-bottom: 24px;
 }
 
 .pm-hero-note {
@@ -90,40 +26,14 @@
   font-family: var(--font-mono);
   font-size: 0.82rem;
   letter-spacing: 0.02em;
-  color: var(--slate);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
 }
 
 .pm-hero-note span {
-  color: var(--ember);
+  color: var(--sun);
   font-weight: 700;
   margin-right: 6px;
-}
-
-/* Secondary Button Fix for Light Theme Hero */
-.pm-hero .btn-ghost {
-  color: var(--slate);
-  border: 1px solid var(--line);
-  background: transparent;
-  font-weight: 600;
-}
-
-.pm-hero .btn-ghost:hover {
-  background: var(--paper);
-  border-color: var(--ink);
-  color: var(--ink);
-}
-
-/* Background Subtle Accent Arcs */
-.halo-arcs-light {
-  position: absolute;
-  top: 50%;
-  right: -8%;
-  transform: translateY(-50%);
-  width: 650px;
-  height: 650px;
-  pointer-events: none;
-  opacity: 0.4;
 }
 
 /* ---------- STEP PROCESS / DARK TIMELINE SECTION FIXES ---------- */
@@ -266,12 +176,10 @@
   .pm-subsidy-grid,
   .pm-docs { grid-template-columns: repeat(2, 1fr); }
   .pm-time-grid { grid-template-columns: repeat(2, 1fr); }
-  .halo-arcs-light { display: none; }
 }
 
 @media (max-width: 680px) {
   .pm-subsidy-grid,
   .pm-docs,
   .pm-time-grid { grid-template-columns: 1fr; }
-  .pm-hero { padding: 30px 0 50px; }
 }
