@@ -521,6 +521,7 @@ async function generatePdfEstimate() {
     const t = (key, fallbackEn) => pdfLabel(key, lang, fallbackEn);
 
     const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
     const marginX = 18;
     const rightX = pageWidth - marginX;
     let y;
@@ -555,7 +556,7 @@ async function generatePdfEstimate() {
     doc.text('HALOSUN ENERGY SYSTEMS', textStartX, 18);
     const nameWidth = doc.getTextWidth('HALOSUN ENERGY SYSTEMS');
     
-    // Tagline ALWAYS in English as requested ("Design · Build · Power")
+    // Tagline ALWAYS in English ("Design · Build · Power")
     const taglineText = 'Design \u00b7 Build \u00b7 Power';
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9.5);
@@ -774,6 +775,13 @@ async function generatePdfEstimate() {
     doc.setFont(fontFamily, 'normal');
     doc.setTextColor(...PDF_COLOR.mist);
     doc.text('  \u2022  +91 92506 78826  \u2022  info@halosunenergysystems.com', marginX + doc.getTextWidth('Halosun Energy Systems'), y);
+
+    // ---- Bottom Center Aligned Website Link ----
+    const footerY = pageHeight - 8;
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(...PDF_COLOR.ember);
+    doc.text('www.HalosunEnergySystems.com', pageWidth / 2, footerY, { align: 'center' });
 
     const safeName = leadName.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'estimate';
     doc.save('Halosun-Solar-Estimate-' + safeName + '.pdf');
