@@ -584,13 +584,130 @@ function formatPdfCurrency(text, lang) {
   return text;
 }
 
+/* ---------- PDF progress bar ----------
+   Simple staged-percentage indicator, not a byte-accurate progress —
+   generatePdfEstimate() calls setPdfProgress() at fixed checkpoints as it
+   moves through the document (header, prepared-for, hero cards, table
+   rows, disclaimer, save) so the visitor sees steady movement instead of
+   a frozen button for the few seconds a Hindi PDF takes to render. */
+function showPdfProgress() {
+  const wrap = document.getElementById('calc-pdf-progress');
+  if (wrap) wrap.hidden = false;
+  setPdfProgress(0);
+}
+function setPdfProgress(pct) {
+  const fill = document.getElementById('calc-pdf-progress-fill');
+  if (fill) fill.style.width = Math.max(0, Math.min(100, pct)) + '%';
+}
+function hidePdfProgress() {
+  const wrap = document.getElementById('calc-pdf-progress');
+  if (wrap) wrap.hidden = true;
+  setPdfProgress(0);
+}
+
+/* ---------- Best-effort roman-to-Devanagari name transliteration ----------
+   Used only for the Hindi PDF: if the customer typed their name in English
+   letters while the page/PDF language is Hindi, we transliterate it so the
+   "Prepared for" line reads fully in Devanagari instead of mixing scripts.
+   This is a lightweight phonetic transliterator (syllable-by-syllable),
+   not a name dictionary — good for typical Indian names, but not
+   guaranteed to match every name's "official" spelling. Customers who
+   want an exact spelling can type their name directly in Hindi in the
+   form field; that's left untouched (see containsDevanagari check at the
+   call site in generatePdfEstimate). */
+const TRANSLIT_VOWELS_INDEP = {
+  aa: '\u0906', ee: '\u0908', ii: '\u0908', oo: '\u090A', uu: '\u090A',
+  ai: '\u0910', au: '\u0914',
+  a: '\u0905', i: '\u0907', u: '\u0909', e: '\u090F', o: '\u0913'
+};
+const TRANSLIT_VOWELS_MATRA = {
+  aa: '\u093E', ee: '\u0940', ii: '\u0940', oo: '\u0942', uu: '\u0942',
+  ai: '\u0948', au: '\u094C',
+  a: '', i: '\u093F', u: '\u0941', e: '\u0947', o: '\u094B'
+};
+const TRANSLIT_CONSONANTS = {
+  chh: '\u091B',
+  kh: '\u0916', gh: '\u0918', ch: '\u091A', jh: '\u091D',
+  th: '\u0925', dh: '\u0927', ph: '\u092B', bh: '\u092D',
+  sh: '\u0936', ng: '\u0919', ny: '\u091E',
+  k: '\u0915', g: '\u0917', j: '\u091C', t: '\u0924', d: '\u0926',
+  n: '\u0928', p: '\u092A', b: '\u092C', m: '\u092E', y: '\u092F',
+  r: '\u0930', l: '\u0932', v: '\u0935', w: '\u0935', s: '\u0938',
+  h: '\u0939', f: '\u095E', z: '\u095B', q: '\u0958', x: '\u0915\u094D\u0938'
+};
+// Longest-match-first token groups: 3-char consonant, 2-char vowels,
+// 2-char consonants, 1-char vowels, 1-char consonants.
+const TRANSLIT_TOKEN_GROUPS = [
+  { vowel: false, tokens: ['chh'] },
+  { vowel: true, tokens: ['aa', 'ee', 'ii', 'oo', 'uu', 'ai', 'au'] },
+  { vowel: false, tokens: ['kh', 'gh', 'ch', 'jh', 'th', 'dh', 'ph', 'bh', 'sh', 'ng', 'ny'] },
+  { vowel: true, tokens: ['a', 'i', 'u', 'e', 'o'] },
+  { vowel: false, tokens: ['k', 'g', 'j', 't', 'd', 'n', 'p', 'b', 'm', 'y', 'r', 'l', 'v', 'w', 's', 'h', 'f', 'z', 'q', 'x'] }
+];
+
+function transliterateNameToDevanagari(name) {
+  const original = String(name || '');
+  const src = original.toLowerCase();
+  let result = '';
+  let prevWasConsonant = false;
+  let i = 0;
+
+  while (i < src.length) {
+    let matched = null;
+    let isVowel = false;
+
+    for (const group of TRANSLIT_TOKEN_GROUPS) {
+      const token = group.tokens.find((tok) => src.startsWith(tok, i));
+      if (token) {
+        matched = token;
+        isVowel = group.vowel;
+        break;
+      }
+    }
+
+    if (!matched) {
+      // Non-alphabetic (space, hyphen, digit, punctuation) — pass through
+      // untouched and reset conjunct/vowel carry-over for the next word.
+      result += original[i];
+      prevWasConsonant = false;
+      i += 1;
+      continue;
+    }
+
+    if (isVowel) {
+      // A bare 'a', 'i', or 'u' at the very end of a word is almost always
+      // the LONG vowel in Indian names — Priya/Neha/Sharma/Kavita end in
+      // long ā, Devi/Preeti end in long ī, Guru/Babu end in long ū — not
+      // the short/silent form. Mid-word bare vowels are left as-is.
+      const atWordEnd = (i + 1 >= src.length) || !/[a-z]/i.test(src[i + 1]);
+      const LONG_FORM = { a: 'aa', i: 'ii', u: 'uu' };
+      const effective = (atWordEnd && LONG_FORM[matched]) ? LONG_FORM[matched] : matched;
+      result += prevWasConsonant ? TRANSLIT_VOWELS_MATRA[effective] : TRANSLIT_VOWELS_INDEP[effective];
+      prevWasConsonant = false;
+    } else {
+      if (prevWasConsonant) result += '\u094D'; // halant — joins into a conjunct
+      result += TRANSLIT_CONSONANTS[matched];
+      prevWasConsonant = true;
+    }
+    i += matched.length;
+  }
+
+  return result;
+}
+
 async function generatePdfEstimate() {
   if (!window.jspdf || !window.jspdf.jsPDF) {
     alert('The PDF library did not load — please check your internet connection and try again.');
     return;
   }
   const pdfBtn = document.getElementById('calc-pdf-btn');
+  const pdfBtnOriginalText = pdfBtn ? pdfBtn.textContent : '';
   if (pdfBtn) pdfBtn.disabled = true;
+
+  const lang0 = getCurrentPdfLang();
+  if (pdfBtn) pdfBtn.textContent = pdfLabel('calc-pdf-btn-generating', lang0, 'Generating PDF…');
+  showPdfProgress();
+  setPdfProgress(5);
 
   try {
     const lang = getCurrentPdfLang();
@@ -606,6 +723,7 @@ async function generatePdfEstimate() {
         console.error('Devanagari font load failed, falling back to Helvetica:', fontErr);
       }
     }
+    setPdfProgress(15);
     const t = (key, fallbackEn) => pdfLabel(key, lang, fallbackEn);
 
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -672,13 +790,23 @@ async function generatePdfEstimate() {
       doc.text(t('pdf-generated', 'Generated:') + ' ' + today, rightX, 20.5, { align: 'right' });
     }
 
+    setPdfProgress(25);
+
     // ---- Prepared for section ----
     y = bandH + 13;
     const leadName = (lastLead && lastLead.name) || document.getElementById('calc-name').value.trim() || t('pdf-valued-customer', 'Valued Customer');
     const leadPhone = (lastLead && lastLead.phone) || document.getElementById('calc-phone').value.trim();
-    
+
+    // For the Hindi PDF, show the customer's name in Devanagari too — if
+    // they typed it in English (e.g. "Rahul") while the page is set to
+    // Hindi, transliterate it so the whole "ग्राहक:" line reads in one
+    // script. If they already typed it in Hindi, leave it exactly as-is.
+    const displayName = (lang === 'hi' && !containsDevanagari(leadName))
+      ? transliterateNameToDevanagari(leadName)
+      : leadName;
+
     const labelPrepared = lang === 'hi' ? 'ग्राहक: ' : t('pdf-prepared-for', 'Prepared for') + ': ';
-    const preparedForLine = labelPrepared + leadName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
+    const preparedForLine = labelPrepared + displayName + (leadPhone ? '  \u00b7  ' + leadPhone : '');
 
     if (containsDevanagari(preparedForLine)) {
       const prepImg = await createHindiTextImage(preparedForLine, 42, '700', 'rgb(36, 48, 61)');
@@ -691,6 +819,7 @@ async function generatePdfEstimate() {
       doc.setTextColor(...PDF_COLOR.ink);
       doc.text(preparedForLine, marginX, y);
     }
+    setPdfProgress(40);
 
     // ---- Hero stat cards ----
     y += 8;
@@ -736,6 +865,7 @@ async function generatePdfEstimate() {
     await heroCard(marginX + cardW + cardGap, payLabel, pdfText('res-payback'));
     
     y += cardH + 10;
+    setPdfProgress(55);
 
     // ---- Table Helpers ----
     let rowIndex = 0;
@@ -822,6 +952,8 @@ async function generatePdfEstimate() {
       await row(t('emi-monthly-post-label', 'Reduced monthly EMI'), pdfText('emi-monthly-post', null, keepRupee), { bold: true });
     }
 
+    setPdfProgress(75);
+
     // ---- Footer Disclaimer & Contact ----
     y += 3;
     doc.setDrawColor(...PDF_COLOR.sun);
@@ -885,14 +1017,21 @@ async function generatePdfEstimate() {
     doc.setTextColor(...PDF_COLOR.ember);
     doc.text('www.HalosunEnergySystems.com', pageWidth / 2, footerY, { align: 'center' });
 
+    setPdfProgress(95);
+
     const safeName = leadName.replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '') || 'estimate';
     doc.save('Halosun-Solar-Estimate-' + safeName + '.pdf');
+    setPdfProgress(100);
 
   } catch (err) {
     console.error('PDF generation failed:', err);
     alert('Sorry, something went wrong generating the PDF. Please try again.');
   } finally {
-    if (pdfBtn) pdfBtn.disabled = false;
+    if (pdfBtn) {
+      pdfBtn.disabled = false;
+      pdfBtn.textContent = pdfBtnOriginalText || pdfLabel('calc-pdf-btn', lang0, 'Download PDF Estimate');
+    }
+    setTimeout(hidePdfProgress, 400); // brief pause at 100% so the fill is visible before it disappears
   }
 }
 
