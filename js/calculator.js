@@ -407,6 +407,46 @@ async function registerDevanagariFont(doc) {
   doc.addFont('NotoSansDevanagari-Regular.ttf', 'NotoDevanagari', 'normal');
   doc.addFileToVFS('NotoSansDevanagari-Bold.ttf', window.NOTO_DEVANAGARI_BOLD_BASE64);
   doc.addFont('NotoSansDevanagari-Bold.ttf', 'NotoDevanagari', 'bold');
+
+  // Also register the SAME font with the browser (no extra download —
+  // reuses the base64 data above) so the <canvas> text used for the PDF
+  // labels/values actually renders in Noto Sans Devanagari instead of
+  // silently falling back to Mangal / Devanagari Sangam MN / generic
+  // sans-serif, which have different glyph shapes and vertical metrics
+  // and were the cause of the blurry/clipped Hindi PDF text.
+  await ensureDevanagariCanvasFont();
+}
+
+// Loads "Noto Sans Devanagari" (regular + bold) as a real browser
+// FontFace so <canvas> text-rendering (createHindiTextImage) matches
+// exactly what's embedded in the PDF. Uses the base64 TTF data already
+// fetched by registerDevanagariFont — no extra network request.
+let _devanagariCanvasFontReady = null;
+function ensureDevanagariCanvasFont() {
+  if (_devanagariCanvasFontReady) return _devanagariCanvasFontReady;
+  if (typeof FontFace === 'undefined' || !window.NOTO_DEVANAGARI_REGULAR_BASE64 || !window.NOTO_DEVANAGARI_BOLD_BASE64) {
+    _devanagariCanvasFontReady = Promise.resolve();
+    return _devanagariCanvasFontReady;
+  }
+  const regularFace = new FontFace(
+    'Noto Sans Devanagari',
+    `url(data:font/ttf;base64,${window.NOTO_DEVANAGARI_REGULAR_BASE64})`,
+    { weight: '400' }
+  );
+  const boldFace = new FontFace(
+    'Noto Sans Devanagari',
+    `url(data:font/ttf;base64,${window.NOTO_DEVANAGARI_BOLD_BASE64})`,
+    { weight: '700' }
+  );
+  _devanagariCanvasFontReady = Promise.all([regularFace.load(), boldFace.load()])
+    .then(([loadedRegular, loadedBold]) => {
+      document.fonts.add(loadedRegular);
+      document.fonts.add(loadedBold);
+    })
+    .catch((e) => {
+      console.error('Devanagari canvas font registration failed, canvas text may fall back to a system font:', e);
+    });
+  return _devanagariCanvasFontReady;
 }
 
 function loadImageAsDataURL(url) {
@@ -449,6 +489,10 @@ async function loadFontForCanvas() {
   if (document.fonts && document.fonts.ready) {
     await document.fonts.ready;
   }
+  // Belt-and-braces: make sure our own Devanagari FontFace (registered in
+  // registerDevanagariFont) is loaded even if this ever gets called before
+  // that runs, so we never silently draw with a fallback font.
+  await ensureDevanagariCanvasFont();
 }
 
 async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'rgb(36, 48, 61)') {
@@ -457,7 +501,7 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
-  const scale = 3; // 3x Supersampling for Retina/Crisp vector-like rendering
+  const scale = 4; // supersampling — matches the crispness of the English vector text
   const weight = fontWeight || '400';
   const fontStyle = `${weight} ${fontSizePx}px "Noto Sans Devanagari", "Mangal", "Devanagari Sangam MN", sans-serif`;
 
@@ -465,8 +509,21 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
 
   const metrics = ctx.measureText(text);
   const paddingX = Math.ceil(fontSizePx * 0.5);
+
+  // Size the canvas from the ACTUAL measured glyph bounds rather than a
+  // fixed font-size multiplier. Devanagari's shirorekha and upper/lower
+  // matras extend further above/below the baseline than Latin ascenders/
+  // descenders, so a Latin-tuned fixed ratio was clipping some characters.
+  // actualBoundingBox* is supported in all current browsers; fall back to
+  // generous multipliers if it's ever unavailable.
+  const measuredAscent = metrics.actualBoundingBoxAscent || fontSizePx * 1.1;
+  const measuredDescent = metrics.actualBoundingBoxDescent || fontSizePx * 0.55;
+  const safetyMargin = fontSizePx * 0.2; // extra headroom so nothing touches the edge
+  const topPad = Math.ceil(measuredAscent + safetyMargin);
+  const bottomPad = Math.ceil(measuredDescent + safetyMargin);
+
   const baseWidth = Math.ceil(metrics.width + paddingX * 2);
-  const baseHeight = Math.ceil(fontSizePx * 1.8);
+  const baseHeight = topPad + bottomPad;
 
   canvas.width = Math.max(baseWidth * scale, 1);
   canvas.height = Math.max(baseHeight * scale, 1);
@@ -476,7 +533,7 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = textColor;
 
-  ctx.fillText(text, paddingX, fontSizePx * 1.2);
+  ctx.fillText(text, paddingX, topPad);
 
   return {
     dataUrl: canvas.toDataURL('image/png'),
