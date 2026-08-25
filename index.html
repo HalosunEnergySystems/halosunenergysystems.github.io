@@ -37,6 +37,62 @@
     .deadline-banner-alert .deadline-num {
       color: #ef4444;
     }
+
+    /* ============ HERO ENERGY FLOW ============
+       Small decorative diagram under the hero buttons: sun -> panel -> bulb,
+       with a dashed "current" flowing along both segments and the bulb
+       giving a slow breathing glow once it's "powered". Same dashed-line
+       technique as the Process page's flow diagram, kept independent here
+       since each page owns its own decorative styles. Site-wide
+       prefers-reduced-motion rule (styles.css) already freezes these. */
+    .hero-energy-flow {
+      display: flex;
+      justify-content: center;
+      margin-top: 34px;
+    }
+    .hero-energy-flow svg {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+    }
+    .hero-flow-line {
+      stroke: var(--sun, #d9a94e);
+      stroke-opacity: 0.6;
+      stroke-width: 2;
+      stroke-dasharray: 6 6;
+      fill: none;
+      animation: hero-flow-dash 3.2s linear infinite;
+    }
+    @keyframes hero-flow-dash {
+      to { stroke-dashoffset: -24; }
+    }
+    .hero-sun-icon {
+      fill: none;
+      stroke: var(--sun, #d9a94e);
+      stroke-width: 1.7;
+      stroke-linecap: round;
+    }
+    .hero-panel-icon {
+      fill: rgba(217, 169, 78, 0.1);
+      stroke: var(--sun, #d9a94e);
+      stroke-width: 1.7;
+      stroke-linejoin: round;
+    }
+    .hero-bulb {
+      animation: hero-bulb-glow 3.2s ease-in-out infinite;
+    }
+    .hero-bulb-icon {
+      fill: none;
+      stroke: var(--sun, #d9a94e);
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @keyframes hero-bulb-glow {
+      0%, 30%  { opacity: 0.45; filter: none; }
+      65%, 90% { opacity: 1; filter: drop-shadow(0 0 7px rgba(217, 169, 78, 0.75)); }
+      100%     { opacity: 0.45; filter: none; }
+    }
   </style>
 
   <script type="application/ld+json"> {
@@ -145,6 +201,34 @@
       <div class="hero-actions">
         <a href="calculator.html" class="btn btn-primary" data-i18n="hero-cta-1">Calculate My Savings</a>
         <a href="contact.html" class="btn btn-ghost" data-i18n="hero-cta-2">Request a Free Site Visit</a>
+      </div>
+
+      <div class="hero-energy-flow" aria-hidden="true">
+        <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sun -->
+          <g class="hero-sun-icon">
+            <circle cx="30" cy="40" r="9"/>
+            <path d="M30 17v6M30 57v6M9.5 40h6M54.5 40h6M15.5 25.5l4.2 4.2M44.5 54.5l4.2 4.2M44.5 25.5l-4.2 4.2M15.5 54.5l4.2 4.2"/>
+          </g>
+
+          <path class="hero-flow-line" d="M45 40H130"/>
+
+          <!-- Solar panel -->
+          <g>
+            <rect class="hero-panel-icon" x="130" y="24" width="46" height="32" rx="2"/>
+            <path class="hero-panel-icon" d="M130 40h46M153 24v32M141.5 24v32M164.5 24v32" stroke-width="1.2"/>
+          </g>
+
+          <path class="hero-flow-line" d="M176 40H272"/>
+
+          <!-- Bulb (glows once current arrives) -->
+          <g class="hero-bulb">
+            <g class="hero-bulb-icon">
+              <path d="M283 32a9 9 0 1 1 18 0c0 4.5-3.5 6-4.5 10h-9c-1-4-4.5-5.5-4.5-10Z"/>
+              <path d="M288.5 47.5h7M290 51.5h4"/>
+            </g>
+          </g>
+        </svg>
       </div>
     </div>
   </section>
