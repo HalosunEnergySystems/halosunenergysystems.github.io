@@ -543,6 +543,37 @@ async function createHindiTextImage(text, fontSizePx, fontWeight, textColor = 'r
   };
 }
 
+/* Greedy word-wrap for Devanagari text on canvas, so long Hindi strings
+   (like the PDF disclaimer) can be split into multiple properly-sized
+   line images instead of being rendered as one long line and then
+   squeezed to fit the page width — which is what caused the blurred/
+   horizontally-squashed disclaimer text in the PDF. */
+async function wrapHindiText(text, fontSizePx, fontWeight, maxWidthPx) {
+  await loadFontForCanvas();
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const weight = fontWeight || '400';
+  ctx.font = `${weight} ${fontSizePx}px "Noto Sans Devanagari", "Mangal", "Devanagari Sangam MN", sans-serif`;
+
+  const words = String(text || '').split(/\s+/).filter(Boolean);
+  const lines = [];
+  let current = '';
+
+  for (const word of words) {
+    const candidate = current ? current + ' ' + word : word;
+    if (!current || ctx.measureText(candidate).width <= maxWidthPx) {
+      current = candidate;
+    } else {
+      lines.push(current);
+      current = word;
+    }
+  }
+  if (current) lines.push(current);
+
+  return lines;
+}
+
 /* Helper to safely format currency strings in English vs Hindi */
 function formatPdfCurrency(text, lang) {
   if (!text) return text;
@@ -809,12 +840,26 @@ async function generatePdfEstimate() {
         );
 
     if (lang === 'hi') {
-      const discImg = await createHindiTextImage(disclaimer, 28, '400', 'rgb(108, 117, 125)');
-      const dH = 8.5; 
-      const dW = (discImg.widthPx / discImg.heightPx) * dH;
-      const clampedW = Math.min(dW, rightX - marginX);
-      doc.addImage(discImg.dataUrl, 'PNG', marginX, y, clampedW, dH, undefined, 'FAST');
-      y += dH + 6;
+      const discFontSizePx = 28;
+      const discLineH = 8.5; // per-line height in mm (same value the old single-line version used)
+      const availWidthMM = rightX - marginX;
+
+      // Probe render at full size just to get a reliable px-per-mm scale for
+      // this font size, then wrap the paragraph into lines that actually fit
+      // — instead of rendering one long line and force-squeezing its width
+      // (which distorted/blurred the text).
+      const probe = await createHindiTextImage(disclaimer, discFontSizePx, '400', 'rgb(108, 117, 125)');
+      const pxPerMM = probe.heightPx / discLineH;
+      const maxWidthPx = availWidthMM * pxPerMM;
+
+      const discLines = await wrapHindiText(disclaimer, discFontSizePx, '400', maxWidthPx);
+      for (const line of discLines) {
+        const lineImg = await createHindiTextImage(line, discFontSizePx, '400', 'rgb(108, 117, 125)');
+        const lW = (lineImg.widthPx / lineImg.heightPx) * discLineH;
+        doc.addImage(lineImg.dataUrl, 'PNG', marginX, y, Math.min(lW, availWidthMM), discLineH, undefined, 'FAST');
+        y += discLineH * 0.78; // tighter than the glyph-bounds height, for normal paragraph line-spacing
+      }
+      y += 6;
     } else {
       doc.setFont(fontFamily, 'normal');
       doc.setFontSize(8);
