@@ -188,7 +188,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .hero-brand-name em{
   font-style:normal; font-weight:500; color:rgba(255,255,255,0.55);
-  font-size:0.6em; margin-top:2px;
+  font-size:0.55em; margin-top:2px;
 }
 .hero .eyebrow{color:var(--sun); text-align:center;}
 .hero h1{color:#fff;}
