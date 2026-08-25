@@ -38,60 +38,65 @@
       color: #ef4444;
     }
 
-    /* ============ HERO ENERGY FLOW ============
-       Small decorative diagram under the hero buttons: sun -> panel -> bulb,
-       with a dashed "current" flowing along both segments and the bulb
-       giving a slow breathing glow once it's "powered". Same dashed-line
-       technique as the Process page's flow diagram, kept independent here
-       since each page owns its own decorative styles. Site-wide
-       prefers-reduced-motion rule (styles.css) already freezes these. */
-    .hero-energy-flow {
-      display: flex;
-      justify-content: center;
-      margin-top: 34px;
+    /* ============ HERO SIDE VISUAL — sun lighting a panel, powering a bulb ============
+       Sits in the empty space to the right of the centered hero copy on
+       wide screens. Solid filled shapes throughout (not thin line icons)
+       for a more realistic, tangible look: a shaded sun with solid rays,
+       a soft light beam falling onto an angled panel with a cell grid,
+       a wire carrying a traveling glow down to a bulb that lights up.
+       Hidden below 1280px so it never competes with the centered text
+       column. Site-wide prefers-reduced-motion rule (styles.css) already
+       freezes all animation here. */
+    .hero-side-visual {
+      position: absolute;
+      top: 50%;
+      right: 3.5%;
+      transform: translateY(-50%);
+      width: 230px;
+      z-index: 1;
+      pointer-events: none;
     }
-    .hero-energy-flow svg {
+    .hero-side-visual svg {
       width: 100%;
-      max-width: 320px;
       height: auto;
+      overflow: visible;
     }
-    .hero-flow-line {
-      stroke: var(--sun, #d9a94e);
-      stroke-opacity: 0.6;
-      stroke-width: 2;
-      stroke-dasharray: 6 6;
-      fill: none;
-      animation: hero-flow-dash 3.2s linear infinite;
+    @media (max-width: 1280px) {
+      .hero-side-visual { display: none; }
     }
-    @keyframes hero-flow-dash {
-      to { stroke-dashoffset: -24; }
+
+    .hsv-ray {
+      fill: var(--sun, #d9a94e);
+      opacity: 0.85;
+      animation: hsv-ray-pulse 2.6s ease-in-out infinite;
     }
-    .hero-sun-icon {
-      fill: none;
-      stroke: var(--sun, #d9a94e);
-      stroke-width: 1.7;
-      stroke-linecap: round;
+    @keyframes hsv-ray-pulse {
+      0%, 100% { opacity: 0.55; }
+      50%      { opacity: 0.95; }
     }
-    .hero-panel-icon {
-      fill: rgba(217, 169, 78, 0.1);
-      stroke: var(--sun, #d9a94e);
-      stroke-width: 1.7;
-      stroke-linejoin: round;
+    .hsv-beam {
+      animation: hsv-beam-pulse 2.6s ease-in-out infinite;
     }
-    .hero-bulb {
-      animation: hero-bulb-glow 3.2s ease-in-out infinite;
+    @keyframes hsv-beam-pulse {
+      0%, 100% { opacity: 0.35; }
+      50%      { opacity: 0.7; }
     }
-    .hero-bulb-icon {
-      fill: none;
-      stroke: var(--sun, #d9a94e);
-      stroke-width: 1.7;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .hsv-wire-pulse {
+      animation: hsv-wire-travel 2.2s linear infinite;
     }
-    @keyframes hero-bulb-glow {
-      0%, 30%  { opacity: 0.45; filter: none; }
-      65%, 90% { opacity: 1; filter: drop-shadow(0 0 7px rgba(217, 169, 78, 0.75)); }
-      100%     { opacity: 0.45; filter: none; }
+    @keyframes hsv-wire-travel {
+      0%   { transform: translate(0px, 0px); opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { transform: translate(-19px, 74px); opacity: 0; }
+    }
+    .hsv-bulb-glow {
+      animation: hsv-bulb-pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes hsv-bulb-pulse {
+      0%, 25%  { opacity: 0.25; }
+      55%, 75% { opacity: 0.85; }
+      100%     { opacity: 0.25; }
     }
   </style>
 
@@ -202,34 +207,65 @@
         <a href="calculator.html" class="btn btn-primary" data-i18n="hero-cta-1">Calculate My Savings</a>
         <a href="contact.html" class="btn btn-ghost" data-i18n="hero-cta-2">Request a Free Site Visit</a>
       </div>
+    </div>
 
-      <div class="hero-energy-flow" aria-hidden="true">
-        <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
-          <!-- Sun -->
-          <g class="hero-sun-icon">
-            <circle cx="30" cy="40" r="9"/>
-            <path d="M30 17v6M30 57v6M9.5 40h6M54.5 40h6M15.5 25.5l4.2 4.2M44.5 54.5l4.2 4.2M44.5 25.5l-4.2 4.2M15.5 54.5l4.2 4.2"/>
-          </g>
+    <!-- ============ RIGHT-SIDE VISUAL: sun lighting a panel, powering a bulb ============ -->
+    <div class="hero-side-visual" aria-hidden="true">
+      <svg viewBox="0 0 210 340" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="hsvSunGrad" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#FFF3D0"/>
+            <stop offset="45%" stop-color="var(--sun, #d9a94e)"/>
+            <stop offset="100%" stop-color="var(--sun-dim, #b98b3a)"/>
+          </radialGradient>
+          <linearGradient id="hsvBeamGrad" x1="0.3" y1="0" x2="0.7" y2="1">
+            <stop offset="0%" stop-color="var(--sun, #d9a94e)" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="var(--sun, #d9a94e)" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="hsvBulbGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(217,169,78,0.9)"/>
+            <stop offset="60%" stop-color="rgba(217,169,78,0.25)"/>
+            <stop offset="100%" stop-color="rgba(217,169,78,0)"/>
+          </radialGradient>
+        </defs>
 
-          <path class="hero-flow-line" d="M45 40H130"/>
+        <!-- Sun with solid rays -->
+        <g>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(0 170 55)"/>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(45 170 55)"/>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(90 170 55)"/>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(135 170 55)"/>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(180 170 55)"/>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(225 170 55)"/>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(270 170 55)"/>
+          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(315 170 55)"/>
+          <circle cx="170" cy="55" r="30" fill="url(#hsvSunGrad)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+        </g>
 
-          <!-- Solar panel -->
-          <g>
-            <rect class="hero-panel-icon" x="130" y="24" width="46" height="32" rx="2"/>
-            <path class="hero-panel-icon" d="M130 40h46M153 24v32M141.5 24v32M164.5 24v32" stroke-width="1.2"/>
-          </g>
+        <!-- Sunlight beam falling onto the panel -->
+        <polygon class="hsv-beam" points="152,80 128,65 55,150 100,178" fill="url(#hsvBeamGrad)"/>
 
-          <path class="hero-flow-line" d="M176 40H272"/>
+        <!-- Solar panel, angled like it's propped on a roof -->
+        <g transform="rotate(-9 95 182)">
+          <rect x="38" y="150" width="114" height="66" rx="5" fill="#C7CFDA" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+          <rect x="45" y="157" width="100" height="52" rx="2" fill="#0F1E33"/>
+          <line x1="70" y1="157" x2="70" y2="209" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <line x1="95" y1="157" x2="95" y2="209" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <line x1="120" y1="157" x2="120" y2="209" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <line x1="45" y1="183" x2="145" y2="183" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <polygon class="hsv-beam" points="45,157 78,157 52,209 45,209" fill="#fff" opacity="0.6"/>
+        </g>
 
-          <!-- Bulb (glows once current arrives) -->
-          <g class="hero-bulb">
-            <g class="hero-bulb-icon">
-              <path d="M283 32a9 9 0 1 1 18 0c0 4.5-3.5 6-4.5 10h-9c-1-4-4.5-5.5-4.5-10Z"/>
-              <path d="M288.5 47.5h7M290 51.5h4"/>
-            </g>
-          </g>
-        </svg>
-      </div>
+        <!-- Wire carrying current down to the bulb -->
+        <path d="M90 222c-5 23-20 33-22 53" fill="none" stroke="var(--ink, #0f2038)" stroke-width="3" stroke-linecap="round"/>
+        <circle class="hsv-wire-pulse" cx="90" cy="222" r="5" fill="var(--sun, #d9a94e)"/>
+
+        <!-- Bulb -->
+        <circle class="hsv-bulb-glow" cx="71" cy="300" r="34" fill="url(#hsvBulbGlow)"/>
+        <circle cx="71" cy="298" r="15" fill="url(#hsvSunGrad)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+        <rect x="64" y="311" width="14" height="9" rx="2" fill="#5B6472" stroke="var(--ink, #0f2038)" stroke-width="1.5"/>
+        <line x1="64" y1="315" x2="78" y2="315" stroke="var(--ink, #0f2038)" stroke-width="1"/>
+      </svg>
     </div>
   </section>
 
