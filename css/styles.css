@@ -77,6 +77,8 @@ img{max-width:100%; display:block;}
 .hero-brand .eyebrow{margin:0;}
 
 .section-sub{max-width:640px; color:var(--mist);}
+.pm-official{margin-top:22px; font-size:0.94rem; color:var(--mist);}
+.pm-official a{color:var(--sun-dim); font-weight:600; margin-left:4px; text-decoration:underline; text-underline-offset:2px;}
 
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
   outline:3px solid var(--sun);
