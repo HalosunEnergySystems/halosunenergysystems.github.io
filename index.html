@@ -38,21 +38,27 @@
       color: #ef4444;
     }
 
-    /* ============ HERO SIDE VISUAL — sun lighting a panel, powering a bulb ============
-       Sits in the empty space to the right of the centered hero copy on
-       wide screens. Solid filled shapes throughout (not thin line icons)
-       for a more realistic, tangible look: a shaded sun with solid rays,
-       a soft light beam falling onto an angled panel with a cell grid,
-       a wire carrying a traveling glow down to a bulb that lights up.
-       Hidden below 1280px so it never competes with the centered text
-       column. Site-wide prefers-reduced-motion rule (styles.css) already
-       freezes all animation here. */
+    /* ============ HERO SIDE VISUAL — rooftop to grid ============
+       Fills the empty space to the right of the hero copy with a
+       wide, semi-realistic scene rather than a small vertical icon:
+       a mono-pitch roof carrying a mounted panel array, a cable
+       running down to a wall-mounted inverter, power feeding a lit
+       window (home load), and a second line continuing on to a
+       utility pole at the far edge (the grid) — reading left to
+       right the same way the eye reads the page. Motion is
+       restrained: dash-flow along the cables, two travelling pulses
+       (generation → load, surplus → grid), a blinking inverter LED
+       and a breathing window glow. Hidden below 1440px, since the
+       wider scene needs more room than the old icon did, so it never
+       competes with the centered text column. Site-wide
+       prefers-reduced-motion rule (styles.css) already freezes all
+       animation here. */
     .hero-side-visual {
       position: absolute;
       top: 50%;
-      right: 3.5%;
+      right: 1.5%;
       transform: translateY(-50%);
-      width: 230px;
+      width: 500px;
       z-index: 1;
       pointer-events: none;
     }
@@ -61,42 +67,106 @@
       height: auto;
       overflow: visible;
     }
-    @media (max-width: 1280px) {
+    @media (max-width: 1440px) {
       .hero-side-visual { display: none; }
     }
 
     .hsv-ray {
       fill: var(--sun, #d9a94e);
-      opacity: 0.85;
       animation: hsv-ray-pulse 2.6s ease-in-out infinite;
     }
     @keyframes hsv-ray-pulse {
+      0%, 100% { opacity: 0.45; }
+      50%      { opacity: 0.9; }
+    }
+    .hsv-trace-dash {
+      stroke-dasharray: 3 6;
+      animation: hsv-dash-flow 1.1s linear infinite;
+    }
+    @keyframes hsv-dash-flow {
+      to { stroke-dashoffset: -18; }
+    }
+    .hsv-led {
+      animation: hsv-blink 2.2s ease-in-out infinite;
+    }
+    @keyframes hsv-blink {
+      0%, 25%  { opacity: 0.3; }
+      55%, 75% { opacity: 1; }
+      100%     { opacity: 0.3; }
+    }
+    .hsv-window-glow {
+      animation: hsv-glow-pulse 3s ease-in-out infinite;
+    }
+    @keyframes hsv-glow-pulse {
       0%, 100% { opacity: 0.55; }
       50%      { opacity: 0.95; }
     }
-    .hsv-beam {
-      animation: hsv-beam-pulse 2.6s ease-in-out infinite;
+    .hsv-dot-a {
+      animation: hsv-travel-a 3s linear infinite;
     }
-    @keyframes hsv-beam-pulse {
-      0%, 100% { opacity: 0.35; }
-      50%      { opacity: 0.7; }
+    @keyframes hsv-travel-a {
+      0%   { transform: translate(0px, 0px);   opacity: 0; }
+      6%   { opacity: 1; }
+      50%  { transform: translate(12px, 39px); opacity: 1; }
+      94%  { opacity: 1; }
+      100% { transform: translate(24px, 78px); opacity: 0; }
     }
-    .hsv-wire-pulse {
-      animation: hsv-wire-travel 2.2s linear infinite;
+    .hsv-dot-b {
+      animation: hsv-travel-b 4.6s linear infinite;
     }
-    @keyframes hsv-wire-travel {
-      0%   { transform: translate(0px, 0px); opacity: 0; }
+    @keyframes hsv-travel-b {
+      0%   { transform: translate(0px, 0px);    opacity: 0; }
+      6%   { opacity: 1; }
+      50%  { transform: translate(94px, -36px); opacity: 1; }
+      94%  { opacity: 1; }
+      100% { transform: translate(188px, -52px); opacity: 0; }
+    }
+    .hsv-dot-c {
+      animation: hsv-travel-c 2.2s linear infinite;
+    }
+    @keyframes hsv-travel-c {
+      0%   { transform: translate(0px, 0px);   opacity: 0; }
       8%   { opacity: 1; }
+      50%  { transform: translate(-29px, 12px); opacity: 1; }
       92%  { opacity: 1; }
-      100% { transform: translate(-19px, 74px); opacity: 0; }
+      100% { transform: translate(-58px, 24px); opacity: 0; }
     }
-    .hsv-bulb-glow {
-      animation: hsv-bulb-pulse 2.2s ease-in-out infinite;
+    .hsv-wire-fade {
+      animation: hsv-wire-fade 3.4s ease-in-out infinite;
     }
-    @keyframes hsv-bulb-pulse {
-      0%, 25%  { opacity: 0.25; }
-      55%, 75% { opacity: 0.85; }
-      100%     { opacity: 0.25; }
+    @keyframes hsv-wire-fade {
+      0%, 100% { opacity: 0.65; }
+      50%      { opacity: 1; }
+    }
+
+    /* ============ HERO TRUST BULLETS ============
+       Three short credibility markers directly under the CTA row,
+       styled as quiet pills rather than a bold badge strip so they
+       support the buttons instead of competing with them. */
+    .hero-trust {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin: 22px 0 0;
+      padding: 0;
+    }
+    .hero-trust li {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-right: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      letter-spacing: 0.01em;
+    }
+    .hero-trust svg {
+      flex: none;
+      width: 15px;
+      height: 15px;
+      color: var(--sun, #d9a94e);
     }
   </style>
 
@@ -201,70 +271,116 @@
         <span class="hero-brand-name"><span class="brand-halosun">Halosun</span> <em>Energy Systems</em></span>   
         <p class="eyebrow" data-i18n="hero-eyebrow">Design. Build. Power.</p>
       </div>
-      <h1 data-i18n="hero-title">Your rooftop has a second job.</h1>
-      <p class="hero-sub" data-i18n="hero-sub">Halosun Energy Systems designs, builds and maintains solar power plants for homes and businesses — from the first site survey to the day your meter starts running backward.</p>
+      <h1 data-i18n="hero-title">Put your rooftop to work. Lower your power bills.</h1>
+      <p class="hero-sub" data-i18n="hero-sub">Halosun Energy Systems designs, installs, and maintains end-to-end solar solutions for homes and businesses. Enjoy seamless grid integration and lifetime energy savings.</p>
       <div class="hero-actions">
         <a href="calculator.html" class="btn btn-primary" data-i18n="hero-cta-1">Calculate My Savings</a>
         <a href="contact.html" class="btn btn-ghost" data-i18n="hero-cta-2">Request a Free Site Visit</a>
       </div>
+      <ul class="hero-trust">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6.5 9.5 17 4 11.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-i18n="hero-trust-1">MNRE Authorized Installer</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6.5 9.5 17 4 11.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-i18n="hero-trust-2">Subsidy Assistance</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6.5 9.5 17 4 11.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-i18n="hero-trust-3">Turnkey Maintenance</span>
+        </li>
+      </ul>
     </div>
 
-    <!-- ============ RIGHT-SIDE VISUAL: sun lighting a panel, powering a bulb ============ -->
+    <!-- ============ RIGHT-SIDE VISUAL: rooftop → panels → inverter → home load → grid ============ -->
     <div class="hero-side-visual" aria-hidden="true">
-      <svg viewBox="0 0 210 340" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="hsvSunGrad" cx="35%" cy="35%" r="65%">
             <stop offset="0%" stop-color="#FFF3D0"/>
             <stop offset="45%" stop-color="var(--sun, #d9a94e)"/>
             <stop offset="100%" stop-color="var(--sun-dim, #b98b3a)"/>
           </radialGradient>
-          <linearGradient id="hsvBeamGrad" x1="0.3" y1="0" x2="0.7" y2="1">
-            <stop offset="0%" stop-color="var(--sun, #d9a94e)" stop-opacity="0.55"/>
-            <stop offset="100%" stop-color="var(--sun, #d9a94e)" stop-opacity="0"/>
-          </linearGradient>
-          <radialGradient id="hsvBulbGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(217,169,78,0.9)"/>
-            <stop offset="60%" stop-color="rgba(217,169,78,0.25)"/>
+          <radialGradient id="hsvWindowGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFE9B0"/>
+            <stop offset="70%" stop-color="var(--sun, #d9a94e)"/>
+            <stop offset="100%" stop-color="var(--sun-dim, #b98b3a)"/>
+          </radialGradient>
+          <radialGradient id="hsvDotGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(217,169,78,0.95)"/>
+            <stop offset="60%" stop-color="rgba(217,169,78,0.3)"/>
             <stop offset="100%" stop-color="rgba(217,169,78,0)"/>
           </radialGradient>
         </defs>
 
-        <!-- Sun with solid rays -->
-        <g>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(0 170 55)"/>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(45 170 55)"/>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(90 170 55)"/>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(135 170 55)"/>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(180 170 55)"/>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(225 170 55)"/>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(270 170 55)"/>
-          <rect class="hsv-ray" x="167" y="6" width="6" height="15" rx="3" transform="rotate(315 170 55)"/>
-          <circle cx="170" cy="55" r="30" fill="url(#hsvSunGrad)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+        <!-- Ground -->
+        <line x1="20" y1="340" x2="540" y2="340" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+        <!-- Sun, upper left, lighting the roof -->
+        <g transform="translate(58,58)">
+          <rect class="hsv-ray" x="-2" y="-30" width="4" height="10" rx="2"/>
+          <rect class="hsv-ray" x="-2" y="-30" width="4" height="10" rx="2" transform="rotate(60)"/>
+          <rect class="hsv-ray" x="-2" y="-30" width="4" height="10" rx="2" transform="rotate(120)"/>
+          <rect class="hsv-ray" x="-2" y="-30" width="4" height="10" rx="2" transform="rotate(180)"/>
+          <rect class="hsv-ray" x="-2" y="-30" width="4" height="10" rx="2" transform="rotate(240)"/>
+          <rect class="hsv-ray" x="-2" y="-30" width="4" height="10" rx="2" transform="rotate(300)"/>
+          <circle r="18" fill="url(#hsvSunGrad)"/>
         </g>
 
-        <!-- Sunlight beam falling onto the panel -->
-        <polygon class="hsv-beam" points="152,80 128,65 55,150 100,178" fill="url(#hsvBeamGrad)"/>
+        <!-- House: mono-pitch roof carrying the panel array -->
+        <path d="M70,340 L70,230 L230,150 L230,340 Z" fill="rgba(255,255,255,0.035)" stroke="#ffffff" stroke-opacity="0.55" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="88" y="284" width="26" height="56" rx="2" fill="rgba(255,255,255,0.05)" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5"/>
+        <rect class="hsv-window-glow" x="140" y="268" width="32" height="32" rx="3" fill="url(#hsvWindowGlow)"/>
 
-        <!-- Solar panel, angled like it's propped on a roof -->
-        <g transform="rotate(-9 95 182)">
-          <rect x="38" y="150" width="114" height="66" rx="5" fill="#C7CFDA" stroke="var(--ink, #0f2038)" stroke-width="2"/>
-          <rect x="45" y="157" width="100" height="52" rx="2" fill="#0F1E33"/>
-          <line x1="70" y1="157" x2="70" y2="209" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
-          <line x1="95" y1="157" x2="95" y2="209" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
-          <line x1="120" y1="157" x2="120" y2="209" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
-          <line x1="45" y1="183" x2="145" y2="183" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
-          <polygon class="hsv-beam" points="45,157 78,157 52,209 45,209" fill="#fff" opacity="0.6"/>
+        <!-- Panel array, mounted along the roof pitch (kept inboard of the eave and ridge) -->
+        <g transform="translate(152,174) rotate(-26.57)">
+          <rect x="-60" y="-13" width="120" height="26" rx="3" fill="#0F1E33" stroke="var(--sun, #d9a94e)" stroke-width="1.5"/>
+          <line x1="-20" y1="-13" x2="-20" y2="13" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <line x1="20" y1="-13" x2="20" y2="13" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <line x1="-60" y1="0" x2="60" y2="0" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
         </g>
 
-        <!-- Wire carrying current down to the bulb -->
-        <path d="M90 222c-5 23-20 33-22 53" fill="none" stroke="var(--ink, #0f2038)" stroke-width="3" stroke-linecap="round"/>
-        <circle class="hsv-wire-pulse" cx="90" cy="222" r="5" fill="var(--sun, #d9a94e)"/>
+        <!-- Cable: panels → inverter -->
+        <path class="hsv-wire-fade" d="M211,159 C 228,180 240,210 246,236" fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        <path class="hsv-trace-dash" d="M211,159 C 228,180 240,210 246,236" fill="none" stroke="var(--sun, #d9a94e)" stroke-opacity="0.7" stroke-width="1.5"/>
+        <g class="hsv-dot-a">
+          <circle cx="211" cy="159" r="6" fill="url(#hsvDotGlow)"/>
+          <circle cx="211" cy="159" r="2.2" fill="#fff"/>
+        </g>
 
-        <!-- Bulb -->
-        <circle class="hsv-bulb-glow" cx="71" cy="300" r="34" fill="url(#hsvBulbGlow)"/>
-        <circle cx="71" cy="298" r="15" fill="url(#hsvSunGrad)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
-        <rect x="64" y="311" width="14" height="9" rx="2" fill="#5B6472" stroke="var(--ink, #0f2038)" stroke-width="1.5"/>
-        <line x1="64" y1="315" x2="78" y2="315" stroke="var(--ink, #0f2038)" stroke-width="1"/>
+        <!-- Inverter, wall-mounted -->
+        <rect x="232" y="236" width="30" height="32" rx="5" fill="rgba(255,255,255,0.08)" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.5"/>
+        <path d="M236,252 h3 l3,-7 l4,14 l4,-14 l4,14 l3,-7 h3" fill="none" stroke="var(--sun, #d9a94e)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle class="hsv-led" cx="257" cy="242" r="2.5" fill="var(--sun, #d9a94e)"/>
+
+        <!-- Cable: inverter → home load (window) -->
+        <path class="hsv-wire-fade" d="M232,258 C 205,258 190,270 174,282" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round"/>
+        <path class="hsv-trace-dash" d="M232,258 C 205,258 190,270 174,282" fill="none" stroke="var(--sun, #d9a94e)" stroke-opacity="0.6" stroke-width="1.3"/>
+        <g class="hsv-dot-c">
+          <circle cx="232" cy="258" r="5" fill="url(#hsvDotGlow)"/>
+          <circle cx="232" cy="258" r="1.8" fill="#fff"/>
+        </g>
+
+        <!-- Cable: inverter → grid (utility pole) -->
+        <path class="hsv-wire-fade" d="M262,250 C 330,250 350,196 410,186 L450,182" fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round"/>
+        <path class="hsv-trace-dash" d="M262,250 C 330,250 350,196 410,186 L450,182" fill="none" stroke="var(--sun, #d9a94e)" stroke-opacity="0.7" stroke-width="1.5"/>
+        <g class="hsv-dot-b">
+          <circle cx="262" cy="250" r="6" fill="url(#hsvDotGlow)"/>
+          <circle cx="262" cy="250" r="2.2" fill="#fff"/>
+        </g>
+
+        <!-- Net-meter indicator: export (bright, right) vs. import (faint, left) -->
+        <polygon points="358,203 368,199 368,208" fill="var(--sun, #d9a94e)" opacity="0.9"/>
+        <polygon points="378,215 368,211 368,220" fill="#ffffff" opacity="0.3"/>
+
+        <!-- Utility pole — the grid -->
+        <line x1="470" y1="182" x2="470" y2="340" stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+        <line x1="448" y1="192" x2="492" y2="192" stroke="#ffffff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+        <line x1="450" y1="192" x2="450" y2="200" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+        <line x1="490" y1="192" x2="490" y2="200" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+        <path d="M450,200 Q 495,222 540,204" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.3"/>
+        <path d="M490,200 Q 515,226 545,214" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.3"/>
       </svg>
     </div>
   </section>
