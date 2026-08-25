@@ -195,7 +195,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 /* ---------- Sections ---------- */
 .section{padding:96px 0;}
 .section-dark{background:var(--ink); color:rgba(255,255,255,0.85);}
-.section-dark h2, .section-dark h3{color:#fff;}
+.section-dark h1, .section-dark h2, .section-dark h3{color:#fff;}
 .section-dark .section-sub{color:rgba(255,255,255,0.55);}
 .section-dark p{color:rgba(255,255,255,0.65);}
 .section-dark code{color:var(--sun);}
