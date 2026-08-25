@@ -22,7 +22,7 @@ const TRANSLATIONS = {
   'deadline-sec':    { en: 'Sec',   hi: 'सेकंड' },
   'deadline-closed': { en: 'This subsidy window has closed.', hi: 'यह सब्सिडी विंडो बंद हो चुकी है।' },
 
-  'hero-eyebrow':    { en: 'Design. Build. Power.', hi: 'डिज़ाइन. इंस्टॉलेशन. पावर.' },
+  'hero-eyebrow':    { en: 'Design. Build. Power.', hi: 'डिज़ाइन. निर्माण. पावर.' },
   'hero-title':      { en: 'Put your rooftop to work. Lower your power bills.', hi: 'अपनी छत को काम पर लगाएं। बिजली का बिल घटाएं।' },
   'hero-sub':        { en: "Halosun Energy Systems designs, installs, and maintains end-to-end solar solutions for homes and businesses. Enjoy seamless grid integration and lifetime energy savings.",
                         hi: 'हैलोसन एनर्जी सिस्टम्स घरों और व्यवसायों के लिए संपूर्ण सोलर समाधान डिज़ाइन, इंस्टॉल और रखरखाव करता है। सहज ग्रिड इंटीग्रेशन और आजीवन ऊर्जा बचत का आनंद लें।' },
