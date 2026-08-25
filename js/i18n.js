@@ -23,11 +23,14 @@ const TRANSLATIONS = {
   'deadline-closed': { en: 'This subsidy window has closed.', hi: 'यह सब्सिडी विंडो बंद हो चुकी है।' },
 
   'hero-eyebrow':    { en: 'Design. Build. Power.', hi: 'डिज़ाइन. इंस्टॉलेशन. पावर.' },
-  'hero-title':      { en: 'Your rooftop has a second job.', hi: '“आपकी छत अब सिर्फ छत नहीं, बचत और कमाई का ज़रिया है।”' },
-  'hero-sub':        { en: "Halosun Energy Systems designs, builds and maintains solar power plants for homes and businesses — from the first site survey to the day your meter starts running backward.",
-                        hi: 'हैलोसन एनर्जी सिस्टम्स घरों और व्यवसायों के लिए सोलर पावर प्लांट डिज़ाइन, निर्माण और रखरखाव करता है — पहली साइट विज़िट से लेकर उस दिन तक जब आपका मीटर उल्टा चलना शुरू करे।' },
+  'hero-title':      { en: 'Put your rooftop to work. Lower your power bills.', hi: 'अपनी छत को काम पर लगाएं। बिजली का बिल घटाएं।' },
+  'hero-sub':        { en: "Halosun Energy Systems designs, installs, and maintains end-to-end solar solutions for homes and businesses. Enjoy seamless grid integration and lifetime energy savings.",
+                        hi: 'हैलोसन एनर्जी सिस्टम्स घरों और व्यवसायों के लिए संपूर्ण सोलर समाधान डिज़ाइन, इंस्टॉल और रखरखाव करता है। सहज ग्रिड इंटीग्रेशन और आजीवन ऊर्जा बचत का आनंद लें।' },
   'hero-cta-1':      { en: 'Calculate My Savings',  hi: 'मेरी बचत जानें' },
   'hero-cta-2':      { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट के लिए अनुरोध करें' },
+  'hero-trust-1':    { en: 'MNRE Authorized Installer', hi: 'MNRE अधिकृत इंस्टॉलर' },
+  'hero-trust-2':    { en: 'Subsidy Assistance',   hi: 'सब्सिडी सहायता' },
+  'hero-trust-3':    { en: 'Turnkey Maintenance',  hi: 'टर्नकी रखरखाव' },
 
   'explore-eyebrow': { en: 'Explore',               hi: 'जानिए' },
   'explore-title':   { en: 'Find what you need',    hi: 'जो चाहिए वह खोजें' },
