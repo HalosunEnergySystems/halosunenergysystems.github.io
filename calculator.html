@@ -80,6 +80,24 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+  /* Progress bar shown while the PDF is being generated — Hindi PDFs in
+     particular take a few seconds since each label/value/name is rendered
+     to a canvas image individually for the Devanagari font, so visitors
+     need feedback that something is happening rather than a frozen button. */
+  .pdf-progress {
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(229, 231, 235, 0.15);
+    overflow: hidden;
+    margin-top: 0.6rem;
+  }
+  .pdf-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #f59e0b, #f97316);
+    border-radius: 999px;
+    transition: width 0.25s ease;
+  }
   /* Old-bill comparison figure was rendering too dim to read against the
      dark panel — keep the strikethrough (it's meant to look superseded)
      but lift the contrast so it's actually legible. */
@@ -219,6 +237,9 @@
           <div class="calc-results-content" id="calc-results-content" hidden>
           <a href="#" class="btn btn-whatsapp btn-full is-disabled" id="calc-whatsapp-btn" target="_blank" rel="noopener" aria-disabled="true" data-i18n="calc-whatsapp-btn">Send My Estimate via WhatsApp →</a>
           <button class="btn btn-ghost btn-full" id="calc-pdf-btn" type="button" disabled data-i18n="calc-pdf-btn">Download PDF Estimate</button>
+          <div class="pdf-progress" id="calc-pdf-progress" hidden>
+            <div class="pdf-progress-fill" id="calc-pdf-progress-fill"></div>
+          </div>
 
           <div class="result-row result-highlight">
             <span data-i18n="res-size-label">Recommended system size</span>
