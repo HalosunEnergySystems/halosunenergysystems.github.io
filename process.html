@@ -77,6 +77,68 @@
       max-width: none;
     }
   }
+
+  /* ---------- Rotating sun + golden glow (process hero, right side) ----------
+     Purely decorative — sits behind the hero copy and throws a soft gold
+     glow across the top-right of the section. The ray ring spins slowly;
+     the glow itself stays still so it doesn't strobe. Content inside
+     .section-dark > .wrap gets z-index:1 so text always paints above it. */
+  .section.section-dark { overflow: hidden; }
+  .section.section-dark > .wrap { position: relative; z-index: 1; }
+  .process-hero-sun {
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    width: 260px;
+    height: 260px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .process-hero-sun .sun-glow {
+    position: absolute;
+    inset: -160px;
+    background: radial-gradient(circle,
+      rgba(217, 169, 78, 0.30) 0%,
+      rgba(217, 169, 78, 0.14) 32%,
+      rgba(232, 93, 44, 0.07) 52%,
+      transparent 70%);
+    filter: blur(4px);
+  }
+  .process-hero-sun .sun-rays {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from 0deg,
+      rgba(217, 169, 78, 0.65) 0deg 3deg,
+      transparent 3deg 22.5deg);
+    -webkit-mask-image: radial-gradient(circle, transparent 34%, #000 37%, #000 46%, transparent 50%);
+            mask-image: radial-gradient(circle, transparent 34%, #000 37%, #000 46%, transparent 50%);
+    animation: process-sun-spin 26s linear infinite;
+  }
+  .process-hero-sun .sun-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ffe3a3, var(--sun, #d9a94e) 55%, var(--ember, #e85d2c) 100%);
+    box-shadow: 0 0 40px 10px rgba(217, 169, 78, 0.45), 0 0 90px 30px rgba(232, 93, 44, 0.18);
+  }
+  @keyframes process-sun-spin {
+    to { transform: rotate(360deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .process-hero-sun .sun-rays { animation: none; }
+  }
+  @media (max-width: 860px) {
+    .process-hero-sun { width: 180px; height: 180px; top: -15px; right: -35px; }
+    .process-hero-sun .sun-core { width: 46px; height: 46px; }
+  }
+  @media (max-width: 560px) {
+    .process-hero-sun { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -109,6 +171,11 @@
 
 <main>
   <section class="section section-dark">
+    <div class="process-hero-sun" aria-hidden="true">
+      <div class="sun-glow"></div>
+      <div class="sun-rays"></div>
+      <div class="sun-core"></div>
+    </div>
     <div class="wrap">
       <p class="eyebrow" data-i18n="process-eyebrow">How a project runs</p>
       <h1 data-i18n="process-title">Six steps from roof to running meter</h1>
