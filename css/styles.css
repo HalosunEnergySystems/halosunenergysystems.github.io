@@ -218,6 +218,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .card-link:hover{transform:translateY(-2px); border-color:var(--sun);}
 .page-hero{padding-bottom:56px;}
 .page-hero h1{margin-bottom:0.3em;}
+
+/* ---------- Breadcrumb bar (top of <main> on every page except home) ----------
+   Deliberately its own slim strip with a light background, independent of
+   whatever the page's first section looks like (some pages open with a
+   dark hero, some with a light .page-hero) — so it reads consistently
+   everywhere instead of inheriting section styling. */
+.breadcrumb-bar{
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+  padding:12px 0;
+}
+.breadcrumb{
+  display:flex; align-items:center; flex-wrap:wrap; gap:8px;
+  font-family:var(--font-body); font-size:0.85rem; color:var(--mist);
+}
+.breadcrumb a{color:var(--mist); text-decoration:none;}
+.breadcrumb a:hover{color:var(--ember);}
+.breadcrumb-sep{color:rgba(15,32,56,0.25); font-size:0.8rem;}
+.breadcrumb-current{color:var(--ink); font-weight:600;}
+
 .cta-band{text-align:center;}
 .cta-band-inner{max-width:560px; margin:0 auto; text-align:center;}
 .cta-band .hero-actions{justify-content:center; margin-top:20px;}
