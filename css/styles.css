@@ -229,6 +229,67 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 .card p{color:var(--mist); margin:0; font-size:0.94rem;}
 
+/* ---------- Explore tiles (homepage "Find what you need") ----------
+   Layered on top of the base .card/.card-link rules above rather than
+   replacing them, so every other place .card is used elsewhere on the
+   site is untouched. Adds: an accent top-border that sweeps in, the
+   number chip flipping to a filled gold badge, and an arrow that
+   slides into view — all on hover/focus so the tile feels responsive
+   to the pointer instead of just lifting. */
+.explore-grid .card-link{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.explore-grid .card-link::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:3px;
+  background:linear-gradient(90deg, var(--ember), var(--sun));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.28s ease;
+}
+.explore-grid .card-link:hover::before,
+.explore-grid .card-link:focus-visible::before{
+  transform:scaleX(1);
+}
+.explore-grid .card-link:hover,
+.explore-grid .card-link:focus-visible{
+  border-color:transparent;
+  box-shadow:0 16px 40px rgba(15,32,56,.09), 0 0 0 1px var(--sun);
+}
+.explore-grid .card-mark{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px; border-radius:50%;
+  background:rgba(232,93,44,0.08);
+  transition:background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.explore-grid .card-link:hover .card-mark,
+.explore-grid .card-link:focus-visible .card-mark{
+  background:var(--sun); color:var(--ink); transform:scale(1.08);
+}
+.explore-grid .card-arrow{
+  display:inline-block;
+  margin-top:14px;
+  color:var(--sun-dim);
+  font-weight:600;
+  opacity:0;
+  transform:translateX(-6px);
+  transition:opacity 0.2s ease, transform 0.2s ease;
+}
+.explore-grid .card-link:hover .card-arrow,
+.explore-grid .card-link:focus-visible .card-arrow{
+  opacity:1;
+  transform:translateX(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .explore-grid .card-link::before,
+  .explore-grid .card-mark,
+  .explore-grid .card-arrow{ transition:none; }
+}
+
 .why-item h3{margin-bottom:0.35em;}
 .why-item p{color:var(--mist); font-size:0.94rem; margin:0;}
 
