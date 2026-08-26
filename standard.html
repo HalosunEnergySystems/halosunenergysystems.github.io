@@ -112,10 +112,12 @@
     letter-spacing: 0.02em;
     fill: var(--ink, #0f2038);
   }
-  .std-diagram-label-dim {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10.5px;
-    fill: rgba(15, 32, 56, 0.55);
+ .std-diagram-label-dim {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  fill: #0f2038; /* Solid ink color for readability */
+  opacity: 0.8;   /* Optional: keeps a slightly dimmed look while maintaining contrast */
+
   }
   .std-diagram-caption {
     margin-top: 14px;
