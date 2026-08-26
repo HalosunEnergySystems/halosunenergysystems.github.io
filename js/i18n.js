@@ -1,5 +1,5 @@
 // ===========================================================
-// Halosun — Simple EN / HI toggle
+// Halosun - Simple EN / HI toggle
 // Add data-i18n="key" to any element's tag, and add the key
 // below with english + hindi text, to make it translatable.
 // Persists the person's choice across pages via localStorage.
@@ -49,15 +49,15 @@ const TRANSLATIONS = {
   'faq-eyebrow':       { en: 'Know before you invest', hi: 'निवेश से पहले जानें' },
   'faq-title':         { en: 'Solar questions deserve engineering answers.', hi: 'सोलर सवालों के जवाब इंजीनियरिंग नज़रिए से मिलने चाहिए।' },
   'faq-desc':          { en: 'From net metering and subsidy to batteries, power cuts, roof safety and maintenance, our Solar FAQ explains the things that matter before you sign a quotation.',
-                          hi: 'नेट मीटरिंग और सब्सिडी से लेकर बैटरी, बिजली कटौती, छत सुरक्षा और रखरखाव तक — कोटेशन साइन करने से पहले ज़रूरी बातें हमारे सोलर सवाल-जवाब में।' },
+                          hi: 'नेट मीटरिंग और सब्सिडी से लेकर बैटरी, बिजली कटौती, छत सुरक्षा और रखरखाव तक - कोटेशन साइन करने से पहले ज़रूरी बातें हमारे सोलर सवाल-जवाब में।' },
   'faq-cta':           { en: 'Explore Solar FAQ →',   hi: 'सोलर सवाल-जवाब देखें →' },
 
   'why-eyebrow':       { en: 'Why Halosun',           hi: 'हैलोसन क्यों' },
   'why-title':         { en: 'What you get, in plain terms', hi: 'आपको क्या मिलता है, सीधी भाषा में' },
   'why-1-title':       { en: 'One firm, start to finish', hi: 'शुरू से आखिर तक एक ही कंपनी' },
-  'why-1-desc':        { en: 'Design, equipment and construction under a single contract and a single point of contact.', hi: 'डिज़ाइन, उपकरण और निर्माण — एक ही अनुबंध और एक ही संपर्क बिंदु के तहत।' },
+  'why-1-desc':        { en: 'Design, equipment and construction under a single contract and a single point of contact.', hi: 'डिज़ाइन, उपकरण और निर्माण - एक ही अनुबंध और एक ही संपर्क बिंदु के तहत।' },
   'why-2-title':       { en: 'Transparent quotes',    hi: 'पारदर्शी कोटेशन' },
-  'why-2-desc':        { en: 'Line-item pricing with no hidden costs added after signing.', hi: 'हस्ताक्षर के बाद कोई छुपी लागत नहीं — हर मद की स्पष्ट कीमत।' },
+  'why-2-desc':        { en: 'Line-item pricing with no hidden costs added after signing.', hi: 'हस्ताक्षर के बाद कोई छुपी लागत नहीं - हर मद की स्पष्ट कीमत।' },
   'why-3-title':       { en: 'Subsidy handled for you', hi: 'सब्सिडी की ज़िम्मेदारी हमारी' },
   'why-3-desc':        { en: 'We file the net-metering and subsidy paperwork so you don\'t have to.', hi: 'नेट-मीटरिंग और सब्सिडी के कागज़ात हम भरते हैं, आपको नहीं भरने पड़ते।' },
   'why-4-title':       { en: '25-year monitoring',    hi: '25 वर्षों की निगरानी' },
@@ -69,8 +69,8 @@ const TRANSLATIONS = {
   'impact-kwh-label':  { en: 'kWh generated / year',  hi: 'kWh प्रति वर्ष उत्पन्न' },
   'impact-co2-label':  { en: 'tons CO₂ avoided / year', hi: 'टन CO₂ प्रति वर्ष बचाई गई' },
   'impact-trees-label':{ en: 'trees-equivalent / year', hi: 'पेड़ों के बराबर / वर्ष' },
-  'impact-note':       { en: 'Figures update as our installed base grows — based on standard grid emission-factor estimates, not a guarantee for any single system.',
-                          hi: 'ये आंकड़े हमारे स्थापित आधार बढ़ने के साथ अपडेट होते हैं — मानक ग्रिड उत्सर्जन-कारक अनुमानों पर आधारित, किसी एक सिस्टम की गारंटी नहीं।' },
+  'impact-note':       { en: 'Figures update as our installed base grows - based on standard grid emission-factor estimates, not a guarantee for any single system.',
+                          hi: 'ये आंकड़े हमारे स्थापित आधार बढ़ने के साथ अपडेट होते हैं - मानक ग्रिड उत्सर्जन-कारक अनुमानों पर आधारित, किसी एक सिस्टम की गारंटी नहीं।' },
 
   'footer-lead':       { en: 'Professional solar engineering, installation and maintenance for homes and businesses.',
                           hi: 'घरों और व्यवसायों के लिए पेशेवर सोलर इंजीनियरिंग, इंस्टॉलेशन और रखरखाव।' },
@@ -130,7 +130,7 @@ const TRANSLATIONS = {
 
   'faq-q8-q':          { en: 'Does solar damage or weaken the roof?', hi: 'क्या सोलर छत को नुकसान पहुँचाता या कमज़ोर करता है?' },
   'faq-q8-a':          { en: 'A properly engineered rooftop installation should not compromise a sound roof. Mounting method, structural condition, waterproofing, fasteners, ballast and cable routing all matter. The installation should be planned for the actual roof rather than simply drilling wherever convenient.',
-                          hi: 'सही ढंग से इंजीनियर किया गया रूफटॉप इंस्टॉलेशन एक मज़बूत छत को नुकसान नहीं पहुँचाना चाहिए। माउंटिंग विधि, संरचनात्मक स्थिति, वॉटरप्रूफिंग, फास्टनर, बैलास्ट और केबल रूटिंग — सब मायने रखते हैं। इंस्टॉलेशन की योजना असली छत के अनुसार बनाई जानी चाहिए, न कि जहाँ सुविधाजनक लगे वहाँ ड्रिल कर देना चाहिए।' },
+                          hi: 'सही ढंग से इंजीनियर किया गया रूफटॉप इंस्टॉलेशन एक मज़बूत छत को नुकसान नहीं पहुँचाना चाहिए। माउंटिंग विधि, संरचनात्मक स्थिति, वॉटरप्रूफिंग, फास्टनर, बैलास्ट और केबल रूटिंग - सब मायने रखते हैं। इंस्टॉलेशन की योजना असली छत के अनुसार बनाई जानी चाहिए, न कि जहाँ सुविधाजनक लगे वहाँ ड्रिल कर देना चाहिए।' },
 
   'faq-q9-q':          { en: 'Why are earthing and surge protection important in a solar system?', hi: 'सोलर सिस्टम में अर्थिंग और सर्ज प्रोटेक्शन क्यों ज़रूरी हैं?' },
   'faq-q9-a':          { en: 'Solar equipment is exposed on a roof and is connected to long outdoor cable runs. Proper protective earthing, bonding and appropriately selected surge protective devices help manage fault currents and transient overvoltages. Lightning protection, where required, should be designed as a coordinated system rather than improvised by connecting random conductors together.',
@@ -154,7 +154,7 @@ const TRANSLATIONS = {
 
   'faq-q14-q':         { en: 'Does more panel wattage always mean a better solar system?', hi: 'क्या अधिक पैनल वाट क्षमता का मतलब हमेशा बेहतर सोलर सिस्टम होता है?' },
   'faq-q14-a':         { en: 'Not by itself. System quality depends on module performance, inverter selection, string design, shading, structure, cable sizing, protection, earthing, installation workmanship and how well the plant matches the consumer\'s load. A larger nameplate can be a poor investment if the design is wrong.',
-                          hi: 'अकेले इससे नहीं। सिस्टम की गुणवत्ता मॉड्यूल प्रदर्शन, इनवर्टर चयन, स्ट्रिंग डिज़ाइन, छाया, संरचना, केबल आकार, सुरक्षा, अर्थिंग, इंस्टॉलेशन की कारीगरी और प्लांट उपभोक्ता के लोड से कितना मेल खाता है — इस पर निर्भर करती है। यदि डिज़ाइन ग़लत हो तो बड़ी नेमप्लेट क्षमता भी एक ख़राब निवेश साबित हो सकती है।' },
+                          hi: 'अकेले इससे नहीं। सिस्टम की गुणवत्ता मॉड्यूल प्रदर्शन, इनवर्टर चयन, स्ट्रिंग डिज़ाइन, छाया, संरचना, केबल आकार, सुरक्षा, अर्थिंग, इंस्टॉलेशन की कारीगरी और प्लांट उपभोक्ता के लोड से कितना मेल खाता है - इस पर निर्भर करती है। यदि डिज़ाइन ग़लत हो तो बड़ी नेमप्लेट क्षमता भी एक ख़राब निवेश साबित हो सकती है।' },
 
   'faq-note-label':    { en: 'Engineering note:', hi: 'इंजीनियरिंग नोट:' },
   'faq-note-text':     { en: 'Solar generation, subsidy, net-metering rules and equipment specifications can change. Treat this page as general education and confirm project-specific numbers and current government/utility rules before installation.',
@@ -219,8 +219,8 @@ const TRANSLATIONS = {
   'process-step3-desc':  { en: 'We handle net-metering paperwork and government subsidy applications on your behalf.',
                              hi: 'हम आपकी ओर से नेट-मीटरिंग कागज़ात और सरकारी सब्सिडी आवेदन संभालते हैं।' },
   'process-step4-title': { en: 'Installation', hi: 'इंस्टॉलेशन' },
-  'process-step4-desc':  { en: 'Certified crews install panels, inverter and wiring — most rooftop jobs finish in three to seven days.',
-                             hi: 'प्रमाणित टीमें पैनल, इनवर्टर और वायरिंग इंस्टॉल करती हैं — अधिकांश रूफटॉप काम तीन से सात दिनों में पूरे हो जाते हैं।' },
+  'process-step4-desc':  { en: 'Certified crews install panels, inverter and wiring - most rooftop jobs finish in three to seven days.',
+                             hi: 'प्रमाणित टीमें पैनल, इनवर्टर और वायरिंग इंस्टॉल करती हैं - अधिकांश रूफटॉप काम तीन से सात दिनों में पूरे हो जाते हैं।' },
   'process-step5-title': { en: 'Commissioning', hi: 'कमीशनिंग' },
   'process-step5-desc':  { en: 'Utility inspection, net meter installation, and formal handover of your plant.',
                              hi: 'यूटिलिटी निरीक्षण, नेट मीटर इंस्टॉलेशन, और आपके प्लांट की औपचारिक सुपुर्दगी।' },
@@ -233,8 +233,8 @@ const TRANSLATIONS = {
   // ---- Standard Page Hero ----
   'std-eyebrow':       { en: 'The Halosun Standard', hi: 'हैलोसन मानक' },
   'std-title':         { en: 'What\'s actually under your panels', hi: 'आपके पैनल के नीचे असल में क्या है' },
-  'std-sub':           { en: 'Two rooftop systems can look identical from the street and perform completely differently for the next 25 years. The difference is almost never the panel brand — it\'s what\'s fixed to your roof, routed through your walls, and buried in your earth pit. That\'s what this page is about.',
-                          hi: 'दो छत की सोलर प्रणालियाँ सड़क से देखने पर एक जैसी लग सकती हैं, लेकिन अगले 25 वर्षों तक उनका प्रदर्शन बिल्कुल अलग हो सकता है। यह फर्क लगभग कभी पैनल ब्रांड का नहीं होता — यह इस बात का होता है कि आपकी छत पर क्या फिक्स किया गया है, दीवारों से क्या रूट किया गया है, और आपके अर्थ पिट में क्या दबा है। यह पेज इसी बारे में है।' },
+  'std-sub':           { en: 'Two rooftop systems can look identical from the street and perform completely differently for the next 25 years. The difference is almost never the panel brand - it\'s what\'s fixed to your roof, routed through your walls, and buried in your earth pit. That\'s what this page is about.',
+                          hi: 'दो छत की सोलर प्रणालियाँ सड़क से देखने पर एक जैसी लग सकती हैं, लेकिन अगले 25 वर्षों तक उनका प्रदर्शन बिल्कुल अलग हो सकता है। यह फर्क लगभग कभी पैनल ब्रांड का नहीं होता - यह इस बात का होता है कि आपकी छत पर क्या फिक्स किया गया है, दीवारों से क्या रूट किया गया है, और आपके अर्थ पिट में क्या दबा है। यह पेज इसी बारे में है।' },
   'std-hero-cta1':     { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट का अनुरोध करें' },
   'std-hero-cta2':     { en: 'Calculate My Savings', hi: 'मेरी बचत जानें' },
 
@@ -243,29 +243,29 @@ const TRANSLATIONS = {
   'std-checks-title':   { en: 'Ten checks, no exceptions', hi: 'दस जाँच, कोई अपवाद नहीं' },
   'std-checks-sub':     { en: 'Whether it\'s a 6-panel rooftop or a 50 kW commercial plant, every Halosun installation is signed off against the same checklist before we call it finished.',
                            hi: 'चाहे 6-पैनल की छत हो या 50 kW का व्यावसायिक प्लांट, हर हैलोसन इंस्टॉलेशन को पूरा मानने से पहले उसी चेकलिस्ट पर परखा जाता है।' },
-  'std-check-1':  { en: 'Mounting structure sized for your roof and your panel load — not trimmed on steel gauge to shave the quote.', hi: 'माउंटिंग संरचना आपकी छत और पैनल भार के अनुसार तय की जाती है — कोटेशन घटाने के लिए स्टील की मोटाई कम नहीं की जाती।' },
+  'std-check-1':  { en: 'Mounting structure sized for your roof and your panel load - not trimmed on steel gauge to shave the quote.', hi: 'माउंटिंग संरचना आपकी छत और पैनल भार के अनुसार तय की जाती है - कोटेशन घटाने के लिए स्टील की मोटाई कम नहीं की जाती।' },
   'std-check-2':  { en: 'Every leg fixed to resist wind uplift, not just hold the array down under its own weight.', hi: 'हर पैर हवा के दबाव को झेलने के लिए फिक्स किया जाता है, सिर्फ अपने वज़न से टिकने के लिए नहीं।' },
-  'std-check-3':  { en: 'Every roof penetration sealed in layers — the roof slab underneath stays untouched and dry.', hi: 'हर छत छेदन को परतों में सील किया जाता है — नीचे की छत की स्लैब सूखी और सुरक्षित रहती है।' },
+  'std-check-3':  { en: 'Every roof penetration sealed in layers - the roof slab underneath stays untouched and dry.', hi: 'हर छत छेदन को परतों में सील किया जाता है - नीचे की छत की स्लैब सूखी और सुरक्षित रहती है।' },
   'std-check-4':  { en: 'DC and AC cabling sized for minimal voltage drop, not the cheapest gauge that technically carries current.', hi: 'DC और AC केबलिंग न्यूनतम वोल्टेज ड्रॉप के लिए तय की जाती है, सिर्फ करंट ले जाने वाली सबसे सस्ती मोटाई नहीं।' },
-  'std-check-5':  { en: 'Earthed at every stage — panels, structure, inverter, and distribution board — tied into one system, not one token pit.', hi: 'हर चरण पर अर्थिंग — पैनल, संरचना, इन्वर्टर और डिस्ट्रिब्यूशन बोर्ड — सबको एक प्रणाली में जोड़ा जाता है, सिर्फ एक दिखावटी पिट नहीं।' },
-  'std-check-6':  { en: 'Cable runs dressed, labeled, and routed for a future electrician to actually trace — not hidden behind the inverter.', hi: 'केबल रन व्यवस्थित, लेबल किए गए और इस तरह रूट किए जाते हैं कि भविष्य में कोई इलेक्ट्रीशियन आसानी से समझ सके — इन्वर्टर के पीछे छिपाए नहीं जाते।' },
+  'std-check-5':  { en: 'Earthed at every stage - panels, structure, inverter, and distribution board - tied into one system, not one token pit.', hi: 'हर चरण पर अर्थिंग - पैनल, संरचना, इन्वर्टर और डिस्ट्रिब्यूशन बोर्ड - सबको एक प्रणाली में जोड़ा जाता है, सिर्फ एक दिखावटी पिट नहीं।' },
+  'std-check-6':  { en: 'Cable runs dressed, labeled, and routed for a future electrician to actually trace - not hidden behind the inverter.', hi: 'केबल रन व्यवस्थित, लेबल किए गए और इस तरह रूट किए जाते हैं कि भविष्य में कोई इलेक्ट्रीशियन आसानी से समझ सके - इन्वर्टर के पीछे छिपाए नहीं जाते।' },
   'std-check-7':  { en: 'Every electrical and structural joint torqued correctly, not just hand-tight.', hi: 'हर इलेक्ट्रिकल और संरचनात्मक जोड़ को सही टॉर्क से कसा जाता है, सिर्फ हाथ से नहीं।' },
-  'std-check-8':  { en: 'A full commissioning test before we call the job finished — not before we send the invoice.', hi: 'काम को पूरा मानने से पहले एक पूर्ण कमीशनिंग टेस्ट किया जाता है — बिल भेजने से पहले नहीं।' },
-  'std-check-9':  { en: 'An on-site walkthrough — you see your isolators, your monitoring app, and your earth points before we leave.', hi: 'साइट पर एक वॉकथ्रू — हम जाने से पहले आप अपने आइसोलेटर, मॉनिटरिंग ऐप और अर्थ पॉइंट खुद देखते हैं।' },
-  'std-check-10': { en: 'A complete handover file, in writing — not a phone number you have to hope still works in year three.', hi: 'लिखित रूप में एक पूरी हैंडओवर फाइल — सिर्फ एक फ़ोन नंबर नहीं जिसके तीसरे साल भी काम करने की उम्मीद करनी पड़े।' },
+  'std-check-8':  { en: 'A full commissioning test before we call the job finished - not before we send the invoice.', hi: 'काम को पूरा मानने से पहले एक पूर्ण कमीशनिंग टेस्ट किया जाता है - बिल भेजने से पहले नहीं।' },
+  'std-check-9':  { en: 'An on-site walkthrough - you see your isolators, your monitoring app, and your earth points before we leave.', hi: 'साइट पर एक वॉकथ्रू - हम जाने से पहले आप अपने आइसोलेटर, मॉनिटरिंग ऐप और अर्थ पॉइंट खुद देखते हैं।' },
+  'std-check-10': { en: 'A complete handover file, in writing - not a phone number you have to hope still works in year three.', hi: 'लिखित रूप में एक पूरी हैंडओवर फाइल - सिर्फ एक फ़ोन नंबर नहीं जिसके तीसरे साल भी काम करने की उम्मीद करनी पड़े।' },
 
   // ---- Mounting / structure ----
   'std-mount-eyebrow': { en: 'Structure & waterproofing', hi: 'संरचना और वॉटरप्रूफिंग' },
   'std-mount-title':   { en: 'The part nobody checks after handover', hi: 'वह हिस्सा जिसे हैंडओवर के बाद कोई नहीं देखता' },
-  'std-mount-sub':     { en: 'Roof leaks and lifted panels almost never come from bad weather alone. They come from a structure gauge trimmed to win a quote, or a leg that was never meant to hold against wind. We size the structure for the load your roof will actually carry, and every leg is fixed to take wind uplift, not just gravity — nothing here gets undercut to save on steel.',
-                          hi: 'छत में रिसाव और पैनल उखड़ना लगभग कभी सिर्फ खराब मौसम से नहीं होता। यह तब होता है जब कोटेशन जीतने के लिए संरचना की मोटाई घटा दी जाती है, या कोई पैर हवा झेलने के लिए बना ही नहीं होता। हम संरचना को आपकी छत के असल भार के अनुसार तय करते हैं, और हर पैर हवा के दबाव को झेलने के लिए फिक्स किया जाता है, सिर्फ गुरुत्वाकर्षण के लिए नहीं — स्टील बचाने के लिए यहाँ कोई कमी नहीं की जाती।' },
-  'std-mount-caption': { en: '// simplified reference — full structural spec is in your project handover file', hi: '// सरल संदर्भ — पूरा संरचनात्मक विवरण आपकी प्रोजेक्ट हैंडओवर फाइल में है' },
+  'std-mount-sub':     { en: 'Roof leaks and lifted panels almost never come from bad weather alone. They come from a structure gauge trimmed to win a quote, or a leg that was never meant to hold against wind. We size the structure for the load your roof will actually carry, and every leg is fixed to take wind uplift, not just gravity - nothing here gets undercut to save on steel.',
+                          hi: 'छत में रिसाव और पैनल उखड़ना लगभग कभी सिर्फ खराब मौसम से नहीं होता। यह तब होता है जब कोटेशन जीतने के लिए संरचना की मोटाई घटा दी जाती है, या कोई पैर हवा झेलने के लिए बना ही नहीं होता। हम संरचना को आपकी छत के असल भार के अनुसार तय करते हैं, और हर पैर हवा के दबाव को झेलने के लिए फिक्स किया जाता है, सिर्फ गुरुत्वाकर्षण के लिए नहीं - स्टील बचाने के लिए यहाँ कोई कमी नहीं की जाती।' },
+  'std-mount-caption': { en: '// simplified reference - full structural spec is in your project handover file', hi: '// सरल संदर्भ - पूरा संरचनात्मक विवरण आपकी प्रोजेक्ट हैंडओवर फाइल में है' },
 
   // ---- Cable routing ----
   'std-cable-eyebrow':   { en: 'Cable routing', hi: 'केबल रूटिंग' },
   'std-cable-title':     { en: 'Where the inverter sits changes everything downstream', hi: 'इन्वर्टर कहाँ रखा है, इससे आगे सब कुछ प्रभावित होता है' },
-  'std-cable-sub':       { en: 'A longer DC run from panel to inverter is normal and low-loss. A long AC run from inverter to meter is not — and it\'s the single most common shortcut that quietly eats into your generation for the next 25 years.',
-                            hi: 'पैनल से इन्वर्टर तक लंबी DC लाइन सामान्य और कम नुकसान वाली होती है। लेकिन इन्वर्टर से मीटर तक लंबी AC लाइन नहीं — और यही वह सबसे आम शॉर्टकट है जो अगले 25 वर्षों तक चुपचाप आपकी जनरेशन को कम करता रहता है।' },
+  'std-cable-sub':       { en: 'A longer DC run from panel to inverter is normal and low-loss. A long AC run from inverter to meter is not - and it\'s the single most common shortcut that quietly eats into your generation for the next 25 years.',
+                            hi: 'पैनल से इन्वर्टर तक लंबी DC लाइन सामान्य और कम नुकसान वाली होती है। लेकिन इन्वर्टर से मीटर तक लंबी AC लाइन नहीं - और यही वह सबसे आम शॉर्टकट है जो अगले 25 वर्षों तक चुपचाप आपकी जनरेशन को कम करता रहता है।' },
   'std-cable-good-title':{ en: 'Halosun standard', hi: 'हैलोसन मानक' },
   'std-cable-good-1':    { en: 'AC cable run kept as short as physically possible', hi: 'AC केबल की लंबाई जितनी संभव हो उतनी कम रखी जाती है' },
   'std-cable-good-2':    { en: 'Lower AC voltage drop, lower cable losses overall', hi: 'कम AC वोल्टेज ड्रॉप, कुल मिलाकर कम केबल नुकसान' },
@@ -279,22 +279,22 @@ const TRANSLATIONS = {
 
   // ---- Earthing ----
   'std-earth-eyebrow': { en: 'Earthing', hi: 'अर्थिंग' },
-  'std-earth-title':   { en: 'Earthed the way the code requires — tied together, not scattered', hi: 'नियमानुसार अर्थिंग — बिखरी हुई नहीं, आपस में जुड़ी हुई' },
-  'std-earth-sub':     { en: 'A single earth pit that looks fine to an inspector isn\'t the same as a system that\'s actually protected. We earth every stage of the system and connect the earthing network together, so a fault has one reliable, low-resistance path to ground — not four separate pits each hoping it\'s the one that works.',
-                          hi: 'एक अकेला अर्थ पिट जो निरीक्षक को ठीक लगे, यह ज़रूरी नहीं कि प्रणाली वाकई सुरक्षित हो। हम प्रणाली के हर चरण की अर्थिंग करते हैं और पूरे अर्थिंग नेटवर्क को आपस में जोड़ते हैं, ताकि किसी फॉल्ट को ज़मीन तक जाने का एक भरोसेमंद, कम-प्रतिरोध वाला रास्ता मिले — चार अलग-अलग पिट नहीं जिनमें से किसी एक के काम करने की उम्मीद की जाए।' },
+  'std-earth-title':   { en: 'Earthed the way the code requires - tied together, not scattered', hi: 'नियमानुसार अर्थिंग - बिखरी हुई नहीं, आपस में जुड़ी हुई' },
+  'std-earth-sub':     { en: 'A single earth pit that looks fine to an inspector isn\'t the same as a system that\'s actually protected. We earth every stage of the system and connect the earthing network together, so a fault has one reliable, low-resistance path to ground - not four separate pits each hoping it\'s the one that works.',
+                          hi: 'एक अकेला अर्थ पिट जो निरीक्षक को ठीक लगे, यह ज़रूरी नहीं कि प्रणाली वाकई सुरक्षित हो। हम प्रणाली के हर चरण की अर्थिंग करते हैं और पूरे अर्थिंग नेटवर्क को आपस में जोड़ते हैं, ताकि किसी फॉल्ट को ज़मीन तक जाने का एक भरोसेमंद, कम-प्रतिरोध वाला रास्ता मिले - चार अलग-अलग पिट नहीं जिनमें से किसी एक के काम करने की उम्मीद की जाए।' },
   'std-earth-tag1':    { en: '4 POINTS', hi: '4 बिंदु' },
-  'std-earth-item1':   { en: 'Panels, mounting structure, inverter, and distribution board are each earthed independently.', hi: 'पैनल, माउंटिंग संरचना, इन्वर्टर और डिस्ट्रिब्यूशन बोर्ड — हर एक की अलग अर्थिंग की जाती है।' },
+  'std-earth-item1':   { en: 'Panels, mounting structure, inverter, and distribution board are each earthed independently.', hi: 'पैनल, माउंटिंग संरचना, इन्वर्टर और डिस्ट्रिब्यूशन बोर्ड - हर एक की अलग अर्थिंग की जाती है।' },
   'std-earth-tag2':    { en: '16 SQ.MM', hi: '16 वर्ग मिमी' },
   'std-earth-item2':   { en: 'Aluminium earth conductor sized to carry a fault current safely, not the thinnest wire that technically qualifies.', hi: 'एल्युमिनियम अर्थ कंडक्टर फॉल्ट करंट को सुरक्षित रूप से ले जाने के लिए तय किया जाता है, सिर्फ काम चलाऊ सबसे पतला तार नहीं।' },
   'std-earth-tag3':    { en: 'TIED IN', hi: 'आपस में जुड़ा' },
   'std-earth-item3':   { en: 'Where a site needs more than one earth pit, the pits are interconnected into a single network rather than left as isolated points.', hi: 'जहाँ किसी साइट पर एक से ज़्यादा अर्थ पिट की ज़रूरत होती है, वहाँ पिटों को अलग-अलग न छोड़कर एक ही नेटवर्क में जोड़ा जाता है।' },
-  'std-earth-caption': { en: '// simplified reference — pit construction detail is in your project handover file', hi: '// सरल संदर्भ — पिट निर्माण का विवरण आपकी प्रोजेक्ट हैंडओवर फाइल में है' },
+  'std-earth-caption': { en: '// simplified reference - pit construction detail is in your project handover file', hi: '// सरल संदर्भ - पिट निर्माण का विवरण आपकी प्रोजेक्ट हैंडओवर फाइल में है' },
 
   // ---- Handover file ----
   'std-handover-eyebrow':    { en: 'Documentation', hi: 'दस्तावेज़ीकरण' },
   'std-handover-title':      { en: 'You get this in writing, not a phone number to remember', hi: 'यह आपको लिखित में मिलता है, सिर्फ याद रखने के लिए एक फ़ोन नंबर नहीं' },
-  'std-handover-sub':        { en: 'Every Halosun customer receives a personal Owner\'s Handbook at handover — your system specs, single line diagram, cleaning routine, maintenance schedule and warranty terms, in one document. Most local installers hand over a working system and a phone number. You get both, plus this.',
-                                hi: 'हर हैलोसन ग्राहक को हैंडओवर पर एक निजी ओनर्स हैंडबुक मिलती है — आपके सिस्टम की जानकारी, सिंगल लाइन डायग्राम, सफाई की दिनचर्या, रखरखाव अनुसूची और वारंटी शर्तें, सब एक ही दस्तावेज़ में। ज़्यादातर स्थानीय इंस्टॉलर सिर्फ चालू सिस्टम और एक फ़ोन नंबर देकर चले जाते हैं। आपको दोनों मिलते हैं, साथ ही यह भी।' },
+  'std-handover-sub':        { en: 'Every Halosun customer receives a personal Owner\'s Handbook at handover - your system specs, single line diagram, cleaning routine, maintenance schedule and warranty terms, in one document. Most local installers hand over a working system and a phone number. You get both, plus this.',
+                                hi: 'हर हैलोसन ग्राहक को हैंडओवर पर एक निजी ओनर्स हैंडबुक मिलती है - आपके सिस्टम की जानकारी, सिंगल लाइन डायग्राम, सफाई की दिनचर्या, रखरखाव अनुसूची और वारंटी शर्तें, सब एक ही दस्तावेज़ में। ज़्यादातर स्थानीय इंस्टॉलर सिर्फ चालू सिस्टम और एक फ़ोन नंबर देकर चले जाते हैं। आपको दोनों मिलते हैं, साथ ही यह भी।' },
   'std-handover-cta':        { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट का अनुरोध करें' },
   'std-handover-card-title': { en: 'Owner\'s Handbook', hi: 'ओनर्स हैंडबुक' },
   'std-handover-card-sub':   { en: 'ISSUED AT HANDOVER · YOURS TO KEEP', hi: 'हैंडओवर पर जारी · आपके पास रहेगी' },
@@ -307,8 +307,8 @@ const TRANSLATIONS = {
 
   // ---- CTA band ----
   'std-cta-title': { en: 'Ask any installer to show you this page', hi: 'किसी भी इंस्टॉलर से यह पेज दिखाने को कहें' },
-  'std-cta-sub':   { en: 'If they can\'t, that tells you what you need to know. If they can — compare it to ours, and then call us.',
-                      hi: 'अगर वे नहीं दिखा पाते, तो यही आपके लिए काफी जवाब है। अगर दिखा पाते हैं — तो उसकी तुलना हमारे मानक से करें, फिर हमें कॉल करें।' },
+  'std-cta-sub':   { en: 'If they can\'t, that tells you what you need to know. If they can - compare it to ours, and then call us.',
+                      hi: 'अगर वे नहीं दिखा पाते, तो यही आपके लिए काफी जवाब है। अगर दिखा पाते हैं - तो उसकी तुलना हमारे मानक से करें, फिर हमें कॉल करें।' },
   'std-cta-btn1':  { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट का अनुरोध करें' },
   'std-cta-btn2':  { en: 'Calculate My Savings', hi: 'मेरी बचत जानें' },
   
@@ -352,8 +352,8 @@ const TRANSLATIONS = {
   // ---- Calculator page ----
   'calc-eyebrow': { en: 'Instant estimate', hi: 'तुरंत अनुमान' },
   'calc-title':   { en: 'What could solar save you?', hi: 'सोलर से आपको कितनी बचत हो सकती है?' },
-  'calc-sub':     { en: 'Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote — book a free site visit for exact numbers.',
-                   hi: 'मोटे आकार और बचत अनुमान के लिए अपना औसत मासिक बिजली बिल दर्ज करें। यह एक मार्गदर्शन है, कोटेशन नहीं — सटीक आंकड़ों के लिए मुफ़्त साइट विज़िट बुक करें।' },
+  'calc-sub':     { en: 'Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote - book a free site visit for exact numbers.',
+                   hi: 'मोटे आकार और बचत अनुमान के लिए अपना औसत मासिक बिजली बिल दर्ज करें। यह एक मार्गदर्शन है, कोटेशन नहीं - सटीक आंकड़ों के लिए मुफ़्त साइट विज़िट बुक करें।' },
 
   'calc-field-bill':   { en: 'Average monthly electricity bill (₹)', hi: 'औसत मासिक बिजली बिल (₹)' },
   'calc-field-tariff': { en: 'Your electricity tariff (₹ per unit)', hi: 'आपका बिजली टैरिफ (₹ प्रति यूनिट)' },
@@ -365,8 +365,8 @@ const TRANSLATIONS = {
   'calc-pdf-btn':      { en: 'Download PDF Estimate', hi: 'PDF अनुमान डाउनलोड करें' },
   'calc-pdf-btn-generating': { en: 'Generating PDF…', hi: 'PDF तैयार हो रहा है…' },
   'calc-btn':          { en: 'Calculate', hi: 'गणना करें' },
-  'calc-note-main':    { en: 'Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.',
-                        hi: 'लगभग 4 सन-आवर/दिन जनरेशन और मौजूदा PM सूर्य घर (केंद्रीय) + UPNEDA (यूपी राज्य) सब्सिडी स्लैब आवासीय रूफटॉप के लिए मानते हुए। संपादन योग्य डिफ़ॉल्ट — साइट-विशिष्ट आंकड़े के लिए हमसे पूछें।' },
+  'calc-note-main':    { en: 'Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults - ask us for a site-specific number.',
+                        hi: 'लगभग 4 सन-आवर/दिन जनरेशन और मौजूदा PM सूर्य घर (केंद्रीय) + UPNEDA (यूपी राज्य) सब्सिडी स्लैब आवासीय रूफटॉप के लिए मानते हुए। संपादन योग्य डिफ़ॉल्ट - साइट-विशिष्ट आंकड़े के लिए हमसे पूछें।' },
 
   'res-size-label':            { en: 'Recommended system size', hi: 'अनुशंसित सिस्टम आकार' },
   'res-units-label':           { en: 'Estimated generation', hi: 'अनुमानित जनरेशन' },
@@ -389,8 +389,8 @@ const TRANSLATIONS = {
   'emi-heading-2':             { en: 'Once your subsidy is credited', hi: 'जब आपकी सब्सिडी जमा हो जाए' },
   'emi-loan-amount-post-label': { en: 'Reduced loan amount after subsidy disbursal', hi: 'सब्सिडी वितरण के बाद घटी हुई लोन राशि' },
   'emi-monthly-post-label':    { en: 'Reduced monthly EMI', hi: 'घटी हुई मासिक EMI' },
-  'emi-note':                  { en: 'Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it\'s credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).',
-                                hi: 'यह केवल उदाहरण है, ऊपर दिए गए डाउन पेमेंट, अवधि और दर पर आधारित — आपकी वास्तविक लोन शर्तें ऋणदाता पर निर्भर करती हैं। यह हैलोसन एनर्जी सिस्टम्स की ओर से लोन ऑफ़र नहीं है। लोन पूरे सिस्टम की लागत पर तय किया जाता है क्योंकि सब्सिडी आमतौर पर इंस्टॉलेशन के बाद जमा होती है; एक बार जमा होने पर, आपका बकाया लोन और EMI ऊपर दिखाए अनुसार घटाया जा सकता है (वही अवधि और दर)।' },
+  'emi-note':                  { en: 'Illustrative only, based on the down payment, tenure and rate above - your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it\'s credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).',
+                                hi: 'यह केवल उदाहरण है, ऊपर दिए गए डाउन पेमेंट, अवधि और दर पर आधारित - आपकी वास्तविक लोन शर्तें ऋणदाता पर निर्भर करती हैं। यह हैलोसन एनर्जी सिस्टम्स की ओर से लोन ऑफ़र नहीं है। लोन पूरे सिस्टम की लागत पर तय किया जाता है क्योंकि सब्सिडी आमतौर पर इंस्टॉलेशन के बाद जमा होती है; एक बार जमा होने पर, आपका बकाया लोन और EMI ऊपर दिखाए अनुसार घटाया जा सकता है (वही अवधि और दर)।' },
 
   'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' },
 
@@ -418,8 +418,8 @@ const TRANSLATIONS = {
   'pm-hero-eyebrow-guide': { en: 'A practical guide for homeowners', hi: 'घर के मालिकों के लिए एक व्यावहारिक मार्गदर्शिका' },
   'pm-hero-h1-line1':      { en: 'PM Surya Ghar', hi: 'PM सूर्य घर' },
   'pm-hero-h1-line2':      { en: 'from application to subsidy.', hi: 'आवेदन से सब्सिडी तक।' },
-  'pm-hero-sub':            { en: 'Thinking about rooftop solar under PM Surya Ghar Muft Bijli Yojana? Here is the complete journey — eligibility, documents, portal application, installation, DISCOM inspection, net meter and Central Financial Assistance.',
-                              hi: 'PM सूर्य घर मुफ़्त बिजली योजना के तहत रूफटॉप सोलर के बारे में सोच रहे हैं? यहाँ पूरी यात्रा दी गई है — पात्रता, दस्तावेज़, पोर्टल आवेदन, इंस्टॉलेशन, DISCOM निरीक्षण, नेट मीटर और केंद्रीय वित्तीय सहायता।' },
+  'pm-hero-sub':            { en: 'Thinking about rooftop solar under PM Surya Ghar Muft Bijli Yojana? Here is the complete journey - eligibility, documents, portal application, installation, DISCOM inspection, net meter and Central Financial Assistance.',
+                              hi: 'PM सूर्य घर मुफ़्त बिजली योजना के तहत रूफटॉप सोलर के बारे में सोच रहे हैं? यहाँ पूरी यात्रा दी गई है - पात्रता, दस्तावेज़, पोर्टल आवेदन, इंस्टॉलेशन, DISCOM निरीक्षण, नेट मीटर और केंद्रीय वित्तीय सहायता।' },
   'pm-hero-cta-1':          { en: 'Calculate My Savings', hi: 'मेरी बचत जानें' },
   'pm-hero-cta-2':          { en: 'Talk to Halosun', hi: 'हैलोसन से बात करें' },
   'pm-hero-note':           { en: 'Residential rooftop solar · Uttar Pradesh · UPNEDA registered vendor', hi: 'आवासीय रूफटॉप सोलर · उत्तर प्रदेश · UPNEDA पंजीकृत वेंडर' },
