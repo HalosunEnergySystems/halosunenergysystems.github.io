@@ -168,3 +168,25 @@ function initMaintenanceBanner() {
   }
 }
 initMaintenanceBanner();
+
+/* ===================================================================
+   Breadcrumb "Back" link
+   -------------------------------------------------------------------
+   The link's href already points to index.html as a safe fallback
+   (works for anyone who bookmarked, opened a shared link, or arrived
+   in a fresh tab with no history to go back to). If there IS same-site
+   browser history to go back to, we intercept the click and use
+   history.back() instead, so it returns to wherever the visitor
+   actually came from rather than always jumping to the homepage.
+=================================================================== */
+document.querySelectorAll('.breadcrumb-back').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    const cameFromSameSite = document.referrer &&
+      new URL(document.referrer).origin === window.location.origin;
+    if (window.history.length > 1 && cameFromSameSite) {
+      e.preventDefault();
+      window.history.back();
+    }
+    // else: let the default href="index.html" navigation proceed.
+  });
+});
