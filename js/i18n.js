@@ -236,6 +236,7 @@ const TRANSLATIONS = {
   'cta-band-process-title': { en: 'Curious what your system would look like?', hi: 'जानना चाहते हैं कि आपका सिस्टम कैसा दिखेगा?' },
 
 // ---- Standard Page Hero ----
+  'nav-standard': { en: 'Our Standard', hi: 'हमारा मानक' },
   'std-eyebrow':    { en: 'The Halosun Standard', hi: 'हैलोसन मानक' },
   'std-title':      { en: "What's actually under your panels", hi: 'आपके पैनल के नीचे असल में क्या है' },
   'std-sub':        { en: "Two rooftop systems can look identical from the street and perform completely differently for the next 25 years. The difference is almost never the panel brand — it's what's fixed to your roof, routed through your walls, and buried in your earth pit. That's what this page is about.",
