@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6843K863Q5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6843K863Q5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Halosun Standard — What's Actually Under Your Panels</title>
+<meta name="description" content="Mounting, waterproofing, cable routing and earthing — see the engineering standard Halosun applies to every installation, and why it's usually invisible until something goes wrong.">
+<link rel="icon" href="assets/logo-favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/features.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://halosunenergysystems.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "The Halosun Standard", "item": "https://halosunenergysystems.com/standard.html" }
+  ]
+}
+</script>
+
+<style>
+  /* ===================================================================
+     THE HALOSUN STANDARD — page-scoped styles
+     Everything below is namespaced under .std- so it can't collide
+     with shared site classes. Colors reference the site's existing
+     custom properties with the same warm sun/ember/ink fallbacks used
+     on calculator.html, so this page inherits the live palette
+     automatically once dropped into the real stylesheet chain.
+  =================================================================== */
+
+  .std-section {
+    padding-top: 0;
+  }
+  .std-section + .std-section {
+    border-top: 1px solid rgba(15, 32, 56, 0.08);
+  }
+
+  .std-lede {
+    max-width: 62ch;
+  }
+
+  /* ---------- Ten Checks grid ---------- */
+  .std-checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 2rem;
+  }
+  .std-check {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 18px 18px 18px 16px;
+    border: 1px solid rgba(15, 32, 56, 0.1);
+    border-left: 3px solid var(--sun, #d9a94e);
+    border-radius: 10px;
+    background: rgba(217, 169, 78, 0.045);
+  }
+  .std-check-mark {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--sun, #d9a94e);
+    color: var(--ink, #0f2038);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .std-check p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* ---------- Diagram card shell ---------- */
+  .std-diagram-card {
+    border: 1px solid rgba(15, 32, 56, 0.1);
+    border-radius: 14px;
+    background:
+      linear-gradient(rgba(15, 32, 56, 0.035) 1px, transparent 1px) 0 0 / 100% 28px,
+      linear-gradient(90deg, rgba(15, 32, 56, 0.035) 1px, transparent 1px) 0 0 / 28px 100%,
+      #fff;
+    padding: 28px;
+    margin-top: 2rem;
+  }
+  .std-diagram-card svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .std-diagram-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    fill: var(--ink, #0f2038);
+  }
+  .std-diagram-label-dim {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    fill: rgba(15, 32, 56, 0.55);
+  }
+  .std-diagram-caption {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: rgba(15, 32, 56, 0.6);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- Two-up layout ---------- */
+  .std-twoup {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 860px) {
+    .std-twoup { grid-template-columns: 1fr; }
+  }
+  .std-spec-list {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .std-spec-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .std-spec-list li::before {
+    content: '';
+    flex: 0 0 auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 9px;
+    background: var(--ember, #e85d2c);
+  }
+  .std-spec-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: rgba(232, 93, 44, 0.1);
+    color: var(--ember, #e85d2c);
+    margin-right: 8px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Comparison table ---------- */
+  .std-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 2rem;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(15, 32, 56, 0.1);
+  }
+  @media (max-width: 700px) {
+    .std-compare { grid-template-columns: 1fr; }
+  }
+  .std-compare-col {
+    background: #fff;
+    padding: 22px 24px;
+  }
+  .std-compare-col h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .std-compare-col.is-good h3 { color: #157a4a; }
+  .std-compare-col.is-bad h3 { color: #b3261e; }
+  .std-compare-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .std-compare-col li {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    padding-left: 20px;
+    position: relative;
+  }
+  .std-compare-col.is-good li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #157a4a;
+    font-weight: 700;
+  }
+  .std-compare-col.is-bad li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: #b3261e;
+    font-weight: 700;
+  }
+
+  /* ---------- Handover card ---------- */
+  .std-handover-card {
+    border: 1px solid rgba(15, 32, 56, 0.1);
+    border-radius: 14px;
+    padding: 26px 26px 22px;
+    background: var(--ink, #0f2038);
+    color: #f1f5f9;
+  }
+  .std-handover-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0 0 4px;
+    font-size: 1.15rem;
+  }
+  .std-handover-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: rgba(241, 245, 249, 0.55);
+    margin: 0 0 18px;
+  }
+  .std-handover-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .std-handover-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.92rem;
+    padding-bottom: 11px;
+    border-bottom: 1px dashed rgba(241, 245, 249, 0.14);
+  }
+  .std-handover-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .std-handover-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sun, #d9a94e);
+    flex: 0 0 auto;
+  }
+
+  /* ---------- CTA band ---------- */
+  .std-cta-band {
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--ink, #0f2038), #16304f);
+    color: #fff;
+    padding: 44px 36px;
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+  .std-cta-band h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0 0 10px;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+  }
+  .std-cta-band p {
+    color: rgba(241, 245, 249, 0.75);
+    max-width: 48ch;
+    margin: 0 auto 24px;
+  }
+  .std-cta-band .std-cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .std-hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 1.6rem;
+  }
+</style>
+</head>
+<body>
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="index.html" class="logo">
+       <img class="logo-mark" src="assets/logo-header-footer.png" alt="Halosun Energy Systems">
+      <span>Halosun <em>Energy Systems</em></span>
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="pm-suryaghar.html" class="nav-highlight" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
+      <a href="process.html" data-i18n="nav-process">Process</a>
+      <a href="standard.html" class="active" data-i18n="nav-standard">Our Standard</a>
+      <a href="calculator.html" data-i18n="nav-calculator">Calculator</a>
+      <a href="gallery.html" data-i18n="nav-projects">Projects</a>
+      <a href="faq.html" data-i18n="nav-faq">Solar FAQ</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="hi">हि</button>
+    </div>
+    <a href="contact.html" class="btn btn-primary btn-small nav-cta" data-i18n="nav-cta">Get a Free Quote</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="wrap breadcrumb">
+      <a href="index.html" class="breadcrumb-back" data-i18n="breadcrumb-back">← Back</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <span class="breadcrumb-current" data-i18n="nav-standard">Our Standard</span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="section std-section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="std-eyebrow">The Halosun Standard</p>
+      <h1 data-i18n="std-title">What's actually under your panels</h1>
+      <p class="section-sub std-lede" data-i18n="std-sub">Two rooftop systems can look identical from the street and perform completely differently for the next 25 years. The difference is almost never the panel brand — it's what's fixed to your roof, routed through your walls, and buried in your earth pit. That's what this page is about.</p>
+      <div class="std-hero-actions">
+        <a href="contact.html" class="btn btn-primary" data-i18n="std-hero-cta1">Request a Free Site Visit</a>
+        <a href="calculator.html" class="btn btn-ghost" data-i18n="std-hero-cta2">Calculate My Savings</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEN CHECKS ============ -->
+  <section class="section std-section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="std-checks-eyebrow">Applied to every job, same size or not</p>
+      <h2 data-i18n="std-checks-title">Ten checks, no exceptions</h2>
+      <p class="section-sub std-lede" data-i18n="std-checks-sub">Whether it's a 6-panel rooftop or a 50 kW commercial plant, every Halosun installation is signed off against the same checklist before we call it finished.</p>
+
+      <div class="std-checklist">
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-1">Mounting structure sized for your roof and your panel load — not trimmed on steel gauge to shave the quote.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-2">Every leg fixed to resist wind uplift, not just hold the array down under its own weight.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-3">Every roof penetration sealed in layers — the roof slab underneath stays untouched and dry.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-4">DC and AC cabling sized for minimal voltage drop, not the cheapest gauge that technically carries current.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-5">Earthed at every stage — panels, structure, inverter, and distribution board — tied into one system, not one token pit.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-6">Cable runs dressed, labeled, and routed for a future electrician to actually trace — not hidden behind the inverter.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-7">Every electrical and structural joint torqued correctly, not just hand-tight.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-8">A full commissioning test before we call the job finished — not before we send the invoice.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-9">An on-site walkthrough — you see your isolators, your monitoring app, and your earth points before we leave.</p></div>
+        <div class="std-check"><span class="std-check-mark">✓</span><p data-i18n="std-check-10">A complete handover file, in writing — not a phone number you have to hope still works in year three.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOUNTING / STRUCTURE ============ -->
+  <section class="section std-section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="std-mount-eyebrow">Structure &amp; waterproofing</p>
+      <h2 data-i18n="std-mount-title">The part nobody checks after handover</h2>
+      <p class="section-sub std-lede" data-i18n="std-mount-sub">Roof leaks and lifted panels almost never come from bad weather alone. They come from a structure gauge trimmed to win a quote, or a leg that was never meant to hold against wind. We size the structure for the load your roof will actually carry, and every leg is fixed to take wind uplift, not just gravity — nothing here gets undercut to save on steel.</p>
+
+      <div class="std-diagram-card">
+        <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross-section of a Halosun roof mounting point, layered from the solar panel down through the fastener, base plate, structural anchor, waterproof seal, to the undisturbed roof slab.">
+          <!-- panel -->
+          <rect x="230" y="20" width="300" height="26" rx="3" fill="var(--sun, #d9a94e)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+          <text x="380" y="38" text-anchor="middle" class="std-diagram-label" font-weight="600">SOLAR PANEL + RAIL</text>
+
+          <!-- vertical leg -->
+          <rect x="368" y="46" width="24" height="60" fill="none" stroke="var(--ink, #0f2038)" stroke-width="2.5"/>
+          <text x="480" y="80" class="std-diagram-label-dim">leg fixed against wind uplift</text>
+          <line x1="392" y1="76" x2="472" y2="78" stroke="rgba(15,32,56,0.35)" stroke-width="1"/>
+
+          <!-- stainless fastener -->
+          <rect x="350" y="106" width="60" height="16" rx="2" fill="var(--ember, #e85d2c)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+          <text x="280" y="118" text-anchor="end" class="std-diagram-label">STAINLESS FASTENER</text>
+          <line x1="350" y1="114" x2="288" y2="114" stroke="rgba(15,32,56,0.35)" stroke-width="1"/>
+
+          <!-- base plate -->
+          <rect x="310" y="122" width="140" height="14" rx="2" fill="var(--sun-dim, #b98b3a)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+          <text x="480" y="133" class="std-diagram-label-dim">base plate</text>
+          <line x1="450" y1="129" x2="472" y2="129" stroke="rgba(15,32,56,0.35)" stroke-width="1"/>
+
+          <!-- anchor -->
+          <rect x="365" y="136" width="30" height="40" fill="none" stroke="var(--ink, #0f2038)" stroke-width="2.5" stroke-dasharray="3 2"/>
+          <text x="280" y="160" text-anchor="end" class="std-diagram-label">STRUCTURAL ANCHOR POINT</text>
+          <line x1="365" y1="156" x2="288" y2="156" stroke="rgba(15,32,56,0.35)" stroke-width="1"/>
+
+          <!-- waterproof seal -->
+          <ellipse cx="380" cy="178" rx="60" ry="9" fill="#2e7d32" opacity="0.28"/>
+          <text x="480" y="182" class="std-diagram-label-dim">waterproof seal layer</text>
+          <line x1="440" y1="178" x2="472" y2="180" stroke="rgba(15,32,56,0.35)" stroke-width="1"/>
+
+          <!-- roof slab -->
+          <rect x="60" y="188" width="640" height="70" fill="rgba(15,32,56,0.06)" stroke="var(--ink, #0f2038)" stroke-width="2"/>
+          <text x="380" y="228" text-anchor="middle" class="std-diagram-label" font-weight="600">ROOF SLAB — UNDISTURBED</text>
+
+          <!-- hatch pattern for concrete -->
+          <g stroke="rgba(15,32,56,0.12)" stroke-width="1">
+            <line x1="80" y1="188" x2="60" y2="208"/>
+            <line x1="120" y1="188" x2="80" y2="228"/>
+            <line x1="160" y1="188" x2="100" y2="248"/>
+            <line x1="200" y1="188" x2="140" y2="248"/>
+            <line x1="240" y1="188" x2="180" y2="248"/>
+            <line x1="280" y1="188" x2="220" y2="248"/>
+            <line x1="320" y1="188" x2="260" y2="248"/>
+            <line x1="360" y1="188" x2="300" y2="248"/>
+            <line x1="400" y1="188" x2="340" y2="248"/>
+            <line x1="440" y1="188" x2="380" y2="248"/>
+            <line x1="480" y1="188" x2="420" y2="248"/>
+            <line x1="520" y1="188" x2="460" y2="248"/>
+            <line x1="560" y1="188" x2="500" y2="248"/>
+            <line x1="600" y1="188" x2="540" y2="248"/>
+            <line x1="640" y1="188" x2="580" y2="248"/>
+            <line x1="680" y1="188" x2="620" y2="248"/>
+            <line x1="700" y1="200" x2="660" y2="248"/>
+          </g>
+        </svg>
+        <p class="std-diagram-caption" data-i18n="std-mount-caption">// simplified reference — full structural spec is in your project handover file</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CABLE ROUTING COMPARISON ============ -->
+  <section class="section std-section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="std-cable-eyebrow">Cable routing</p>
+      <h2 data-i18n="std-cable-title">Where the inverter sits changes everything downstream</h2>
+      <p class="section-sub std-lede" data-i18n="std-cable-sub">A longer DC run from panel to inverter is normal and low-loss. A long AC run from inverter to meter is not — and it's the single most common shortcut that quietly eats into your generation for the next 25 years.</p>
+
+      <div class="std-compare">
+        <div class="std-compare-col is-good">
+          <h3 data-i18n="std-cable-good-title">Halosun standard</h3>
+          <ul>
+            <li data-i18n="std-cable-good-1">AC cable run kept as short as physically possible</li>
+            <li data-i18n="std-cable-good-2">Lower AC voltage drop, lower cable losses overall</li>
+            <li data-i18n="std-cable-good-3">Runs labeled and routed for future inspection</li>
+            <li data-i18n="std-cable-good-4">Easy to trace, easy to service</li>
+          </ul>
+        </div>
+        <div class="std-compare-col is-bad">
+          <h3 data-i18n="std-cable-bad-title">What we avoid</h3>
+          <ul>
+            <li data-i18n="std-cable-bad-1">Inverter placed wherever's convenient, far from the meter</li>
+            <li data-i18n="std-cable-bad-2">Long, unplanned AC run to compensate</li>
+            <li data-i18n="std-cable-bad-3">Higher voltage drop, more cable, more loss</li>
+            <li data-i18n="std-cable-bad-4">Harder to trace, harder to service, harder to fault-find</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EARTHING ============ -->
+  <section class="section std-section">
+    <div class="wrap">
+      <div class="std-twoup">
+        <div>
+          <p class="eyebrow" data-i18n="std-earth-eyebrow">Earthing</p>
+          <h2 data-i18n="std-earth-title">Earthed the way the code requires — tied together, not scattered</h2>
+          <p class="section-sub" data-i18n="std-earth-sub">A single earth pit that looks fine to an inspector isn't the same as a system that's actually protected. We earth every stage of the system and connect the earthing network together, so a fault has one reliable, low-resistance path to ground — not four separate pits each hoping it's the one that works.</p>
+          <ul class="std-spec-list">
+            <li><span><span class="std-spec-tag" data-i18n="std-earth-tag1">4 POINTS</span><span data-i18n="std-earth-item1">Panels, mounting structure, inverter, and distribution board are each earthed independently.</span></span></li>
+            <li><span><span class="std-spec-tag" data-i18n="std-earth-tag2">16 SQ.MM</span><span data-i18n="std-earth-item2">Aluminium earth conductor sized to carry a fault current safely, not the thinnest wire that technically qualifies.</span></span></li>
+            <li><span><span class="std-spec-tag" data-i18n="std-earth-tag3">TIED IN</span><span data-i18n="std-earth-item3">Where a site needs more than one earth pit, the pits are interconnected into a single network rather than left as isolated points.</span></span></li>
+          </ul>
+        </div>
+        <div class="std-diagram-card" style="margin-top:0;">
+          <svg viewBox="0 0 340 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Simplified earthing schematic showing panels, mounting structure, inverter and distribution board each earthed and connected to two interconnected earth pits.">
+            <g class="std-diagram-label-dim">
+              <rect x="20" y="14" width="130" height="26" rx="4" fill="none" stroke="var(--ink,#0f2038)" stroke-width="1.6"/>
+              <text x="85" y="31" text-anchor="middle" class="std-diagram-label">PANELS</text>
+
+              <rect x="190" y="14" width="130" height="26" rx="4" fill="none" stroke="var(--ink,#0f2038)" stroke-width="1.6"/>
+              <text x="255" y="31" text-anchor="middle" class="std-diagram-label">STRUCTURE</text>
+
+              <rect x="20" y="66" width="130" height="26" rx="4" fill="none" stroke="var(--ink,#0f2038)" stroke-width="1.6"/>
+              <text x="85" y="83" text-anchor="middle" class="std-diagram-label">INVERTER</text>
+
+              <rect x="190" y="66" width="130" height="26" rx="4" fill="none" stroke="var(--ink,#0f2038)" stroke-width="1.6"/>
+              <text x="255" y="83" text-anchor="middle" class="std-diagram-label">ACDB</text>
+            </g>
+
+            <!-- drop lines to earth bus -->
+            <path d="M85 40 V130" stroke="var(--ember,#e85d2c)" stroke-width="2" fill="none"/>
+            <path d="M255 40 V130" stroke="var(--ember,#e85d2c)" stroke-width="2" fill="none"/>
+            <path d="M85 92 V130" stroke="var(--ember,#e85d2c)" stroke-width="2" fill="none"/>
+            <path d="M255 92 V130" stroke="var(--ember,#e85d2c)" stroke-width="2" fill="none"/>
+
+            <!-- earth bus bar -->
+            <line x1="60" y1="130" x2="280" y2="130" stroke="var(--ink,#0f2038)" stroke-width="2.5"/>
+            <text x="170" y="122" text-anchor="middle" class="std-diagram-label" font-weight="600">16 SQ.MM AL EARTH BUS</text>
+
+            <!-- down to pits -->
+            <path d="M100 130 V190" stroke="var(--ink,#0f2038)" stroke-width="2"/>
+            <path d="M240 130 V190" stroke="var(--ink,#0f2038)" stroke-width="2"/>
+
+            <!-- interconnection between pits -->
+            <path d="M100 244 H240" stroke="var(--ember,#e85d2c)" stroke-width="2" stroke-dasharray="4 3"/>
+            <text x="170" y="234" text-anchor="middle" class="std-diagram-label-dim">interconnected</text>
+
+            <!-- earth pits -->
+            <circle cx="100" cy="244" r="34" fill="rgba(15,32,56,0.05)" stroke="var(--ink,#0f2038)" stroke-width="2"/>
+            <text x="100" y="240" text-anchor="middle" class="std-diagram-label">EARTH</text>
+            <text x="100" y="253" text-anchor="middle" class="std-diagram-label">PIT 1</text>
+
+            <circle cx="240" cy="244" r="34" fill="rgba(15,32,56,0.05)" stroke="var(--ink,#0f2038)" stroke-width="2"/>
+            <text x="240" y="240" text-anchor="middle" class="std-diagram-label">EARTH</text>
+            <text x="240" y="253" text-anchor="middle" class="std-diagram-label">PIT 2</text>
+
+            <line x1="60" y1="292" x2="280" y2="292" stroke="rgba(15,32,56,0.15)" stroke-width="1"/>
+            <text x="170" y="308" text-anchor="middle" class="std-diagram-label-dim">GROUND</text>
+          </svg>
+          <p class="std-diagram-caption" data-i18n="std-earth-caption">// simplified reference — pit construction detail is in your project handover file</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HANDOVER FILE ============ -->
+  <section class="section std-section">
+    <div class="wrap">
+      <div class="std-twoup">
+        <div>
+          <p class="eyebrow" data-i18n="std-handover-eyebrow">Documentation</p>
+          <h2 data-i18n="std-handover-title">You get this in writing, not a phone number to remember</h2>
+          <p class="section-sub" data-i18n="std-handover-sub">Every Halosun customer receives a personal Owner's Handbook at handover — your system specs, single line diagram, cleaning routine, maintenance schedule and warranty terms, in one document. Most local installers hand over a working system and a phone number. You get both, plus this.</p>
+          <div class="std-hero-actions">
+            <a href="contact.html" class="btn btn-primary" data-i18n="std-handover-cta">Request a Free Site Visit</a>
+          </div>
+        </div>
+        <div class="std-handover-card">
+          <h3 data-i18n="std-handover-card-title">Owner's Handbook</h3>
+          <p class="std-handover-sub" data-i18n="std-handover-card-sub">ISSUED AT HANDOVER · YOURS TO KEEP</p>
+          <ul class="std-handover-list">
+            <li><span class="std-handover-dot"></span><span data-i18n="std-handover-li1">System specification sheet</span></li>
+            <li><span class="std-handover-dot"></span><span data-i18n="std-handover-li2">Single line diagram (SLD)</span></li>
+            <li><span class="std-handover-dot"></span><span data-i18n="std-handover-li3">Panel care &amp; cleaning routine</span></li>
+            <li><span class="std-handover-dot"></span><span data-i18n="std-handover-li4">Scheduled maintenance plan</span></li>
+            <li><span class="std-handover-dot"></span><span data-i18n="std-handover-li5">Warranty summary, by component</span></li>
+            <li><span class="std-handover-dot"></span><span data-i18n="std-handover-li6">Support &amp; emergency contact details</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section std-section">
+    <div class="wrap">
+      <div class="std-cta-band">
+        <h2 data-i18n="std-cta-title">Ask any installer to show you this page</h2>
+        <p data-i18n="std-cta-sub">If they can't, that tells you what you need to know. If they can — compare it to ours, and then call us.</p>
+        <div class="std-cta-row">
+          <a href="contact.html" class="btn btn-primary" data-i18n="std-cta-btn1">Request a Free Site Visit</a>
+          <a href="calculator.html" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.3);color:#fff;" data-i18n="std-cta-btn2">Calculate My Savings</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <img class="logo-mark" src="assets/logo-header-footer.png" alt="Halosun Energy Systems">
+        <span>Halosun <em>Energy Systems</em></span>
+      </a>
+      <p class="footer-lead" data-i18n="footer-lead">Professional solar engineering, installation and maintenance for homes and businesses.</p>
+      <div class="footer-badge"><span>UPNEDA Registered</span><strong>RBL2605181404</strong></div>
+    </div>
+
+    <div class="footer-col">
+      <h3 data-i18n="footer-explore">Explore</h3>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="pm-suryaghar.html" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
+      <a href="process.html" data-i18n="card-02-title">Our Process</a>
+      <a href="standard.html" data-i18n="nav-standard">Our Standard</a>
+      <a href="calculator.html" data-i18n="card-03-title">Savings Calculator</a>
+      <a href="gallery.html" data-i18n="nav-projects">Projects</a>
+      <a href="faq.html" data-i18n="footer-faq-myths">Solar FAQ &amp; Myths</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h3 data-i18n="footer-contact">Contact</h3>
+      <a href="tel:+919250678826">+91 92506 78826</a>
+      <a href="mailto:info@halosunenergysystems.com">info@halosunenergysystems.com</a>
+      <span>743/7, <span data-i18n="footer-contactAdd">Tilak Nagar, Raebareli, Uttar Pradesh</span></span>
+      <a class="footer-wa-link" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener" data-i18n="footer-wa">Chat on WhatsApp →</a>
+    </div>
+
+    <div class="footer-col footer-social-col">
+      <h3 data-i18n="footer-connect">Connect</h3>
+      <p data-i18n="footer-connect-desc">Follow Halosun for solar projects, engineering insights and updates.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a class="social-link" href="https://www.facebook.com/profile.php?id=61590382589778" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.67.33-1 1-1Z"/></svg>
+        </a>
+        <a class="social-link" href="https://www.instagram.com/halosunenergysystems/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1"/></svg>
+        </a>
+        <a class="social-link social-whatsapp" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.7 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.6h-.1c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.3 2.9 7 0 5.4-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"/></svg>
+        </a>
+      </div>
+      <span class="social-note">Facebook · Instagram · WhatsApp</span>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <p class="footer-tagline" data-i18n="footer-tagline">Design <span>·</span> Build <span>·</span> Power</p>
+    <div class="footer-meta">
+      <span>© <span id="year"></span> Halosun Energy Systems</span>
+      <span class="meta-dot">•</span>
+      <span>Site Last Updated: <strong id="last-updated">27 August 2026</strong></span>
+    </div>
+  </div>
+</footer>
+
+<a class="floating-whatsapp" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener" aria-label="Chat with Halosun Energy Systems on WhatsApp" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.7 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.6h-.1c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.3 2.9 7 0 5.4-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"/></svg>
+  <span>WhatsApp</span>
+</a>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
