@@ -20,6 +20,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/features.css"> 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://halosunenergysystems.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://halosunenergysystems.com/services.html" }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- ============ HEADER ============ -->
@@ -51,6 +61,13 @@
 </header>
 
 <main>
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="wrap breadcrumb">
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <span class="breadcrumb-current" data-i18n="nav-services">Services</span>
+    </div>
+  </nav>
   <section class="section page-hero">
     <div class="wrap">
       <p class="eyebrow" data-i18n="svc-hero-eyebrow">What we do</p>
