@@ -42,12 +42,6 @@ const TRANSLATIONS = {
   'card-03-desc':    { en: 'See your estimated system size, subsidy and payback.', hi: 'अपने सिस्टम आकार, सब्सिडी और पेबैक का अनुमान देखें।' },
   'card-04-title':   { en: 'Projects',              hi: 'परियोजनाएँ' },
   'card-04-desc':    { en: 'A look at recent installations on the roof.', hi: 'हाल की छत इंस्टॉलेशन की झलक।' },
-  'card-05-title': { en: 'PM Surya Ghar', hi: 'पीएम सूर्य घर' },
-  'card-05-desc':  { en: 'Subsidy eligibility, documents and the full application process.', hi: 'सब्सिडी पात्रता, दस्तावेज़ और पूरी आवेदन प्रक्रिया।' },
-  'card-06-title': { en: 'Solar FAQ', hi: 'सोलर सामान्य प्रश्न' },
-  'card-06-desc':  { en: 'Straight answers on cost, subsidy, maintenance and myths.', hi: 'लागत, सब्सिडी, रखरखाव और भ्रांतियों पर सीधे जवाब।' },
-  'card-07-title': { en: 'Contact', hi: 'संपर्क करें' },
-  'card-07-desc':  { en: 'Get a free site visit and a no-obligation quote.', hi: 'मुफ़्त साइट विज़िट और बिना किसी बाध्यता के कोटेशन पाएं।' },
 
   'faq-eyebrow':     { en: 'Know before you invest', hi: 'निवेश से पहले जानें' },
   'faq-title':       { en: 'Solar questions deserve engineering answers.', hi: 'सोलर सवालों के जवाब इंजीनियरिंग नज़रिए से मिलने चाहिए।' },
@@ -80,7 +74,7 @@ const TRANSLATIONS = {
   'footer-explore':  { en: 'Explore',               hi: 'जानिए' },
   'footer-contact':  { en: 'Contact',               hi: 'संपर्क करें' },
   'footer-contactAdd': { 
-  en: 'Tilak Nagar,<br>Raebareli, Uttar Pradesh', 
+  en: 'Tilak Nagar, Raebareli, Uttar Pradesh', 
   hi: 'तिलक नगर, रायबरेली, उत्तर प्रदेश' 
 },
   
