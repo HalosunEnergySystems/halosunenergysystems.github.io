@@ -10,6 +10,7 @@ const TRANSLATIONS = {
   'nav-services':    { en: 'Services',            hi: 'सेवाएँ' },
   'nav-pm-suryaghar':{ en: 'PM Surya Ghar',        hi: 'PM सूर्य घर' },
   'nav-process':     { en: 'Process',              hi: 'प्रक्रिया' },
+  'nav-standard': { en: 'Our Standard', hi: 'हमारा मानक' },
   'nav-calculator':  { en: 'Calculator',           hi: 'कैलकुलेटर' },
   'nav-projects':    { en: 'Projects',             hi: 'परियोजनाएँ' },
   'nav-faq':         { en: 'Solar FAQ',            hi: 'सोलर सवाल-जवाब' },
@@ -234,6 +235,90 @@ const TRANSLATIONS = {
 
   'cta-band-process-title': { en: 'Curious what your system would look like?', hi: 'जानना चाहते हैं कि आपका सिस्टम कैसा दिखेगा?' },
 
+// ---- Standard Page Hero ----
+  'std-eyebrow':    { en: 'The Halosun Standard', hi: 'हैलोसन मानक' },
+  'std-title':      { en: "What's actually under your panels", hi: 'आपके पैनल के नीचे असल में क्या है' },
+  'std-sub':        { en: "Two rooftop systems can look identical from the street and perform completely differently for the next 25 years. The difference is almost never the panel brand — it's what's fixed to your roof, routed through your walls, and buried in your earth pit. That's what this page is about.",
+                       hi: 'दो छत की सोलर प्रणालियाँ सड़क से देखने पर एक जैसी लग सकती हैं, लेकिन अगले 25 वर्षों तक उनका प्रदर्शन बिल्कुल अलग हो सकता है। यह फर्क लगभग कभी पैनल ब्रांड का नहीं होता — यह इस बात का होता है कि आपकी छत पर क्या फिक्स किया गया है, दीवारों से क्या रूट किया गया है, और आपके अर्थ पिट में क्या दबा है। यह पेज इसी बारे में है।' },
+  'std-hero-cta1':  { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट का अनुरोध करें' },
+  'std-hero-cta2':  { en: 'Calculate My Savings', hi: 'मेरी बचत जानें' },
+
+  // ---- Ten checks ----
+  'std-checks-eyebrow': { en: 'Applied to every job, same size or not', hi: 'हर काम पर लागू, आकार चाहे जो भी हो' },
+  'std-checks-title':   { en: 'Ten checks, no exceptions', hi: 'दस जाँच, कोई अपवाद नहीं' },
+  'std-checks-sub':     { en: "Whether it's a 6-panel rooftop or a 50 kW commercial plant, every Halosun installation is signed off against the same checklist before we call it finished.",
+                           hi: 'चाहे 6-पैनल की छत हो या 50 kW का व्यावसायिक प्लांट, हर हैलोसन इंस्टॉलेशन को पूरा मानने से पहले उसी चेकलिस्ट पर परखा जाता है।' },
+  'std-check-1':  { en: 'Mounting structure sized for your roof and your panel load — not trimmed on steel gauge to shave the quote.', hi: 'माउंटिंग संरचना आपकी छत और पैनल भार के अनुसार तय की जाती है — कोटेशन घटाने के लिए स्टील की मोटाई कम नहीं की जाती।' },
+  'std-check-2':  { en: 'Every leg fixed to resist wind uplift, not just hold the array down under its own weight.', hi: 'हर पैर हवा के दबाव को झेलने के लिए फिक्स किया जाता है, सिर्फ अपने वज़न से टिकने के लिए नहीं।' },
+  'std-check-3':  { en: 'Every roof penetration sealed in layers — the roof slab underneath stays untouched and dry.', hi: 'हर छत छेदन को परतों में सील किया जाता है — नीचे की छत की स्लैब सूखी और सुरक्षित रहती है।' },
+  'std-check-4':  { en: 'DC and AC cabling sized for minimal voltage drop, not the cheapest gauge that technically carries current.', hi: 'DC और AC केबलिंग न्यूनतम वोल्टेज ड्रॉप के लिए तय की जाती है, सिर्फ करंट ले जाने वाली सबसे सस्ती मोटाई नहीं।' },
+  'std-check-5':  { en: 'Earthed at every stage — panels, structure, inverter, and distribution board — tied into one system, not one token pit.', hi: 'हर चरण पर अर्थिंग — पैनल, संरचना, इन्वर्टर और डिस्ट्रिब्यूशन बोर्ड — सबको एक प्रणाली में जोड़ा जाता है, सिर्फ एक दिखावटी पिट नहीं।' },
+  'std-check-6':  { en: 'Cable runs dressed, labeled, and routed for a future electrician to actually trace — not hidden behind the inverter.', hi: 'केबल रन व्यवस्थित, लेबल किए गए और इस तरह रूट किए जाते हैं कि भविष्य में कोई इलेक्ट्रीशियन आसानी से समझ सके — इन्वर्टर के पीछे छिपाए नहीं जाते।' },
+  'std-check-7':  { en: 'Every electrical and structural joint torqued correctly, not just hand-tight.', hi: 'हर इलेक्ट्रिकल और संरचनात्मक जोड़ को सही टॉर्क से कसा जाता है, सिर्फ हाथ से नहीं।' },
+  'std-check-8':  { en: 'A full commissioning test before we call the job finished — not before we send the invoice.', hi: 'काम को पूरा मानने से पहले एक पूर्ण कमीशनिंग टेस्ट किया जाता है — बिल भेजने से पहले नहीं।' },
+  'std-check-9':  { en: 'An on-site walkthrough — you see your isolators, your monitoring app, and your earth points before we leave.', hi: 'साइट पर एक वॉकथ्रू — हम जाने से पहले आप अपने आइसोलेटर, मॉनिटरिंग ऐप और अर्थ पॉइंट खुद देखते हैं।' },
+  'std-check-10': { en: 'A complete handover file, in writing — not a phone number you have to hope still works in year three.', hi: 'लिखित रूप में एक पूरी हैंडओवर फाइल — सिर्फ एक फ़ोन नंबर नहीं जिसके तीसरे साल भी काम करने की उम्मीद करनी पड़े।' },
+
+  // ---- Mounting / structure ----
+  'std-mount-eyebrow': { en: 'Structure & waterproofing', hi: 'संरचना और वॉटरप्रूफिंग' },
+  'std-mount-title':   { en: "The part nobody checks after handover", hi: 'वह हिस्सा जिसे हैंडओवर के बाद कोई नहीं देखता' },
+  'std-mount-sub':     { en: "Roof leaks and lifted panels almost never come from bad weather alone. They come from a structure gauge trimmed to win a quote, or a leg that was never meant to hold against wind. We size the structure for the load your roof will actually carry, and every leg is fixed to take wind uplift, not just gravity — nothing here gets undercut to save on steel.",
+                          hi: 'छत में रिसाव और पैनल उखड़ना लगभग कभी सिर्फ खराब मौसम से नहीं होता। यह तब होता है जब कोटेशन जीतने के लिए संरचना की मोटाई घटा दी जाती है, या कोई पैर हवा झेलने के लिए बना ही नहीं होता। हम संरचना को आपकी छत के असल भार के अनुसार तय करते हैं, और हर पैर हवा के दबाव को झेलने के लिए फिक्स किया जाता है, सिर्फ गुरुत्वाकर्षण के लिए नहीं — स्टील बचाने के लिए यहाँ कोई कमी नहीं की जाती।' },
+  'std-mount-caption': { en: '// simplified reference — full structural spec is in your project handover file', hi: '// सरल संदर्भ — पूरा संरचनात्मक विवरण आपकी प्रोजेक्ट हैंडओवर फाइल में है' },
+
+  // ---- Cable routing ----
+  'std-cable-eyebrow':   { en: 'Cable routing', hi: 'केबल रूटिंग' },
+  'std-cable-title':     { en: 'Where the inverter sits changes everything downstream', hi: 'इन्वर्टर कहाँ रखा है, इससे आगे सब कुछ प्रभावित होता है' },
+  'std-cable-sub':       { en: "A longer DC run from panel to inverter is normal and low-loss. A long AC run from inverter to meter is not — and it's the single most common shortcut that quietly eats into your generation for the next 25 years.",
+                            hi: 'पैनल से इन्वर्टर तक लंबी DC लाइन सामान्य और कम नुकसान वाली होती है। लेकिन इन्वर्टर से मीटर तक लंबी AC लाइन नहीं — और यही वह सबसे आम शॉर्टकट है जो अगले 25 वर्षों तक चुपचाप आपकी जनरेशन को कम करता रहता है।' },
+  'std-cable-good-title':{ en: 'Halosun standard', hi: 'हैलोसन मानक' },
+  'std-cable-good-1':    { en: 'AC cable run kept as short as physically possible', hi: 'AC केबल की लंबाई जितनी संभव हो उतनी कम रखी जाती है' },
+  'std-cable-good-2':    { en: 'Lower AC voltage drop, lower cable losses overall', hi: 'कम AC वोल्टेज ड्रॉप, कुल मिलाकर कम केबल नुकसान' },
+  'std-cable-good-3':    { en: 'Runs labeled and routed for future inspection', hi: 'भविष्य में जाँच के लिए लेबल और व्यवस्थित रूट' },
+  'std-cable-good-4':    { en: 'Easy to trace, easy to service', hi: 'ढूंढना आसान, सर्विस करना आसान' },
+  'std-cable-bad-title': { en: 'What we avoid', hi: 'हम इनसे बचते हैं' },
+  'std-cable-bad-1':     { en: "Inverter placed wherever's convenient, far from the meter", hi: 'इन्वर्टर को मीटर से दूर, जहाँ सुविधाजनक लगे वहाँ लगाना' },
+  'std-cable-bad-2':     { en: 'Long, unplanned AC run to compensate', hi: 'भरपाई के लिए लंबी, अनियोजित AC लाइन' },
+  'std-cable-bad-3':     { en: 'Higher voltage drop, more cable, more loss', hi: 'अधिक वोल्टेज ड्रॉप, अधिक केबल, अधिक नुकसान' },
+  'std-cable-bad-4':     { en: 'Harder to trace, harder to service, harder to fault-find', hi: 'ढूंढना मुश्किल, सर्विस करना मुश्किल, खराबी पकड़ना मुश्किल' },
+
+  // ---- Earthing ----
+  'std-earth-eyebrow': { en: 'Earthing', hi: 'अर्थिंग' },
+  'std-earth-title':   { en: 'Earthed the way the code requires — tied together, not scattered', hi: 'नियमानुसार अर्थिंग — बिखरी हुई नहीं, आपस में जुड़ी हुई' },
+  'std-earth-sub':     { en: "A single earth pit that looks fine to an inspector isn't the same as a system that's actually protected. We earth every stage of the system and connect the earthing network together, so a fault has one reliable, low-resistance path to ground — not four separate pits each hoping it's the one that works.",
+                          hi: 'एक अकेला अर्थ पिट जो निरीक्षक को ठीक लगे, यह ज़रूरी नहीं कि प्रणाली वाकई सुरक्षित हो। हम प्रणाली के हर चरण की अर्थिंग करते हैं और पूरे अर्थिंग नेटवर्क को आपस में जोड़ते हैं, ताकि किसी फॉल्ट को ज़मीन तक जाने का एक भरोसेमंद, कम-प्रतिरोध वाला रास्ता मिले — चार अलग-अलग पिट नहीं जिनमें से किसी एक के काम करने की उम्मीद की जाए।' },
+  'std-earth-tag1':  { en: '4 POINTS', hi: '4 बिंदु' },
+  'std-earth-item1': { en: 'Panels, mounting structure, inverter, and distribution board are each earthed independently.', hi: 'पैनल, माउंटिंग संरचना, इन्वर्टर और डिस्ट्रिब्यूशन बोर्ड — हर एक की अलग अर्थिंग की जाती है।' },
+  'std-earth-tag2':  { en: '16 SQ.MM', hi: '16 वर्ग मिमी' },
+  'std-earth-item2': { en: 'Aluminium earth conductor sized to carry a fault current safely, not the thinnest wire that technically qualifies.', hi: 'एल्युमिनियम अर्थ कंडक्टर फॉल्ट करंट को सुरक्षित रूप से ले जाने के लिए तय किया जाता है, सिर्फ काम चलाऊ सबसे पतला तार नहीं।' },
+  'std-earth-tag3':  { en: 'TIED IN', hi: 'आपस में जुड़ा' },
+  'std-earth-item3': { en: 'Where a site needs more than one earth pit, the pits are interconnected into a single network rather than left as isolated points.', hi: 'जहाँ किसी साइट पर एक से ज़्यादा अर्थ पिट की ज़रूरत होती है, वहाँ पिटों को अलग-अलग न छोड़कर एक ही नेटवर्क में जोड़ा जाता है।' },
+  'std-earth-caption': { en: '// simplified reference — pit construction detail is in your project handover file', hi: '// सरल संदर्भ — पिट निर्माण का विवरण आपकी प्रोजेक्ट हैंडओवर फाइल में है' },
+
+  // ---- Handover file ----
+  'std-handover-eyebrow':   { en: 'Documentation', hi: 'दस्तावेज़ीकरण' },
+  'std-handover-title':     { en: 'You get this in writing, not a phone number to remember', hi: 'यह आपको लिखित में मिलता है, सिर्फ याद रखने के लिए एक फ़ोन नंबर नहीं' },
+  'std-handover-sub':       { en: "Every Halosun customer receives a personal Owner's Handbook at handover — your system specs, single line diagram, cleaning routine, maintenance schedule and warranty terms, in one document. Most local installers hand over a working system and a phone number. You get both, plus this.",
+                               hi: 'हर हैलोसन ग्राहक को हैंडओवर पर एक निजी ओनर्स हैंडबुक मिलती है — आपके सिस्टम की जानकारी, सिंगल लाइन डायग्राम, सफाई की दिनचर्या, रखरखाव अनुसूची और वारंटी शर्तें, सब एक ही दस्तावेज़ में। ज़्यादातर स्थानीय इंस्टॉलर सिर्फ चालू सिस्टम और एक फ़ोन नंबर देकर चले जाते हैं। आपको दोनों मिलते हैं, साथ ही यह भी।' },
+  'std-handover-cta':       { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट का अनुरोध करें' },
+  'std-handover-card-title': { en: "Owner's Handbook", hi: 'ओनर्स हैंडबुक' },
+  'std-handover-card-sub':   { en: 'ISSUED AT HANDOVER · YOURS TO KEEP', hi: 'हैंडओवर पर जारी · आपके पास रहेगी' },
+  'std-handover-li1': { en: 'System specification sheet', hi: 'सिस्टम विनिर्देश शीट' },
+  'std-handover-li2': { en: 'Single line diagram (SLD)', hi: 'सिंगल लाइन डायग्राम (SLD)' },
+  'std-handover-li3': { en: 'Panel care & cleaning routine', hi: 'पैनल देखभाल और सफाई की दिनचर्या' },
+  'std-handover-li4': { en: 'Scheduled maintenance plan', hi: 'निर्धारित रखरखाव योजना' },
+  'std-handover-li5': { en: 'Warranty summary, by component', hi: 'घटक-वार वारंटी सारांश' },
+  'std-handover-li6': { en: 'Support & emergency contact details', hi: 'सहायता और आपातकालीन संपर्क विवरण' },
+
+  // ---- CTA band ----
+  'std-cta-title': { en: 'Ask any installer to show you this page', hi: 'किसी भी इंस्टॉलर से यह पेज दिखाने को कहें' },
+  'std-cta-sub':   { en: "If they can't, that tells you what you need to know. If they can — compare it to ours, and then call us.",
+                      hi: 'अगर वे नहीं दिखा पाते, तो यही आपके लिए काफी जवाब है। अगर दिखा पाते हैं — तो उसकी तुलना हमारे मानक से करें, फिर हमें कॉल करें।' },
+  'std-cta-btn1':  { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट का अनुरोध करें' },
+  'std-cta-btn2':  { en: 'Calculate My Savings', hi: 'मेरी बचत जानें' },
+};
+
+  
   // ---- Gallery page ----
   'gallery-title': { en: 'On the roof', hi: 'छत पर' },
   'gallery-sub':   { en: 'Explore our recent solar installations', hi: 'हमारी हाल की सोलर इंस्टॉलेशन देखें' },
