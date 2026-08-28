@@ -594,3 +594,81 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   position: relative;
   z-index: 2;
 }
+
+/* ---------- Nav dropdown ("About": Process / Why Halosun / Our Standard) ----------
+   Click-to-open only (no :hover trigger) — stays fully collapsed until the
+   visitor taps/clicks "About", toggled via js/nav-dropdown.js adding/removing
+   the .open class on .nav-dropdown. The panel is always position:absolute
+   and taken out of normal flow, so opening it can never push other header
+   items sideways or grow the header's height — it floats on top of
+   whatever's underneath instead. Every default browser <button> style
+   (border/background/shadow/outline/font) is explicitly reset so the
+   trigger can't pick up a stray box from user-agent defaults. Mobile
+   collapses the same panel into a plain static indented sub-list instead
+   of a floating card, since there's no room to float one there. */
+.nav-dropdown{ position:relative; }
+.nav-dropdown-trigger{
+  -webkit-appearance:none; appearance:none;
+  display:inline-flex; align-items:center; gap:5px;
+  font:500 0.92rem/1 var(--font-body);
+  color:var(--slate); background:transparent; background-image:none;
+  border:0; box-shadow:none; outline:none;
+  padding:8px 0; margin:0; border-radius:0;
+  cursor:pointer; position:relative;
+}
+.nav-dropdown-trigger:hover,
+.nav-dropdown-trigger.active,
+.nav-dropdown.open .nav-dropdown-trigger{ color:var(--ember); }
+.nav-dropdown-trigger:focus-visible{
+  outline:3px solid var(--sun); outline-offset:4px;
+}
+.nav-dropdown-trigger::after{
+  content:""; position:absolute; left:0; right:100%; bottom:1px;
+  height:2px; background:var(--sun); transition:right .2s ease;
+}
+.nav-dropdown-trigger:hover::after,
+.nav-dropdown-trigger.active::after,
+.nav-dropdown.open .nav-dropdown-trigger::after{ right:0; }
+.nav-caret{
+  width:9px; height:9px; margin-top:1px; flex:none;
+  fill:none; stroke:currentColor; transition:transform .2s ease;
+}
+.nav-dropdown.open .nav-caret{ transform:rotate(180deg); }
+
+/* Always out-of-flow and hidden until .open is set by JS. No :hover rule
+   here on purpose — hovering "About" must NOT open this panel. */
+.nav-dropdown-menu{
+  position:absolute; top:calc(100% + 12px); left:50%;
+  transform:translateX(-50%) translateY(-6px);
+  min-width:190px; width:max-content; background:#fff; border:1px solid var(--line);
+  border-radius:12px; box-shadow:0 16px 40px rgba(15,32,56,.16);
+  padding:8px; margin:0; display:flex; flex-direction:column; gap:2px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .16s ease, transform .16s ease, visibility .16s ease;
+  z-index:200;
+}
+.nav-dropdown-menu a{
+  position:static; padding:9px 12px; border-radius:8px;
+  font-size:0.9rem; font-weight:500; color:var(--slate);
+  text-decoration:none; white-space:nowrap; display:block;
+}
+.nav-dropdown-menu a::after{ content:none; }
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active{ background:rgba(217,169,78,.1); color:var(--ember); }
+
+.nav-dropdown.open .nav-dropdown-menu{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+
+@media (max-width:860px){
+  .nav-dropdown{ width:100%; }
+  .nav-dropdown-trigger{ width:100%; justify-content:space-between; padding:8px 0; }
+  .nav-dropdown-menu{
+    position:static; transform:none; opacity:1; visibility:visible; pointer-events:auto;
+    min-width:0; width:auto; background:rgba(15,32,56,.035); border:none; box-shadow:none;
+    border-radius:10px; padding:2px 0 2px 16px; margin-top:4px;
+    display:none;
+  }
+  .nav-dropdown.open .nav-dropdown-menu{ display:flex; }
+}
