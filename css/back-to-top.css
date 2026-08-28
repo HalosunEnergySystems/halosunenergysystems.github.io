@@ -32,11 +32,12 @@
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-  background: #f05a28;
+  background: var(--sun, #d9a94e);
+  color: #0f2038;
 }
 
 .back-to-top:focus-visible {
-  outline: 2px solid #f05a28;
+  outline: 2px solid var(--sun, #d9a94e);
   outline-offset: 3px;
 }
 
