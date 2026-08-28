@@ -656,7 +656,7 @@ const TRANSLATIONS = {
                               hi: 'बिजली सुरक्षा को अंत में नहीं जोड़ा जाता - इसे शुरुआत से ही ध्यान में रखा जाता है, जिसमें सुरक्षा, अर्थिंग, सर्ज प्रोटेक्शन, केबल चयन और सुरक्षित आइसोलेशन शामिल है। सोलर सिस्टम आपकी इमारत के विद्युत ढांचे का हिस्सा है। इसे उसी तरह माना जाना चाहिए।' },
 
   'why-people-eyebrow':    { en: 'The people behind the work', hi: 'काम के पीछे के लोग' },
-  'why-people-title':      { en: 'Not a giant corporation. Not a generalist either.', hi: 'न कोई विशाल कंपनी। न ही कोई सामान्य ठेकेदार।' },
+  'why-people-title':      { en: 'Not a giant corporation. Not a generalist either.', hi: 'न कोई बड़ी कॉर्पोरेट कंपनी, न ही एक साधारण इंस्टॉलर।' },
   'why-people-body-1':     { en: 'Halosun today is not a giant corporation with layers of people between the customer and the installation. It is a founder-led engineering business supported by qualified electrical professionals who carry out the work on site.',
                               hi: 'हैलोसन आज कोई विशाल कंपनी नहीं है जहाँ ग्राहक और इंस्टॉलेशन के बीच कई परतें हों। यह एक फाउंडर-नेतृत्व वाला इंजीनियरिंग व्यवसाय है, जिसे साइट पर काम करने वाले योग्य विद्युत पेशेवरों का सहयोग प्राप्त है।' },
   'why-people-electrician':{ en: 'The electricians who wire, earth, and connect every panel on your roof are qualified professionals - not generalists learning on your installation.',
