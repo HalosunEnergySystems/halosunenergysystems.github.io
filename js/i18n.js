@@ -225,6 +225,13 @@ const TRANSLATIONS = {
   'svc-card-04-title': { en: 'Operations & Maintenance', hi: 'संचालन और रखरखाव' },
   'svc-card-04-desc':  { en: 'Scheduled cleaning, remote monitoring and repairs that keep your plant generating at rated capacity for 25 years.',
                           hi: 'निर्धारित सफ़ाई, रिमोट मॉनिटरिंग और मरम्मत जो आपके प्लांट को 25 वर्षों तक निर्धारित क्षमता पर जनरेट करते रहने में मदद करते हैं।' },
+
+  // -- Services page: 4-icon overview graphic (labels inside the SVG) --
+  'svc-visual-residential': { en: 'RESIDENTIAL', hi: 'आवासीय' },
+  'svc-visual-commercial':  { en: 'COMMERCIAL', hi: 'वाणिज्यिक' },
+  'svc-visual-turnkey':     { en: 'TURNKEY EPC', hi: 'टर्नकी ईपीसी' },
+  'svc-visual-om':          { en: 'OPERATIONS & MAINTENANCE', hi: 'संचालन और रखरखाव' },
+
   'cta-band-services-title': { en: 'Ready to see what solar could look like for you?', hi: 'देखना चाहते हैं कि आपके लिए सोलर कैसा दिखेगा?' },
 
   // ---- Process page ----
