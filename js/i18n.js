@@ -114,6 +114,8 @@ const TRANSLATIONS = {
   'faq-filter-money':   { en: 'Savings & subsidy',    hi: 'बचत और सब्सिडी' },
   'faq-filter-safety':  { en: 'Safety & maintenance', hi: 'सुरक्षा और रखरखाव' },
   'faq-filter-battery': { en: 'Battery & backup',     hi: 'बैटरी और बैकअप' },
+  'faq-expand-all':     { en: 'Expand all',            hi: 'सभी को खोलें' },
+  'faq-collapse-all':   { en: 'Collapse all',          hi: 'सभी को बंद करें' },
 
   'faq-q1-q':          { en: 'Does solar work when the weather is cloudy?', hi: 'क्या बादल छाए मौसम में सोलर काम करता है?' },
   'faq-q1-a':          { en: 'Yes. Solar panels still produce electricity from diffuse sunlight on cloudy days, although output is lower than on a clear day. A properly designed system is sized using realistic local generation assumptions rather than assuming bright sunshine every day.',
