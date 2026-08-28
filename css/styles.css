@@ -673,17 +673,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .nav-dropdown.open .nav-dropdown-menu{ display:flex; }
 }
 
-/* ---------- Kill pulse dot on PM Surya Ghar only ----------
+/* ---------- Remove the dot on PM Surya Ghar entirely ----------
    PM Surya Ghar and Calculator both carry .nav-highlight, which is where
-   the pulsing dot (::before/::after, likely in features.css or
-   pm-suryaghar.css) is defined. Two pulsing dots side by side is busy, so
-   this stops the animation on PM Surya Ghar specifically — it's the only
-   one of the two that also carries .active (current page), so that's the
-   hook. Calculator (.nav-highlight without .active) keeps its pulse as
-   the one motion element in that cluster. !important + this selector's
-   specificity is intentional: the source rule lives in a file we don't
-   have on hand, loaded after this one, so a plain override wouldn't win. */
+   the dot (::before or ::after, likely defined in features.css or
+   pm-suryaghar.css — a file we don't have on hand) is drawn. There's no
+   other child element on that <a> to host the dot, so it has to be a
+   pseudo-element; that's the only place it can be coming from. Two dots
+   side by side reads busy, so this removes PM Surya Ghar's dot outright
+   (not just its animation) — .active is the static hook that marks PM
+   Surya Ghar specifically in the markup, so it's reliable across every
+   page. Calculator (.nav-highlight without .active) is untouched and
+   keeps its pulsing dot as the one motion element in that cluster.
+   display:none (not just animation:none) guarantees the dot itself is
+   gone even if the source rule turns out to build it a different way
+   than assumed. !important is intentional: the source rule is in a file
+   loaded after this one, so a plain-specificity override wouldn't win. */
 a.nav-highlight.active::before,
 a.nav-highlight.active::after{
+  display:none !important;
   animation:none !important;
+  content:none !important;
 }
