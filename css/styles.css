@@ -672,3 +672,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
   .nav-dropdown.open .nav-dropdown-menu{ display:flex; }
 }
+
+/* ---------- Kill pulse dot on PM Surya Ghar only ----------
+   PM Surya Ghar and Calculator both carry .nav-highlight, which is where
+   the pulsing dot (::before/::after, likely in features.css or
+   pm-suryaghar.css) is defined. Two pulsing dots side by side is busy, so
+   this stops the animation on PM Surya Ghar specifically — it's the only
+   one of the two that also carries .active (current page), so that's the
+   hook. Calculator (.nav-highlight without .active) keeps its pulse as
+   the one motion element in that cluster. !important + this selector's
+   specificity is intentional: the source rule lives in a file we don't
+   have on hand, loaded after this one, so a plain override wouldn't win. */
+a.nav-highlight.active::before,
+a.nav-highlight.active::after{
+  animation:none !important;
+}
