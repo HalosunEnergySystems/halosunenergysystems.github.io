@@ -537,36 +537,88 @@
 
       <div class="pm-faq">
 
-        <details open>
-          <summary data-i18n="pm-faq-q1-q">Is ₹78,000 guaranteed for every solar installation?</summary>
-          <p data-i18n="pm-faq-q1-a">No. ₹78,000 is the maximum standard central CFA for eligible residential capacity under the stated structure. Actual eligibility depends on the scheme requirements, system capacity, approved equipment and successful verification.</p>
-        </details>
+        <div class="pm-faq-toggle-row">
+          <button type="button" class="pm-faq-toggle-all" id="pmFaqToggleAll" aria-expanded="false">
+            <span class="pm-faq-toggle-expand" data-i18n="pm-faq-toggle-expand">Expand all</span>
+            <span class="pm-faq-toggle-collapse" data-i18n="pm-faq-toggle-collapse">Collapse all</span>
+          </button>
+        </div>
 
-        <details>
-          <summary data-i18n="pm-faq-q2-q">Can I install more than 3 kW?</summary>
-          <p data-i18n="pm-faq-q2-a">Yes, a residential system can be larger where technically and financially appropriate. However, under the standard central CFA structure, additional central CFA is not provided beyond the eligible 3 kW threshold.</p>
-        </details>
+        <div class="pm-faq-list" id="pmFaqList">
 
-        <details>
-          <summary data-i18n="pm-faq-q3-q">Does Halosun directly give me the government subsidy?</summary>
-          <p data-i18n="pm-faq-q3-a">No. Halosun is the solar EPC/vendor. The CFA is a government scheme benefit processed through the applicable portal and verification workflow.</p>
-        </details>
+          <div class="pm-faq-item open">
+            <button type="button" class="pm-faq-question" aria-expanded="true">
+              <span data-i18n="pm-faq-q1-q">Is ₹78,000 guaranteed for every solar installation?</span>
+              <span class="pm-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pm-faq-answer">
+              <div class="pm-faq-answer-inner">
+                <p data-i18n="pm-faq-q1-a">No. ₹78,000 is the maximum standard central CFA for eligible residential capacity under the stated structure. Actual eligibility depends on the scheme requirements, system capacity, approved equipment and successful verification.</p>
+              </div>
+            </div>
+          </div>
 
-        <details>
-          <summary data-i18n="pm-faq-q4-q">Who controls the inspection and meter timeline?</summary>
-          <p data-i18n="pm-faq-q4-a">The applicable DISCOM controls its inspection and metering workflow. Halosun can coordinate and assist, but cannot honestly guarantee a government/DISCOM date.</p>
-        </details>
+          <div class="pm-faq-item">
+            <button type="button" class="pm-faq-question" aria-expanded="false">
+              <span data-i18n="pm-faq-q2-q">Can I install more than 3 kW?</span>
+              <span class="pm-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pm-faq-answer">
+              <div class="pm-faq-answer-inner">
+                <p data-i18n="pm-faq-q2-a">Yes, a residential system can be larger where technically and financially appropriate. However, under the standard central CFA structure, additional central CFA is not provided beyond the eligible 3 kW threshold.</p>
+              </div>
+            </div>
+          </div>
 
-        <details>
-          <summary data-i18n="pm-faq-q5-q">Can I take a loan for the solar system?</summary>
-          <p data-i18n="pm-faq-q5-a">Financing may be available through participating financial institutions and scheme-linked arrangements. Loan approval, interest rate and disbursement remain subject to the lender's terms.</p>
-        </details>
+          <div class="pm-faq-item">
+            <button type="button" class="pm-faq-question" aria-expanded="false">
+              <span data-i18n="pm-faq-q3-q">Does Halosun directly give me the government subsidy?</span>
+              <span class="pm-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pm-faq-answer">
+              <div class="pm-faq-answer-inner">
+                <p data-i18n="pm-faq-q3-a">No. Halosun is the solar EPC/vendor. The CFA is a government scheme benefit processed through the applicable portal and verification workflow.</p>
+              </div>
+            </div>
+          </div>
 
-        <details>
-          <summary data-i18n="pm-faq-q6-q">Do I need to visit government offices?</summary>
-          <p data-i18n="pm-faq-q6-a">Many steps are handled through the portal and coordinated digitally, but some DISCOM processes may still require field verification or additional documentation. Halosun can help you understand what is required at each stage.</p>
-        </details>
+          <div class="pm-faq-item">
+            <button type="button" class="pm-faq-question" aria-expanded="false">
+              <span data-i18n="pm-faq-q4-q">Who controls the inspection and meter timeline?</span>
+              <span class="pm-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pm-faq-answer">
+              <div class="pm-faq-answer-inner">
+                <p data-i18n="pm-faq-q4-a">The applicable DISCOM controls its inspection and metering workflow. Halosun can coordinate and assist, but cannot honestly guarantee a government/DISCOM date.</p>
+              </div>
+            </div>
+          </div>
 
+          <div class="pm-faq-item">
+            <button type="button" class="pm-faq-question" aria-expanded="false">
+              <span data-i18n="pm-faq-q5-q">Can I take a loan for the solar system?</span>
+              <span class="pm-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pm-faq-answer">
+              <div class="pm-faq-answer-inner">
+                <p data-i18n="pm-faq-q5-a">Financing may be available through participating financial institutions and scheme-linked arrangements. Loan approval, interest rate and disbursement remain subject to the lender's terms.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pm-faq-item">
+            <button type="button" class="pm-faq-question" aria-expanded="false">
+              <span data-i18n="pm-faq-q6-q">Do I need to visit government offices?</span>
+              <span class="pm-faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="pm-faq-answer">
+              <div class="pm-faq-answer-inner">
+                <p data-i18n="pm-faq-q6-a">Many steps are handled through the portal and coordinated digitally, but some DISCOM processes may still require field verification or additional documentation. Halosun can help you understand what is required at each stage.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -664,5 +716,45 @@
 <script src="js/main.js"></script>
 <script src="js/nav-dropdown.js"></script>
 <script src="js/pm-suryaghar.js"></script>
+<script>
+/* PM Surya Ghar FAQ accordion + Expand all / Collapse all.
+   Self-contained and scoped to #pmFaqList so it can't double-bind
+   with any sitewide FAQ script that may run on other pages. */
+(function () {
+  var list = document.getElementById('pmFaqList');
+  var toggleAllBtn = document.getElementById('pmFaqToggleAll');
+  if (!list || !toggleAllBtn) return;
+
+  var items = Array.prototype.slice.call(list.querySelectorAll('.pm-faq-item'));
+
+  function syncToggleAllState() {
+    var allOpen = items.every(function (item) {
+      return item.classList.contains('open');
+    });
+    toggleAllBtn.classList.toggle('all-open', allOpen);
+    toggleAllBtn.setAttribute('aria-expanded', String(allOpen));
+  }
+
+  items.forEach(function (item) {
+    var question = item.querySelector('.pm-faq-question');
+    question.addEventListener('click', function () {
+      var isOpen = item.classList.toggle('open');
+      question.setAttribute('aria-expanded', String(isOpen));
+      syncToggleAllState();
+    });
+  });
+
+  toggleAllBtn.addEventListener('click', function () {
+    var shouldOpen = !toggleAllBtn.classList.contains('all-open');
+    items.forEach(function (item) {
+      item.classList.toggle('open', shouldOpen);
+      item.querySelector('.pm-faq-question').setAttribute('aria-expanded', String(shouldOpen));
+    });
+    syncToggleAllState();
+  });
+
+  syncToggleAllState();
+})();
+</script>
 </body>
 </html>
