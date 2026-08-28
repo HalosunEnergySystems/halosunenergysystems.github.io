@@ -502,6 +502,10 @@ const TRANSLATIONS = {
 
   'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' },
 
+  // -- Calculator page: site-visit prompt shown right after results --
+  'calc-sitevisit-question': { en: 'Want an accurate system design for your roof?', hi: 'अपनी छत के लिए सटीक सिस्टम डिज़ाइन चाहते हैं?' },
+  'calc-sitevisit-btn':      { en: 'Request a Site Visit →', hi: 'साइट विज़िट का अनुरोध करें →' },
+
   // ---- PDF-only strings ----
   'pdf-doc-title':        { en: 'Solar Savings Estimate', hi: 'सोलर बचत अनुमान' },
   'pdf-generated':        { en: 'Generated:', hi: 'तैयार किया गया:' },
