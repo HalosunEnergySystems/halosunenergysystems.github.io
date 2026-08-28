@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6843K863Q5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6843K863Q5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Halosun Exists | Halosun Energy Systems</title>
+<meta name="description" content="Solar is easy to sell. Building it right is harder. See why Halosun treats every installation as an engineered system - not just panels on a roof.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/features.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://halosunenergysystems.com/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Why Halosun", "item": "https://halosunenergysystems.com/why.html" }
+  ]
+}
+</script>
+
+<style>
+  /* ===================================================================
+     WHY HALOSUN EXISTS — page-only styles, same convention as
+     standard.html: everything references the shared tokens from
+     styles.css (--ink, --sun, --ember, --line, --line-dark, --slate,
+     --mist, --radius, --font-display, --font-mono) so this page
+     inherits the live palette without touching the shared stylesheet.
+  =================================================================== */
+
+  .why-lede { max-width: 66ch; }
+
+  /* ---------- The problem: question list ---------- */
+  .why-question-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .why-question-list li {
+    padding: 15px 0 15px 22px;
+    position: relative;
+    font-family: var(--font-display, 'Space Grotesk', sans-serif);
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: var(--ink, #0f2038);
+    border-bottom: 1px solid var(--line, rgba(11,27,45,0.08));
+  }
+  .why-question-list li::before {
+    content: '?';
+    position: absolute;
+    left: 0;
+    top: 15px;
+    color: var(--sun, #d9a94e);
+    font-family: var(--font-mono, monospace);
+    font-weight: 700;
+  }
+  .why-problem-closing {
+    margin-top: 1.8rem;
+    font-family: var(--font-display, 'Space Grotesk', sans-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .section-dark .why-problem-closing { color: #fff; }
+
+  /* ---------- People callout ---------- */
+  .why-people-callout {
+    margin: 1.6rem 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--sun, #d9a94e);
+    background: rgba(217, 169, 78, 0.07);
+    border-radius: 0 var(--radius, 14px) var(--radius, 14px) 0;
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  .section-dark .why-people-callout {
+    background: rgba(217, 169, 78, 0.09);
+    color: #fff;
+  }
+
+  /* ---------- One standard: tag cloud ---------- */
+  .why-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 2rem;
+  }
+  .why-tag {
+    font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+    font-size: 0.86rem;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(217, 169, 78, 0.35);
+    background: rgba(217, 169, 78, 0.08);
+    color: var(--sun-dim, #b98b3a);
+  }
+  .section-dark .why-tag {
+    color: var(--sun, #d9a94e);
+    border-color: rgba(217, 169, 78, 0.4);
+  }
+  .why-onestandard-sub {
+    margin-top: 1.6rem;
+  }
+
+  .why-inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1.4rem;
+    font-family: var(--font-display, 'Space Grotesk', sans-serif);
+    font-weight: 600;
+    color: var(--ember, #e85d2c);
+    text-decoration: none;
+  }
+  .why-inline-link:hover { text-decoration: underline; }
+
+  .why-promise-closing {
+    margin-top: 1.4rem;
+    font-family: var(--font-display, 'Space Grotesk', sans-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .why-final-tagline {
+    text-align: center;
+    margin-top: 6px;
+    font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+</style>
+</head>
+<body>
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap header-row">
+    <a href="index.html" class="logo">
+       <img class="logo-mark" src="assets/logo-header-footer.png" alt="Halosun Energy Systems">
+      <span>Halosun <em>Energy Systems</em></span>
+    </a>
+    <nav class="main-nav" id="main-nav">
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="pm-suryaghar.html" class="nav-highlight" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
+      <a href="process.html" data-i18n="nav-process">Process</a>
+      <a href="why.html" class="active" data-i18n="nav-why">Why Halosun</a>
+      <a href="standard.html" data-i18n="nav-standard">Our Standard</a>
+      <a href="calculator.html" data-i18n="nav-calculator">Calculator</a>
+      <a href="gallery.html" data-i18n="nav-projects">Projects</a>
+      <a href="faq.html" data-i18n="nav-faq">Solar FAQ</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="hi">हि</button>
+    </div>
+    <a href="contact.html" class="btn btn-primary btn-small nav-cta" data-i18n="nav-cta">Get a Free Quote</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="wrap breadcrumb">
+      <a href="index.html" class="breadcrumb-back" data-i18n="breadcrumb-back">← Back</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <a href="index.html" data-i18n="nav-home">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <span class="breadcrumb-current" data-i18n="nav-why">Why Halosun</span>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="section page-hero">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="whyexists-eyebrow">Why Halosun Exists</p>
+      <h1 data-i18n="whyexists-title">Solar is easy to sell. Building it right is harder.</h1>
+      <p class="section-sub why-lede" data-i18n="why-sub">A solar installation is supposed to last for decades. Yet most of the attention in this industry goes into getting the panels on the roof, switching the system on, and handing over the invoice. We believe that's only the beginning.</p>
+      <div class="hero-actions">
+        <a href="standard.html" class="btn btn-primary" data-i18n="why-hero-cta">See the Halosun Standard</a>
+        <a href="contact.html" class="btn btn-ghost" data-i18n="hero-cta-2">Request a Free Site Visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE PROBLEM ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="why-problem-eyebrow">The problem, stated plainly</p>
+      <h2 data-i18n="why-problem-title">From the outside, every installation looks the same</h2>
+      <p class="section-sub why-lede" data-i18n="why-problem-sub">The panels look the same. The inverter looks the same. The structure may look the same. But some of the most important differences are things you cannot see easily:</p>
+
+      <ul class="why-question-list">
+        <li data-i18n="why-problem-q1">Was the structure designed properly for the site?</li>
+        <li data-i18n="why-problem-q2">Are the supports and anchors right for this roof and these conditions?</li>
+        <li data-i18n="why-problem-q3">Was the steel chosen for strength and durability, not just cost?</li>
+        <li data-i18n="why-problem-q4">Are the cables correctly sized and routed?</li>
+        <li data-i18n="why-problem-q5">Is the DC wiring protected from unnecessary exposure?</li>
+        <li data-i18n="why-problem-q6">Are the earthing and surge-protection systems properly designed?</li>
+        <li data-i18n="why-problem-q7">Was waterproofing considered wherever the roof was penetrated?</li>
+        <li data-i18n="why-problem-q8">Was the installation actually inspected against a defined standard before handover?</li>
+      </ul>
+
+      <p class="why-problem-closing" data-i18n="why-problem-closing">Good solar engineering is often invisible. Poor engineering usually becomes visible later - when something fails.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHERE IT STARTED ============ -->
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="why-started-eyebrow">Where it started</p>
+      <h2 data-i18n="why-started-title">An engineering mindset, applied to solar</h2>
+      <p class="section-sub why-lede" data-i18n="why-started-body">Halosun came from an engineering mindset - not because solar was simply another product to sell, but because engineering teaches a different way of thinking: define the requirement, choose the right solution, build it correctly, verify the result, and don't stop at "it works." That discipline became the foundation of Halosun. We believe a solar installation should be treated as an engineered system - not simply a collection of panels, cables, an inverter and a structure.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHAT IT BECAME ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="why-became-eyebrow">What it became</p>
+      <h2 data-i18n="why-became-title">We wrote the standard before we wrote the first invoice</h2>
+      <p class="section-sub why-lede" data-i18n="why-became-body-1">Before our first installation, we started putting our expectations into writing. Not because a checklist looks impressive on a website - because if a standard exists only in someone's head, it isn't really a standard. It's a hope.</p>
+      <p class="section-sub why-lede" data-i18n="why-became-body-2">So we built our own installation standard around the things that actually matter on a rooftop - from material selection and structural fixing to cable routing, earthing, protection, safety and final verification. Every installation is judged against the same principles, regardless of size. A six-panel residential rooftop deserves the same attention to fundamentals as a 50 kW commercial installation. The scale changes. The standard doesn't.</p>
+      <a href="standard.html" class="why-inline-link" data-i18n="why-became-cta">See what the Halosun Standard actually is →</a>
+    </div>
+  </section>
+
+  <!-- ============ HOW WE WORK ============ -->
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="why-work-eyebrow">How we work</p>
+      <h2 data-i18n="why-work-title">Quality is created long before the panels are switched on</h2>
+
+      <div class="grid grid-4 svc-grid">
+        <div class="card">
+          <div class="card-mark">01</div>
+          <h3 data-i18n="why-work-1-title">Design before installation</h3>
+          <p data-i18n="why-work-1-desc">We don't start with "where can we fit the panels." We start by understanding the site, the electrical requirements, the structure, shading and cable routes - so the system makes sense for the site, not just the quotation.</p>
+        </div>
+        <div class="card">
+          <div class="card-mark">02</div>
+          <h3 data-i18n="why-work-2-title">Materials with a purpose</h3>
+          <p data-i18n="why-work-2-desc">Structure, fasteners, cables, connectors, protection devices, earthing and waterproofing all have a job to do. We choose them for suitability, safety and durability - not just what's cheapest to source.</p>
+        </div>
+        <div class="card">
+          <div class="card-mark">03</div>
+          <h3 data-i18n="why-work-3-title">Installation that follows a standard</h3>
+          <p data-i18n="why-work-3-desc">Cable routing is deliberate. Connections are secure. Structures are properly fixed. Earthing is treated as a safety system, not an afterthought. And the finished installation is checked before it's handed over.</p>
+        </div>
+        <div class="card">
+          <div class="card-mark">04</div>
+          <h3 data-i18n="why-work-4-title">Safety is part of the design</h3>
+          <p data-i18n="why-work-4-desc">Electrical safety isn't added at the end - it's considered from the beginning, including protection, earthing, surge protection, cable selection and safe isolation. A solar system is part of your building's electrical infrastructure. It deserves to be treated that way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE PEOPLE BEHIND THE WORK ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="why-people-eyebrow">The people behind the work</p>
+      <h2 data-i18n="why-people-title">Not a giant corporation. Not a generalist either.</h2>
+      <p class="section-sub why-lede" data-i18n="why-people-body-1">Halosun today is not a giant corporation with layers of people between the customer and the installation. It is a founder-led engineering business supported by qualified electrical professionals who carry out the work on site.</p>
+
+      <div class="why-people-callout" data-i18n="why-people-electrician">The electricians who wire, earth, and connect every panel on your roof are qualified professionals - not generalists learning on your installation.</div>
+
+      <p class="section-sub why-lede" data-i18n="why-people-body-2">That has an advantage: accountability stays close to the installation. The people responsible for the work know the standard they're expected to follow, and the founder remains directly involved in how that standard is developed, applied and improved. We'd rather build a smaller company known for doing things properly than a larger one that simply installs more systems.</p>
+    </div>
+  </section>
+
+  <!-- ============ ONE STANDARD. EVERY SITE. ============ -->
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="why-onestandard-eyebrow">One standard. Every site.</p>
+      <h2 data-i18n="why-onestandard-title">A rooftop and a commercial plant look very different. The fundamentals don't.</h2>
+
+      <div class="why-tags">
+        <span class="why-tag" data-i18n="why-tag-1">GOOD DESIGN</span>
+        <span class="why-tag" data-i18n="why-tag-2">CORRECT MATERIALS</span>
+        <span class="why-tag" data-i18n="why-tag-3">PROPER INSTALLATION</span>
+        <span class="why-tag" data-i18n="why-tag-4">ELECTRICAL SAFETY</span>
+        <span class="why-tag" data-i18n="why-tag-5">STRUCTURAL INTEGRITY</span>
+        <span class="why-tag" data-i18n="why-tag-6">RELIABLE PROTECTION</span>
+        <span class="why-tag" data-i18n="why-tag-7">VERIFICATION</span>
+        <span class="why-tag" data-i18n="why-tag-8">ACCOUNTABILITY</span>
+      </div>
+
+      <p class="section-sub why-lede why-onestandard-sub" data-i18n="why-onestandard-sub">These aren't premium add-ons. They're the basics of doing the job properly.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHY WE MAY NOT BE THE CHEAPEST ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="why-price-eyebrow">Why we may not be the cheapest</p>
+      <h2 data-i18n="why-price-title">There will always be a lower number</h2>
+      <p class="section-sub why-lede" data-i18n="why-price-body">Sometimes the difference is obvious. Sometimes it isn't. A cheaper quotation may use a different structure, different cable, different protection, fewer components, less installation work, or simply a different standard of workmanship. Because much of solar quality is hidden, comparing two quotations by price alone can be misleading. We don't try to win every project by being the cheapest - we try to build the installation we'd be comfortable putting on our own roof. You may find a cheaper quote. Our job is to make sure you understand what you're comparing.</p>
+    </div>
+  </section>
+
+  <!-- ============ THE ACTUAL PROMISE / CTA ============ -->
+  <section class="section section-dark cta-band">
+    <div class="wrap cta-band-inner">
+      <p class="eyebrow" data-i18n="why-promise-eyebrow">The actual promise</p>
+      <h2 data-i18n="why-promise-title">We won't treat "it works today" as the definition of a good installation</h2>
+      <p class="section-sub why-lede" style="margin:0 auto;" data-i18n="why-promise-body">We don't promise that nothing will ever go wrong. Solar systems are exposed to weather, electrical conditions and the realities of a physical installation. What we promise is more fundamental: we will design carefully, build to a defined standard, use materials for a reason, take safety seriously, and stand behind the work we put our name on.</p>
+      <p class="why-promise-closing" data-i18n="why-promise-closing">A solar installation isn't successful when the inverter starts producing power. It's successful when the system continues to be a safe, reliable, well-built part of your property for years to come.</p>
+      <div class="hero-actions" style="margin-top: 1.8rem;">
+        <a href="contact.html" class="btn btn-primary" data-i18n="hero-cta-2">Request a Free Site Visit</a>
+        <a href="standard.html" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.3);color:#fff;" data-i18n="why-hero-cta">See the Halosun Standard</a>
+      </div>
+      <p class="why-final-tagline" data-i18n="footer-tagline">Design · Build · Power</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <img class="logo-mark" src="assets/logo-header-footer.png" alt="Halosun Energy Systems">
+        <span>Halosun <em>Energy Systems</em></span>
+      </a>
+      <p class="footer-lead" data-i18n="footer-lead">Professional solar engineering, installation and maintenance for homes and businesses.</p>
+      <div class="footer-badge"><span>UPNEDA Registered</span><strong>RBL2605181404</strong></div>
+    </div>
+
+    <div class="footer-col">
+      <h3 data-i18n="footer-explore">Explore</h3>
+      <a href="services.html" data-i18n="nav-services">Services</a>
+      <a href="pm-suryaghar.html" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
+      <a href="process.html" data-i18n="footer-process">Our Process</a>
+      <a href="why.html" data-i18n="nav-why">Why Halosun</a>
+      <a href="standard.html" data-i18n="nav-standard">Our Standard</a>
+      <a href="calculator.html" data-i18n="footer-calc">Savings Calculator</a>
+      <a href="gallery.html" data-i18n="nav-projects">Projects</a>
+      <a href="faq.html" data-i18n="footer-faq-myths">Solar FAQ &amp; Myths</a>
+      <a href="contact.html" data-i18n="nav-contact">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h3 data-i18n="footer-contact">Contact</h3>
+      <a href="tel:+919250678826">+91 92506 78826</a>
+      <a href="mailto:info@halosunenergysystems.com">info@halosunenergysystems.com</a>
+      <span>743/7, <span data-i18n="footer-contactAdd">Tilak Nagar, Raebareli, Uttar Pradesh</span></span>
+      <a class="footer-wa-link" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener" data-i18n="footer-wa">Chat on WhatsApp →</a>
+    </div>
+
+    <div class="footer-col footer-social-col">
+      <h3 data-i18n="footer-connect">Connect</h3>
+      <p data-i18n="footer-connect-desc">Follow Halosun for solar projects, engineering insights and updates.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a class="social-link" href="https://www.facebook.com/profile.php?id=61590382589778" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.31 0-5 1.69-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.67.33-1 1-1Z"/></svg>
+        </a>
+        <a class="social-link" href="https://www.instagram.com/halosunenergysystems/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1"/></svg>
+        </a>
+        <a class="social-link social-whatsapp" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.7 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.6h-.1c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.3 2.9 7 0 5.4-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"/></svg>
+        </a>
+      </div>
+      <span class="social-note">Facebook · Instagram · WhatsApp</span>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <p class="footer-tagline" data-i18n="footer-tagline">Design <span>·</span> Build <span>·</span> Power</p>
+    <div class="footer-meta">
+      <span>© <span id="year"></span> Halosun Energy Systems</span>
+      <span class="meta-dot">•</span>
+      <span>Site Last Updated: <strong id="last-updated">28 August 2026</strong></span>
+    </div>
+  </div>
+</footer>
+
+<a class="floating-whatsapp" href="https://wa.me/919250678826?text=Hello%20Halosun%20Energy%20Systems%2C%20I%20would%20like%20to%20know%20more%20about%20solar." target="_blank" rel="noopener" aria-label="Chat with Halosun Energy Systems on WhatsApp" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.7 1.4h.1c6.5 0 11.8-5.3 11.8-11.9 0-3.1-1.2-6.1-3.5-8.3ZM12.1 21.6h-.1c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.2c0-5.4 4.4-9.8 9.9-9.8 2.6 0 5.1 1 7 2.9 1.9 1.9 2.9 4.3 2.9 7 0 5.4-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.4-3.8-3.2-.3-.5.3-.5.8-1.6.1-.2.1-.4 0-.6-.1-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.6 4.9.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"/></svg>
+  <span>WhatsApp</span>
+</a>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
