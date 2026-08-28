@@ -784,6 +784,24 @@ function applyLanguage(lang) {
     }
   });
 
+  // Attribute translations - e.g. a title/tooltip or aria-label that has
+  // no visible text of its own (icon-only buttons like Back to Top).
+  document.querySelectorAll('[data-i18n-title]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-title');
+    const entry = TRANSLATIONS[key];
+    if (entry && entry[lang]) {
+      el.setAttribute('title', entry[lang]);
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-aria');
+    const entry = TRANSLATIONS[key];
+    if (entry && entry[lang]) {
+      el.setAttribute('aria-label', entry[lang]);
+    }
+  });
+
   document.documentElement.setAttribute('lang', lang === 'hi' ? 'hi' : 'en');
   localStorage.setItem('halosun-lang', lang);
 
