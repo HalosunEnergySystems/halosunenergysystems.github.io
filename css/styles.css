@@ -702,6 +702,8 @@ a.nav-highlight.active::after{
    line doesn't sit flush under the first one; 1.8 sits a bit above the site's
    usual paragraph range (1.6-1.7) since this block was specifically flagged as
    feeling cramped. */
-.pm-disclaimer{
+.pm-disclaimer,
+.pm-disclaimer strong,
+.pm-disclaimer span{
   line-height:1.8 !important;
 }
