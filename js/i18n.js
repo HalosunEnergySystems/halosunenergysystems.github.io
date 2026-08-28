@@ -99,6 +99,8 @@ const TRANSLATIONS = {
                           hi: 'सोलर परियोजनाओं, इंजीनियरिंग जानकारी और अपडेट के लिए हैलोसन को फॉलो करें।' },
   'footer-wa':         { en: 'Chat on WhatsApp →',    hi: 'व्हाट्सएप पर बात करें →' },
   'footer-tagline':    { en: 'Design · Build · Power', hi: 'डिज़ाइन · बिल्ड · पावर' },
+  'footer-upneda-badge': { en: 'UPNEDA Registered',   hi: 'UPNEDA पंजीकृत' },
+  'footer-updated-label': { en: 'Site Last Updated:', hi: 'साइट अपडेट की गई:' },
 
   // ---- FAQ page ----
   'faq-page-eyebrow':  { en: 'Solar, explained clearly', hi: 'सोलर, सीधी भाषा में समझाया गया' },
