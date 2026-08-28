@@ -15,6 +15,7 @@ const TRANSLATIONS = {
   'nav-calculator':    { en: 'Calculator',           hi: 'कैलकुलेटर' },
   'nav-projects':      { en: 'Projects',             hi: 'परियोजनाएँ' },
   'nav-faq':           { en: 'Solar FAQ',            hi: 'सोलर सवाल-जवाब' },
+  'nav-about':         { en: 'About',                hi: 'हमारे बारे में' },
   'nav-contact':       { en: 'Contact',               hi: 'संपर्क करें' },
   'nav-cta':           { en: 'Get a Free Quote',      hi: 'मुफ़्त कोटेशन पाएं' },
 
