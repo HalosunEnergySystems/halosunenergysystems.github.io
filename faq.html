@@ -88,6 +88,10 @@
       <button class="faq-chip" data-filter="money" data-i18n="faq-filter-money">Savings &amp; subsidy</button>
       <button class="faq-chip" data-filter="safety" data-i18n="faq-filter-safety">Safety &amp; maintenance</button>
       <button class="faq-chip" data-filter="battery" data-i18n="faq-filter-battery">Battery &amp; backup</button>
+      <button type="button" class="faq-toggle-all" id="faq-toggle-all" aria-expanded="false">
+        <span class="faq-toggle-label faq-toggle-expand" data-i18n="faq-expand-all">Expand all</span>
+        <span class="faq-toggle-label faq-toggle-collapse" data-i18n="faq-collapse-all">Collapse all</span>
+      </button>
     </div>
   </div>
 </section>
@@ -224,6 +228,19 @@ document.querySelectorAll('.faq-chip').forEach(chip => {
     });
   });
 });
+const faqToggleAllBtn = document.getElementById('faq-toggle-all');
+if (faqToggleAllBtn) {
+  faqToggleAllBtn.addEventListener('click', () => {
+    const willOpen = !faqToggleAllBtn.classList.contains('all-open');
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.toggle('open', willOpen);
+      const q = item.querySelector('.faq-question');
+      if (q) q.setAttribute('aria-expanded', willOpen);
+    });
+    faqToggleAllBtn.classList.toggle('all-open', willOpen);
+    faqToggleAllBtn.setAttribute('aria-expanded', willOpen);
+  });
+}
 </script>
 </body>
 </html>
