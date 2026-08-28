@@ -1,0 +1,80 @@
+/* ============ BACK TO TOP BUTTON ============
+   Fixed, circular button that appears once the page has been
+   scrolled down AND the page is actually scrollable. Sits above
+   the floating WhatsApp button so the two never overlap. */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  z-index: 998;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: #0f2038;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(15, 32, 56, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s ease, background .2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  background: #f05a28;
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid #f05a28;
+  outline-offset: 3px;
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Screen-reader-only label (kept translatable via data-i18n) */
+.back-to-top .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    right: 16px;
+    bottom: 84px;
+    width: 42px;
+    height: 42px;
+  }
+  .back-to-top svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity .15s linear, visibility .15s linear;
+    transform: none;
+  }
+}
