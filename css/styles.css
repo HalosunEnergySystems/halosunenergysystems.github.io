@@ -707,3 +707,28 @@ a.nav-highlight.active::after{
 .pm-disclaimer span{
   line-height:1.8 !important;
 }
+
+/* ---------- FAQ: Expand all / Collapse all toggle ----------
+   Sits in the same flex row as the .faq-filter chips (that row is
+   already display:flex; flex-wrap:wrap; gap:9px), pushed to the far
+   right with margin-left:auto. On narrow screens where it wraps to
+   its own line, the auto margin still pushes it right on that line. */
+.faq-toggle-all{
+  margin-left:auto;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink);
+  padding:9px 15px;
+  border-radius:999px;
+  font:600 .82rem var(--font-body);
+  cursor:pointer;
+  transition:.2s ease;
+}
+.faq-toggle-all:hover{
+  background:var(--ink);
+  border-color:var(--ink);
+  color:#fff;
+}
+.faq-toggle-collapse{ display:none; }
+.faq-toggle-all.all-open .faq-toggle-expand{ display:none; }
+.faq-toggle-all.all-open .faq-toggle-collapse{ display:inline; }
