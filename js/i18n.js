@@ -587,6 +587,8 @@ const TRANSLATIONS = {
 
   'pm-faq-eyebrow': { en: '07 · Common questions', hi: '07 · सामान्य सवाल' },
   'pm-faq-h2':       { en: 'PM Surya Ghar FAQ', hi: 'PM सूर्य घर सवाल-जवाब' },
+  'pm-faq-toggle-expand':   { en: 'Expand all',   hi: 'सभी खोलें' },
+  'pm-faq-toggle-collapse': { en: 'Collapse all', hi: 'सभी बंद करें' },
 
   'pm-faq-q1-q': { en: 'Is ₹78,000 guaranteed for every solar installation?', hi: 'क्या हर सोलर इंस्टॉलेशन के लिए ₹78,000 की गारंटी है?' },
   'pm-faq-q1-a': { en: 'No. ₹78,000 is the maximum standard central CFA for eligible residential capacity under the stated structure. Actual eligibility depends on the scheme requirements, system capacity, approved equipment and successful verification.',
