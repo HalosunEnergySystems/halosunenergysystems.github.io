@@ -30,6 +30,12 @@
   ]
 }
 </script>
+
+  <style>
+    .services-visual-bridge{padding:8px 0 34px;margin-top:-8px}.services-visual-frame{width:100%;max-width:1200px;margin:0 auto;overflow:hidden;border-radius:22px}.services-visual{display:block;width:100%;height:auto}.services-cards-section{padding-top:18px}
+    @media(max-width:760px){.services-visual-bridge{padding:4px 0 22px;margin-top:-4px}.services-visual-frame{border-radius:16px}.services-visual{min-width:760px;width:760px;max-width:none;transform:translateX(calc((100vw - 760px)/2))}.services-cards-section{padding-top:10px}}
+    @media(max-width:430px){.services-visual{min-width:690px;width:690px;transform:translateX(calc((100vw - 690px)/2))}}
+  </style>
 </head>
 <body>
 <!-- ============ HEADER ============ -->
@@ -88,7 +94,47 @@
     </div>
   </section>
 
-  <section class="section">
+  <!-- Visual bridge between the hero and service tiles -->
+  <section class="services-visual-bridge" aria-label="Solar services overview">
+    <div class="wrap">
+      <div class="services-visual-frame">
+        <svg class="services-visual" viewBox="0 0 1200 250" role="img" aria-labelledby="services-visual-title services-visual-desc" preserveAspectRatio="xMidYMid meet">
+          <title id="services-visual-title">Halosun solar services overview</title>
+          <desc id="services-visual-desc">Engineering-style visual linking residential solar, commercial solar, turnkey EPC and operations and maintenance.</desc>
+          <defs>
+            <linearGradient id="bridgeGlow" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e7edf3"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#e7edf3"/></linearGradient>
+            <filter id="softShadow" x="-20%" y="-30%" width="140%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity=".10"/></filter>
+          </defs>
+          <rect width="1200" height="250" rx="22" fill="url(#bridgeGlow)"/>
+          <path d="M150 125 C310 62 430 62 600 125 C770 188 890 188 1050 125" fill="none" stroke="#d7e0e8" stroke-width="2"/>
+          <path d="M150 125 C310 82 440 82 600 125 C760 168 890 168 1050 125" fill="none" stroke="#f07b3f" stroke-width="2" stroke-dasharray="5 9" opacity=".55"/>
+          <g transform="translate(105 48)" filter="url(#softShadow)">
+            <rect width="180" height="154" rx="18" fill="#fff" stroke="#e1e7ec"/><circle cx="90" cy="43" r="25" fill="#fff3ed"/>
+            <path d="M61 45 90 20l29 25M68 43v27h44V43" fill="none" stroke="#12243e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M72 40 91 31l18 9M76 28l7-5 7 5 7-5 7 5" fill="none" stroke="#f07b3f" stroke-width="3" stroke-linecap="round"/>
+            <text x="90" y="103" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" fill="#12243e">RESIDENTIAL</text><path d="M53 122h74" stroke="#dfe5ea" stroke-width="2"/><path d="M65 134h50" stroke="#f07b3f" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(340 48)" filter="url(#softShadow)">
+            <rect width="180" height="154" rx="18" fill="#fff" stroke="#e1e7ec"/><circle cx="90" cy="43" r="25" fill="#fff3ed"/>
+            <path d="M60 68V38h16v30m0 0V28h16v40m0 0V45h16v23m0 0V34h12v34" fill="none" stroke="#12243e" stroke-width="4"/><path d="M55 70h70" stroke="#f07b3f" stroke-width="4" stroke-linecap="round"/><path d="M72 34l11-5 11 5 11-5" fill="none" stroke="#f07b3f" stroke-width="2.5"/>
+            <text x="90" y="103" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" fill="#12243e">COMMERCIAL</text><path d="M53 122h74" stroke="#dfe5ea" stroke-width="2"/><path d="M65 134h50" stroke="#f07b3f" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(575 48)" filter="url(#softShadow)">
+            <rect width="180" height="154" rx="18" fill="#fff" stroke="#e1e7ec"/><circle cx="90" cy="43" r="25" fill="#fff3ed"/>
+            <rect x="63" y="25" width="54" height="39" rx="4" fill="none" stroke="#12243e" stroke-width="4"/><path d="m70 54 11-11 8 7 12-13 9 9" fill="none" stroke="#f07b3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M90 64v12M74 76h32" stroke="#12243e" stroke-width="4" stroke-linecap="round"/>
+            <text x="90" y="103" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" fill="#12243e">TURNKEY EPC</text><path d="M53 122h74" stroke="#dfe5ea" stroke-width="2"/><path d="M65 134h50" stroke="#f07b3f" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(810 48)" filter="url(#softShadow)">
+            <rect width="180" height="154" rx="18" fill="#fff" stroke="#e1e7ec"/><circle cx="90" cy="43" r="25" fill="#fff3ed"/>
+            <rect x="63" y="27" width="54" height="35" rx="5" fill="none" stroke="#12243e" stroke-width="4"/><path d="m72 51 10-9 9 5 11-12 8 7" fill="none" stroke="#f07b3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M58 73c7 9 17 13 29 13 14 0 25-7 32-18" fill="none" stroke="#12243e" stroke-width="3" stroke-linecap="round"/><path d="m114 66 7 1-2 7" fill="none" stroke="#f07b3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="90" y="103" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" fill="#12243e">OPERATIONS &amp; MAINTENANCE</text><path d="M53 122h74" stroke="#dfe5ea" stroke-width="2"/><path d="M65 134h50" stroke="#f07b3f" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services-cards-section">
     <div class="wrap">
       <div class="grid grid-4 svc-grid">
         <div class="card">
