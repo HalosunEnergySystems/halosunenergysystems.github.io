@@ -223,6 +223,32 @@
   .pm-faq-toggle-row { justify-content: flex-start; }
 }
 
+/* ---------- DISCLAIMER / NOTE CALLOUT ----------
+   Sits directly under the subsidy grid and the timeline grid. Previously
+   had no margin-top of its own, so it rendered flush against the card
+   grid above it (especially cramped once Hindi text wraps to two lines
+   and the cards grow taller). Mirrors the sitewide .faq-note callout
+   (see styles.css) — sun-tinted left border, soft tinted background,
+   rounded corner on the open side — so this note matches the visual
+   language used for callouts elsewhere on the site instead of being
+   plain unstyled text. */
+.pm-disclaimer {
+  margin-top: 28px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--sun);
+  background: rgba(217, 169, 78, 0.07);
+  border-radius: 0 10px 10px 0;
+  color: var(--slate);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.pm-disclaimer strong {
+  color: var(--ink);
+  font-weight: 700;
+  margin-right: 4px;
+}
+
 /* ---------- CARDS & GRIDS (SHARED DESIGN TOKENS) ---------- */
 .pm-subsidy-grid,
 .pm-docs,
