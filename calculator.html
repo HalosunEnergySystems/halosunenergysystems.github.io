@@ -81,6 +81,24 @@
     opacity: 0.5;
     cursor: not-allowed;
   }
+  /* Site-visit prompt shown right after the results - a stronger, more
+     specific nudge than the plain "written quote" link below it. */
+  .calc-sitevisit-cta {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(229, 231, 235, 0.18);
+    text-align: center;
+  }
+  .calc-sitevisit-question {
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 1.02rem;
+    line-height: 1.4;
+    margin: 0 0 0.85rem;
+  }
+  #calc-cta {
+    margin-top: 0.75rem;
+  }
   /* Progress bar shown while the PDF is being generated — Hindi PDFs in
      particular take a few seconds since each label/value/name is rendered
      to a canvas image individually for the Devanagari font, so visitors
@@ -448,6 +466,11 @@
             </div>
 
             <p class="calc-note" data-i18n="emi-note">Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).</p>
+          </div>
+
+          <div class="calc-sitevisit-cta">
+            <p class="calc-sitevisit-question" data-i18n="calc-sitevisit-question">Want an accurate system design for your roof?</p>
+            <a href="contact.html" class="btn btn-primary btn-full" data-i18n="calc-sitevisit-btn">Request a Site Visit →</a>
           </div>
 
           <a href="contact.html" class="btn btn-ghost btn-full" id="calc-cta" data-i18n="calc-cta-btn">Or Request a Detailed Written Quote</a>
