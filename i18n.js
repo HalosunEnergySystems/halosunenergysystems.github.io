@@ -237,8 +237,8 @@ const TRANSLATIONS = {
   'process-step3-desc':  { en: 'We handle net-metering paperwork and government subsidy applications on your behalf.',
                              hi: 'हम आपकी ओर से नेट-मीटरिंग कागज़ात और सरकारी सब्सिडी आवेदन संभालते हैं।' },
   'process-step4-title': { en: 'Installation', hi: 'इंस्टॉलेशन' },
-  'process-step4-desc':  { en: 'Certified crews install panels, inverter and wiring - most rooftop jobs finish in three to seven days.',
-                             hi: 'प्रमाणित टीमें पैनल, इनवर्टर और वायरिंग इंस्टॉल करती हैं - अधिकांश रूफटॉप काम तीन से सात दिनों में पूरे हो जाते हैं।' },
+  'process-step4-desc':  { en: 'qualified crews install panels, inverter and wiring - most rooftop jobs finish in three to seven days.',
+                             hi: 'योग्य टीमें पैनल, इनवर्टर और वायरिंग इंस्टॉल करती हैं - अधिकांश रूफटॉप काम तीन से सात दिनों में पूरे हो जाते हैं।' },
   'process-step5-title': { en: 'Commissioning', hi: 'कमीशनिंग' },
   'process-step5-desc':  { en: 'Utility inspection, net meter installation, and formal handover of your plant.',
                              hi: 'यूटिलिटी निरीक्षण, नेट मीटर इंस्टॉलेशन, और आपके प्लांट की औपचारिक सुपुर्दगी।' },
@@ -258,7 +258,7 @@ const TRANSLATIONS = {
 
   // ---- Ten checks ----
   'std-checks-eyebrow': { en: 'Applied to every job, same size or not', hi: 'हर काम पर लागू, आकार चाहे जो भी हो' },
-  'std-checks-title':   { en: 'Ten checks, no exceptions', hi: 'दस जाँच, कोई अपवाद नहीं' },
+  'std-checks-title':   { en: 'The checks we don't compromise on', hi: 'जांच जिनसे हम कभी समझौता नहीं करते' },
   'std-checks-sub':     { en: 'Whether it\'s a 6-panel rooftop or a 50 kW commercial plant, every Halosun installation is signed off against the same checklist before we call it finished.',
                            hi: 'चाहे 6-पैनल की छत हो या 50 kW का व्यावसायिक प्लांट, हर हैलोसन इंस्टॉलेशन को पूरा मानने से पहले उसी चेकलिस्ट पर परखा जाता है।' },
   'std-check-1':  { en: 'Mounting structure sized for your roof and your panel load - not trimmed on steel gauge to shave the quote.', hi: 'माउंटिंग संरचना आपकी छत और पैनल भार के अनुसार तय की जाती है - कोटेशन घटाने के लिए स्टील की मोटाई कम नहीं की जाती।' },
