@@ -118,6 +118,111 @@
   font-weight: 600;
 }
 
+/* ---------- FAQ ACCORDION ----------
+   Mirrors the sitewide .faq-item / .faq-question / .faq-icon /
+   .faq-answer pattern from styles.css (card, "+" icon that rotates
+   into a close mark, animated grid-template-rows reveal) so this
+   page's FAQ matches the look of the main Solar FAQ page. Colors
+   are re-tinted for this section's dark (--ink) background instead
+   of reusing the light-theme classes directly. Namespaced under
+   .pm-faq-* and wired up by its own scoped script further down the
+   page, so it can't collide with any FAQ script already used
+   elsewhere on the site. */
+.pm-faq-toggle-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 20px;
+}
+
+.pm-faq-toggle-all {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #fff;
+  padding: 9px 15px;
+  border-radius: 999px;
+  font: 600 0.82rem var(--font-body);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.pm-faq-toggle-all:hover {
+  background: var(--sun);
+  border-color: var(--sun);
+  color: var(--ink);
+}
+
+.pm-faq-toggle-collapse { display: none; }
+.pm-faq-toggle-all.all-open .pm-faq-toggle-expand { display: none; }
+.pm-faq-toggle-all.all-open .pm-faq-toggle-collapse { display: inline; }
+
+.pm-faq-list {
+  display: grid;
+  gap: 12px;
+  max-width: 900px;
+  margin-top: 16px;
+}
+
+.pm-faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line-dark);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.pm-faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 21px 22px;
+  color: #fff;
+  font: 600 1rem var(--font-display);
+  cursor: pointer;
+}
+
+.pm-faq-question .pm-faq-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--sun);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.pm-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.pm-faq-answer-inner {
+  overflow: hidden;
+  padding: 0 22px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.pm-faq-item.open .pm-faq-answer { grid-template-rows: 1fr; }
+.pm-faq-item.open .pm-faq-answer-inner { padding-bottom: 21px; }
+.pm-faq-item.open .pm-faq-icon {
+  transform: rotate(45deg);
+  background: rgba(217, 169, 78, 0.1);
+}
+
+@media (max-width: 680px) {
+  .pm-faq-toggle-row { justify-content: flex-start; }
+}
+
 /* ---------- CARDS & GRIDS (SHARED DESIGN TOKENS) ---------- */
 .pm-subsidy-grid,
 .pm-docs,
