@@ -1,0 +1,45 @@
+/* ============ NAV "ABOUT" DROPDOWN — BASELINE ALIGNMENT FIX ============
+   The other primary nav items are <a> tags, but "About" is a <button>
+   (it needs to be focusable/clickable to open the dropdown menu). Browsers
+   give <button> its own default font, line-height and box model, so
+   without this reset it renders slightly lower/offset from its sibling
+   links. This strips all of that so the trigger inherits the exact same
+   typography as the surrounding nav links and centers its label + caret
+   the same way. */
+.main-nav .nav-dropdown {
+  display: inline-flex;
+  align-items: center;
+}
+
+.main-nav .nav-dropdown-trigger {
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+}
+
+.main-nav .nav-dropdown-trigger:hover,
+.main-nav .nav-dropdown-trigger:focus-visible {
+  color: inherit;
+}
+
+.main-nav .nav-dropdown-trigger .nav-caret {
+  flex-shrink: 0;
+  width: 10px;
+  height: 7px;
+}
