@@ -12,7 +12,7 @@
 </script>  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solar Savings Calculator — Estimate Subsidy & Payback</title>
+<title>Solar Savings Calculator - Estimate Subsidy & Payback</title>
 <meta name="description" content="Estimate your system size, government subsidy and payback period in minutes. Free, instant, no signup.">
 <link rel="icon" href="assets/logo-favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,20 +28,20 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Halosun Energy Systems">
 <meta property="og:url" content="https://halosunenergysystems.com/calculator.html">
-<meta property="og:title" content="Solar Savings Calculator — Estimate Subsidy & Payback">
+<meta property="og:title" content="Solar Savings Calculator - Estimate Subsidy & Payback">
 <meta property="og:description" content="Estimate your system size, government subsidy and payback period in minutes. Free, instant, no signup.">
 <meta property="og:image" content="https://halosunenergysystems.com/assets/logo-hero.png">
 <meta property="og:locale" content="en_IN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Solar Savings Calculator — Estimate Subsidy & Payback">
+<meta name="twitter:title" content="Solar Savings Calculator - Estimate Subsidy & Payback">
 <meta name="twitter:description" content="Estimate your system size, government subsidy and payback period in minutes. Free, instant, no signup.">
 <meta name="twitter:image" content="https://halosunenergysystems.com/assets/logo-hero.png">
 <style>
   /* Placeholder shown in the results pane before the user has calculated.
      Scoped to :not([hidden]) so setting the hidden attribute in JS
-     actually hides it — an unscoped `display: flex` here would otherwise
+     actually hides it - an unscoped `display: flex` here would otherwise
      override the browser's default [hidden] { display: none } rule. */
   .calc-placeholder:not([hidden]) {
     display: flex;
@@ -62,7 +62,7 @@
     pointer-events: none;
     cursor: not-allowed;
   }
-  /* Reset button — explicit contrast so it doesn't blend into dark panels */
+  /* Reset button - explicit contrast so it doesn't blend into dark panels */
   #calc-reset {
     color: #e5e7eb;
     background: transparent;
@@ -73,7 +73,7 @@
     border-color: rgba(229, 231, 235, 0.8);
   }
   /* Bring the EMI panel's text up to the same brightness as the rest of
-     the results — it was rendering visibly dimmer/more muted, making the
+     the results - it was rendering visibly dimmer/more muted, making the
      whole section look like it was sitting behind the main results. */
   .emi-panel .emi-heading {
     color: #e2e8f0 !important;
@@ -83,7 +83,7 @@
     color: #cbd5e1 !important;
     opacity: 1 !important;
   }
-  /* PDF download button — mirrors the Reset button's visible-ghost style */
+  /* PDF download button - mirrors the Reset button's visible-ghost style */
   #calc-pdf-btn {
     color: #e5e7eb;
     background: transparent;
@@ -116,7 +116,7 @@
   #calc-cta {
     margin-top: 0.75rem;
   }
-  /* Progress bar shown while the PDF is being generated — Hindi PDFs in
+  /* Progress bar shown while the PDF is being generated - Hindi PDFs in
      particular take a few seconds since each label/value/name is rendered
      to a canvas image individually for the Devanagari font, so visitors
      need feedback that something is happening rather than a frozen button. */
@@ -135,7 +135,7 @@
     transition: width 0.25s ease;
   }
   /* Old-bill comparison figure was rendering too dim to read against the
-     dark panel — keep the strikethrough (it's meant to look superseded)
+     dark panel - keep the strikethrough (it's meant to look superseded)
      but lift the contrast so it's actually legible. */
   #emi-old-bill {
     color: #94a3b8 !important;
@@ -149,10 +149,10 @@
     background-color: #ffffff !important;
   }
 
-  /* ============ DEADLINE COUNTDOWN — red accent variant ============
+  /* ============ DEADLINE COUNTDOWN - red accent variant ============
      Keeps body text in the site's normal theme color (readability first);
-     red is used only as an accent — left border, icon and the countdown
-     digits — so it draws the eye without turning the whole banner into
+     red is used only as an accent - left border, icon and the countdown
+     digits - so it draws the eye without turning the whole banner into
      a "sale" wall of red text. */
   .deadline-banner.deadline-banner-alert {
     border-left: 4px solid #ef4444;
@@ -166,7 +166,7 @@
   }
 
   /* ============ PIGGY BANK SAVINGS ANIMATION ============
-     Purely decorative — sits above the results actions once a calculation
+     Purely decorative - sits above the results actions once a calculation
      has run, reinforcing "your money is piling up" at the exact moment
      the savings figure appears. Three coins loop continuously into the
      slot; the body gives a tiny bounce on each landing. Everything is
@@ -307,7 +307,7 @@
     <div class="wrap">
       <p class="eyebrow" data-i18n="calc-eyebrow">Instant estimate</p>
       <h1 data-i18n="calc-title">What could solar save you?</h1>
-      <p class="section-sub" data-i18n="calc-sub">Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote — book a free site visit for exact numbers.</p>
+      <p class="section-sub" data-i18n="calc-sub">Enter your average monthly electricity bill for a rough sizing and savings estimate. This is a guide, not a quote - book a free site visit for exact numbers.</p>
 
       <div class="calc-panel">
         <div class="calc-inputs">
@@ -338,7 +338,7 @@
           </label>
           <button class="btn btn-primary btn-full" id="calc-run" data-i18n="calc-btn">Calculate</button>
           <button class="btn btn-ghost btn-full" id="calc-reset" type="button" data-i18n="calc-reset-btn">Reset</button>
-          <p class="calc-note" data-i18n="calc-note-main">Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults — ask us for a site-specific number.</p>
+          <p class="calc-note" data-i18n="calc-note-main">Assumes ~4 sun-hours/day generation and current PM Surya Ghar (central) + UPNEDA (UP state) subsidy slabs for residential rooftop. Editable defaults - ask us for a site-specific number.</p>
         </div>
 
         <div class="calc-results" id="calc-results">
@@ -482,7 +482,7 @@
               </div>
             </div>
 
-            <p class="calc-note" data-i18n="emi-note">Illustrative only, based on the down payment, tenure and rate above — your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).</p>
+            <p class="calc-note" data-i18n="emi-note">Illustrative only, based on the down payment, tenure and rate above - your actual loan terms depend on the lender. Not a loan offer from Halosun Energy Systems. The loan is sized on the full system cost since the subsidy is typically credited after installation; once it's credited, your outstanding loan and EMI can be reduced as shown above (same tenure and rate).</p>
           </div>
 
           <div class="calc-sitevisit-cta">
