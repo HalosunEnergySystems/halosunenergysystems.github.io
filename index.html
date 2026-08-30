@@ -227,6 +227,33 @@
       justify-self: stretch;
     }
   }
+  /* ============ "LIVE" pulsing dot ============
+     Small red dot before the "Live, right now" eyebrow, matching the
+     same indicator on the calculator page's live-gen section. */
+  .eyebrow-live {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+  .eyebrow-live::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: eyebrow-live-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes eyebrow-live-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+    70%  { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .eyebrow-live::before { animation: none; }
+  }
   </style>
 
   <script type="application/ld+json"> {
@@ -470,7 +497,7 @@
   <section class="section section-dark livegen-teaser">
     <div class="wrap livegen-teaser-inner">
       <div class="livegen-teaser-copy">
-        <p class="eyebrow" data-i18n="home-livegen-eyebrow">Live, right now</p>
+        <p class="eyebrow eyebrow-live" data-i18n="home-livegen-eyebrow">Live, right now</p>
         <h2 data-i18n="home-livegen-title">What's your rooftop making right now?</h2>
         <p class="section-sub" data-i18n="home-livegen-sub">Pick your city and see today's actual sunlight conditions translated into live rooftop output - no signup needed.</p>
         <a href="calculator.html#live-gen" class="btn btn-primary" data-i18n="home-livegen-cta">Check My City</a>
