@@ -41,6 +41,14 @@ const TRANSLATIONS = {
 
   'explore-eyebrow':   { en: 'Explore',               hi: 'जानिए' },
   'explore-title':     { en: 'Find what you need',    hi: 'जो चाहिए वह खोजें' },
+  // ---- Homepage: Live Generation teaser section ----
+  'home-livegen-eyebrow': { en: 'Live, right now', hi: 'लाइव, अभी' },
+  'home-livegen-title':   { en: 'What\'s your rooftop making right now?', hi: 'आपकी छत अभी कितनी बिजली बना रही है?' },
+  'home-livegen-sub':     { en: 'Pick your city and see today\'s actual sunlight conditions translated into live rooftop output - no signup needed.',
+                             hi: 'अपना शहर चुनें और देखें कि आज की असली धूप की स्थिति आपकी छत के लाइव आउटपुट में कैसे बदलती है - साइनअप की ज़रूरत नहीं।' },
+  'home-livegen-cta':     { en: 'See Live Generation →', hi: 'लाइव जनरेशन देखें →' },
+  'livegen-now-label':    { en: 'Estimated output right now', hi: 'अभी अनुमानित आउटपुट' },
+
   'card-01-title':     { en: 'Services',              hi: 'सेवाएँ' },
   'card-01-desc':      { en: 'Residential, commercial and turnkey EPC solar solutions.', hi: 'घरेलू, व्यावसायिक और टर्नकी ईपीसी सोलर समाधान।' },
   'card-02-title':     { en: 'Our Process',           hi: 'हमारी प्रक्रिया' },
