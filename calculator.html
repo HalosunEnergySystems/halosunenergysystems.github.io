@@ -203,6 +203,7 @@
     gap: 4px;
     height: 110px;
     padding: 0 2px;
+    position: relative;
   }
   .livegen-seasonal-col {
     flex: 1 1 0;
@@ -219,7 +220,60 @@
     min-height: 4px;
     border-radius: 4px 4px 0 0;
     background: rgba(229, 231, 235, 0.32);
-    transition: height 0.5s ease;
+    transition: height 0.5s ease, background 0.15s ease, opacity 0.15s ease;
+    cursor: pointer;
+  }
+  .livegen-seasonal-bar:focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
+  .livegen-seasonal-col.is-hovered .livegen-seasonal-bar {
+    background: rgba(229, 231, 235, 0.55);
+  }
+  .livegen-seasonal-col.is-best.is-hovered .livegen-seasonal-bar,
+  .livegen-seasonal-col.is-worst.is-hovered .livegen-seasonal-bar {
+    opacity: 0.88;
+  }
+  /* Custom tooltip bubble - replaces the native title attribute so the
+     value shows instantly and matches the panel's dark theme, and so
+     it also works on tap for touch devices. Positioned absolutely
+     inside .livegen-seasonal-chart and moved per-column in JS. */
+  .livegen-seasonal-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    transform: translate(-50%, -8px);
+    background: #0f172a;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    color: #f1f5f9;
+    font-size: 0.74rem;
+    line-height: 1.35;
+    padding: 6px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.12s ease;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+    z-index: 3;
+  }
+  .livegen-seasonal-tooltip.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  .livegen-seasonal-tooltip strong {
+    color: #f59e0b;
+    font-weight: 700;
+  }
+  .livegen-seasonal-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #0f172a;
   }
   .livegen-seasonal-col.is-best .livegen-seasonal-bar {
     background: linear-gradient(180deg, #f59e0b, #f97316);
@@ -785,7 +839,6 @@
       <a href="services.html" data-i18n="nav-services">Services</a>
       <a href="pm-suryaghar.html" class="nav-highlight" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
       <a href="calculator.html" class="nav-highlight active" data-i18n="nav-calculator">Calculator</a>
-      <a href="solar-system-types.html" data-i18n="nav-systypes">System Types</a>
       <a href="gallery.html" data-i18n="nav-projects">Projects</a>
       <a href="faq.html" data-i18n="nav-faq">Solar FAQ</a>
       <div class="nav-dropdown" data-nav-dropdown>
@@ -1006,7 +1059,7 @@
           <p class="calc-note" data-i18n="livegen-note">Live estimate based on today's actual weather at your selected city. Assumes a well-installed, unshaded-by-default on-grid system; actual generation depends on your specific roof, equipment and site conditions - book a free site visit for a precise number.</p>
 
           <div class="livegen-seasonal" id="livegen-seasonal" hidden>
-            <p class="livegen-seasonal-heading" data-i18n="livegen-seasonal-heading">Seasonal forecast - this month vs. the rest of the year</p>
+            <p class="livegen-seasonal-heading" data-i18n="livegen-seasonal-heading">Seasonal forecast — this month vs. the rest of the year</p>
             <div class="livegen-seasonal-chart" id="livegen-seasonal-chart"></div>
             <p class="livegen-seasonal-summary" id="livegen-seasonal-summary"></p>
             <p class="calc-note" data-i18n="livegen-seasonal-note">Based on your city's actual daily sunlight over the past 12 months. A single year can vary a little, but the monsoon dip shown here is a consistent seasonal pattern across Uttar Pradesh.</p>
@@ -1294,7 +1347,6 @@
       <a href="services.html" data-i18n="nav-services">Services</a>
       <a href="pm-suryaghar.html" data-i18n="nav-pm-suryaghar">PM Surya Ghar</a>
       <a href="calculator.html" data-i18n="footer-calc">Savings Calculator</a>
-      <a href="solar-system-types.html" data-i18n="nav-systypes">System Types</a>
       <a href="gallery.html" data-i18n="nav-projects">Projects</a>
       <a href="faq.html" data-i18n="footer-faq-myths">Solar FAQ &amp; Myths</a>
       <a href="process.html" data-i18n="footer-process">Our Process</a>
