@@ -13,6 +13,7 @@ const TRANSLATIONS = {
   'nav-standard':      { en: 'Our Standard',         hi: 'हमारा मानक' },
   'nav-why':           { en: 'Why Halosun',          hi: 'हैलोसन क्यों' },
   'nav-calculator':    { en: 'Calculator',           hi: 'कैलकुलेटर' },
+  'nav-systypes':      { en: 'System Types',         hi: 'सिस्टम के प्रकार' },
   'nav-projects':      { en: 'Projects',             hi: 'परियोजनाएँ' },
   'nav-faq':           { en: 'Solar FAQ',            hi: 'सोलर सवाल-जवाब' },
   'nav-contact':       { en: 'Contact',               hi: 'संपर्क करें' },
@@ -169,6 +170,72 @@ const TRANSLATIONS = {
   'faq-q13-q':         { en: 'Is a battery necessary for an on-grid solar system?', hi: 'क्या ऑन-ग्रिड सोलर सिस्टम के लिए बैटरी ज़रूरी है?' },
   'faq-q13-a':         { en: 'Not necessarily. An on-grid system can operate without batteries and use the grid for supply when solar generation is insufficient. Batteries add backup capability and can shift energy to later hours, but they also add cost, complexity and a component with its own service life.',
                           hi: 'ज़रूरी नहीं। एक ऑन-ग्रिड सिस्टम बिना बैटरी के भी काम कर सकता है और जब सोलर जनरेशन अपर्याप्त हो तो आपूर्ति के लिए ग्रिड का उपयोग करता है। बैटरी बैकअप क्षमता जोड़ती है और ऊर्जा को बाद के घंटों में स्थानांतरित कर सकती है, लेकिन इससे लागत, जटिलता और अपनी सेवा अवधि वाला एक अतिरिक्त घटक भी जुड़ जाता है।' },
+
+  // ---- System types comparison (solar-system-types.html) ----
+  'sys-hero-eyebrow':  { en: 'Choosing a system', hi: 'सिस्टम चुनना' },
+  'sys-hero-title':    { en: 'On-grid, hybrid or off-grid — which one is right for you?',
+                          hi: 'ऑन-ग्रिड, हाइब्रिड या ऑफ-ग्रिड — आपके लिए कौन सा सही है?' },
+  'sys-hero-sub':      { en: 'The right answer depends on why you want solar in the first place: cutting your bill, keeping the lights on during a power cut, or running a site that has no grid connection at all. Here\'s how the three approaches actually compare.',
+                          hi: 'सही जवाब इस बात पर निर्भर करता है कि आप सोलर क्यों चाहते हैं: अपना बिल घटाना, बिजली कटौती के दौरान लाइट चालू रखना, या ऐसी जगह चलाना जहाँ बिल्कुल ग्रिड कनेक्शन नहीं है। यहाँ बताया गया है कि तीनों तरीके असल में एक-दूसरे से कैसे अलग हैं।' },
+
+  'sys-table-caption': { en: 'A side-by-side comparison for a typical home or small business in Uttar Pradesh',
+                          hi: 'उत्तर प्रदेश के एक सामान्य घर या छोटे व्यवसाय के लिए साथ-साथ तुलना' },
+
+  'sys-col-on':        { en: 'On-grid',   hi: 'ऑन-ग्रिड' },
+  'sys-col-hybrid':    { en: 'Hybrid',    hi: 'हाइब्रिड' },
+  'sys-col-off':       { en: 'Off-grid',  hi: 'ऑफ-ग्रिड' },
+
+  'sys-row-connect':   { en: 'How it connects',              hi: 'यह कैसे जुड़ता है' },
+  'sys-row-backup':    { en: 'Backup during a power cut',    hi: 'बिजली कटौती के दौरान बैकअप' },
+  'sys-row-battery':   { en: 'Battery required',             hi: 'बैटरी ज़रूरी है?' },
+  'sys-row-subsidy':   { en: 'PM Surya Ghar subsidy',        hi: 'PM सूर्य घर सब्सिडी' },
+  'sys-row-cost':      { en: 'Relative cost',                hi: 'सापेक्ष लागत' },
+  'sys-row-bestfor':   { en: 'Best suited for',               hi: 'किसके लिए सबसे उपयुक्त' },
+
+  'sys-on-connect':    { en: 'Tied to the utility grid, no battery', hi: 'यूटिलिटी ग्रिड से जुड़ा, कोई बैटरी नहीं' },
+  'sys-hybrid-connect':{ en: 'Grid + solar + battery, working together', hi: 'ग्रिड + सोलर + बैटरी, एक साथ काम करते हुए' },
+  'sys-off-connect':   { en: 'No grid connection — solar and battery only', hi: 'कोई ग्रिड कनेक्शन नहीं — केवल सोलर और बैटरी' },
+
+  'sys-on-backup':     { en: 'None — shuts down for safety (anti-islanding)', hi: 'कोई नहीं — सुरक्षा के लिए बंद हो जाता है (एंटी-आइलैंडिंग)' },
+  'sys-hybrid-backup': { en: 'Selected circuits stay on, if designed in', hi: 'डिज़ाइन में शामिल किए गए चुने हुए सर्किट चालू रहते हैं' },
+  'sys-off-backup':    { en: 'The system is the supply — no separate "backup" mode', hi: 'सिस्टम ही आपूर्ति है — कोई अलग "बैकअप" मोड नहीं' },
+
+  'sys-on-battery':    { en: 'No', hi: 'नहीं' },
+  'sys-hybrid-battery':{ en: 'Yes — sized to the backup load and hours you choose', hi: 'हाँ — आपके चुने हुए बैकअप लोड और घंटों के अनुसार तय की जाती है' },
+  'sys-off-battery':   { en: 'Yes — sized to your entire daily load, not just backup', hi: 'हाँ — केवल बैकअप के लिए नहीं, बल्कि आपके पूरे दैनिक लोड के अनुसार तय की जाती है' },
+
+  'sys-on-subsidy':    { en: 'Typically eligible for residential rooftop', hi: 'आमतौर पर आवासीय रूफटॉप के लिए पात्र' },
+  'sys-hybrid-subsidy':{ en: 'Often still eligible — confirm current rules for your case', hi: 'अक्सर तब भी पात्र होता है — अपने मामले के लिए मौजूदा नियमों की पुष्टि करें' },
+  'sys-off-subsidy':   { en: 'Generally not eligible — the scheme is built around grid-tied systems', hi: 'आमतौर पर पात्र नहीं — यह योजना ग्रिड-टाई सिस्टम के लिए बनाई गई है' },
+
+  'sys-on-cost':       { en: 'Lowest, for the same panel capacity', hi: 'समान पैनल क्षमता के लिए सबसे कम' },
+  'sys-hybrid-cost':   { en: 'Higher — hybrid inverter and battery add cost', hi: 'अधिक — हाइब्रिड इनवर्टर और बैटरी लागत बढ़ाते हैं' },
+  'sys-off-cost':      { en: 'Highest — battery and array must cover the whole load', hi: 'सबसे अधिक — बैटरी और पैनल को पूरे लोड को कवर करना होता है' },
+
+  'sys-on-bestfor':    { en: 'Cutting your electricity bill where outages aren\'t a major concern', hi: 'ऐसी जगह बिजली बिल घटाने के लिए जहाँ बिजली कटौती बड़ी समस्या नहीं है' },
+  'sys-hybrid-bestfor':{ en: 'Homes and businesses with a grid connection that want backup for essential loads', hi: 'ग्रिड कनेक्शन वाले घर और व्यवसाय जो ज़रूरी लोड के लिए बैकअप चाहते हैं' },
+  'sys-off-bestfor':   { en: 'Sites with no grid access at all — genuinely uncommon for a home in UP', hi: 'ऐसी जगहें जहाँ बिल्कुल ग्रिड पहुंच नहीं है — UP में किसी घर के लिए यह वाकई दुर्लभ है' },
+
+  'sys-table-footnote':{ en: 'Subsidy eligibility, rates and rules change and depend on your consumer category — always confirm the current official position before making a financial decision.',
+                          hi: 'सब्सिडी की पात्रता, दरें और नियम बदलते रहते हैं और आपकी उपभोक्ता श्रेणी पर निर्भर करते हैं — कोई भी वित्तीय निर्णय लेने से पहले हमेशा मौजूदा आधिकारिक स्थिति की पुष्टि करें।' },
+
+  'sys-card-on-tag':      { en: 'MOST COMMON',       hi: 'सबसे आम' },
+  'sys-card-on-title':    { en: 'On-grid solar',      hi: 'ऑन-ग्रिड सोलर' },
+  'sys-card-on-desc':     { en: 'Connected directly to the utility grid. No battery, lowest cost per kW, and generally the fastest payback — the default choice when bill reduction is the main goal and grid supply is reasonably reliable.',
+                             hi: 'सीधे यूटिलिटी ग्रिड से जुड़ा होता है। कोई बैटरी नहीं, प्रति kW सबसे कम लागत, और आमतौर पर सबसे तेज़ पेबैक — जब मुख्य लक्ष्य बिल घटाना हो और ग्रिड आपूर्ति ठीक-ठाक भरोसेमंद हो, तो यह डिफ़ॉल्ट विकल्प है।' },
+
+  'sys-card-hybrid-tag':   { en: 'FOR BACKUP',        hi: 'बैकअप के लिए' },
+  'sys-card-hybrid-title': { en: 'Hybrid solar',       hi: 'हाइब्रिड सोलर' },
+  'sys-card-hybrid-desc':  { en: 'Grid, solar and battery working together. A backup distribution board keeps chosen essential circuits running through an outage, while everything else stays on the normal supply — the middle ground most homes with frequent cuts actually need.',
+                              hi: 'ग्रिड, सोलर और बैटरी मिलकर काम करते हैं। एक बैकअप डिस्ट्रीब्यूशन बोर्ड बिजली कटौती के दौरान चुने हुए ज़रूरी सर्किट को चालू रखता है, जबकि बाकी सब सामान्य आपूर्ति पर बना रहता है — यह वह बीच का रास्ता है जिसकी बार-बार कटौती वाले ज़्यादातर घरों को असल में ज़रूरत होती है।' },
+
+  'sys-card-off-tag':     { en: 'FOR NO-GRID SITES',  hi: 'बिना ग्रिड वाली जगहों के लिए' },
+  'sys-card-off-title':   { en: 'Off-grid solar',      hi: 'ऑफ-ग्रिड सोलर' },
+  'sys-card-off-desc':    { en: 'No utility connection at all. Solar and battery must be sized to cover 100% of your load year-round, not just backup hours, which is why off-grid costs more and needs careful load and storage sizing — worth it where there genuinely is no grid, rare otherwise.',
+                             hi: 'बिल्कुल कोई यूटिलिटी कनेक्शन नहीं। सोलर और बैटरी को केवल बैकअप घंटों के लिए नहीं, बल्कि साल भर आपके 100% लोड को कवर करने के लिए तय किया जाना चाहिए, इसीलिए ऑफ-ग्रिड महंगा पड़ता है और इसमें लोड व स्टोरेज का सावधानीपूर्वक आकलन ज़रूरी है — जहाँ वाकई ग्रिड नहीं है वहाँ यह उपयोगी है, बाकी जगह यह दुर्लभ ही ज़रूरी होता है।' },
+
+  'sys-cta-title':     { en: 'Know which one you need? Size the battery next.', hi: 'तय हो गया कि आपको कौन सा चाहिए? अब बैटरी का आकार तय करें।' },
+  'sys-cta-1':         { en: 'Size My Battery', hi: 'मेरी बैटरी का आकार तय करें' },
 
   // ---- Battery sizing estimator (calculator.html) ----
   'battery-eyebrow':          { en: 'Backup planning', hi: 'बैकअप योजना' },
