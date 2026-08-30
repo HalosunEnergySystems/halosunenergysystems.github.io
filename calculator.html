@@ -134,6 +134,25 @@
     flex-direction: column;
     gap: 1rem;
   }
+  /* The site's global .btn-ghost is styled for light-background panels
+     (dark border + dark text). This panel has a dark navy background
+     of its own (#0f2038 above), so the global style renders as
+     dark-on-dark - present but unreadable. Restyle just the ghost
+     buttons inside this panel to light-on-navy instead. */
+  .livegen-panel .btn-ghost {
+    border-color: rgba(226, 232, 240, 0.4);
+    color: #e2e8f0;
+    background: transparent;
+  }
+  .livegen-panel .btn-ghost:hover {
+    border-color: #f59e0b;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.08);
+  }
+  .livegen-panel .btn-ghost:focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 2px;
+  }
   .livegen-status {
     min-height: 1.2em;
     font-size: 0.9rem;
