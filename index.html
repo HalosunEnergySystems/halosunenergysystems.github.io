@@ -186,6 +186,47 @@
       height: 15px;
       color: var(--sun, #d9a94e);
     }
+  /* ============ LIVE GENERATION TEASER ============ */
+  .livegen-teaser-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .livegen-teaser-copy .section-sub {
+    margin-bottom: 1.5rem;
+  }
+  .livegen-teaser-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: end;
+    text-align: center;
+    background: rgba(217, 169, 78, 0.08);
+    border: 1px solid rgba(217, 169, 78, 0.3);
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    min-width: 200px;
+  }
+  .livegen-teaser-sun {
+    width: 40px;
+    height: 40px;
+    color: var(--sun, #d9a94e);
+    margin-bottom: 0.75rem;
+  }
+  .livegen-teaser-badge-label {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  @media (max-width: 760px) {
+    .livegen-teaser-inner {
+      grid-template-columns: 1fr;
+    }
+    .livegen-teaser-badge {
+      justify-self: stretch;
+    }
+  }
   </style>
 
   <script type="application/ld+json"> {
@@ -420,6 +461,36 @@
         <path d="M450,200 Q 495,222 540,204" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.3"/>
         <path d="M490,200 Q 515,226 545,214" fill="none" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1.3"/>
       </svg>
+    </div>
+  </section>
+
+  <!-- ============ LIVE GENERATION TEASER ============
+       Condensed link-through to the full live-gen tool on calculator.html
+       (no weather fetch here - avoids duplicating that logic on two pages). -->
+  <section class="section section-dark livegen-teaser">
+    <div class="wrap livegen-teaser-inner">
+      <div class="livegen-teaser-copy">
+        <p class="eyebrow" data-i18n="home-livegen-eyebrow">Live, right now</p>
+        <h2 data-i18n="home-livegen-title">What's your rooftop making right now?</h2>
+        <p class="section-sub" data-i18n="home-livegen-sub">Pick your city and see today's actual sunlight conditions translated into live rooftop output - no signup needed.</p>
+        <a href="calculator.html#live-gen" class="btn btn-primary" data-i18n="home-livegen-cta">Check My City</a>
+      </div>
+      <div class="livegen-teaser-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="livegen-teaser-sun">
+          <circle cx="12" cy="12" r="4.6" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <line x1="12" y1="1.5" x2="12" y2="4.5"/>
+            <line x1="12" y1="19.5" x2="12" y2="22.5"/>
+            <line x1="1.5" y1="12" x2="4.5" y2="12"/>
+            <line x1="19.5" y1="12" x2="22.5" y2="12"/>
+            <line x1="4.4" y1="4.4" x2="6.5" y2="6.5"/>
+            <line x1="17.5" y1="17.5" x2="19.6" y2="19.6"/>
+            <line x1="4.4" y1="19.6" x2="6.5" y2="17.5"/>
+            <line x1="17.5" y1="6.5" x2="19.6" y2="4.4"/>
+          </g>
+        </svg>
+        <span class="livegen-teaser-badge-label" data-i18n="livegen-now-label">Estimated output right now</span>
+      </div>
     </div>
   </section>
 
