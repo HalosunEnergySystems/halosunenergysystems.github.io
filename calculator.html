@@ -317,6 +317,141 @@
     color: #ef4444;
   }
 
+  /* ============ BATTERY SIZING ESTIMATOR ============ */
+  .battery-appliance-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .field-label {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    margin: 0 0 0.35rem;
+  }
+  .battery-appliance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.55rem 0.7rem;
+    background: rgba(229, 231, 235, 0.05);
+    border: 1px solid rgba(229, 231, 235, 0.12);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .battery-appliance-row.is-active {
+    border-color: rgba(245, 158, 11, 0.55);
+    background: rgba(245, 158, 11, 0.08);
+  }
+  .battery-appliance-info {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+  }
+  .battery-appliance-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(229, 231, 235, 0.08);
+    color: #94a3b8;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .battery-appliance-row.is-active .battery-appliance-icon {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.14);
+  }
+  .battery-appliance-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  .battery-appliance-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .battery-appliance-name {
+    color: #e2e8f0;
+    font-size: 0.86rem;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .battery-appliance-watts {
+    color: #94a3b8;
+    font-size: 0.74rem;
+  }
+  .battery-appliance-stepper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .battery-stepper-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(229, 231, 235, 0.35);
+    background: transparent;
+    color: #e5e7eb;
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+  .battery-stepper-btn:hover:not(:disabled) {
+    background: rgba(245, 158, 11, 0.18);
+    border-color: rgba(245, 158, 11, 0.6);
+  }
+  .battery-stepper-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .battery-appliance-count {
+    min-width: 1.4em;
+    text-align: center;
+    color: #e5e7eb;
+    font-family: "Space Grotesk", "IBM Plex Mono", monospace;
+    font-size: 0.9rem;
+  }
+  .battery-audit-block {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(229, 231, 235, 0.18);
+  }
+  .battery-audit-heading {
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0 0.75rem;
+  }
+  .battery-audit-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .battery-audit-list li {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  #battery-hours option,
+  #battery-chemistry option {
+    color: #111827 !important;
+    background-color: #ffffff !important;
+  }
+
   /* ============ PIGGY BANK SAVINGS ANIMATION ============
      Purely decorative - sits above the results actions once a calculation
      has run, reinforcing "your money is piling up" at the exact moment
@@ -412,66 +547,12 @@
     margin-bottom: 1.1rem;
     overflow: hidden;
     border-radius: 12px;
-    background: linear-gradient(180deg, #2f6fb0 0%, #62a8dd 55%, #b9dcef 100%);
-    transition: background 0.9s ease;
+    background: linear-gradient(180deg, rgba(15, 32, 56, 0.4), rgba(15, 32, 56, 0));
   }
   .livegen-sky svg {
     width: 100%;
     height: 100%;
     display: block;
-  }
-  /* Sky backdrop colour actually follows the current weather band
-     (clear / partly / mostly / overcast) and day/night, instead of
-     staying a fixed navy panel regardless of conditions. The night
-     variants use three classes so they always win over the plain
-     day-band rules above, regardless of source order. A soft warm
-     radial glow is layered behind the blue near the sun's position
-     (50% 51% in the viewBox) so the sky reads brighter close to the
-     sun the way real sky does - it fades out under heavier cloud. */
-  .livegen-sky.is-clear {
-    background:
-      radial-gradient(46% 70% at 50% 51%, rgba(255, 241, 209, 0.65), rgba(255, 241, 209, 0) 72%),
-      linear-gradient(180deg, #2f6fb0 0%, #62a8dd 55%, #b9dcef 100%);
-  }
-  .livegen-sky.is-partly {
-    background:
-      radial-gradient(42% 65% at 50% 51%, rgba(255, 241, 209, 0.4), rgba(255, 241, 209, 0) 72%),
-      linear-gradient(180deg, #4c7ba3 0%, #86aec8 55%, #d3e2ea 100%);
-  }
-  .livegen-sky.is-mostly {
-    background:
-      radial-gradient(38% 60% at 50% 51%, rgba(255, 241, 209, 0.22), rgba(255, 241, 209, 0) 72%),
-      linear-gradient(180deg, #616f7e 0%, #93a0ac 55%, #c7ced5 100%);
-  }
-  .livegen-sky.is-overcast {
-    background: linear-gradient(180deg, #5c636e 0%, #82868f 55%, #aeb2b9 100%);
-  }
-  .livegen-sky.is-night.is-clear {
-    background:
-      radial-gradient(30% 50% at 56% 44%, rgba(219, 228, 245, 0.2), rgba(219, 228, 245, 0) 70%),
-      linear-gradient(180deg, #050a16 0%, #0d1c33 55%, #16304f 100%);
-  }
-  .livegen-sky.is-night.is-partly {
-    background:
-      radial-gradient(26% 45% at 56% 44%, rgba(219, 228, 245, 0.12), rgba(219, 228, 245, 0) 70%),
-      linear-gradient(180deg, #060b16 0%, #101e34 55%, #1a2f47 100%);
-  }
-  .livegen-sky.is-night.is-mostly {
-    background: linear-gradient(180deg, #0a0d14 0%, #14181f 55%, #1e232b 100%);
-  }
-  .livegen-sky.is-night.is-overcast {
-    background: linear-gradient(180deg, #0b0f16 0%, #171b22 60%, #232830 100%);
-  }
-  .livegen-sky-sun-glow {
-    fill: url(#livegen-sun-glow);
-    transition: opacity 0.6s ease;
-  }
-  .livegen-sky.is-mostly .livegen-sky-sun-glow,
-  .livegen-sky.is-overcast .livegen-sky-sun-glow {
-    opacity: 0.3;
-  }
-  .livegen-sky.is-night .livegen-sky-sun-glow {
-    opacity: 0;
   }
   .livegen-sky-sun-core {
     fill: var(--sun, #d9a94e);
@@ -519,17 +600,11 @@
     animation: livegen-star-twinkle 3.4s ease-in-out infinite;
   }
   .livegen-cloud {
-    fill: #eef2f7;
+    fill: #cbd5e1;
     opacity: 0;
   }
-  .livegen-sky.is-mostly .livegen-cloud {
-    fill: #dfe4ea;
-  }
-  .livegen-sky.is-overcast .livegen-cloud {
-    fill: #ccd2d9;
-  }
   .livegen-sky.is-night .livegen-cloud {
-    fill: #4b5a72;
+    fill: #64748b;
   }
   /* Partly cloudy: one thin cloud drifts past occasionally */
   .livegen-sky.is-partly .livegen-cloud-1 {
@@ -739,10 +814,6 @@
           <div class="livegen-sky" id="livegen-sky" aria-hidden="true">
             <svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <radialGradient id="livegen-sun-glow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#ffe9b0" stop-opacity="0.85"/>
-                  <stop offset="100%" stop-color="#ffe9b0" stop-opacity="0"/>
-                </radialGradient>
                 <radialGradient id="livegen-moon-body" cx="38%" cy="32%" r="75%">
                   <stop offset="0%" stop-color="#ffffff"/>
                   <stop offset="55%" stop-color="#e7ecf3"/>
@@ -763,7 +834,6 @@
                 <line x1="70.7" y1="75.3" x2="77.7" y2="68.3"/>
                 <line x1="122.3" y1="23.7" x2="129.3" y2="16.7"/>
               </g>
-              <circle class="livegen-sky-sun-glow" cx="100" cy="46" r="30"/>
               <circle class="livegen-sky-sun-core" cx="100" cy="46" r="17"/>
               <g class="livegen-sky-moon">
                 <circle class="livegen-sky-moon-glow" cx="110" cy="40" r="27"/>
@@ -811,6 +881,72 @@
             <div class="livegen-seasonal-chart" id="livegen-seasonal-chart"></div>
             <p class="livegen-seasonal-summary" id="livegen-seasonal-summary"></p>
             <p class="calc-note" data-i18n="livegen-seasonal-note">Based on your city's actual daily sunlight over the past 12 months. A single year can vary a little, but the monsoon dip shown here is a consistent seasonal pattern across Uttar Pradesh.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BATTERY SIZING ESTIMATOR ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="battery-eyebrow">Backup planning</p>
+      <h2 data-i18n="battery-title">How big a battery would you need?</h2>
+      <p class="section-sub" data-i18n="battery-sub">Pick what you'd want to keep running during a power cut and for how long. This gives you a rough range to start the conversation - not a final spec.</p>
+
+      <div class="livegen-panel battery-panel">
+        <div class="livegen-inputs">
+          <p class="field-label" data-i18n="battery-field-appliances">What do you want backed up?</p>
+          <div class="battery-appliance-list" id="battery-appliance-list"></div>
+
+          <label class="field">
+            <span data-i18n="battery-field-hours">Backup hours needed</span>
+            <select id="battery-hours">
+              <option value="2" data-i18n="battery-hours-2">2 hours</option>
+              <option value="4" selected data-i18n="battery-hours-4">4 hours</option>
+              <option value="6" data-i18n="battery-hours-6">6 hours</option>
+              <option value="8" data-i18n="battery-hours-8">8 hours</option>
+              <option value="12" data-i18n="battery-hours-12">12 hours</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span data-i18n="battery-field-chemistry">Battery type</span>
+            <select id="battery-chemistry">
+              <option value="lithium" selected data-i18n="battery-chem-lithium">Lithium (LiFePO4)</option>
+              <option value="tubular" data-i18n="battery-chem-tubular">Tubular / lead-acid</option>
+            </select>
+          </label>
+
+          <button class="btn btn-primary btn-full" id="battery-run" type="button" data-i18n="battery-btn">Estimate Battery Size</button>
+          <p class="livegen-status" id="battery-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="livegen-results" id="battery-results" hidden>
+          <div class="livegen-now">
+            <span class="livegen-now-label" data-i18n="battery-range-label">Estimated usable battery capacity needed</span>
+            <strong class="livegen-now-value" id="battery-range-value">&mdash;</strong>
+            <span class="livegen-now-sub" data-i18n="battery-range-sub">Shown as a range, not a single number - see why below</span>
+          </div>
+          <div class="result-row">
+            <span data-i18n="battery-load-label">Estimated simultaneous load</span>
+            <strong id="battery-load-value">&mdash;</strong>
+          </div>
+          <p class="calc-note" data-i18n="battery-note">Illustrative only, based on typical appliance wattages and a conservative usage assumption - not a sizing spec.</p>
+
+          <div class="battery-audit-block">
+            <p class="battery-audit-heading" data-i18n="battery-audit-heading">Why we do a load audit on-site</p>
+            <ul class="battery-audit-list">
+              <li data-i18n="battery-audit-1">Motor-driven appliances (AC, fridge, water pump) draw 3-5x their running watts for a moment on startup - undersizing here is the most common battery-backup mistake, and it needs real inverter-rating knowledge, not a web form.</li>
+              <li data-i18n="battery-audit-2">How deep a battery can safely be discharged differs by chemistry (lithium vs. tubular) and materially changes usable capacity.</li>
+              <li data-i18n="battery-audit-3">Charging and discharging a battery both lose some energy, and the loss depends on the inverter-battery pairing.</li>
+              <li data-i18n="battery-audit-4">Your solar array also needs to be able to recharge that battery day-to-day, not just store it once.</li>
+            </ul>
+          </div>
+
+          <div class="calc-sitevisit-cta">
+            <p class="calc-sitevisit-question" data-i18n="battery-sitevisit-question">Want an exact battery and backup design for your home?</p>
+            <a href="contact.html" class="btn btn-primary btn-full" data-i18n="calc-sitevisit-btn">Request a Site Visit →</a>
           </div>
         </div>
       </div>
@@ -1087,6 +1223,7 @@
 <script src="js/back-to-top.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/live-generation.js"></script>
+<script src="js/battery-sizing.js"></script>
 <script src="js/countdown.js"></script>
 <script src="js/main.js"></script>
 <script src="js/nav-dropdown.js"></script>
