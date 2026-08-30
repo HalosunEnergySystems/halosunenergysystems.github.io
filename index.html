@@ -279,6 +279,50 @@
   @media (prefers-reduced-motion: reduce) {
     .eyebrow-live::before { animation: none; }
   }
+
+  /* ============ QUICK LINKS: DE-EMPHASIZED ============
+     Nine destinations is genuinely useful, but as a full card grid
+     with numbers and descriptions it reads like a sitemap rather than
+     a homepage section. The real conversion path (savings → projects
+     → why Halosun → site visit) already gets full visual weight from
+     the hero, the live-gen teaser above and the sections below, so
+     this is intentionally quiet: a compact wrapped link row instead
+     of a feature grid, tighter section padding, and a smaller heading.
+     `.section.section-quicklinks` (two classes) is used for the
+     padding/heading overrides so they reliably beat the single-class
+     `.section` rule in the site's external stylesheet regardless of
+     source order. */
+  .section.section-quicklinks {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .section-quicklinks .eyebrow {
+    opacity: 0.85;
+  }
+  .section-quicklinks h2 {
+    font-size: 1.3rem;
+    margin: 0.35rem 0 1rem;
+  }
+  .quicklinks-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 26px;
+  }
+  .quicklinks-row a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: rgba(15, 32, 56, 0.68);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .quicklinks-row a:hover,
+  .quicklinks-row a:focus-visible {
+    color: var(--ink, #0f2038);
+    border-color: var(--sun, #d9a94e);
+  }
   </style>
 
   <script type="application/ld+json"> {
@@ -529,7 +573,7 @@
         <p class="eyebrow eyebrow-live" data-i18n="home-livegen-eyebrow">Live, right now</p>
         <h2 data-i18n="home-livegen-title">What's your rooftop making right now?</h2>
         <p class="section-sub" data-i18n="home-livegen-sub">Pick your city and see today's actual sunlight conditions translated into live rooftop output - no signup needed.</p>
-        <a href="calculator.html#live-gen" class="btn btn-primary" data-i18n="home-livegen-cta">Check My City</a>
+        <a href="calculator.html#live-gen" class="btn btn-primary" data-i18n="home-livegen-cta">See Live Generation →</a>
       </div>
       <div class="livegen-teaser-badge" aria-hidden="true">
         <svg viewBox="0 0 24 24" class="livegen-teaser-sun">
@@ -550,67 +594,27 @@
     </div>
   </section>
 
-  <!-- ============ QUICK LINKS ============ -->
-  <section class="section">
+  <!-- ============ QUICK LINKS ============
+       Deliberately understated: the site's real conversion path is the
+       hero CTAs, the live-gen teaser above and the Why Halosun / site
+       visit sections below. This is just "everything else, still one
+       click away" - a compact link row, not a competing feature grid,
+       so it doesn't read like a sitemap. -->
+  <section class="section section-quicklinks">
     <div class="wrap">
       <p class="eyebrow" data-i18n="explore-eyebrow">Explore</p>
       <h2 data-i18n="explore-title">Find what you need</h2>
-      <div class="grid grid-4 explore-grid">
-        <a href="services.html" class="card card-link">
-          <div class="card-mark">01</div>
-          <h3 data-i18n="card-01-title">Services</h3>
-          <p data-i18n="card-01-desc">Residential, commercial and turnkey EPC solar solutions.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="pm-suryaghar.html" class="card card-link">
-          <div class="card-mark">02</div>
-          <h3 data-i18n="card-05-title">PM Surya Ghar</h3>
-          <p data-i18n="card-05-desc">Subsidy eligibility, documents and the full application process.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="calculator.html" class="card card-link">
-          <div class="card-mark">03</div>
-          <h3 data-i18n="card-03-title">Savings Calculator</h3>
-          <p data-i18n="card-03-desc">See your estimated system size, subsidy and payback.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="gallery.html" class="card card-link">
-          <div class="card-mark">04</div>
-          <h3 data-i18n="card-04-title">Projects</h3>
-          <p data-i18n="card-04-desc">A look at recent installations on the roof.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="faq.html" class="card card-link">
-          <div class="card-mark">05</div>
-          <h3 data-i18n="card-06-title">Solar FAQ</h3>
-          <p data-i18n="card-06-desc">Straight answers on cost, subsidy, maintenance and myths.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="process.html" class="card card-link">
-          <div class="card-mark">06</div>
-          <h3 data-i18n="card-02-title">Our Process</h3>
-          <p data-i18n="card-02-desc">Six steps from site survey to a running meter.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="why.html" class="card card-link">
-          <div class="card-mark">07</div>
-          <h3 data-i18n="card-09-title">Why Halosun</h3>
-          <p data-i18n="card-09-desc">Solar is easy to sell. Building it right is harder - here's why that's what we chase.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="standard.html" class="card card-link">
-          <div class="card-mark">08</div>
-          <h3 data-i18n="card-08-title">Our Standard</h3>
-          <p data-i18n="card-08-desc">What's actually under your panels - mounting, waterproofing, cabling and earthing.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-        <a href="contact.html" class="card card-link">
-          <div class="card-mark">09</div>
-          <h3 data-i18n="card-07-title">Contact</h3>
-          <p data-i18n="card-07-desc">Get a free site visit and a no-obligation quote.</p>
-          <span class="card-arrow" aria-hidden="true">→</span>
-        </a>
-      </div>
+      <nav class="quicklinks-row" aria-label="More pages on this site">
+        <a href="services.html" data-i18n="card-01-title">Services</a>
+        <a href="pm-suryaghar.html" data-i18n="card-05-title">PM Surya Ghar</a>
+        <a href="calculator.html" data-i18n="card-03-title">Savings Calculator</a>
+        <a href="gallery.html" data-i18n="card-04-title">Projects</a>
+        <a href="faq.html" data-i18n="card-06-title">Solar FAQ</a>
+        <a href="process.html" data-i18n="card-02-title">Our Process</a>
+        <a href="why.html" data-i18n="card-09-title">Why Halosun</a>
+        <a href="standard.html" data-i18n="card-08-title">Our Standard</a>
+        <a href="contact.html" data-i18n="card-07-title">Contact</a>
+      </nav>
     </div>
   </section>
 
