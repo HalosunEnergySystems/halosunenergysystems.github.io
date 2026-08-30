@@ -397,7 +397,6 @@
     70%  { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
     100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
   }
-</style>
 
   /* ============ LIVE GENERATION - animated sky scene ============
      Small looping SVG scene above the results: sun with slowly
@@ -447,8 +446,18 @@
   .livegen-sky.is-night .livegen-sky-moon {
     opacity: 1;
   }
+  .livegen-sky-moon-glow {
+    fill: url(#livegen-moon-glow);
+  }
+  .livegen-sky-moon-body {
+    fill: url(#livegen-moon-body);
+  }
+  .livegen-sky-moon-shadow {
+    fill: #0f2038;
+    opacity: 0.55;
+  }
   .livegen-sky-star {
-    fill: #e2e8f0;
+    fill: #bfdbfe;
     opacity: 0;
   }
   .livegen-sky.is-night .livegen-sky-star {
@@ -669,6 +678,17 @@
         <div class="livegen-results" id="livegen-results" hidden>
           <div class="livegen-sky" id="livegen-sky" aria-hidden="true">
             <svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="livegen-moon-body" cx="38%" cy="32%" r="75%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="55%" stop-color="#e7ecf3"/>
+                  <stop offset="100%" stop-color="#a9b4c6"/>
+                </radialGradient>
+                <radialGradient id="livegen-moon-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#dbe4f5" stop-opacity="0.5"/>
+                  <stop offset="100%" stop-color="#dbe4f5" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
               <g class="livegen-sky-rays" stroke-width="2.5" stroke-linecap="round" fill="none">
                 <line x1="100" y1="16" x2="100" y2="26"/>
                 <line x1="100" y1="66" x2="100" y2="76"/>
@@ -681,7 +701,9 @@
               </g>
               <circle class="livegen-sky-sun-core" cx="100" cy="46" r="17"/>
               <g class="livegen-sky-moon">
-                <path d="M104 33a15 15 0 1 0 0 26 12 12 0 0 1 0-26Z" fill="#e2e8f0"/>
+                <circle class="livegen-sky-moon-glow" cx="110" cy="40" r="27"/>
+                <circle class="livegen-sky-moon-body" cx="110" cy="40" r="15"/>
+                <circle class="livegen-sky-moon-shadow" cx="101" cy="36" r="14"/>
               </g>
               <circle class="livegen-sky-star" cx="46" cy="20" r="1.6"/>
               <circle class="livegen-sky-star" cx="150" cy="18" r="1.3" style="animation-delay:-1.1s"/>
