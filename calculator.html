@@ -180,6 +180,80 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* ============ SEASONAL GENERATION FORECAST ============
+     Sits inside the live-gen results panel, below the "right now"
+     figures. Shows a 12-month bar chart built from the past year's
+     actual daily irradiance at the selected city (Open-Meteo archive),
+     so visitors can see the monsoon dip instead of only "right now". */
+  .livegen-seasonal {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(229, 231, 235, 0.18);
+  }
+  .livegen-seasonal-heading {
+    color: #e2e8f0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0 0 1rem;
+  }
+  .livegen-seasonal-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 110px;
+    padding: 0 2px;
+  }
+  .livegen-seasonal-col {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    min-width: 0;
+  }
+  .livegen-seasonal-bar {
+    width: 100%;
+    max-width: 20px;
+    min-height: 4px;
+    border-radius: 4px 4px 0 0;
+    background: rgba(229, 231, 235, 0.32);
+    transition: height 0.5s ease;
+  }
+  .livegen-seasonal-col.is-best .livegen-seasonal-bar {
+    background: linear-gradient(180deg, #f59e0b, #f97316);
+  }
+  .livegen-seasonal-col.is-worst .livegen-seasonal-bar {
+    background: #60a5fa;
+    opacity: 0.75;
+  }
+  .livegen-seasonal-label {
+    font-size: 0.62rem;
+    color: #94a3b8;
+    margin-top: 0.35rem;
+    white-space: nowrap;
+  }
+  .livegen-seasonal-col.is-current .livegen-seasonal-label {
+    color: #f59e0b;
+    font-weight: 700;
+  }
+  .livegen-seasonal-summary {
+    margin-top: 1rem;
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    line-height: 1.55;
+  }
+  .livegen-seasonal-summary strong {
+    color: #f59e0b;
+    font-weight: 600;
+  }
+  @media (max-width: 480px) {
+    .livegen-seasonal-chart { gap: 2px; }
+    .livegen-seasonal-bar { max-width: 14px; }
+    .livegen-seasonal-label { font-size: 0.54rem; }
+  }
+
   /* Progress bar shown while the PDF is being generated - Hindi PDFs in
      particular take a few seconds since each label/value/name is rendered
      to a canvas image individually for the Devanagari font, so visitors
@@ -323,6 +397,7 @@
     70%  { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
     100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
   }
+</style>
 
   /* ============ LIVE GENERATION - animated sky scene ============
      Small looping SVG scene above the results: sun with slowly
@@ -333,58 +408,14 @@
      the same thresholds as the "Clear skies / Partly cloudy /
      Mostly cloudy / Overcast" text label. */
   .livegen-sky {
-    position: relative;
     width: 100%;
     height: 84px;
     margin-bottom: 1.1rem;
     overflow: hidden;
     border-radius: 12px;
-  }
-  /* Two stacked background layers - day sky and night sky - crossfade
-     via opacity so the widget transitions smoothly instead of
-     snapping between a flat dark panel and a bright blue one. */
-  .livegen-sky::before,
-  .livegen-sky::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    transition: opacity 0.9s ease, filter 0.9s ease;
-  }
-  .livegen-sky::before {
-    /* Clear-day sky: deeper blue at the top, paling toward a hazy
-       horizon at the bottom - the widget is short and wide, so this
-       vertical gradient alone reads as "sky" without needing a
-       horizon line. */
-    background: linear-gradient(180deg, #3f7fc4 0%, #6fa8dd 55%, #cfe4f4 100%);
-    opacity: 1;
-  }
-  /* Cloud cover dulls the day sky - more overcast, more grey/flat. */
-  .livegen-sky.is-partly::before {
-    filter: saturate(0.88) brightness(0.97);
-  }
-  .livegen-sky.is-mostly::before {
-    filter: saturate(0.6) brightness(0.9);
-  }
-  .livegen-sky.is-overcast::before {
-    filter: saturate(0.3) brightness(0.78);
-  }
-  .livegen-sky::after {
-    /* Night sky: dark navy with a soft glow where the moon sits. */
-    background:
-      radial-gradient(circle at 68% 32%, rgba(226, 232, 240, 0.10), transparent 55%),
-      linear-gradient(180deg, #0a1120 0%, #131f38 55%, #1c2c4d 100%);
-    opacity: 0;
-  }
-  .livegen-sky.is-night::before {
-    opacity: 0;
-  }
-  .livegen-sky.is-night::after {
-    opacity: 1;
+    background: linear-gradient(180deg, rgba(15, 32, 56, 0.4), rgba(15, 32, 56, 0));
   }
   .livegen-sky svg {
-    position: relative;
-    z-index: 1;
     width: 100%;
     height: 100%;
     display: block;
@@ -425,13 +456,11 @@
     animation: livegen-star-twinkle 3.4s ease-in-out infinite;
   }
   .livegen-cloud {
-    fill: #f8fafc;
+    fill: #cbd5e1;
     opacity: 0;
-    filter: drop-shadow(0 1px 1px rgba(15, 23, 42, 0.15));
   }
   .livegen-sky.is-night .livegen-cloud {
-    fill: #4b5876;
-    filter: none;
+    fill: #64748b;
   }
   /* Partly cloudy: one thin cloud drifts past occasionally */
   .livegen-sky.is-partly .livegen-cloud-1 {
@@ -640,12 +669,6 @@
         <div class="livegen-results" id="livegen-results" hidden>
           <div class="livegen-sky" id="livegen-sky" aria-hidden="true">
             <svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <radialGradient id="livegenMoonGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="rgba(226,232,240,0.55)"/>
-                  <stop offset="100%" stop-color="rgba(226,232,240,0)"/>
-                </radialGradient>
-              </defs>
               <g class="livegen-sky-rays" stroke-width="2.5" stroke-linecap="round" fill="none">
                 <line x1="100" y1="16" x2="100" y2="26"/>
                 <line x1="100" y1="66" x2="100" y2="76"/>
@@ -658,16 +681,12 @@
               </g>
               <circle class="livegen-sky-sun-core" cx="100" cy="46" r="17"/>
               <g class="livegen-sky-moon">
-                <circle cx="104" cy="46" r="26" fill="url(#livegenMoonGlow)"/>
                 <path d="M104 33a15 15 0 1 0 0 26 12 12 0 0 1 0-26Z" fill="#e2e8f0"/>
               </g>
               <circle class="livegen-sky-star" cx="46" cy="20" r="1.6"/>
               <circle class="livegen-sky-star" cx="150" cy="18" r="1.3" style="animation-delay:-1.1s"/>
               <circle class="livegen-sky-star" cx="168" cy="34" r="1.6" style="animation-delay:-2s"/>
               <circle class="livegen-sky-star" cx="30" cy="40" r="1.3" style="animation-delay:-0.6s"/>
-              <circle class="livegen-sky-star" cx="14" cy="16" r="1.2" style="animation-delay:-2.6s"/>
-              <circle class="livegen-sky-star" cx="182" cy="52" r="1.4" style="animation-delay:-1.7s"/>
-              <circle class="livegen-sky-star" cx="60" cy="68" r="1.2" style="animation-delay:-0.3s"/>
               <g class="livegen-cloud livegen-cloud-1">
                 <ellipse cx="0" cy="40" rx="17" ry="10"/>
                 <ellipse cx="14" cy="35" rx="13" ry="9"/>
@@ -699,6 +718,13 @@
             <strong id="livegen-weather-value">&mdash;</strong>
           </div>
           <p class="calc-note" data-i18n="livegen-note">Live estimate based on today's actual weather at your selected city. Assumes a well-installed, unshaded-by-default on-grid system; actual generation depends on your specific roof, equipment and site conditions - book a free site visit for a precise number.</p>
+
+          <div class="livegen-seasonal" id="livegen-seasonal" hidden>
+            <p class="livegen-seasonal-heading" data-i18n="livegen-seasonal-heading">Seasonal forecast — this month vs. the rest of the year</p>
+            <div class="livegen-seasonal-chart" id="livegen-seasonal-chart"></div>
+            <p class="livegen-seasonal-summary" id="livegen-seasonal-summary"></p>
+            <p class="calc-note" data-i18n="livegen-seasonal-note">Based on your city's actual daily sunlight over the past 12 months. A single year can vary a little, but the monsoon dip shown here is a consistent seasonal pattern across Uttar Pradesh.</p>
+          </div>
         </div>
       </div>
     </div>
