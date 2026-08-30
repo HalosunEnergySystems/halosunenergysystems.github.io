@@ -138,19 +138,23 @@
      (dark border + dark text). This panel has a dark navy background
      of its own (#0f2038 above), so the global style renders as
      dark-on-dark - present but unreadable. Restyle just the ghost
-     buttons inside this panel to light-on-navy instead. */
+     buttons inside this panel to light-on-navy instead - same neutral
+     contrast treatment as #calc-reset on the Estimate calculator below,
+     so the Reset button looks and behaves the same across all three
+     calculator panels instead of this one alone turning amber on
+     hover/press. */
   .livegen-panel .btn-ghost {
-    border-color: rgba(226, 232, 240, 0.4);
-    color: #e2e8f0;
+    border-color: rgba(229, 231, 235, 0.5);
+    color: #e5e7eb;
     background: transparent;
   }
   .livegen-panel .btn-ghost:hover {
-    border-color: #f59e0b;
-    color: #f59e0b;
-    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(229, 231, 235, 0.8);
+    color: #e5e7eb;
+    background: rgba(229, 231, 235, 0.1);
   }
   .livegen-panel .btn-ghost:focus-visible {
-    outline: 2px solid #f59e0b;
+    outline: 2px solid rgba(229, 231, 235, 0.8);
     outline-offset: 2px;
   }
   .livegen-status {
