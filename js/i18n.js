@@ -506,6 +506,60 @@ const TRANSLATIONS = {
 
   'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' },
 
+  // -- Live Generation Estimator (calculator page) --
+  'livegen-eyebrow':          { en: 'Live, right now', hi: 'अभी, लाइव' },
+  'livegen-title':             { en: 'What would your rooftop generate right now?', hi: 'आपकी छत अभी कितनी बिजली बनाएगी?' },
+  'livegen-sub':                { en: 'Pick your city and we\'ll pull today\'s actual sunlight conditions to estimate your system\'s live output - no signup needed.',
+                                   hi: 'अपना शहर चुनें और हम आज की वास्तविक धूप की स्थिति के आधार पर आपके सिस्टम के लाइव आउटपुट का अनुमान लगाएंगे - कोई साइनअप ज़रूरी नहीं।' },
+  'livegen-field-city':         { en: 'Your city', hi: 'आपका शहर' },
+  'livegen-city-placeholder':   { en: 'Select a city', hi: 'शहर चुनें' },
+  'livegen-group-core':         { en: 'Halosun service area', hi: 'हैलोसन सेवा क्षेत्र' },
+  'livegen-group-other':        { en: 'Other UP cities', hi: 'अन्य UP शहर' },
+
+  'livegen-city-raebareli':   { en: 'Raebareli', hi: 'रायबरेली' },
+  'livegen-city-lucknow':     { en: 'Lucknow', hi: 'लखनऊ' },
+  'livegen-city-unnao':       { en: 'Unnao', hi: 'उन्नाव' },
+  'livegen-city-amethi':      { en: 'Amethi', hi: 'अमेठी' },
+  'livegen-city-sultanpur':   { en: 'Sultanpur', hi: 'सुल्तानपुर' },
+  'livegen-city-pratapgarh':  { en: 'Pratapgarh', hi: 'प्रतापगढ़' },
+  'livegen-city-hardoi':      { en: 'Hardoi', hi: 'हरदोई' },
+  'livegen-city-kanpur':      { en: 'Kanpur', hi: 'कानपुर' },
+  'livegen-city-varanasi':    { en: 'Varanasi', hi: 'वाराणसी' },
+  'livegen-city-prayagraj':   { en: 'Prayagraj (Allahabad)', hi: 'प्रयागराज (इलाहाबाद)' },
+  'livegen-city-agra':        { en: 'Agra', hi: 'आगरा' },
+  'livegen-city-meerut':      { en: 'Meerut', hi: 'मेरठ' },
+  'livegen-city-ghaziabad':   { en: 'Ghaziabad', hi: 'ग़ाज़ियाबाद' },
+  'livegen-city-noida':       { en: 'Noida', hi: 'नोएडा' },
+  'livegen-city-bareilly':    { en: 'Bareilly', hi: 'बरेली' },
+  'livegen-city-gorakhpur':   { en: 'Gorakhpur', hi: 'गोरखपुर' },
+  'livegen-city-moradabad':   { en: 'Moradabad', hi: 'मुरादाबाद' },
+  'livegen-city-aligarh':     { en: 'Aligarh', hi: 'अलीगढ़' },
+  'livegen-city-jhansi':      { en: 'Jhansi', hi: 'झांसी' },
+  'livegen-city-saharanpur':  { en: 'Saharanpur', hi: 'सहारनपुर' },
+  'livegen-city-ayodhya':     { en: 'Ayodhya (Faizabad)', hi: 'अयोध्या (फैज़ाबाद)' },
+  'livegen-city-mathura':     { en: 'Mathura', hi: 'मथुरा' },
+  'livegen-city-firozabad':   { en: 'Firozabad', hi: 'फ़िरोज़ाबाद' },
+  'livegen-city-sitapur':     { en: 'Sitapur', hi: 'सीतापुर' },
+
+  'livegen-field-size':   { en: 'Your system size (or the one you\'re considering)', hi: 'आपके सिस्टम का आकार (या जिस पर आप विचार कर रहे हैं)' },
+  'livegen-field-shade':  { en: 'Does your roof get shade for part of the day?', hi: 'क्या आपकी छत पर दिन के कुछ हिस्से में छाया रहती है?' },
+  'livegen-shade-no':     { en: 'No, full sun all day', hi: 'नहीं, पूरे दिन पूरी धूप रहती है' },
+  'livegen-shade-yes':    { en: 'Yes, some shade part of the day', hi: 'हाँ, दिन के कुछ हिस्से में छाया रहती है' },
+  'livegen-btn':          { en: 'Get Live Estimate', hi: 'लाइव अनुमान पाएं' },
+
+  'livegen-now-label':    { en: 'Estimated output right now', hi: 'अभी अनुमानित आउटपुट' },
+  'livegen-today-label':  { en: 'Estimated generation today', hi: 'आज का अनुमानित जनरेशन' },
+  'livegen-weather-label':{ en: 'Current sky conditions', hi: 'वर्तमान आसमान की स्थिति' },
+  'livegen-note':         { en: 'Live estimate based on today\'s actual weather at your selected city. Assumes a well-installed, unshaded-by-default on-grid system; actual generation depends on your specific roof, equipment and site conditions - book a free site visit for a precise number.',
+                             hi: 'आपके चुने गए शहर के आज के वास्तविक मौसम पर आधारित लाइव अनुमान। यह एक अच्छी तरह से इंस्टॉल किए गए, बिना छाया वाले ऑन-ग्रिड सिस्टम को मानकर बनाया गया है; वास्तविक जनरेशन आपकी विशिष्ट छत, उपकरण और साइट की स्थिति पर निर्भर करता है - सटीक संख्या के लिए मुफ़्त साइट विज़िट बुक करें।' },
+
+  'livegen-loading':      { en: 'Fetching live weather for your city…', hi: 'आपके शहर के लिए लाइव मौसम डेटा प्राप्त किया जा रहा है…' },
+  'livegen-error-city':   { en: 'Please select your city first.', hi: 'कृपया पहले अपना शहर चुनें।' },
+  'livegen-error-fetch':  { en: 'Live weather data isn\'t available right now - please try again in a moment.', hi: 'अभी लाइव मौसम डेटा उपलब्ध नहीं है - कृपया थोड़ी देर बाद पुनः प्रयास करें।' },
+  'livegen-night-note':   { en: 'It\'s currently night-time here — systems only generate in daylight.', hi: 'यहाँ अभी रात है — सिस्टम केवल दिन के उजाले में बिजली बनाता है।' },
+  'livegen-unit-kwh':     { en: 'kWh', hi: 'यूनिट' },
+  'livegen-cloud-suffix': { en: 'cloud cover', hi: 'बादल छाए हुए' },
+
   // -- Calculator page: site-visit prompt shown right after results --
   'calc-sitevisit-question': { en: 'Want an accurate system design for your roof?', hi: 'अपनी छत के लिए सटीक सिस्टम डिज़ाइन चाहते हैं?' },
   'calc-sitevisit-btn':      { en: 'Request a Site Visit →', hi: 'साइट विज़िट का अनुरोध करें →' },
@@ -831,6 +885,16 @@ function applyLanguage(lang) {
     const entry = TRANSLATIONS[key];
     if (entry && entry[lang]) {
       el.setAttribute('aria-label', entry[lang]);
+    }
+  });
+
+  // Attribute translation for elements whose label isn't rendered as
+  // text content - e.g. <optgroup label="..."> inside a <select>.
+  document.querySelectorAll('[data-i18n-label]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-label');
+    const entry = TRANSLATIONS[key];
+    if (entry && entry[lang]) {
+      el.setAttribute('label', entry[lang]);
     }
   });
 
