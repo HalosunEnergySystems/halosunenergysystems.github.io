@@ -258,6 +258,38 @@
     var labels = MONTH_LABELS[lang];
 
     seasonalChartEl.innerHTML = '';
+
+    // One shared tooltip bubble per chart, repositioned/relabelled per
+    // bar on hover/tap rather than creating a fresh element each time -
+    // cheaper, and avoids layout thrash when the user runs the mouse
+    // quickly across all twelve bars.
+    var tooltip = document.createElement('div');
+    tooltip.className = 'livegen-seasonal-tooltip';
+    tooltip.setAttribute('role', 'tooltip');
+    seasonalChartEl.appendChild(tooltip);
+
+    var hoveredCol = null;
+
+    function showTooltip(col, label, value) {
+      if (hoveredCol) hoveredCol.classList.remove('is-hovered');
+      hoveredCol = col;
+      col.classList.add('is-hovered');
+      tooltip.innerHTML = '<strong>' + label + '</strong><br>' + formatKwh(value) + '/'
+        + (lang === 'hi' ? 'दिन' : 'day');
+      // Position the bubble centred above the hovered bar. offsetLeft/
+      // offsetWidth are relative to seasonalChartEl since it's the
+      // nearest positioned ancestor (position: relative in CSS).
+      var left = col.offsetLeft + col.offsetWidth / 2;
+      tooltip.style.left = left + 'px';
+      tooltip.classList.add('is-visible');
+    }
+
+    function hideTooltip() {
+      if (hoveredCol) hoveredCol.classList.remove('is-hovered');
+      hoveredCol = null;
+      tooltip.classList.remove('is-visible');
+    }
+
     dailyKwh.forEach(function (v, i) {
       var col = document.createElement('div');
       col.className = 'livegen-seasonal-col';
@@ -269,7 +301,23 @@
       bar.className = 'livegen-seasonal-bar';
       var heightPct = v === null ? 4 : Math.max(6, Math.round((v / maxVal) * 100));
       bar.style.height = heightPct + '%';
-      if (v !== null) bar.title = labels[i] + ': ' + formatKwh(v) + '/day';
+
+      if (v !== null) {
+        bar.setAttribute('aria-label', labels[i] + ': ' + formatKwh(v) + '/' + (lang === 'hi' ? 'दिन' : 'day'));
+        bar.addEventListener('mouseenter', function () { showTooltip(col, labels[i], v); });
+        bar.addEventListener('mouseleave', hideTooltip);
+        bar.addEventListener('focus', function () { showTooltip(col, labels[i], v); });
+        bar.addEventListener('blur', hideTooltip);
+        // Tap-to-show on touch devices, since there's no hover there.
+        // A second tap on the same bar hides it again; tapping another
+        // bar just moves the bubble.
+        bar.addEventListener('touchstart', function (e) {
+          e.preventDefault();
+          if (hoveredCol === col) { hideTooltip(); }
+          else { showTooltip(col, labels[i], v); }
+        }, { passive: false });
+        bar.tabIndex = 0;
+      }
 
       var label = document.createElement('span');
       label.className = 'livegen-seasonal-label';
@@ -279,6 +327,11 @@
       col.appendChild(label);
       seasonalChartEl.appendChild(col);
     });
+
+    // Hide the tooltip if the visitor taps/clicks elsewhere on the page.
+    document.addEventListener('touchstart', function (e) {
+      if (hoveredCol && !seasonalChartEl.contains(e.target)) hideTooltip();
+    }, { passive: true });
 
     var swingPct = Math.round(((maxVal - minVal) / maxVal) * 100);
     var bestLabel = labels[bestIdx];
