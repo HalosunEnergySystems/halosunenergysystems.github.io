@@ -15,10 +15,8 @@ const TRANSLATIONS = {
   'nav-calculator':    { en: 'Calculator',           hi: 'कैलकुलेटर' },
   'nav-projects':      { en: 'Projects',             hi: 'परियोजनाएँ' },
   'nav-faq':           { en: 'Solar FAQ',            hi: 'सोलर सवाल-जवाब' },
-  'nav-about':         { en: 'About',                hi: 'हमारे बारे में' },
   'nav-contact':       { en: 'Contact',               hi: 'संपर्क करें' },
   'nav-cta':           { en: 'Get a Free Quote',      hi: 'मुफ़्त कोटेशन पाएं' },
-  'backtotop-label':   { en: 'Back to top',            hi: 'ऊपर वापस जाएँ' },
 
   // ---- Deadline countdown banner (PM Surya Ghar subsidy window) ----
   'deadline-text':     { en: 'PM Surya Ghar subsidy window closes in', hi: 'PM सूर्य घर सब्सिडी विंडो बंद होने में' },
@@ -49,11 +47,11 @@ const TRANSLATIONS = {
   'card-04-title':     { en: 'Projects',              hi: 'परियोजनाएँ' },
   'card-04-desc':      { en: 'A look at recent installations on the roof.', hi: 'हाल की छत इंस्टॉलेशन की झलक।' },
   'card-08-title':     { en: 'Our Standard',           hi: 'हमारा मानक' },
-  'card-08-desc':      { en: "What's actually under your panels - mounting, waterproofing, cabling and earthing.",
-                          hi: 'आपके पैनल के नीचे असल में क्या है - माउंटिंग, वॉटरप्रूफिंग, केबलिंग और अर्थिंग।' },
+  'card-08-desc':      { en: "What's actually under your panels — mounting, waterproofing, cabling and earthing.",
+                          hi: 'आपके पैनल के नीचे असल में क्या है — माउंटिंग, वॉटरप्रूफिंग, केबलिंग और अर्थिंग।' },
   'card-09-title':     { en: 'Why Halosun',             hi: 'हैलोसन क्यों' },
-  'card-09-desc':      { en: "Solar is easy to sell. Building it right is harder - here's why that's what we chase.",
-                          hi: 'सोलर बेचना आसान है। इसे सही तरीके से बनाना मुश्किल - हम यही क्यों चुनते हैं, यहाँ जानें।' },
+  'card-09-desc':      { en: "Solar is easy to sell. Building it right is harder — here's why that's what we chase.",
+                          hi: 'सोलर बेचना आसान है। इसे सही तरीके से बनाना मुश्किल — हम यही क्यों चुनते हैं, यहाँ जानें।' },
   'card-05-title':     { en: 'PM Surya Ghar',          hi: 'PM सूर्य घर' },
   'card-05-desc':      { en: 'Subsidy eligibility, documents and the full application process.',
                           hi: 'सब्सिडी पात्रता, दस्तावेज़ और पूरी आवेदन प्रक्रिया।' },
@@ -115,8 +113,6 @@ const TRANSLATIONS = {
   'faq-filter-money':   { en: 'Savings & subsidy',    hi: 'बचत और सब्सिडी' },
   'faq-filter-safety':  { en: 'Safety & maintenance', hi: 'सुरक्षा और रखरखाव' },
   'faq-filter-battery': { en: 'Battery & backup',     hi: 'बैटरी और बैकअप' },
-  'faq-expand-all':     { en: 'Expand all',            hi: 'सभी को खोलें' },
-  'faq-collapse-all':   { en: 'Collapse all',          hi: 'सभी को बंद करें' },
 
   'faq-q1-q':          { en: 'Does solar work when the weather is cloudy?', hi: 'क्या बादल छाए मौसम में सोलर काम करता है?' },
   'faq-q1-a':          { en: 'Yes. Solar panels still produce electricity from diffuse sunlight on cloudy days, although output is lower than on a clear day. A properly designed system is sized using realistic local generation assumptions rather than assuming bright sunshine every day.',
@@ -141,6 +137,10 @@ const TRANSLATIONS = {
   'faq-q5-q':          { en: 'What is net metering?', hi: 'नेट मीटरिंग क्या है?' },
   'faq-q5-a':          { en: 'Net metering allows eligible grid-connected consumers to export surplus electricity to the distribution network and receive the applicable billing credit or adjustment under the prevailing utility rules. The exact process, limits and settlement mechanism depend on the consumer category and current regulations.',
                           hi: 'नेट मीटरिंग योग्य ग्रिड-कनेक्टेड उपभोक्ताओं को अतिरिक्त बिजली वितरण नेटवर्क में भेजने और प्रचलित यूटिलिटी नियमों के तहत उपयुक्त बिलिंग क्रेडिट या समायोजन पाने की अनुमति देती है। सटीक प्रक्रिया, सीमाएँ और निपटान तंत्र उपभोक्ता श्रेणी और मौजूदा नियमों पर निर्भर करते हैं।' },
+
+  'faq-q6-q':          { en: 'How much electricity can a 3 kW solar system generate?', hi: 'एक 3 kW सोलर सिस्टम कितनी बिजली बना सकता है?' },
+  'faq-q6-a':          { en: 'Generation varies with location, orientation, tilt, shading, temperature, equipment and weather. A useful planning estimate in India is often around 3.5–4.5 units per kW per day averaged over a year, but the actual result should be assessed from the site and system design rather than a single universal number.',
+                          hi: 'जनरेशन स्थान, दिशा, झुकाव, छाया, तापमान, उपकरण और मौसम के अनुसार बदलता है। भारत में एक उपयोगी अनुमान अक्सर वर्ष भर औसतन प्रति kW प्रति दिन लगभग 3.5–4.5 यूनिट होता है, लेकिन वास्तविक परिणाम किसी एक सार्वभौमिक संख्या के बजाय साइट और सिस्टम डिज़ाइन से आंका जाना चाहिए।' },
 
   'faq-q7-q':          { en: 'Is the government subsidy available for every solar installation?', hi: 'क्या हर सोलर इंस्टॉलेशन के लिए सरकारी सब्सिडी उपलब्ध है?' },
   'faq-q7-a':          { en: 'Subsidy eligibility depends on the applicable scheme, consumer category, installation type and the rules in force when the application is processed. Residential rooftop systems under the relevant government programme may qualify, while commercial and industrial systems are generally treated differently. Always verify the current official eligibility and rates before making a financial decision.',
@@ -170,17 +170,45 @@ const TRANSLATIONS = {
   'faq-q13-a':         { en: 'Not necessarily. An on-grid system can operate without batteries and use the grid for supply when solar generation is insufficient. Batteries add backup capability and can shift energy to later hours, but they also add cost, complexity and a component with its own service life.',
                           hi: 'ज़रूरी नहीं। एक ऑन-ग्रिड सिस्टम बिना बैटरी के भी काम कर सकता है और जब सोलर जनरेशन अपर्याप्त हो तो आपूर्ति के लिए ग्रिड का उपयोग करता है। बैटरी बैकअप क्षमता जोड़ती है और ऊर्जा को बाद के घंटों में स्थानांतरित कर सकती है, लेकिन इससे लागत, जटिलता और अपनी सेवा अवधि वाला एक अतिरिक्त घटक भी जुड़ जाता है।' },
 
+  // ---- Battery sizing estimator (calculator.html) ----
+  'battery-eyebrow':          { en: 'Backup planning', hi: 'बैकअप योजना' },
+  'battery-title':            { en: 'How big a battery would you need?', hi: 'आपको कितनी बड़ी बैटरी चाहिए होगी?' },
+  'battery-sub':               { en: "Pick what you'd want to keep running during a power cut and for how long. This gives you a rough range to start the conversation - not a final spec.",
+                                  hi: 'चुनें कि बिजली कटौती के दौरान आप क्या चलाना चाहेंगे और कितनी देर तक। इससे आपको बातचीत शुरू करने के लिए एक अनुमानित सीमा मिलती है - अंतिम स्पेक नहीं।' },
+  'battery-field-appliances': { en: 'What do you want backed up?', hi: 'आप किन उपकरणों को बैकअप देना चाहते हैं?' },
+  'battery-field-hours':      { en: 'Backup hours needed', hi: 'कितने घंटे बैकअप चाहिए' },
+  'battery-hours-2':          { en: '2 hours', hi: '2 घंटे' },
+  'battery-hours-4':          { en: '4 hours', hi: '4 घंटे' },
+  'battery-hours-6':          { en: '6 hours', hi: '6 घंटे' },
+  'battery-hours-8':          { en: '8 hours', hi: '8 घंटे' },
+  'battery-hours-12':         { en: '12 hours', hi: '12 घंटे' },
+  'battery-field-chemistry':  { en: 'Battery type', hi: 'बैटरी का प्रकार' },
+  'battery-chem-lithium':     { en: 'Lithium (LiFePO4)', hi: 'लिथियम (LiFePO4)' },
+  'battery-chem-tubular':     { en: 'Tubular / lead-acid', hi: 'ट्यूबलर / लेड-एसिड' },
+  'battery-btn':               { en: 'Estimate Battery Size', hi: 'बैटरी आकार का अनुमान लगाएं' },
+  'battery-range-label':      { en: 'Estimated usable battery capacity needed', hi: 'अनुमानित उपयोगी बैटरी क्षमता' },
+  'battery-range-sub':         { en: 'Shown as a range, not a single number - see why below', hi: 'एक सीमा के रूप में दिखाया गया है, एक ही संख्या नहीं - नीचे कारण देखें' },
+  'battery-load-label':       { en: 'Estimated simultaneous load', hi: 'अनुमानित एक साथ लोड' },
+  'battery-note':              { en: 'Illustrative only, based on typical appliance wattages and a conservative usage assumption - not a sizing spec.',
+                                  hi: 'केवल उदाहरण के लिए, सामान्य उपकरण वाट क्षमता और एक सतर्क उपयोग अनुमान पर आधारित - यह अंतिम साइज़िंग स्पेक नहीं है।' },
+  'battery-audit-heading':    { en: 'Why we do a load audit on-site', hi: 'हम साइट पर लोड ऑडिट क्यों करते हैं' },
+  'battery-audit-1':           { en: 'Motor-driven appliances (AC, fridge, water pump) draw 3-5x their running watts for a moment on startup - undersizing here is the most common battery-backup mistake, and it needs real inverter-rating knowledge, not a web form.',
+                                  hi: 'मोटर वाले उपकरण (AC, फ्रिज, पानी की मोटर) चालू होने के समय अपने सामान्य वाट से 3-5 गुना बिजली खींचते हैं - इसे कम आंकना बैटरी बैकअप में सबसे आम गलती है, और इसके लिए असली इन्वर्टर-रेटिंग की जानकारी चाहिए, वेब फॉर्म नहीं।' },
+  'battery-audit-2':           { en: 'How deep a battery can safely be discharged differs by chemistry (lithium vs. tubular) and materially changes usable capacity.',
+                                  hi: 'बैटरी को कितनी गहराई तक सुरक्षित रूप से डिस्चार्ज किया जा सकता है यह उसके प्रकार (लिथियम बनाम ट्यूबलर) पर निर्भर करता है और उपयोगी क्षमता को काफी बदल देता है।' },
+  'battery-audit-3':           { en: 'Charging and discharging a battery both lose some energy, and the loss depends on the inverter-battery pairing.',
+                                  hi: 'बैटरी को चार्ज और डिस्चार्ज करने में कुछ ऊर्जा हमेशा नष्ट होती है, और यह नुकसान इन्वर्टर-बैटरी की जोड़ी पर निर्भर करता है।' },
+  'battery-audit-4':           { en: 'Your solar array also needs to be able to recharge that battery day-to-day, not just store it once.',
+                                  hi: 'आपके सोलर पैनल में इतनी क्षमता भी होनी चाहिए कि वह इस बैटरी को रोज़ाना रिचार्ज कर सके, सिर्फ़ एक बार भरने से काम नहीं चलेगा।' },
+  'battery-sitevisit-question': { en: 'Want an exact battery and backup design for your home?', hi: 'अपने घर के लिए सटीक बैटरी और बैकअप डिज़ाइन चाहते हैं?' },
+  'battery-unit-kwh':          { en: 'kWh', hi: 'यूनिट' },
+  'battery-error-none':        { en: 'Select at least one appliance to back up.', hi: 'बैकअप के लिए कम से कम एक उपकरण चुनें।' },
+  'battery-increase':          { en: 'Increase', hi: 'बढ़ाएं' },
+  'battery-decrease':          { en: 'Decrease', hi: 'घटाएं' },
+
   'faq-q14-q':         { en: 'Does more panel wattage always mean a better solar system?', hi: 'क्या अधिक पैनल वाट क्षमता का मतलब हमेशा बेहतर सोलर सिस्टम होता है?' },
   'faq-q14-a':         { en: 'Not by itself. System quality depends on module performance, inverter selection, string design, shading, structure, cable sizing, protection, earthing, installation workmanship and how well the plant matches the consumer\'s load. A larger nameplate can be a poor investment if the design is wrong.',
                           hi: 'अकेले इससे नहीं। सिस्टम की गुणवत्ता मॉड्यूल प्रदर्शन, इनवर्टर चयन, स्ट्रिंग डिज़ाइन, छाया, संरचना, केबल आकार, सुरक्षा, अर्थिंग, इंस्टॉलेशन की कारीगरी और प्लांट उपभोक्ता के लोड से कितना मेल खाता है - इस पर निर्भर करती है। यदि डिज़ाइन ग़लत हो तो बड़ी नेमप्लेट क्षमता भी एक ख़राब निवेश साबित हो सकती है।' },
-
-  'faq-q15-q':         { en: 'How much does a 3 kW solar system cost in Uttar Pradesh?', hi: 'उत्तर प्रदेश में 3 kW सोलर सिस्टम की लागत कितनी है?' },
-  'faq-q15-a':         { en: 'For a good-quality 3 kW on-grid residential system in Uttar Pradesh, the typical project cost before subsidy falls roughly in the ₹1.65–1.95 lakh range, depending on module technology, inverter brand, mounting structure and site conditions. After the PM Surya Ghar central subsidy (up to ₹78,000 for an eligible 3 kW residential system) and the applicable UPNEDA state subsidy, the amount payable is significantly lower. These are indicative market ranges, not a quotation - use Halosun\'s Savings Calculator for a number based on your own bill, or request a free site visit for a written quote.',
-                          hi: 'उत्तर प्रदेश में एक अच्छी गुणवत्ता वाले 3 kW ऑन-ग्रिड आवासीय सिस्टम की सब्सिडी से पहले की सामान्य लागत लगभग ₹1.65–1.95 लाख के बीच होती है, जो मॉड्यूल तकनीक, इनवर्टर ब्रांड, माउंटिंग संरचना और साइट की स्थिति पर निर्भर करती है। PM सूर्य घर केंद्रीय सब्सिडी (पात्र 3 kW आवासीय सिस्टम के लिए ₹78,000 तक) और लागू UPNEDA राज्य सब्सिडी के बाद, देय राशि काफी कम हो जाती है। ये सांकेतिक बाज़ार सीमाएँ हैं, कोटेशन नहीं - अपने बिल के अनुसार सटीक संख्या के लिए हैलोसन के बचत कैलकुलेटर का उपयोग करें, या लिखित कोटेशन के लिए मुफ़्त साइट विज़िट का अनुरोध करें।' },
-
-  'faq-q16-q':         { en: 'How many units does a 3 kW solar system generate per month?', hi: '3 kW सोलर सिस्टम प्रति महीने कितनी यूनिट बिजली बनाता है?' },
-  'faq-q16-a':         { en: 'As a planning estimate, a well-installed 3 kW system in Uttar Pradesh generates roughly 3.5–4.5 units per kW per day, working out to approximately 320–400 units a month (around 4,000–4,800 units a year) under typical conditions. Actual generation depends on orientation, tilt, shading, panel quality and local weather, so treat this as a planning range rather than a guarantee - Halosun\'s Savings Calculator gives a more specific estimate based on your bill.',
-                          hi: 'एक अनुमानित योजना संख्या के तौर पर, उत्तर प्रदेश में एक अच्छी तरह से इंस्टॉल किया गया 3 kW सिस्टम लगभग 3.5–4.5 यूनिट प्रति kW प्रतिदिन बनाता है, जो लगभग 320-400 यूनिट प्रति माह (लगभग 4,000-4,800 यूनिट प्रति वर्ष) के बराबर है, सामान्य परिस्थितियों में। वास्तविक जनरेशन ओरिएंटेशन, झुकाव, छाया, पैनल गुणवत्ता और स्थानीय मौसम पर निर्भर करती है, इसलिए इसे एक गारंटी नहीं बल्कि योजना सीमा मानें - हैलोसन का बचत कैलकुलेटर आपके बिल के आधार पर अधिक सटीक अनुमान देता है।' },
 
   'faq-note-label':    { en: 'Engineering note:', hi: 'इंजीनियरिंग नोट:' },
   'faq-note-text':     { en: 'Solar generation, subsidy, net-metering rules and equipment specifications can change. Treat this page as general education and confirm project-specific numbers and current government/utility rules before installation.',
@@ -229,13 +257,6 @@ const TRANSLATIONS = {
   'svc-card-04-title': { en: 'Operations & Maintenance', hi: 'संचालन और रखरखाव' },
   'svc-card-04-desc':  { en: 'Scheduled cleaning, remote monitoring and repairs that keep your plant generating at rated capacity for 25 years.',
                           hi: 'निर्धारित सफ़ाई, रिमोट मॉनिटरिंग और मरम्मत जो आपके प्लांट को 25 वर्षों तक निर्धारित क्षमता पर जनरेट करते रहने में मदद करते हैं।' },
-
-  // -- Services page: 4-icon overview graphic (labels inside the SVG) --
-  'svc-visual-residential': { en: 'RESIDENTIAL', hi: 'आवासीय' },
-  'svc-visual-commercial':  { en: 'COMMERCIAL', hi: 'वाणिज्यिक' },
-  'svc-visual-turnkey':     { en: 'TURNKEY EPC', hi: 'टर्नकी ईपीसी' },
-  'svc-visual-om':          { en: 'OPERATIONS & MAINTENANCE', hi: 'संचालन और रखरखाव' },
-
   'cta-band-services-title': { en: 'Ready to see what solar could look like for you?', hi: 'देखना चाहते हैं कि आपके लिए सोलर कैसा दिखेगा?' },
 
   // ---- Process page ----
@@ -252,8 +273,8 @@ const TRANSLATIONS = {
   'process-step3-desc':  { en: 'We handle net-metering paperwork and government subsidy applications on your behalf.',
                              hi: 'हम आपकी ओर से नेट-मीटरिंग कागज़ात और सरकारी सब्सिडी आवेदन संभालते हैं।' },
   'process-step4-title': { en: 'Installation', hi: 'इंस्टॉलेशन' },
-  'process-step4-desc':  { en: 'Certified crews install panels, inverter and wiring - most rooftop jobs finish in three to seven days.',
-                             hi: 'प्रमाणित टीमें पैनल, इनवर्टर और वायरिंग इंस्टॉल करती हैं - अधिकांश रूफटॉप काम तीन से सात दिनों में पूरे हो जाते हैं।' },
+  'process-step4-desc':  { en: 'qualified crews install panels, inverter and wiring - most rooftop jobs finish in three to seven days.',
+                             hi: 'योग्य टीमें पैनल, इनवर्टर और वायरिंग इंस्टॉल करती हैं - अधिकांश रूफटॉप काम तीन से सात दिनों में पूरे हो जाते हैं।' },
   'process-step5-title': { en: 'Commissioning', hi: 'कमीशनिंग' },
   'process-step5-desc':  { en: 'Utility inspection, net meter installation, and formal handover of your plant.',
                              hi: 'यूटिलिटी निरीक्षण, नेट मीटर इंस्टॉलेशन, और आपके प्लांट की औपचारिक सुपुर्दगी।' },
@@ -273,7 +294,7 @@ const TRANSLATIONS = {
 
   // ---- Ten checks ----
   'std-checks-eyebrow': { en: 'Applied to every job, same size or not', hi: 'हर काम पर लागू, आकार चाहे जो भी हो' },
-  'std-checks-title':   { en: 'Ten checks, no exceptions', hi: 'दस जाँच, कोई अपवाद नहीं' },
+  'std-checks-title':   { en: "The checks we don't compromise on", hi: 'जांच जिनसे हम कभी समझौता नहीं करते' },
   'std-checks-sub':     { en: 'Whether it\'s a 6-panel rooftop or a 50 kW commercial plant, every Halosun installation is signed off against the same checklist before we call it finished.',
                            hi: 'चाहे 6-पैनल की छत हो या 50 kW का व्यावसायिक प्लांट, हर हैलोसन इंस्टॉलेशन को पूरा मानने से पहले उसी चेकलिस्ट पर परखा जाता है।' },
   'std-check-1':  { en: 'Mounting structure sized for your roof and your panel load - not trimmed on steel gauge to shave the quote.', hi: 'माउंटिंग संरचना आपकी छत और पैनल भार के अनुसार तय की जाती है - कोटेशन घटाने के लिए स्टील की मोटाई कम नहीं की जाती।' },
@@ -311,30 +332,17 @@ const TRANSLATIONS = {
   'std-cable-bad-4':     { en: 'Harder to trace, harder to service, harder to fault-find', hi: 'ढूंढना मुश्किल, सर्विस करना मुश्किल, खराबी पकड़ना मुश्किल' },
 
   // ---- Earthing ----
-  'std-earth-eyebrow': { en: 'As per Rules: Earthing', hi: 'नियमानुसार: अर्थिंग' },
-  'std-earth-title':   { en: 'Not Separate Pits - A Coordinated Earthing System', hi: 'अलग-अलग पिट नहीं - एक समन्वित अर्थिंग प्रणाली' },
-  'std-earth-sub':     { en: 'Solar system earthing is not limited to simply installing a single earth pit. Panels, mounting structures, inverters, safety devices, and related electrical components are made part of a well-organized earthing system through proper Protective Earthing and Equipotential Bonding.',
-                          hi: 'सोलर सिस्टम की अर्थिंग सिर्फ एक अर्थ पिट लगा देने तक सीमित नहीं है। पैनल, माउंटिंग संरचना, इन्वर्टर, सुरक्षा उपकरण और संबंधित विद्युत घटकों को उचित प्रोटेक्टिव अर्थिंग और इक्विपोटेंशियल बॉन्डिंग के ज़रिए एक सुव्यवस्थित अर्थिंग प्रणाली का हिस्सा बनाया जाता है।' },
-  'std-earth-sub2':    { en: 'The objective is not merely to achieve low earth resistance, but to provide a safe and reliable current path during fault or surge conditions, and to reduce dangerous Potential Differences between various metallic parts.',
-                          hi: 'लक्ष्य केवल कम अर्थ प्रतिरोध हासिल करना नहीं है, बल्कि फॉल्ट या सर्ज की स्थिति में करंट के लिए एक सुरक्षित और भरोसेमंद रास्ता देना और विभिन्न धातु भागों के बीच खतरनाक पोटेंशियल डिफरेंस को कम करना है।' },
-  'std-earth-focus-title': { en: 'What We Focus On', hi: 'हम किन बातों पर ध्यान देते हैं' },
-  'std-earth-tag1':    { en: 'Bonding of All Necessary Metallic Parts', hi: 'सभी आवश्यक धातु भागों की बॉन्डिंग' },
-  'std-earth-item1':   { en: ' - Exposed metallic parts, such as panel frames and mounting structures, are connected using appropriate protective earthing/bonding arrangements.', hi: ' - पैनल फ्रेम और माउंटिंग संरचना जैसे खुले धातु भागों को उचित प्रोटेक्टिव अर्थिंग/बॉन्डिंग व्यवस्था से जोड़ा जाता है।' },
-  'std-earth-tag2':    { en: 'Earthing of Inverters and Safety Devices', hi: 'इन्वर्टर और सुरक्षा उपकरणों की अर्थिंग' },
-  'std-earth-item2':   { en: ' - The inverter body and necessary AC/DC protection devices are provided with proper protective earth connections so that the protection system functions effectively during a fault or surge.', hi: ' - इन्वर्टर बॉडी और आवश्यक AC/DC सुरक्षा उपकरणों को उचित प्रोटेक्टिव अर्थ कनेक्शन दिए जाते हैं, ताकि फॉल्ट या सर्ज के दौरान सुरक्षा प्रणाली प्रभावी ढंग से काम करे।' },
-  'std-earth-tag3':    { en: 'A Coordinated Earthing Network', hi: 'एक समन्वित अर्थिंग नेटवर्क' },
-  'std-earth-item3':   { en: ' - Different earth connections are coordinated through equipotential bonding as required. The goal is not to create isolated earth points, but to establish a reliable and continuous protective-earth system.', hi: ' - आवश्यकतानुसार विभिन्न अर्थ कनेक्शनों को इक्विपोटेंशियल बॉन्डिंग के ज़रिए समन्वित किया जाता है। लक्ष्य अलग-थलग अर्थ पॉइंट बनाना नहीं, बल्कि एक भरोसेमंद और निरंतर प्रोटेक्टिव-अर्थ प्रणाली स्थापित करना है।' },
-  'std-earth-tag4':    { en: 'Conductor Selection Based on Calculation and Usage', hi: 'गणना और उपयोग के आधार पर कंडक्टर चयन' },
-  'std-earth-item4':   { en: ' - The size of the earthing conductor is not chosen simply based on "whatever thickest conductor is available." Selection is made according to the conductor material, fault current, protection, installation method, mechanical protection, and applicable standards.', hi: ' - अर्थिंग कंडक्टर का आकार सिर्फ "जो सबसे मोटा कंडक्टर उपलब्ध हो" उसके आधार पर तय नहीं किया जाता। चयन कंडक्टर सामग्री, फॉल्ट करंट, सुरक्षा, इंस्टॉलेशन विधि, मैकेनिकल सुरक्षा और लागू मानकों के अनुसार किया जाता है।' },
-  'std-earth-tag5':    { en: 'Lightning Protection as a Distinct Function', hi: 'लाइटनिंग प्रोटेक्शन एक अलग कार्य के रूप में' },
-  'std-earth-item5':   { en: ' - The current path of a lightning protection system is an engineering consideration distinct from standard equipment earthing. Where lightning protection is provided, its conductor path, bonding, and earth-electrode arrangement are designed according to the relevant lightning protection requirements.', hi: ' - लाइटनिंग प्रोटेक्शन प्रणाली का करंट पथ मानक उपकरण अर्थिंग से अलग एक इंजीनियरिंग विचार है। जहाँ लाइटनिंग प्रोटेक्शन दी जाती है, वहाँ उसका कंडक्टर पथ, बॉन्डिंग और अर्थ-इलेक्ट्रोड व्यवस्था संबंधित लाइटनिंग प्रोटेक्शन आवश्यकताओं के अनुसार डिज़ाइन की जाती है।' },
-  'std-earth-principle-title': { en: 'Our Principle', hi: 'हमारा सिद्धांत' },
-  'std-earth-principle-tag':   { en: 'Earthing does not just mean the number of pits.', hi: 'अर्थिंग का मतलब सिर्फ पिटों की संख्या नहीं है।' },
-  'std-earth-principle-item':  { en: ' Real safety lies in a properly designed, continuous, and verified earthing & bonding system.', hi: ' असली सुरक्षा एक सही ढंग से डिज़ाइन की गई, निरंतर और सत्यापित अर्थिंग व बॉन्डिंग प्रणाली में है।' },
-  'std-earth-closing': { en: 'We also place strong emphasis on earthing continuity, connections, and necessary testing during installation - so that earthing is not just a visible setup, but a truly functional safety system.',
-                          hi: 'हम इंस्टॉलेशन के दौरान अर्थिंग की निरंतरता, कनेक्शन और आवश्यक टेस्टिंग पर भी पूरा ज़ोर देते हैं - ताकि अर्थिंग केवल दिखने वाला सेटअप न हो, बल्कि वास्तव में काम करने वाली सुरक्षा प्रणाली हो।' },
+  'std-earth-eyebrow': { en: 'Earthing', hi: 'अर्थिंग' },
+  'std-earth-title':   { en: 'Earthed the way the code requires - tied together, not scattered', hi: 'नियमानुसार अर्थिंग - बिखरी हुई नहीं, आपस में जुड़ी हुई' },
+  'std-earth-sub':     { en: 'A single earth pit that looks fine to an inspector isn\'t the same as a system that\'s actually protected. We earth every stage of the system and connect the earthing network together, so a fault has one reliable, low-resistance path to ground - not four separate pits each hoping it\'s the one that works.',
+                          hi: 'एक अकेला अर्थ पिट जो निरीक्षक को ठीक लगे, यह ज़रूरी नहीं कि प्रणाली वाकई सुरक्षित हो। हम प्रणाली के हर चरण की अर्थिंग करते हैं और पूरे अर्थिंग नेटवर्क को आपस में जोड़ते हैं, ताकि किसी फॉल्ट को ज़मीन तक जाने का एक भरोसेमंद, कम-प्रतिरोध वाला रास्ता मिले - चार अलग-अलग पिट नहीं जिनमें से किसी एक के काम करने की उम्मीद की जाए।' },
+  'std-earth-tag1':    { en: '4 POINTS', hi: '4 बिंदु' },
+  'std-earth-item1':   { en: 'Panels, mounting structure, inverter, and distribution board are each earthed independently.', hi: 'पैनल, माउंटिंग संरचना, इन्वर्टर और डिस्ट्रिब्यूशन बोर्ड - हर एक की अलग अर्थिंग की जाती है।' },
+  'std-earth-tag2':    { en: '16 SQ.MM', hi: '16 वर्ग मिमी' },
+  'std-earth-item2':   { en: 'Aluminium earth conductor sized to carry a fault current safely, not the thinnest wire that technically qualifies.', hi: 'एल्युमिनियम अर्थ कंडक्टर फॉल्ट करंट को सुरक्षित रूप से ले जाने के लिए तय किया जाता है, सिर्फ काम चलाऊ सबसे पतला तार नहीं।' },
+  'std-earth-tag3':    { en: 'BONDED', hi: 'बॉन्डेड' },
+  'std-earth-item3':   { en: 'Every earth point is bonded into a single, low-resistance network as the electrical code requires - not left as isolated, disconnected points.', hi: 'विद्युत कोड की आवश्यकता के अनुसार हर अर्थ पॉइंट को एक ही कम-प्रतिरोध वाले नेटवर्क में बॉन्ड किया जाता है - अलग-थलग, असंबद्ध बिंदुओं के रूप में नहीं छोड़ा जाता।' },
   'std-earth-caption': { en: '// simplified reference - full earthing spec is in your project handover file', hi: '// सरल संदर्भ - पूरा अर्थिंग विवरण आपकी प्रोजेक्ट हैंडओवर फाइल में है' },
-
 
   // ---- Handover file ----
   'std-handover-eyebrow':    { en: 'Documentation', hi: 'दस्तावेज़ीकरण' },
@@ -368,72 +376,6 @@ const TRANSLATIONS = {
   'gallery-tile-5': { en: 'Net meter install', hi: 'नेट मीटर इंस्टॉल' },
   'gallery-tile-6': { en: 'Commissioning day', hi: 'कमीशनिंग दिवस' },
   'cta-band-gallery-title': { en: 'Want a plant like this on your roof?', hi: 'अपनी छत पर ऐसा प्लांट चाहते हैं?' },
-
-  // ---- Gallery: project case studies ----
-  'gallery-case-eyebrow': { en: 'Case studies', hi: 'केस स्टडी' },
-  'gallery-case-title':   { en: 'How the work looks beyond the finished panels', hi: 'तैयार पैनलों से परे, असल काम कैसा दिखता है' },
-  'gallery-case-sub':     { en: 'A closer look at the kind of work Halosun carries out - with project details stated only where they are documented.',
-                             hi: 'हैलोसन किस तरह का काम करता है, इस पर एक करीबी नज़र - प्रोजेक्ट का विवरण केवल वहीं बताया गया है जहाँ वह दस्तावेज़ीकृत है।' },
-
-  // -- Case study 1: Residential --
-  'gallery-cs1-kicker':      { en: 'Residential rooftop · Completed installation', hi: 'आवासीय रूफटॉप · पूर्ण इंस्टॉलेशन' },
-  'gallery-cs1-title':       { en: '3 kW rooftop solar system', hi: '3 kW रूफटॉप सोलर सिस्टम' },
-  'gallery-cs1-intro':       { en: 'A recent residential installation built around a 3 kW on-grid system, with the equipment and installation details selected for a practical rooftop application.',
-                                hi: 'एक हाल की आवासीय इंस्टॉलेशन, जो 3 kW ऑन-ग्रिड सिस्टम पर आधारित है, जिसमें उपकरण और इंस्टॉलेशन का विवरण एक व्यावहारिक रूफटॉप एप्लिकेशन के लिए चुना गया।' },
-  'gallery-cs1-dt-system':   { en: 'System', hi: 'सिस्टम' },
-  'gallery-cs1-dd-system':   { en: '3 kW on-grid', hi: '3 kW ऑन-ग्रिड' },
-  'gallery-cs1-dt-modules':  { en: 'PV modules', hi: 'PV मॉड्यूल' },
-  'gallery-cs1-dd-modules':  { en: '580 W TOPCon bifacial, DCR / MNRE-approved configuration · 6 modules', hi: '580 W TOPCon द्विपार्श्व (बाइफेशियल), DCR / MNRE-अनुमोदित कॉन्फ़िगरेशन · 6 मॉड्यूल' },
-  'gallery-cs1-dt-inverter': { en: 'Inverter', hi: 'इन्वर्टर' },
-  'gallery-cs1-dd-inverter': { en: 'Microtek 3 kW grid-tied inverter', hi: 'माइक्रोटेक 3 kW ग्रिड-टाइड इन्वर्टर' },
-  'gallery-cs1-dt-mounting': { en: 'Mounting', hi: 'माउंटिंग' },
-  'gallery-cs1-dd-mounting': { en: 'Apollo GI structure, 2 mm section thickness', hi: 'अपोलो GI संरचना, 2 mm सेक्शन मोटाई' },
-  'gallery-cs1-dt-wiring':   { en: 'Wiring', hi: 'वायरिंग' },
-  'gallery-cs1-dd-wiring':   { en: 'PV-grade solar DC cabling with XLPO insulation and tinned-copper conductors; flame-retardant, low-smoke AC cabling selected for the installation.',
-                                hi: 'XLPO इंसुलेशन और टिन-कोटेड कॉपर कंडक्टर वाली PV-ग्रेड सोलर DC केबलिंग; इंस्टॉलेशन के लिए फ्लेम-रिटार्डेंट, लो-स्मोक AC केबलिंग चुनी गई।' },
-  'gallery-cs1-dt-install':  { en: 'Installation approach', hi: 'इंस्टॉलेशन का तरीका' },
-  'gallery-cs1-dd-install':  { en: 'Equipment layout, cable routing, earthing and protection were coordinated as part of the overall installation.',
-                                hi: 'उपकरण लेआउट, केबल रूटिंग, अर्थिंग और सुरक्षा को समग्र इंस्टॉलेशन के हिस्से के रूप में समन्वित किया गया।' },
-  'gallery-cs1-note':        { en: 'Customer identity and detailed installation specifications are intentionally not published. The case study highlights the engineering approach rather than a component-by-component build sheet.',
-                                hi: 'ग्राहक की पहचान और विस्तृत इंस्टॉलेशन विवरण जानबूझकर प्रकाशित नहीं किए गए हैं। यह केस स्टडी घटक-दर-घटक बिल्ड शीट के बजाय इंजीनियरिंग दृष्टिकोण को उजागर करती है।' },
-
-  // -- Case study 2: Commercial --
-  'gallery-cs2-kicker':      { en: 'Commercial solar · Project profile', hi: 'कमर्शियल सोलर · प्रोजेक्ट प्रोफ़ाइल' },
-  'gallery-cs2-title':       { en: 'Commercial installation - engineered for the site', hi: 'कमर्शियल इंस्टॉलेशन - साइट के अनुसार इंजीनियर की गई' },
-  'gallery-cs2-intro':       { en: 'This commercial installation was approached as an integrated electrical and structural system, with the layout planned around practical operation, protection and long-term serviceability.',
-                                hi: 'इस कमर्शियल इंस्टॉलेशन को एक एकीकृत इलेक्ट्रिकल और संरचनात्मक सिस्टम के रूप में लिया गया, जिसका लेआउट व्यावहारिक संचालन, सुरक्षा और दीर्घकालिक सर्विसिबिलिटी को ध्यान में रखकर योजनाबद्ध किया गया।' },
-  'gallery-cs2-dt-app':      { en: 'Application', hi: 'उपयोग' },
-  'gallery-cs2-dd-app':      { en: 'Commercial / industrial solar generation', hi: 'कमर्शियल / औद्योगिक सोलर जनरेशन' },
-  'gallery-cs2-dt-design':   { en: 'Design focus', hi: 'डिज़ाइन पर ध्यान' },
-  'gallery-cs2-dd-design':   { en: 'System configuration, equipment arrangement, cable management, electrical protection, earthing and service access',
-                                hi: 'सिस्टम कॉन्फ़िगरेशन, उपकरण व्यवस्था, केबल प्रबंधन, इलेक्ट्रिकल सुरक्षा, अर्थिंग और सर्विस एक्सेस' },
-  'gallery-cs2-dt-exec':     { en: 'Execution focus', hi: 'निष्पादन पर ध्यान' },
-  'gallery-cs2-dd-exec':     { en: 'Coordinated installation of the generation, mounting and electrical systems with attention to safe operation and maintainability',
-                                hi: 'सुरक्षित संचालन और रखरखाव-योग्यता को ध्यान में रखते हुए जनरेशन, माउंटिंग और इलेक्ट्रिकल सिस्टम की समन्वित इंस्टॉलेशन' },
-  'gallery-cs2-dt-doc':      { en: 'Documentation', hi: 'दस्तावेज़ीकरण' },
-  'gallery-cs2-dd-doc':      { en: 'Project-specific equipment and installation details are retained in the project handover record',
-                                hi: 'प्रोजेक्ट-विशिष्ट उपकरण और इंस्टॉलेशन विवरण प्रोजेक्ट हैंडओवर रिकॉर्ड में सुरक्षित रखे जाते हैं' },
-  'gallery-cs2-note':        { en: 'Capacity, site identity and other project-specific information are intentionally not published here. Technical records are maintained as part of the project handover documentation.',
-                                hi: 'क्षमता, साइट की पहचान और अन्य प्रोजेक्ट-विशिष्ट जानकारी जानबूझकर यहाँ प्रकाशित नहीं की गई है। तकनीकी रिकॉर्ड प्रोजेक्ट हैंडओवर दस्तावेज़ीकरण के हिस्से के रूप में रखे जाते हैं।' },
-
-  // -- Case study 3: Ground mount --
-  'gallery-cs3-kicker':      { en: 'Ground mount · Project profile', hi: 'ग्राउंड माउंट · प्रोजेक्ट प्रोफ़ाइल' },
-  'gallery-cs3-title':       { en: 'Ground-mounted solar - structure first, panels second', hi: 'ग्राउंड-माउंटेड सोलर - पहले संरचना, फिर पैनल' },
-  'gallery-cs3-intro':       { en: 'This ground-mounted installation required the layout and mounting arrangement to be considered together, with attention to site conditions, structural stability, access and practical maintenance.',
-                                hi: 'इस ग्राउंड-माउंटेड इंस्टॉलेशन में लेआउट और माउंटिंग व्यवस्था को साथ में विचार करने की ज़रूरत थी, जिसमें साइट की स्थिति, संरचनात्मक स्थिरता, पहुँच और व्यावहारिक रखरखाव पर ध्यान दिया गया।' },
-  'gallery-cs3-dt-app':      { en: 'Application', hi: 'उपयोग' },
-  'gallery-cs3-dd-app':      { en: 'Ground-mounted solar plant', hi: 'ग्राउंड-माउंटेड सोलर प्लांट' },
-  'gallery-cs3-dt-design':   { en: 'Design focus', hi: 'डिज़ाइन पर ध्यान' },
-  'gallery-cs3-dd-design':   { en: 'Site layout, structural arrangement, foundation / anchoring considerations, cable management and service access',
-                                hi: 'साइट लेआउट, संरचनात्मक व्यवस्था, फाउंडेशन / एंकरिंग संबंधी विचार, केबल प्रबंधन और सर्विस एक्सेस' },
-  'gallery-cs3-dt-install':  { en: 'Installation focus', hi: 'इंस्टॉलेशन पर ध्यान' },
-  'gallery-cs3-dd-install':  { en: 'Consistent mounting alignment and an arrangement suitable for inspection and routine maintenance',
-                                hi: 'सतत माउंटिंग संरेखण और निरीक्षण व नियमित रखरखाव के लिए उपयुक्त व्यवस्था' },
-  'gallery-cs3-dt-eng':      { en: 'Engineering principle', hi: 'इंजीनियरिंग सिद्धांत' },
-  'gallery-cs3-dd-eng':      { en: 'The mounting arrangement is considered in relation to the site and operating conditions rather than treated as a one-size-fits-all component',
-                                hi: 'माउंटिंग व्यवस्था को साइट और संचालन की परिस्थितियों के संदर्भ में तय किया जाता है, न कि एक ही तरह के घटक के रूप में सबके लिए एक जैसा माना जाता है।' },
-  'gallery-cs3-note':        { en: 'Exact capacity, location and construction details are intentionally kept out of the public case study; project records contain the applicable technical details.',
-                                hi: 'सटीक क्षमता, स्थान और निर्माण विवरण जानबूझकर सार्वजनिक केस स्टडी से बाहर रखे गए हैं; लागू तकनीकी विवरण प्रोजेक्ट रिकॉर्ड में उपलब्ध हैं।' },
 
   // ---- Contact page ----
   'contact-eyebrow': { en: 'Get started', hi: 'शुरू करें' },
@@ -506,71 +448,6 @@ const TRANSLATIONS = {
 
   'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' },
 
-  // -- Live Generation teaser (homepage) --
-  'home-livegen-eyebrow':  { en: 'Live, right now', hi: 'अभी, लाइव' },
-  'home-livegen-title':    { en: "What's your rooftop making right now?", hi: 'आपकी छत अभी कितनी बिजली बना रही है?' },
-  'home-livegen-sub':      { en: "Pick your city and see today's actual sunlight conditions translated into live rooftop output - no signup needed.",
-                              hi: 'अपना शहर चुनें और आज की वास्तविक धूप की स्थिति को लाइव रूफटॉप आउटपुट में देखें - कोई साइनअप ज़रूरी नहीं।' },
-  'home-livegen-cta':      { en: 'Check My City', hi: 'मेरा शहर देखें' },
-
-  // -- Live Generation Estimator (calculator page) --
-  'livegen-eyebrow':          { en: 'Live, right now', hi: 'अभी, लाइव' },
-  'livegen-title':             { en: 'What would your rooftop generate right now?', hi: 'आपकी छत अभी कितनी बिजली बनाएगी?' },
-  'livegen-sub':                { en: 'Pick your city and we\'ll pull today\'s actual sunlight conditions to estimate your system\'s live output - no signup needed.',
-                                   hi: 'अपना शहर चुनें और हम आज की वास्तविक धूप की स्थिति के आधार पर आपके सिस्टम के लाइव आउटपुट का अनुमान लगाएंगे - कोई साइनअप ज़रूरी नहीं।' },
-  'livegen-field-city':         { en: 'Your city', hi: 'आपका शहर' },
-  'livegen-city-placeholder':   { en: 'Select a city', hi: 'शहर चुनें' },
-  'livegen-group-core':         { en: 'Halosun service area', hi: 'हैलोसन सेवा क्षेत्र' },
-  'livegen-group-other':        { en: 'Other UP cities', hi: 'अन्य UP शहर' },
-
-  'livegen-city-raebareli':   { en: 'Raebareli', hi: 'रायबरेली' },
-  'livegen-city-lucknow':     { en: 'Lucknow', hi: 'लखनऊ' },
-  'livegen-city-unnao':       { en: 'Unnao', hi: 'उन्नाव' },
-  'livegen-city-amethi':      { en: 'Amethi', hi: 'अमेठी' },
-  'livegen-city-sultanpur':   { en: 'Sultanpur', hi: 'सुल्तानपुर' },
-  'livegen-city-pratapgarh':  { en: 'Pratapgarh', hi: 'प्रतापगढ़' },
-  'livegen-city-hardoi':      { en: 'Hardoi', hi: 'हरदोई' },
-  'livegen-city-kanpur':      { en: 'Kanpur', hi: 'कानपुर' },
-  'livegen-city-varanasi':    { en: 'Varanasi', hi: 'वाराणसी' },
-  'livegen-city-prayagraj':   { en: 'Prayagraj (Allahabad)', hi: 'प्रयागराज (इलाहाबाद)' },
-  'livegen-city-agra':        { en: 'Agra', hi: 'आगरा' },
-  'livegen-city-meerut':      { en: 'Meerut', hi: 'मेरठ' },
-  'livegen-city-ghaziabad':   { en: 'Ghaziabad', hi: 'ग़ाज़ियाबाद' },
-  'livegen-city-noida':       { en: 'Noida', hi: 'नोएडा' },
-  'livegen-city-bareilly':    { en: 'Bareilly', hi: 'बरेली' },
-  'livegen-city-gorakhpur':   { en: 'Gorakhpur', hi: 'गोरखपुर' },
-  'livegen-city-moradabad':   { en: 'Moradabad', hi: 'मुरादाबाद' },
-  'livegen-city-aligarh':     { en: 'Aligarh', hi: 'अलीगढ़' },
-  'livegen-city-jhansi':      { en: 'Jhansi', hi: 'झांसी' },
-  'livegen-city-saharanpur':  { en: 'Saharanpur', hi: 'सहारनपुर' },
-  'livegen-city-ayodhya':     { en: 'Ayodhya (Faizabad)', hi: 'अयोध्या (फैज़ाबाद)' },
-  'livegen-city-mathura':     { en: 'Mathura', hi: 'मथुरा' },
-  'livegen-city-firozabad':   { en: 'Firozabad', hi: 'फ़िरोज़ाबाद' },
-  'livegen-city-sitapur':     { en: 'Sitapur', hi: 'सीतापुर' },
-
-  'livegen-field-size':   { en: 'Your system size (or the one you\'re considering)', hi: 'आपके सिस्टम का आकार (या जिस पर आप विचार कर रहे हैं)' },
-  'livegen-field-shade':  { en: 'Does your roof get shade for part of the day?', hi: 'क्या आपकी छत पर दिन के कुछ हिस्से में छाया रहती है?' },
-  'livegen-shade-no':     { en: 'No, full sun all day', hi: 'नहीं, पूरे दिन पूरी धूप रहती है' },
-  'livegen-shade-yes':    { en: 'Yes, some shade part of the day', hi: 'हाँ, दिन के कुछ हिस्से में छाया रहती है' },
-  'livegen-btn':          { en: 'Get Live Estimate', hi: 'लाइव अनुमान पाएं' },
-
-  'livegen-now-label':    { en: 'Estimated output right now', hi: 'अभी अनुमानित आउटपुट' },
-  'livegen-today-label':  { en: 'Estimated generation today', hi: 'आज का अनुमानित जनरेशन' },
-  'livegen-weather-label':{ en: 'Current sky conditions', hi: 'वर्तमान आसमान की स्थिति' },
-  'livegen-note':         { en: 'Live estimate based on today\'s actual weather at your selected city. Assumes a well-installed, unshaded-by-default on-grid system; actual generation depends on your specific roof, equipment and site conditions - book a free site visit for a precise number.',
-                             hi: 'आपके चुने गए शहर के आज के वास्तविक मौसम पर आधारित लाइव अनुमान। यह एक अच्छी तरह से इंस्टॉल किए गए, बिना छाया वाले ऑन-ग्रिड सिस्टम को मानकर बनाया गया है; वास्तविक जनरेशन आपकी विशिष्ट छत, उपकरण और साइट की स्थिति पर निर्भर करता है - सटीक संख्या के लिए मुफ़्त साइट विज़िट बुक करें।' },
-
-  'livegen-loading':      { en: 'Fetching live weather for your city…', hi: 'आपके शहर के लिए लाइव मौसम डेटा प्राप्त किया जा रहा है…' },
-  'livegen-error-city':   { en: 'Please select your city first.', hi: 'कृपया पहले अपना शहर चुनें।' },
-  'livegen-error-fetch':  { en: 'Live weather data isn\'t available right now - please try again in a moment.', hi: 'अभी लाइव मौसम डेटा उपलब्ध नहीं है - कृपया थोड़ी देर बाद पुनः प्रयास करें।' },
-  'livegen-night-note':   { en: 'It\'s currently night-time here — systems only generate in daylight.', hi: 'यहाँ अभी रात है — सिस्टम केवल दिन के उजाले में बिजली बनाता है।' },
-  'livegen-unit-kwh':     { en: 'kWh', hi: 'यूनिट' },
-  'livegen-cloud-suffix': { en: 'cloud cover', hi: 'बादल छाए हुए' },
-
-  // -- Calculator page: site-visit prompt shown right after results --
-  'calc-sitevisit-question': { en: 'Want an accurate system design for your roof?', hi: 'अपनी छत के लिए सटीक सिस्टम डिज़ाइन चाहते हैं?' },
-  'calc-sitevisit-btn':      { en: 'Request a Site Visit →', hi: 'साइट विज़िट का अनुरोध करें →' },
-
   // ---- PDF-only strings ----
   'pdf-doc-title':        { en: 'Solar Savings Estimate', hi: 'सोलर बचत अनुमान' },
   'pdf-generated':        { en: 'Generated:', hi: 'तैयार किया गया:' },
@@ -624,23 +501,6 @@ const TRANSLATIONS = {
   'pm-eligible-3-desc':   { en: 'Your electricity connection must fall under a participating distribution utility/process.', hi: 'आपका बिजली कनेक्शन किसी सहभागी वितरण उपयोगिता/प्रक्रिया के अंतर्गत होना चाहिए।' },
   'pm-eligible-4-title':  { en: 'Bank & identity details', hi: 'बैंक और पहचान विवरण' },
   'pm-eligible-4-desc':   { en: 'Keep the required consumer, bank and electricity-account details ready for portal processing.', hi: 'पोर्टल प्रोसेसिंग के लिए आवश्यक उपभोक्ता, बैंक और बिजली-खाता विवरण तैयार रखें।' },
-
-  // -- PM Surya Ghar page: UP DISCOM coverage section --
-  'pm-discom-eyebrow':      { en: 'Uttar Pradesh specifics', hi: 'उत्तर प्रदेश की विशेष जानकारी' },
-  'pm-discom-h2':            { en: 'Which UP DISCOM covers your connection?', hi: 'आपका कनेक्शन किस UP DISCOM के अंतर्गत आता है?' },
-  'pm-discom-sub':            { en: 'Uttar Pradesh\'s electricity distribution is split across five DISCOMs under UPPCL, each running its own PM Surya Ghar application queue and inspection schedule. Knowing which one covers you sets realistic expectations for how long each stage takes.',
-                                hi: 'उत्तर प्रदेश की बिजली वितरण व्यवस्था UPPCL के अंतर्गत पाँच DISCOM में बँटी है, और हर DISCOM का अपना PM सूर्य घर आवेदन क्रम और निरीक्षण शेड्यूल होता है। यह जानना कि आपका क्षेत्र किस DISCOM के अंतर्गत आता है, हर चरण में लगने वाले समय की सही उम्मीद तय करने में मदद करता है।' },
-  'pm-discom-mvvnl-title':    { en: 'Madhyanchal (MVVNL) - Halosun\'s core service area', hi: 'मध्यांचल (MVVNL) - हैलोसन का मुख्य सेवा क्षेत्र' },
-  'pm-discom-mvvnl-desc':     { en: 'Headquartered in Lucknow, MVVNL covers Raebareli, Lucknow, Unnao, Sultanpur, Hardoi, Amethi and Barabanki. Most Halosun installations are processed through MVVNL\'s application and net-metering workflow.',
-                                hi: 'लखनऊ में मुख्यालय वाला MVVNL रायबरेली, लखनऊ, उन्नाव, सुल्तानपुर, हरदोई, अमेठी और बाराबंकी को कवर करता है। हैलोसन की अधिकांश इंस्टॉलेशन MVVNL के आवेदन और नेट-मीटरिंग प्रक्रिया के माध्यम से प्रोसेस होती हैं।' },
-  'pm-discom-puvvnl-title':   { en: 'Purvanchal (PuVVNL)', hi: 'पूर्वांचल (PuVVNL)' },
-  'pm-discom-puvvnl-desc':    { en: 'Headquartered in Varanasi, PuVVNL covers Pratapgarh and other eastern Uttar Pradesh districts. Halosun also assists customers with connections under this DISCOM.',
-                                hi: 'वाराणसी में मुख्यालय वाला PuVVNL प्रतापगढ़ और पूर्वी उत्तर प्रदेश के अन्य ज़िलों को कवर करता है। हैलोसन इस DISCOM के अंतर्गत आने वाले ग्राहकों की भी सहायता करता है।' },
-  'pm-discom-other-title':    { en: 'Other UP DISCOMs', hi: 'अन्य UP DISCOM' },
-  'pm-discom-other-desc':     { en: 'Paschimanchal (PVVNL) covers western UP, Dakshinanchal (DVVNL) covers the Agra region, and Kanpur Electricity Supply Company (KESCO) covers Kanpur city. All follow the same UPERC-regulated PM Surya Ghar structure.',
-                                hi: 'पश्चिमांचल (PVVNL) पश्चिमी UP को, दक्षिणांचल (DVVNL) आगरा क्षेत्र को, और कानपुर इलेक्ट्रिसिटी सप्लाई कंपनी (KESCO) कानपुर शहर को कवर करता है। सभी एक ही UPERC-विनियमित PM सूर्य घर संरचना का पालन करते हैं।' },
-  'pm-discom-note':           { en: 'All five UP DISCOMs follow the same national PM Surya Ghar structure and unified UPERC tariff, but application volume, inspection scheduling and local documentation checks can vary by DISCOM. Halosun helps you prepare for the specific process that applies to your connection.',
-                                hi: 'सभी पाँच UP DISCOM एक ही राष्ट्रीय PM सूर्य घर संरचना और एकीकृत UPERC टैरिफ का पालन करते हैं, लेकिन आवेदन की मात्रा, निरीक्षण शेड्यूलिंग और स्थानीय दस्तावेज़ी जाँच DISCOM के अनुसार अलग हो सकती है। हैलोसन आपको आपके कनेक्शन पर लागू विशिष्ट प्रक्रिया के लिए तैयार करने में मदद करता है।' },
 
   'pm-docs-eyebrow': { en: '02 · Keep these ready', hi: '02 · ये तैयार रखें' },
   'pm-docs-h2':       { en: 'Documents & information checklist', hi: 'दस्तावेज़ और जानकारी की सूची' },
@@ -747,8 +607,6 @@ const TRANSLATIONS = {
 
   'pm-faq-eyebrow': { en: '07 · Common questions', hi: '07 · सामान्य सवाल' },
   'pm-faq-h2':       { en: 'PM Surya Ghar FAQ', hi: 'PM सूर्य घर सवाल-जवाब' },
-  'pm-faq-toggle-expand':   { en: 'Expand all',   hi: 'सभी खोलें' },
-  'pm-faq-toggle-collapse': { en: 'Collapse all', hi: 'सभी बंद करें' },
 
   'pm-faq-q1-q': { en: 'Is ₹78,000 guaranteed for every solar installation?', hi: 'क्या हर सोलर इंस्टॉलेशन के लिए ₹78,000 की गारंटी है?' },
   'pm-faq-q1-a': { en: 'No. ₹78,000 is the maximum standard central CFA for eligible residential capacity under the stated structure. Actual eligibility depends on the scheme requirements, system capacity, approved equipment and successful verification.',
@@ -874,34 +732,6 @@ function applyLanguage(lang) {
     const entry = TRANSLATIONS[key];
     if (entry && entry[lang]) {
       el.textContent = entry[lang];
-    }
-  });
-
-  // Attribute translations - e.g. a title/tooltip or aria-label that has
-  // no visible text of its own (icon-only buttons like Back to Top).
-  document.querySelectorAll('[data-i18n-title]').forEach((el) => {
-    const key = el.getAttribute('data-i18n-title');
-    const entry = TRANSLATIONS[key];
-    if (entry && entry[lang]) {
-      el.setAttribute('title', entry[lang]);
-    }
-  });
-
-  document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
-    const key = el.getAttribute('data-i18n-aria');
-    const entry = TRANSLATIONS[key];
-    if (entry && entry[lang]) {
-      el.setAttribute('aria-label', entry[lang]);
-    }
-  });
-
-  // Attribute translation for elements whose label isn't rendered as
-  // text content - e.g. <optgroup label="..."> inside a <select>.
-  document.querySelectorAll('[data-i18n-label]').forEach((el) => {
-    const key = el.getAttribute('data-i18n-label');
-    const entry = TRANSLATIONS[key];
-    if (entry && entry[lang]) {
-      el.setAttribute('label', entry[lang]);
     }
   });
 
