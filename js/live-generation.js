@@ -81,23 +81,6 @@
     statusEl.classList.toggle('is-error', !!isError);
   }
 
-  // Returns "YYYY-MM-DDTHH:00" for the current hour in Asia/Kolkata,
-  // matching the format Open-Meteo uses for hourly.time entries.
-  function kolkataHourString(date) {
-    var parts = new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'Asia/Kolkata',
-      year: 'numeric', month: '2-digit', day: '2-digit',
-      hour: '2-digit', hour12: false
-    }).formatToParts(date);
-    var get = function (type) {
-      var p = parts.filter(function (x) { return x.type === type; })[0];
-      return p ? p.value : '';
-    };
-    var hour = get('hour');
-    if (hour === '24') hour = '00';
-    return get('year') + '-' + get('month') + '-' + get('day') + 'T' + hour + ':00';
-  }
-
   function skyLabel(cloudPct) {
     if (cloudPct < 20)  return { en: 'Clear skies', hi: 'साफ आसमान' };
     if (cloudPct < 50)  return { en: 'Partly cloudy', hi: 'आंशिक बादल' };
@@ -133,9 +116,9 @@
   async function fetchWeather(lat, lon) {
     var url = 'https://api.open-meteo.com/v1/forecast'
       + '?latitude=' + lat + '&longitude=' + lon
-      + '&hourly=cloud_cover,shortwave_radiation,is_day'
+      + '&current=cloud_cover,shortwave_radiation,is_day'
       + '&daily=shortwave_radiation_sum'
-      + '&timezone=Asia%2FKolkata&forecast_days=2';
+      + '&timezone=Asia%2FKolkata&forecast_days=1';
     var res = await fetch(url);
     if (!res.ok) throw new Error('weather request failed');
     return res.json();
@@ -289,13 +272,10 @@
 
     try {
       var data = await fetchWeather(coords.lat, coords.lon);
-      var nowKey = kolkataHourString(new Date());
-      var idx = data.hourly.time.indexOf(nowKey);
-      if (idx === -1) idx = 0;
-
-      var ghi = data.hourly.shortwave_radiation[idx] || 0;
-      var cloudPct = data.hourly.cloud_cover[idx];
-      var isDay = data.hourly.is_day[idx];
+      var current = data.current || {};
+      var ghi = current.shortwave_radiation || 0;
+      var cloudPct = (current.cloud_cover != null) ? current.cloud_cover : 0;
+      var isDay = current.is_day;
 
       var currentKw = Math.min(systemKw, systemKw * (ghi / STC_IRRADIANCE) * pr);
       if (!isDay || ghi <= 0) currentKw = 0;
