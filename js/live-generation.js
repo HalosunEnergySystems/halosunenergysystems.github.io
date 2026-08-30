@@ -13,6 +13,7 @@
   var nowSubEl     = document.getElementById('livegen-now-sub');
   var todayValueEl = document.getElementById('livegen-today-value');
   var weatherValueEl = document.getElementById('livegen-weather-value');
+  var skyWidgetEl  = document.getElementById('livegen-sky');
 
   if (!runBtn) return;
 
@@ -94,6 +95,23 @@
     return { en: 'Overcast', hi: 'घने बादल' };
   }
 
+  // Drives the animated sky scene (sun + drifting clouds) to match the
+  // same cloud-cover bands used for the "Clear / Partly / Mostly /
+  // Overcast" text label, plus a night state when it's dark locally.
+  function updateSkyWidget(cloudPct, isDay) {
+    if (!skyWidgetEl) return;
+    skyWidgetEl.classList.remove('is-clear', 'is-partly', 'is-mostly', 'is-overcast', 'is-night');
+    if (!isDay) {
+      skyWidgetEl.classList.add('is-night');
+      // Still layer in cloud coverage at night so an overcast night
+      // reads differently from a clear one.
+    }
+    if (cloudPct < 20)       skyWidgetEl.classList.add('is-clear');
+    else if (cloudPct < 50)  skyWidgetEl.classList.add('is-partly');
+    else if (cloudPct < 80)  skyWidgetEl.classList.add('is-mostly');
+    else                     skyWidgetEl.classList.add('is-overcast');
+  }
+
   function formatKwh(value) {
     return value.toFixed(value < 10 ? 2 : 1) + ' ' + t('livegen-unit-kwh', 'kWh', 'यूनिट');
   }
@@ -158,6 +176,7 @@
       todayValueEl.textContent = formatKwh(todayKwh);
       var sky = skyLabel(cloudPct);
       weatherValueEl.textContent = (currentLang() === 'hi' ? sky.hi : sky.en) + ' (' + Math.round(cloudPct) + '% ' + t('livegen-cloud-suffix', 'cloud cover', 'बादल') + ')';
+      updateSkyWidget(cloudPct, isDay);
 
       resultsEl.hidden = false;
       setStatus('', false);
