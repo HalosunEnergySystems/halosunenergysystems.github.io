@@ -157,6 +157,31 @@
       50%      { opacity: 1; }
     }
 
+    /* ============ HERO: "ALREADY HAVE SOLAR?" LINK ============
+       A third, lower-emphasis path for existing solar owners, sitting
+       right under the two primary CTAs so all three customer journeys
+       (considering solar / ready to buy / already own it) are visible
+       in the first few seconds, without competing visually with the
+       two buttons above it. */
+    .hero-livegen-note {
+      margin: 14px 0 0;
+    }
+    .hero-livegen-note a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.72);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 1px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .hero-livegen-note a:hover,
+    .hero-livegen-note a:focus-visible {
+      color: var(--sun, #d9a94e);
+      border-color: var(--sun, #d9a94e);
+    }
+
     /* ============ HERO TRUST BULLETS ============
        Three short credibility markers directly under the CTA row,
        styled as quiet pills rather than a bold badge strip so they
@@ -381,9 +406,12 @@
       <h1 data-i18n="hero-title">Put your rooftop to work. Lower your electricity bills.</h1>
       <p class="hero-sub" data-i18n="hero-sub">Halosun Energy Systems designs, installs, and maintains solar systems for homes and businesses - from site survey and engineering to installation, net metering, and long-term support.</p>
       <div class="hero-actions">
-        <a href="calculator.html" class="btn btn-primary" data-i18n="hero-cta-1">Calculate My Savings</a>
+        <a href="calculator.html" class="btn btn-primary" data-i18n="hero-cta-1">See How Much You Could Save →</a>
         <a href="contact.html" class="btn btn-ghost" data-i18n="hero-cta-2">Request a Free Site Visit</a>
       </div>
+      <p class="hero-livegen-note">
+        <a href="calculator.html#live-gen" data-i18n="hero-livegen-link">Already have solar? Check what your rooftop is generating right now →</a>
+      </p>
       <ul class="hero-trust">
         <li>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6.5 9.5 17 4 11.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
