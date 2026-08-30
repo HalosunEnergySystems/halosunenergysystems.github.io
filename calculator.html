@@ -117,6 +117,69 @@
   #calc-cta {
     margin-top: 0.75rem;
   }
+
+  /* ============ LIVE GENERATION ESTIMATOR ============ */
+  .livegen-panel {
+    display: grid;
+    grid-template-columns: minmax(260px, 380px) 1fr;
+    gap: 2rem;
+    align-items: start;
+    background: #0f2038;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+  }
+  .livegen-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .livegen-status {
+    min-height: 1.2em;
+    font-size: 0.9rem;
+    color: #f59e0b;
+    margin: 0;
+  }
+  .livegen-status.is-error {
+    color: #fca5a5;
+  }
+  .livegen-results {
+    background: rgba(229, 231, 235, 0.06);
+    border: 1px solid rgba(229, 231, 235, 0.14);
+    border-radius: 16px;
+    padding: 1.5rem 1.75rem;
+  }
+  .livegen-now {
+    text-align: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.18);
+  }
+  .livegen-now-label {
+    display: block;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+  }
+  .livegen-now-value {
+    display: block;
+    font-family: "Space Grotesk", "IBM Plex Mono", monospace;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #f59e0b;
+    line-height: 1.15;
+  }
+  .livegen-now-sub {
+    display: block;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+  @media (max-width: 760px) {
+    .livegen-panel {
+      grid-template-columns: 1fr;
+    }
+  }
   /* Progress bar shown while the PDF is being generated - Hindi PDFs in
      particular take a few seconds since each label/value/name is rendered
      to a canvas image individually for the Devanagari font, so visitors
@@ -497,6 +560,94 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ LIVE GENERATION ESTIMATOR ============ -->
+  <section class="section section-live-gen">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="livegen-eyebrow">Live, right now</p>
+      <h2 data-i18n="livegen-title">What would your rooftop generate right now?</h2>
+      <p class="section-sub" data-i18n="livegen-sub">Pick your city and we'll pull today's actual sunlight conditions to estimate your system's live output - no signup needed.</p>
+
+      <div class="livegen-panel">
+        <div class="livegen-inputs">
+          <label class="field">
+            <span data-i18n="livegen-field-city">Your city</span>
+            <select id="livegen-city">
+              <option value="" data-i18n="livegen-city-placeholder">Select a city</option>
+              <optgroup label="Halosun service area" data-i18n-label="livegen-group-core">
+                <option value="raebareli" data-i18n="livegen-city-raebareli">Raebareli</option>
+                <option value="lucknow" data-i18n="livegen-city-lucknow">Lucknow</option>
+                <option value="unnao" data-i18n="livegen-city-unnao">Unnao</option>
+                <option value="amethi" data-i18n="livegen-city-amethi">Amethi</option>
+                <option value="sultanpur" data-i18n="livegen-city-sultanpur">Sultanpur</option>
+                <option value="pratapgarh" data-i18n="livegen-city-pratapgarh">Pratapgarh</option>
+                <option value="hardoi" data-i18n="livegen-city-hardoi">Hardoi</option>
+              </optgroup>
+              <optgroup label="Other UP cities" data-i18n-label="livegen-group-other">
+                <option value="kanpur" data-i18n="livegen-city-kanpur">Kanpur</option>
+                <option value="varanasi" data-i18n="livegen-city-varanasi">Varanasi</option>
+                <option value="prayagraj" data-i18n="livegen-city-prayagraj">Prayagraj (Allahabad)</option>
+                <option value="agra" data-i18n="livegen-city-agra">Agra</option>
+                <option value="meerut" data-i18n="livegen-city-meerut">Meerut</option>
+                <option value="ghaziabad" data-i18n="livegen-city-ghaziabad">Ghaziabad</option>
+                <option value="noida" data-i18n="livegen-city-noida">Noida</option>
+                <option value="bareilly" data-i18n="livegen-city-bareilly">Bareilly</option>
+                <option value="gorakhpur" data-i18n="livegen-city-gorakhpur">Gorakhpur</option>
+                <option value="moradabad" data-i18n="livegen-city-moradabad">Moradabad</option>
+                <option value="aligarh" data-i18n="livegen-city-aligarh">Aligarh</option>
+                <option value="jhansi" data-i18n="livegen-city-jhansi">Jhansi</option>
+                <option value="saharanpur" data-i18n="livegen-city-saharanpur">Saharanpur</option>
+                <option value="ayodhya" data-i18n="livegen-city-ayodhya">Ayodhya (Faizabad)</option>
+                <option value="mathura" data-i18n="livegen-city-mathura">Mathura</option>
+                <option value="firozabad" data-i18n="livegen-city-firozabad">Firozabad</option>
+                <option value="sitapur" data-i18n="livegen-city-sitapur">Sitapur</option>
+              </optgroup>
+            </select>
+          </label>
+
+          <label class="field">
+            <span data-i18n="livegen-field-size">Your system size (or the one you're considering)</span>
+            <select id="livegen-size">
+              <option value="1">1 kW</option>
+              <option value="2">2 kW</option>
+              <option value="3" selected>3 kW</option>
+              <option value="5">5 kW</option>
+              <option value="7">7 kW</option>
+              <option value="10">10 kW</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span data-i18n="livegen-field-shade">Does your roof get shade for part of the day?</span>
+            <select id="livegen-shade">
+              <option value="no" data-i18n="livegen-shade-no">No, full sun all day</option>
+              <option value="yes" data-i18n="livegen-shade-yes">Yes, some shade part of the day</option>
+            </select>
+          </label>
+
+          <button class="btn btn-primary btn-full" id="livegen-run" type="button" data-i18n="livegen-btn">Get Live Estimate</button>
+          <p class="livegen-status" id="livegen-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="livegen-results" id="livegen-results" hidden>
+          <div class="livegen-now">
+            <span class="livegen-now-label" data-i18n="livegen-now-label">Estimated output right now</span>
+            <strong class="livegen-now-value" id="livegen-now-value">&mdash;</strong>
+            <span class="livegen-now-sub" id="livegen-now-sub"></span>
+          </div>
+          <div class="result-row">
+            <span data-i18n="livegen-today-label">Estimated generation today</span>
+            <strong id="livegen-today-value">&mdash;</strong>
+          </div>
+          <div class="result-row">
+            <span data-i18n="livegen-weather-label">Current sky conditions</span>
+            <strong id="livegen-weather-value">&mdash;</strong>
+          </div>
+          <p class="calc-note" data-i18n="livegen-note">Live estimate based on today's actual weather at your selected city. Assumes a well-installed, unshaded-by-default on-grid system; actual generation depends on your specific roof, equipment and site conditions - book a free site visit for a precise number.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
@@ -572,6 +723,7 @@
 </button>
 <script src="js/back-to-top.js"></script>
 <script src="js/i18n.js"></script>
+<script src="js/live-generation.js"></script>
 <script src="js/countdown.js"></script>
 <script src="js/main.js"></script>
 <script src="js/nav-dropdown.js"></script>
