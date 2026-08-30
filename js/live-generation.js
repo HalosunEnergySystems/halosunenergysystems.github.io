@@ -14,6 +14,9 @@
   var todayValueEl = document.getElementById('livegen-today-value');
   var weatherValueEl = document.getElementById('livegen-weather-value');
   var skyWidgetEl  = document.getElementById('livegen-sky');
+  var seasonalWrapEl    = document.getElementById('livegen-seasonal');
+  var seasonalChartEl   = document.getElementById('livegen-seasonal-chart');
+  var seasonalSummaryEl = document.getElementById('livegen-seasonal-summary');
 
   if (!runBtn) return;
 
@@ -55,6 +58,13 @@
   // shade for part of the day (kept simple - no azimuth/tilt asked).
   var SHADE_DERATE = 0.82;
   var STC_IRRADIANCE = 1000; // W/m^2, standard test condition reference
+
+  // Short month labels for the seasonal chart, matching the pattern
+  // used elsewhere in this file for two-language (en/hi) UI strings.
+  var MONTH_LABELS = {
+    en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    hi: ['जन', 'फ़र', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुल', 'अग', 'सित', 'अक्तू', 'नव', 'दिस']
+  };
 
   function currentLang() {
     return document.documentElement.getAttribute('lang') === 'hi' ? 'hi' : 'en';
@@ -131,6 +141,128 @@
     return res.json();
   }
 
+  // ============ SEASONAL FORECAST ============
+  // Same city, same weather provider - one more Open-Meteo endpoint
+  // (the free historical Archive API) covering the past 12 months, so
+  // we can show a real monthly generation profile instead of only the
+  // current-instant estimate above.
+
+  // Archive data typically lags a few days behind today, so we ask for
+  // the most recent full year ending ~6 days ago rather than "today".
+  function pastYearRange() {
+    var end = new Date();
+    end.setDate(end.getDate() - 6);
+    var start = new Date(end);
+    start.setFullYear(start.getFullYear() - 1);
+    start.setDate(start.getDate() + 1);
+    function iso(d) {
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    return { start: iso(start), end: iso(end) };
+  }
+
+  async function fetchSeasonal(lat, lon) {
+    var range = pastYearRange();
+    var url = 'https://archive-api.open-meteo.com/v1/archive'
+      + '?latitude=' + lat + '&longitude=' + lon
+      + '&start_date=' + range.start + '&end_date=' + range.end
+      + '&daily=shortwave_radiation_sum&timezone=Asia%2FKolkata';
+    var res = await fetch(url);
+    if (!res.ok) throw new Error('seasonal request failed');
+    return res.json();
+  }
+
+  // Averages daily shortwave_radiation_sum (MJ/m^2/day) into peak sun
+  // hours per calendar month (1 kWh/m^2 = 3.6 MJ/m^2, same conversion
+  // used for "today" above). Returns an array of 12 values (or null
+  // for a month with no usable data).
+  function monthlyPeakSunHours(daily) {
+    var sums = new Array(12).fill(0);
+    var counts = new Array(12).fill(0);
+    var times = (daily && daily.time) || [];
+    var rad = (daily && daily.shortwave_radiation_sum) || [];
+    for (var i = 0; i < times.length; i++) {
+      var v = rad[i];
+      if (v === null || v === undefined) continue;
+      var month = parseInt(times[i].slice(5, 7), 10) - 1;
+      if (month < 0 || month > 11) continue;
+      sums[month] += v;
+      counts[month] += 1;
+    }
+    return sums.map(function (s, i) { return counts[i] ? (s / counts[i]) / 3.6 : null; });
+  }
+
+  // Attributes the worst month's dip to the most likely local cause,
+  // rather than always blaming "monsoon" - UP's dip is usually the
+  // Jun-Sep monsoon, but for some cities/years the low point lands in
+  // Dec-Jan instead, which is winter fog and haze, not rain clouds.
+  // Falls back to no specific cause when the worst month is neither.
+  function seasonalDipReason(worstIdx, lang) {
+    var isMonsoon = (worstIdx >= 5 && worstIdx <= 8);   // Jun-Sep
+    var isWinterFog = (worstIdx === 11 || worstIdx === 0); // Dec-Jan
+    if (isMonsoon) {
+      return lang === 'hi' ? ', मुख्यतः मानसून के बादलों के कारण' : ', mainly from monsoon cloud cover';
+    }
+    if (isWinterFog) {
+      return lang === 'hi' ? ', मुख्यतः सर्दियों के कोहरे और धुंध के कारण' : ', mainly from winter fog and haze';
+    }
+    return '';
+  }
+
+  function renderSeasonal(monthlyPSH, systemKw, pr) {
+    if (!seasonalWrapEl || !seasonalChartEl || !seasonalSummaryEl) return;
+
+    var dailyKwh = monthlyPSH.map(function (psh) {
+      return psh === null ? null : systemKw * psh * pr;
+    });
+    var known = dailyKwh.filter(function (v) { return v !== null; });
+    if (known.length < 6) {
+      seasonalWrapEl.hidden = true;
+      return;
+    }
+
+    var maxVal = Math.max.apply(null, known);
+    var minVal = Math.min.apply(null, known);
+    var bestIdx = dailyKwh.indexOf(maxVal);
+    var worstIdx = dailyKwh.indexOf(minVal);
+    var currentMonth = new Date().getMonth();
+    var lang = currentLang();
+    var labels = MONTH_LABELS[lang];
+
+    seasonalChartEl.innerHTML = '';
+    dailyKwh.forEach(function (v, i) {
+      var col = document.createElement('div');
+      col.className = 'livegen-seasonal-col';
+      if (i === bestIdx) col.classList.add('is-best');
+      if (i === worstIdx) col.classList.add('is-worst');
+      if (i === currentMonth) col.classList.add('is-current');
+
+      var bar = document.createElement('div');
+      bar.className = 'livegen-seasonal-bar';
+      var heightPct = v === null ? 4 : Math.max(6, Math.round((v / maxVal) * 100));
+      bar.style.height = heightPct + '%';
+      if (v !== null) bar.title = labels[i] + ': ' + formatKwh(v) + '/day';
+
+      var label = document.createElement('span');
+      label.className = 'livegen-seasonal-label';
+      label.textContent = labels[i];
+
+      col.appendChild(bar);
+      col.appendChild(label);
+      seasonalChartEl.appendChild(col);
+    });
+
+    var swingPct = Math.round(((maxVal - minVal) / maxVal) * 100);
+    var bestLabel = labels[bestIdx];
+    var worstLabel = labels[worstIdx];
+    var reason = seasonalDipReason(worstIdx, lang);
+    var summary = (lang === 'hi')
+      ? ('आपका सिस्टम ' + bestLabel + ' में सबसे ज़्यादा (लगभग ' + formatKwh(maxVal) + '/दिन) और ' + worstLabel + ' में सबसे कम (लगभग ' + formatKwh(minVal) + '/दिन) बिजली बनाता है — यानी करीब ' + swingPct + '% का मौसमी अंतर' + reason + '।')
+      : ('Your system would generate the most in ' + bestLabel + ' (about ' + formatKwh(maxVal) + '/day) and the least in ' + worstLabel + ' (about ' + formatKwh(minVal) + '/day) — a ' + swingPct + '% seasonal swing' + reason + '.');
+    seasonalSummaryEl.textContent = summary;
+    seasonalWrapEl.hidden = false;
+  }
+
   async function runEstimate() {
     var cityKey = citySelect.value;
     if (!cityKey) {
@@ -144,8 +276,16 @@
     var pr = BASE_PERFORMANCE_RATIO * (shaded ? SHADE_DERATE : 1);
 
     resultsEl.hidden = true;
+    if (seasonalWrapEl) seasonalWrapEl.hidden = true;
     runBtn.disabled = true;
     setStatus(t('livegen-loading', 'Fetching live weather for your city…', 'आपके शहर के लिए लाइव मौसम डेटा प्राप्त किया जा रहा है…'), false);
+
+    // Kicked off alongside the live-weather request below (not awaited
+    // yet) so both network calls run in parallel. A failure here is
+    // non-fatal - the seasonal block just stays hidden.
+    var seasonalPromise = seasonalWrapEl
+      ? fetchSeasonal(coords.lat, coords.lon).catch(function () { return null; })
+      : null;
 
     try {
       var data = await fetchWeather(coords.lat, coords.lon);
@@ -184,6 +324,17 @@
       setStatus(t('livegen-error-fetch', 'Live weather data isn\'t available right now — please try again in a moment.', 'अभी लाइव मौसम डेटा उपलब्ध नहीं है — कृपया थोड़ी देर बाद पुनः प्रयास करें।'), true);
     } finally {
       runBtn.disabled = false;
+    }
+
+    if (seasonalPromise) {
+      seasonalPromise.then(function (sdata) {
+        if (!sdata || !sdata.daily) {
+          seasonalWrapEl.hidden = true;
+          return;
+        }
+        var monthlyPSH = monthlyPeakSunHours(sdata.daily);
+        renderSeasonal(monthlyPSH, systemKw, pr);
+      });
     }
   }
 
