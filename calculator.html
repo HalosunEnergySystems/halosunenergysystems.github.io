@@ -505,6 +505,10 @@
     .livegen-sky.is-overcast .livegen-cloud-1,
     .livegen-sky.is-overcast .livegen-cloud-2,
     .livegen-sky.is-overcast .livegen-cloud-3 { opacity: 0.85; }
+    .livegen-sky-star { animation: none !important; }
+    .livegen-sky.is-night .livegen-sky-star { opacity: 0.6; }
+    .livegen-rain-drop { animation: none !important; opacity: 0.6; }
+    .livegen-sky-flash { animation: none !important; opacity: 0; }
     .eyebrow-live::before { animation: none; }
   }
   /* ============ "LIVE" pulsing dot ============
@@ -534,38 +538,65 @@
   }
 
   /* ============ LIVE GENERATION - animated sky scene ============
-     Small looping SVG scene above the results: sun with slowly
-     rotating rays, plus up to three cloud shapes that drift across
-     it. Which clouds animate (and how many/how fast) is controlled
-     by is-clear / is-partly / is-mostly / is-overcast / is-night
-     classes toggled in JS from the live cloud-cover reading, using
-     the same thresholds as the "Clear skies / Partly cloudy /
-     Mostly cloudy / Overcast" text label. */
+     Small looping SVG scene above the results: real sky color for the
+     selected city's actual local time (dawn / day / dusk / night),
+     a sun with slowly rotating rays or a moon + stars at night, up to
+     three drifting cloud shapes sized to live cloud_cover %, and fog /
+     rain / thunderstorm overlays driven by the live WMO weather code.
+     Day-part classes (is-dawn/is-day/is-dusk/is-night) and cloud-band
+     classes (is-clear/is-partly/is-mostly/is-overcast) are both set in
+     JS from the live reading; is-fog/is-rain/is-thunder layer on top
+     only when that condition is actually present right now. */
   .livegen-sky {
     width: 100%;
     height: 84px;
     margin-bottom: 1.1rem;
     overflow: hidden;
     border-radius: 12px;
-    background: linear-gradient(180deg, rgba(15, 32, 56, 0.4), rgba(15, 32, 56, 0));
+    position: relative;
+    background: linear-gradient(180deg, #0b1a30, #16283f);
+    transition: background 1s ease;
+  }
+  .livegen-sky.is-day {
+    background: linear-gradient(180deg, #4f9fd8 0%, #8fd0ec 55%, #cdeaf5 100%);
+  }
+  .livegen-sky.is-day.is-dawn {
+    background: linear-gradient(180deg, #6b6ea8 0%, #e8895f 45%, #ffc98a 75%, #ffe3ad 100%);
+  }
+  .livegen-sky.is-day.is-dusk {
+    background: linear-gradient(180deg, #3c3266 0%, #a1507e 40%, #e97b52 75%, #ffb677 100%);
+  }
+  .livegen-sky.is-night {
+    background: linear-gradient(180deg, #060c1c, #131f38);
   }
   .livegen-sky svg {
     width: 100%;
     height: 100%;
     display: block;
+    position: relative;
+    z-index: 1;
   }
   .livegen-sky-sun-core {
-    fill: var(--sun, #d9a94e);
-    transition: opacity 0.6s ease, filter 0.6s ease;
+    fill: var(--sun, #f5b942);
+    transition: opacity 0.6s ease, fill 0.8s ease;
+  }
+  .livegen-sky.is-dawn .livegen-sky-sun-core,
+  .livegen-sky.is-dusk .livegen-sky-sun-core {
+    fill: #ff8f5e;
   }
   .livegen-sky-rays {
-    stroke: var(--sun, #d9a94e);
+    stroke: var(--sun, #f5b942);
     transform-origin: 100px 46px;
     animation: livegen-ray-spin 40s linear infinite;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.6s ease, stroke 0.8s ease;
+  }
+  .livegen-sky.is-dawn .livegen-sky-rays,
+  .livegen-sky.is-dusk .livegen-sky-rays {
+    stroke: #ff8f5e;
   }
   .livegen-sky.is-mostly .livegen-sky-rays,
-  .livegen-sky.is-overcast .livegen-sky-rays {
+  .livegen-sky.is-overcast .livegen-sky-rays,
+  .livegen-sky.is-fog .livegen-sky-rays {
     opacity: 0.25;
   }
   .livegen-sky.is-night .livegen-sky-sun-core {
@@ -599,9 +630,19 @@
     opacity: 0.8;
     animation: livegen-star-twinkle 3.4s ease-in-out infinite;
   }
+  .livegen-sky.is-night.is-overcast .livegen-sky-star,
+  .livegen-sky.is-night.is-fog .livegen-sky-star {
+    opacity: 0.1;
+    animation: none;
+  }
   .livegen-cloud {
-    fill: #cbd5e1;
+    fill: #f8fafc;
     opacity: 0;
+    transition: fill 0.8s ease;
+  }
+  .livegen-sky.is-dawn .livegen-cloud,
+  .livegen-sky.is-dusk .livegen-cloud {
+    fill: #ffd9c2;
   }
   .livegen-sky.is-night .livegen-cloud {
     fill: #64748b;
@@ -630,6 +671,62 @@
     animation: livegen-drift-dense 17s linear infinite;
     animation-delay: -9s;
   }
+
+  /* ---- Fog overlay: soft translucent haze + a light blur on clouds
+     and sun/moon so distant shapes read as obscured, not just tinted */
+  .livegen-sky-fog {
+    fill: #cbd5e1;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+  }
+  .livegen-sky.is-fog .livegen-sky-fog {
+    opacity: 0.5;
+  }
+  .livegen-sky.is-fog .livegen-sky-sun-core,
+  .livegen-sky.is-fog .livegen-sky-moon,
+  .livegen-sky.is-fog .livegen-cloud {
+    filter: blur(0.6px);
+  }
+
+  /* ---- Rain: a dozen+ short diagonal streaks looping top to bottom,
+     staggered so they don't fall in visible unison */
+  .livegen-sky-rain {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .livegen-sky.is-rain .livegen-sky-rain {
+    opacity: 1;
+  }
+  .livegen-rain-drop {
+    opacity: 0;
+    animation: livegen-rain-fall 0.9s linear infinite;
+  }
+  .livegen-rain-drop.r1  { animation-delay: 0s;    }
+  .livegen-rain-drop.r2  { animation-delay: 0.08s; }
+  .livegen-rain-drop.r3  { animation-delay: 0.16s; }
+  .livegen-rain-drop.r4  { animation-delay: 0.24s; }
+  .livegen-rain-drop.r5  { animation-delay: 0.32s; }
+  .livegen-rain-drop.r6  { animation-delay: 0.4s;  }
+  .livegen-rain-drop.r7  { animation-delay: 0.48s; }
+  .livegen-rain-drop.r8  { animation-delay: 0.56s; }
+  .livegen-rain-drop.r9  { animation-delay: 0.64s; }
+  .livegen-rain-drop.r10 { animation-delay: 0.12s; }
+  .livegen-rain-drop.r11 { animation-delay: 0.28s; }
+  .livegen-rain-drop.r12 { animation-delay: 0.44s; }
+  .livegen-rain-drop.r13 { animation-delay: 0.6s;  }
+  .livegen-rain-drop.r14 { animation-delay: 0.2s;  }
+
+  /* ---- Thunderstorm: rain plus an occasional bright flash */
+  .livegen-sky-flash {
+    fill: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .livegen-sky.is-thunder .livegen-sky-flash {
+    animation: livegen-thunder-flash 6.5s ease-in-out infinite;
+  }
+
   @keyframes livegen-ray-spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
@@ -649,6 +746,19 @@
     12%  { opacity: 0.85; }
     88%  { opacity: 0.85; }
     100% { transform: translateX(270px); opacity: 0; }
+  }
+  @keyframes livegen-rain-fall {
+    0%   { transform: translateY(-6px); opacity: 0; }
+    15%  { opacity: 0.8; }
+    85%  { opacity: 0.8; }
+    100% { transform: translateY(78px); opacity: 0; }
+  }
+  @keyframes livegen-thunder-flash {
+    0%, 91%, 100% { opacity: 0; }
+    92%  { opacity: 0.75; }
+    93%  { opacity: 0.05; }
+    94.5% { opacity: 0.55; }
+    96%  { opacity: 0; }
   }
 </style>
 <script type="application/ld+json">
@@ -859,6 +969,24 @@
                 <ellipse cx="20" cy="40" rx="16" ry="11"/>
                 <ellipse cx="-22" cy="41" rx="14" ry="9"/>
               </g>
+              <g class="livegen-sky-rain" stroke="#bcd6f2" stroke-width="1.4" stroke-linecap="round">
+                <line class="livegen-rain-drop r1" x1="14" y1="0" x2="9" y2="14"/>
+                <line class="livegen-rain-drop r2" x1="34" y1="0" x2="29" y2="14"/>
+                <line class="livegen-rain-drop r3" x1="54" y1="0" x2="49" y2="14"/>
+                <line class="livegen-rain-drop r4" x1="74" y1="0" x2="69" y2="14"/>
+                <line class="livegen-rain-drop r5" x1="94" y1="0" x2="89" y2="14"/>
+                <line class="livegen-rain-drop r6" x1="114" y1="0" x2="109" y2="14"/>
+                <line class="livegen-rain-drop r7" x1="134" y1="0" x2="129" y2="14"/>
+                <line class="livegen-rain-drop r8" x1="154" y1="0" x2="149" y2="14"/>
+                <line class="livegen-rain-drop r9" x1="174" y1="0" x2="169" y2="14"/>
+                <line class="livegen-rain-drop r10" x1="24" y1="0" x2="19" y2="14"/>
+                <line class="livegen-rain-drop r11" x1="64" y1="0" x2="59" y2="14"/>
+                <line class="livegen-rain-drop r12" x1="104" y1="0" x2="99" y2="14"/>
+                <line class="livegen-rain-drop r13" x1="144" y1="0" x2="139" y2="14"/>
+                <line class="livegen-rain-drop r14" x1="184" y1="0" x2="179" y2="14"/>
+              </g>
+              <rect class="livegen-sky-fog" x="0" y="0" width="200" height="90"/>
+              <rect class="livegen-sky-flash" x="0" y="0" width="200" height="90"/>
             </svg>
           </div>
           <div class="livegen-now">
