@@ -11,12 +11,21 @@
   var hoursSelect = document.getElementById('battery-hours');
   var chemSelect  = document.getElementById('battery-chemistry');
   var runBtn      = document.getElementById('battery-run');
+  var resetBtn    = document.getElementById('battery-reset');
   var resultsEl   = document.getElementById('battery-results');
   var rangeValueEl = document.getElementById('battery-range-value');
   var loadValueEl  = document.getElementById('battery-load-value');
   var statusEl    = document.getElementById('battery-status');
 
   if (!runBtn) return;
+
+  // Captured once, before any user interaction, so Reset restores
+  // whatever the HTML actually ships as selected rather than a
+  // hardcoded guess that could drift out of sync with the markup.
+  var DEFAULTS = {
+    hours: hoursSelect.value,
+    chemistry: chemSelect.value
+  };
 
   // Simple, monochrome line icons (24x24, stroke = currentColor) so each
   // appliance is recognizable at a glance without relying on the label
@@ -209,8 +218,22 @@
     setStatus('', false);
   }
 
+  // Puts every appliance quantity back to 0, restores the hours/
+  // chemistry selects to their shipped defaults, and clears any result
+  // on screen. Reuses buildApplianceList() with no preserved quantities
+  // rather than looping setRowQty(0) over existing rows, so it also
+  // rebuilds labels in the currently-active language.
+  function resetEstimate() {
+    buildApplianceList();
+    hoursSelect.value = DEFAULTS.hours;
+    chemSelect.value = DEFAULTS.chemistry;
+    resultsEl.hidden = true;
+    setStatus('', false);
+  }
+
   buildApplianceList();
   runBtn.addEventListener('click', runEstimate);
+  if (resetBtn) resetBtn.addEventListener('click', resetEstimate);
 
   // Rebuild appliance labels (not the selected quantities) if the page's
   // language toggle fires a custom event - falls back silently if the

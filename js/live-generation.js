@@ -7,6 +7,7 @@
   var sizeSelect   = document.getElementById('livegen-size');
   var shadeSelect  = document.getElementById('livegen-shade');
   var runBtn       = document.getElementById('livegen-run');
+  var resetBtn     = document.getElementById('livegen-reset');
   var statusEl     = document.getElementById('livegen-status');
   var resultsEl    = document.getElementById('livegen-results');
   var nowValueEl   = document.getElementById('livegen-now-value');
@@ -19,6 +20,23 @@
   var seasonalSummaryEl = document.getElementById('livegen-seasonal-summary');
 
   if (!runBtn) return;
+
+  // Captured once, before any user interaction, so Reset can restore
+  // the form to however the page actually shipped (whatever has the
+  // `selected` attribute in the HTML) rather than a hardcoded guess
+  // that could drift out of sync with the markup later.
+  var DEFAULTS = {
+    city: citySelect.value,
+    size: sizeSelect.value,
+    shade: shadeSelect.value
+  };
+
+  // Bumped on every new run and on every reset. Each in-flight request
+  // captures the id it started with and checks it still matches before
+  // touching the DOM - so if the user hits Reset (or starts a new
+  // estimate) while a fetch is still in the air, the stale response
+  // is discarded instead of popping the old results back up.
+  var requestId = 0;
 
   // Coordinates for major Uttar Pradesh cities. Halosun's core service
   // cities are listed first in the dropdown, but all use the same lookup.
@@ -356,6 +374,8 @@
     var shaded = shadeSelect.value === 'yes';
     var pr = BASE_PERFORMANCE_RATIO * (shaded ? SHADE_DERATE : 1);
 
+    var myRequestId = ++requestId;
+
     resultsEl.hidden = true;
     if (seasonalWrapEl) seasonalWrapEl.hidden = true;
     runBtn.disabled = true;
@@ -370,6 +390,8 @@
 
     try {
       var data = await fetchWeather(coords.lat, coords.lon);
+      if (myRequestId !== requestId) return; // superseded by a newer run or a Reset
+
       var current = data.current || {};
       var ghi = current.shortwave_radiation || 0;
       var cloudPct = (current.cloud_cover != null) ? current.cloud_cover : 0;
@@ -406,13 +428,15 @@
       resultsEl.hidden = false;
       setStatus('', false);
     } catch (err) {
+      if (myRequestId !== requestId) return;
       setStatus(t('livegen-error-fetch', 'Live weather data isn\'t available right now — please try again in a moment.', 'अभी लाइव मौसम डेटा उपलब्ध नहीं है — कृपया थोड़ी देर बाद पुनः प्रयास करें।'), true);
     } finally {
-      runBtn.disabled = false;
+      if (myRequestId === requestId) runBtn.disabled = false;
     }
 
     if (seasonalPromise) {
       seasonalPromise.then(function (sdata) {
+        if (myRequestId !== requestId) return;
         if (!sdata || !sdata.daily) {
           seasonalWrapEl.hidden = true;
           return;
@@ -423,5 +447,22 @@
     }
   }
 
+  // Restores the form to its shipped defaults and clears any results on
+  // screen. Doesn't touch language, only this widget's own state - the
+  // i18n toggle keeps working on the (now-empty) results exactly as
+  // before, since resultsEl is simply hidden again, not removed.
+  function resetEstimate() {
+    requestId++; // invalidate any request still in flight
+    citySelect.value = DEFAULTS.city;
+    sizeSelect.value = DEFAULTS.size;
+    shadeSelect.value = DEFAULTS.shade;
+    resultsEl.hidden = true;
+    if (seasonalWrapEl) seasonalWrapEl.hidden = true;
+    runBtn.disabled = false;
+    setStatus('', false);
+    citySelect.focus();
+  }
+
   runBtn.addEventListener('click', runEstimate);
+  if (resetBtn) resetBtn.addEventListener('click', resetEstimate);
 })();
