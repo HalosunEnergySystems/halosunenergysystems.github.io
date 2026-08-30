@@ -506,6 +506,13 @@ const TRANSLATIONS = {
 
   'calc-cta-btn': { en: 'Get an Exact Quote for This System', hi: 'इस सिस्टम के लिए सटीक कोटेशन पाएं' },
 
+  // -- Live Generation teaser (homepage) --
+  'home-livegen-eyebrow':  { en: 'Live, right now', hi: 'अभी, लाइव' },
+  'home-livegen-title':    { en: "What's your rooftop making right now?", hi: 'आपकी छत अभी कितनी बिजली बना रही है?' },
+  'home-livegen-sub':      { en: "Pick your city and see today's actual sunlight conditions translated into live rooftop output - no signup needed.",
+                              hi: 'अपना शहर चुनें और आज की वास्तविक धूप की स्थिति को लाइव रूफटॉप आउटपुट में देखें - कोई साइनअप ज़रूरी नहीं।' },
+  'home-livegen-cta':      { en: 'Check My City', hi: 'मेरा शहर देखें' },
+
   // -- Live Generation Estimator (calculator page) --
   'livegen-eyebrow':          { en: 'Live, right now', hi: 'अभी, लाइव' },
   'livegen-title':             { en: 'What would your rooftop generate right now?', hi: 'आपकी छत अभी कितनी बिजली बनाएगी?' },
