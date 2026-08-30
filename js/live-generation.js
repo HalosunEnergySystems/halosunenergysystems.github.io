@@ -88,21 +88,66 @@
     return { en: 'Overcast', hi: 'घने बादल' };
   }
 
-  // Drives the animated sky scene (sun + drifting clouds) to match the
-  // same cloud-cover bands used for the "Clear / Partly / Mostly /
-  // Overcast" text label, plus a night state when it's dark locally.
-  function updateSkyWidget(cloudPct, isDay) {
+  // Open-Meteo's "weather_code" is the WMO code for the current instant -
+  // this tells us fog / rain / thunderstorm, which cloud_cover % alone
+  // can't distinguish (an overcast fog-bound morning and an overcast
+  // clear-of-rain afternoon report similar cloud cover but look and feel
+  // completely different). Falls back to null (cloud-band only) for
+  // codes we don't have a specific overlay for, e.g. plain cloud codes.
+  function weatherCategory(code) {
+    if (code == null) return null;
+    if (code === 45 || code === 48) return 'fog';
+    if (code === 95 || code === 96 || code === 99) return 'thunder';
+    var rainCodes = [51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 71, 73, 75, 77, 80, 81, 82, 85, 86];
+    if (rainCodes.indexOf(code) !== -1) return 'rain';
+    return null;
+  }
+
+  function weatherCategoryLabel(cat) {
+    if (cat === 'fog')     return { en: 'Foggy', hi: 'कोहरा' };
+    if (cat === 'rain')    return { en: 'Rainy', hi: 'बारिश' };
+    if (cat === 'thunder') return { en: 'Thunderstorm', hi: 'आंधी-तूफ़ान' };
+    return null;
+  }
+
+  // Local day-part from the API's own Asia/Kolkata-timestamped "current"
+  // reading (not the visitor's device clock), so the sky's color band
+  // matches the selected city's actual time, not wherever the visitor
+  // happens to be browsing from.
+  function dayPartFromTime(timeStr, isDay) {
+    if (!isDay) return 'night';
+    var hour = timeStr ? parseInt(timeStr.slice(11, 13), 10) : 12;
+    if (hour >= 5 && hour < 7)   return 'dawn';
+    if (hour >= 17 && hour < 19) return 'dusk';
+    return 'day';
+  }
+
+  // Drives the animated sky scene (sky color, sun/moon, stars, drifting
+  // clouds, and fog/rain/thunder overlays) from the live reading: real
+  // local time-of-day sets the background gradient, cloud_cover % sets
+  // cloud density/animation speed (same bands as the text label), and
+  // the WMO weather code layers in fog, rain streaks, or a thunderstorm
+  // flash on top when actually present at the selected city right now.
+  function updateSkyWidget(cloudPct, isDay, timeStr, weatherCat) {
     if (!skyWidgetEl) return;
-    skyWidgetEl.classList.remove('is-clear', 'is-partly', 'is-mostly', 'is-overcast', 'is-night');
-    if (!isDay) {
-      skyWidgetEl.classList.add('is-night');
-      // Still layer in cloud coverage at night so an overcast night
-      // reads differently from a clear one.
-    }
+    skyWidgetEl.classList.remove(
+      'is-clear', 'is-partly', 'is-mostly', 'is-overcast',
+      'is-night', 'is-dawn', 'is-dusk', 'is-day',
+      'is-fog', 'is-rain', 'is-thunder'
+    );
+
+    var part = dayPartFromTime(timeStr, isDay);
+    skyWidgetEl.classList.add('is-' + part);
+    if (part === 'dawn' || part === 'dusk') skyWidgetEl.classList.add('is-day');
+
     if (cloudPct < 20)       skyWidgetEl.classList.add('is-clear');
     else if (cloudPct < 50)  skyWidgetEl.classList.add('is-partly');
     else if (cloudPct < 80)  skyWidgetEl.classList.add('is-mostly');
     else                     skyWidgetEl.classList.add('is-overcast');
+
+    if (weatherCat === 'fog')     skyWidgetEl.classList.add('is-fog');
+    else if (weatherCat === 'rain')    skyWidgetEl.classList.add('is-rain');
+    else if (weatherCat === 'thunder') skyWidgetEl.classList.add('is-thunder', 'is-rain');
   }
 
   function formatKwh(value) {
@@ -116,7 +161,7 @@
   async function fetchWeather(lat, lon) {
     var url = 'https://api.open-meteo.com/v1/forecast'
       + '?latitude=' + lat + '&longitude=' + lon
-      + '&current=cloud_cover,shortwave_radiation,is_day'
+      + '&current=cloud_cover,shortwave_radiation,is_day,weather_code'
       + '&daily=shortwave_radiation_sum'
       + '&timezone=Asia%2FKolkata&forecast_days=1';
     var res = await fetch(url);
@@ -276,6 +321,7 @@
       var ghi = current.shortwave_radiation || 0;
       var cloudPct = (current.cloud_cover != null) ? current.cloud_cover : 0;
       var isDay = current.is_day;
+      var weatherCat = weatherCategory(current.weather_code);
 
       var currentKw = Math.min(systemKw, systemKw * (ghi / STC_IRRADIANCE) * pr);
       if (!isDay || ghi <= 0) currentKw = 0;
@@ -294,9 +340,15 @@
         nowSubEl.textContent = '';
       }
       todayValueEl.textContent = formatKwh(todayKwh);
-      var sky = skyLabel(cloudPct);
+
+      // Prefer the actual weather code's label (Foggy / Rainy /
+      // Thunderstorm) when one applies - it's more specific and more
+      // accurate than a cloud-cover band alone, which can't tell a
+      // rainy overcast sky from a dry overcast one.
+      var catLabel = weatherCategoryLabel(weatherCat);
+      var sky = catLabel || skyLabel(cloudPct);
       weatherValueEl.textContent = (currentLang() === 'hi' ? sky.hi : sky.en) + ' (' + Math.round(cloudPct) + '% ' + t('livegen-cloud-suffix', 'cloud cover', 'बादल') + ')';
-      updateSkyWidget(cloudPct, isDay);
+      updateSkyWidget(cloudPct, isDay, current.time, weatherCat);
 
       resultsEl.hidden = false;
       setStatus('', false);
