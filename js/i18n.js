@@ -31,8 +31,10 @@ const TRANSLATIONS = {
   'hero-title':        { en: 'Put your rooftop to work. Lower your electricity bills.', hi: 'अपनी छत को काम पर लगाएं। बिजली का बिल घटाएं।' },
   'hero-sub':          { en: 'Halosun Energy Systems designs, installs, and maintains solar systems for homes and businesses - from site survey and engineering to installation, net metering, and long-term support.',
                           hi: 'हैलोसन एनर्जी सिस्टम्स घरों और व्यवसायों के लिए सौर ऊर्जा प्रणालियों का डिज़ाइन, इंस्टॉलेशन और रखरखाव करता है - साइट सर्वे और इंजीनियरिंग से लेकर इंस्टॉलेशन, नेट मीटरिंग और दीर्घकालिक सेवा एवं सहायता तक।' },
-  'hero-cta-1':        { en: 'Calculate My Savings',  hi: 'मेरी बचत जानें' },
+  'hero-cta-1':        { en: 'See How Much You Could Save →',  hi: 'देखें आप कितनी बचत कर सकते हैं →' },
   'hero-cta-2':        { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट के लिए अनुरोध करें' },
+  'hero-livegen-link': { en: 'Already have solar? Check what your rooftop is generating right now →',
+                          hi: 'पहले से सोलर लगा है? जानें आपकी छत अभी कितनी बिजली बना रही है →' },
   'hero-trust-1':      { en: 'MNRE Authorized Installer', hi: 'MNRE अधिकृत इंस्टॉलर' },
   'hero-trust-2':      { en: 'Subsidy Assistance',   hi: 'सब्सिडी सहायता' },
   'hero-trust-3':      { en: 'Turnkey Maintenance',  hi: 'टर्नकी रखरखाव' },
@@ -48,11 +50,11 @@ const TRANSLATIONS = {
   'card-04-title':     { en: 'Projects',              hi: 'परियोजनाएँ' },
   'card-04-desc':      { en: 'A look at recent installations on the roof.', hi: 'हाल की छत इंस्टॉलेशन की झलक।' },
   'card-08-title':     { en: 'Our Standard',           hi: 'हमारा मानक' },
-  'card-08-desc':      { en: "What's actually under your panels — mounting, waterproofing, cabling and earthing.",
-                          hi: 'आपके पैनल के नीचे असल में क्या है — माउंटिंग, वॉटरप्रूफिंग, केबलिंग और अर्थिंग।' },
+  'card-08-desc':      { en: "What's actually under your panels - mounting, waterproofing, cabling and earthing.",
+                          hi: 'आपके पैनल के नीचे असल में क्या है - माउंटिंग, वॉटरप्रूफिंग, केबलिंग और अर्थिंग।' },
   'card-09-title':     { en: 'Why Halosun',             hi: 'हैलोसन क्यों' },
-  'card-09-desc':      { en: "Solar is easy to sell. Building it right is harder — here's why that's what we chase.",
-                          hi: 'सोलर बेचना आसान है। इसे सही तरीके से बनाना मुश्किल — हम यही क्यों चुनते हैं, यहाँ जानें।' },
+  'card-09-desc':      { en: "Solar is easy to sell. Building it right is harder - here's why that's what we chase.",
+                          hi: 'सोलर बेचना आसान है। इसे सही तरीके से बनाना मुश्किल - हम यही क्यों चुनते हैं, यहाँ जानें।' },
   'card-05-title':     { en: 'PM Surya Ghar',          hi: 'PM सूर्य घर' },
   'card-05-desc':      { en: 'Subsidy eligibility, documents and the full application process.',
                           hi: 'सब्सिडी पात्रता, दस्तावेज़ और पूरी आवेदन प्रक्रिया।' },
@@ -173,8 +175,8 @@ const TRANSLATIONS = {
 
   // ---- System types comparison (solar-system-types.html) ----
   'sys-hero-eyebrow':  { en: 'Choosing a system', hi: 'सिस्टम चुनना' },
-  'sys-hero-title':    { en: 'On-grid, hybrid or off-grid — which one is right for you?',
-                          hi: 'ऑन-ग्रिड, हाइब्रिड या ऑफ-ग्रिड — आपके लिए कौन सा सही है?' },
+  'sys-hero-title':    { en: 'On-grid, hybrid or off-grid - which one is right for you?',
+                          hi: 'ऑन-ग्रिड, हाइब्रिड या ऑफ-ग्रिड - आपके लिए कौन सा सही है?' },
   'sys-hero-sub':      { en: 'The right answer depends on why you want solar in the first place: cutting your bill, keeping the lights on during a power cut, or running a site that has no grid connection at all. Here\'s how the three approaches actually compare.',
                           hi: 'सही जवाब इस बात पर निर्भर करता है कि आप सोलर क्यों चाहते हैं: अपना बिल घटाना, बिजली कटौती के दौरान लाइट चालू रखना, या ऐसी जगह चलाना जहाँ बिल्कुल ग्रिड कनेक्शन नहीं है। यहाँ बताया गया है कि तीनों तरीके असल में एक-दूसरे से कैसे अलग हैं।' },
 
@@ -194,57 +196,48 @@ const TRANSLATIONS = {
 
   'sys-on-connect':    { en: 'Tied to the utility grid, no battery', hi: 'यूटिलिटी ग्रिड से जुड़ा, कोई बैटरी नहीं' },
   'sys-hybrid-connect':{ en: 'Grid + solar + battery, working together', hi: 'ग्रिड + सोलर + बैटरी, एक साथ काम करते हुए' },
-  'sys-off-connect':   { en: 'No grid connection — solar and battery only', hi: 'कोई ग्रिड कनेक्शन नहीं — केवल सोलर और बैटरी' },
+  'sys-off-connect':   { en: 'No grid connection - solar and battery only', hi: 'कोई ग्रिड कनेक्शन नहीं - केवल सोलर और बैटरी' },
 
-  'sys-on-backup':     { en: 'None — shuts down for safety (anti-islanding)', hi: 'कोई नहीं — सुरक्षा के लिए बंद हो जाता है (एंटी-आइलैंडिंग)' },
+  'sys-on-backup':     { en: 'None - shuts down for safety (anti-islanding)', hi: 'कोई नहीं - सुरक्षा के लिए बंद हो जाता है (एंटी-आइलैंडिंग)' },
   'sys-hybrid-backup': { en: 'Selected circuits stay on, if designed in', hi: 'डिज़ाइन में शामिल किए गए चुने हुए सर्किट चालू रहते हैं' },
-  'sys-off-backup':    { en: 'The system is the supply — no separate "backup" mode', hi: 'सिस्टम ही आपूर्ति है — कोई अलग "बैकअप" मोड नहीं' },
+  'sys-off-backup':    { en: 'The system is the supply - no separate "backup" mode', hi: 'सिस्टम ही आपूर्ति है - कोई अलग "बैकअप" मोड नहीं' },
 
   'sys-on-battery':    { en: 'No', hi: 'नहीं' },
-  'sys-hybrid-battery':{ en: 'Yes — sized to the backup load and hours you choose', hi: 'हाँ — आपके चुने हुए बैकअप लोड और घंटों के अनुसार तय की जाती है' },
-  'sys-off-battery':   { en: 'Yes — sized to your entire daily load, not just backup', hi: 'हाँ — केवल बैकअप के लिए नहीं, बल्कि आपके पूरे दैनिक लोड के अनुसार तय की जाती है' },
+  'sys-hybrid-battery':{ en: 'Yes - sized to the backup load and hours you choose', hi: 'हाँ - आपके चुने हुए बैकअप लोड और घंटों के अनुसार तय की जाती है' },
+  'sys-off-battery':   { en: 'Yes - sized to your entire daily load, not just backup', hi: 'हाँ - केवल बैकअप के लिए नहीं, बल्कि आपके पूरे दैनिक लोड के अनुसार तय की जाती है' },
 
   'sys-on-subsidy':    { en: 'Typically eligible for residential rooftop', hi: 'आमतौर पर आवासीय रूफटॉप के लिए पात्र' },
-  'sys-hybrid-subsidy':{ en: 'Often still eligible — confirm current rules for your case', hi: 'अक्सर तब भी पात्र होता है — अपने मामले के लिए मौजूदा नियमों की पुष्टि करें' },
-  'sys-off-subsidy':   { en: 'Generally not eligible — the scheme is built around grid-tied systems', hi: 'आमतौर पर पात्र नहीं — यह योजना ग्रिड-टाई सिस्टम के लिए बनाई गई है' },
+  'sys-hybrid-subsidy':{ en: 'Often still eligible - confirm current rules for your case', hi: 'अक्सर तब भी पात्र होता है - अपने मामले के लिए मौजूदा नियमों की पुष्टि करें' },
+  'sys-off-subsidy':   { en: 'Generally not eligible - the scheme is built around grid-tied systems', hi: 'आमतौर पर पात्र नहीं - यह योजना ग्रिड-टाई सिस्टम के लिए बनाई गई है' },
 
   'sys-on-cost':       { en: 'Lowest, for the same panel capacity', hi: 'समान पैनल क्षमता के लिए सबसे कम' },
-  'sys-hybrid-cost':   { en: 'Higher — hybrid inverter and battery add cost', hi: 'अधिक — हाइब्रिड इनवर्टर और बैटरी लागत बढ़ाते हैं' },
-  'sys-off-cost':      { en: 'Highest — battery and array must cover the whole load', hi: 'सबसे अधिक — बैटरी और पैनल को पूरे लोड को कवर करना होता है' },
+  'sys-hybrid-cost':   { en: 'Higher - hybrid inverter and battery add cost', hi: 'अधिक - हाइब्रिड इनवर्टर और बैटरी लागत बढ़ाते हैं' },
+  'sys-off-cost':      { en: 'Highest - battery and array must cover the whole load', hi: 'सबसे अधिक - बैटरी और पैनल को पूरे लोड को कवर करना होता है' },
 
   'sys-on-bestfor':    { en: 'Cutting your electricity bill where outages aren\'t a major concern', hi: 'ऐसी जगह बिजली बिल घटाने के लिए जहाँ बिजली कटौती बड़ी समस्या नहीं है' },
   'sys-hybrid-bestfor':{ en: 'Homes and businesses with a grid connection that want backup for essential loads', hi: 'ग्रिड कनेक्शन वाले घर और व्यवसाय जो ज़रूरी लोड के लिए बैकअप चाहते हैं' },
-  'sys-off-bestfor':   { en: 'Sites with no grid access at all — genuinely uncommon for a home in UP', hi: 'ऐसी जगहें जहाँ बिल्कुल ग्रिड पहुंच नहीं है — UP में किसी घर के लिए यह वाकई दुर्लभ है' },
+  'sys-off-bestfor':   { en: 'Sites with no grid access at all - genuinely uncommon for a home in UP', hi: 'ऐसी जगहें जहाँ बिल्कुल ग्रिड पहुंच नहीं है - UP में किसी घर के लिए यह वाकई दुर्लभ है' },
 
-  'sys-table-footnote':{ en: 'Subsidy eligibility, rates and rules change and depend on your consumer category — always confirm the current official position before making a financial decision.',
-                          hi: 'सब्सिडी की पात्रता, दरें और नियम बदलते रहते हैं और आपकी उपभोक्ता श्रेणी पर निर्भर करते हैं — कोई भी वित्तीय निर्णय लेने से पहले हमेशा मौजूदा आधिकारिक स्थिति की पुष्टि करें।' },
+  'sys-table-footnote':{ en: 'Subsidy eligibility, rates and rules change and depend on your consumer category - always confirm the current official position before making a financial decision.',
+                          hi: 'सब्सिडी की पात्रता, दरें और नियम बदलते रहते हैं और आपकी उपभोक्ता श्रेणी पर निर्भर करते हैं - कोई भी वित्तीय निर्णय लेने से पहले हमेशा मौजूदा आधिकारिक स्थिति की पुष्टि करें।' },
 
   'sys-card-on-tag':      { en: 'MOST COMMON',       hi: 'सबसे आम' },
   'sys-card-on-title':    { en: 'On-grid solar',      hi: 'ऑन-ग्रिड सोलर' },
-  'sys-card-on-desc':     { en: 'Connected directly to the utility grid. No battery, lowest cost per kW, and generally the fastest payback — the default choice when bill reduction is the main goal and grid supply is reasonably reliable.',
-                             hi: 'सीधे यूटिलिटी ग्रिड से जुड़ा होता है। कोई बैटरी नहीं, प्रति kW सबसे कम लागत, और आमतौर पर सबसे तेज़ पेबैक — जब मुख्य लक्ष्य बिल घटाना हो और ग्रिड आपूर्ति ठीक-ठाक भरोसेमंद हो, तो यह डिफ़ॉल्ट विकल्प है।' },
+  'sys-card-on-desc':     { en: 'Connected directly to the utility grid. No battery, lowest cost per kW, and generally the fastest payback - the default choice when bill reduction is the main goal and grid supply is reasonably reliable.',
+                             hi: 'सीधे यूटिलिटी ग्रिड से जुड़ा होता है। कोई बैटरी नहीं, प्रति kW सबसे कम लागत, और आमतौर पर सबसे तेज़ पेबैक - जब मुख्य लक्ष्य बिल घटाना हो और ग्रिड आपूर्ति ठीक-ठाक भरोसेमंद हो, तो यह डिफ़ॉल्ट विकल्प है।' },
 
   'sys-card-hybrid-tag':   { en: 'FOR BACKUP',        hi: 'बैकअप के लिए' },
   'sys-card-hybrid-title': { en: 'Hybrid solar',       hi: 'हाइब्रिड सोलर' },
-  'sys-card-hybrid-desc':  { en: 'Grid, solar and battery working together. A backup distribution board keeps chosen essential circuits running through an outage, while everything else stays on the normal supply — the middle ground most homes with frequent cuts actually need.',
-                              hi: 'ग्रिड, सोलर और बैटरी मिलकर काम करते हैं। एक बैकअप डिस्ट्रीब्यूशन बोर्ड बिजली कटौती के दौरान चुने हुए ज़रूरी सर्किट को चालू रखता है, जबकि बाकी सब सामान्य आपूर्ति पर बना रहता है — यह वह बीच का रास्ता है जिसकी बार-बार कटौती वाले ज़्यादातर घरों को असल में ज़रूरत होती है।' },
+  'sys-card-hybrid-desc':  { en: 'Grid, solar and battery working together. A backup distribution board keeps chosen essential circuits running through an outage, while everything else stays on the normal supply - the middle ground most homes with frequent cuts actually need.',
+                              hi: 'ग्रिड, सोलर और बैटरी मिलकर काम करते हैं। एक बैकअप डिस्ट्रीब्यूशन बोर्ड बिजली कटौती के दौरान चुने हुए ज़रूरी सर्किट को चालू रखता है, जबकि बाकी सब सामान्य आपूर्ति पर बना रहता है - यह वह बीच का रास्ता है जिसकी बार-बार कटौती वाले ज़्यादातर घरों को असल में ज़रूरत होती है।' },
 
   'sys-card-off-tag':     { en: 'FOR NO-GRID SITES',  hi: 'बिना ग्रिड वाली जगहों के लिए' },
   'sys-card-off-title':   { en: 'Off-grid solar',      hi: 'ऑफ-ग्रिड सोलर' },
-  'sys-card-off-desc':    { en: 'No utility connection at all. Solar and battery must be sized to cover 100% of your load year-round, not just backup hours, which is why off-grid costs more and needs careful load and storage sizing — worth it where there genuinely is no grid, rare otherwise.',
-                             hi: 'बिल्कुल कोई यूटिलिटी कनेक्शन नहीं। सोलर और बैटरी को केवल बैकअप घंटों के लिए नहीं, बल्कि साल भर आपके 100% लोड को कवर करने के लिए तय किया जाना चाहिए, इसीलिए ऑफ-ग्रिड महंगा पड़ता है और इसमें लोड व स्टोरेज का सावधानीपूर्वक आकलन ज़रूरी है — जहाँ वाकई ग्रिड नहीं है वहाँ यह उपयोगी है, बाकी जगह यह दुर्लभ ही ज़रूरी होता है।' },
+  'sys-card-off-desc':    { en: 'No utility connection at all. Solar and battery must be sized to cover 100% of your load year-round, not just backup hours, which is why off-grid costs more and needs careful load and storage sizing - worth it where there genuinely is no grid, rare otherwise.',
+                             hi: 'बिल्कुल कोई यूटिलिटी कनेक्शन नहीं। सोलर और बैटरी को केवल बैकअप घंटों के लिए नहीं, बल्कि साल भर आपके 100% लोड को कवर करने के लिए तय किया जाना चाहिए, इसीलिए ऑफ-ग्रिड महंगा पड़ता है और इसमें लोड व स्टोरेज का सावधानीपूर्वक आकलन ज़रूरी है - जहाँ वाकई ग्रिड नहीं है वहाँ यह उपयोगी है, बाकी जगह यह दुर्लभ ही ज़रूरी होता है।' },
 
   'sys-cta-title':     { en: 'Know which one you need? Size the battery next.', hi: 'तय हो गया कि आपको कौन सा चाहिए? अब बैटरी का आकार तय करें।' },
   'sys-cta-1':         { en: 'Size My Battery', hi: 'मेरी बैटरी का आकार तय करें' },
-
-  // ---- Live generation estimator (calculator.html) ----
-  // Note: most of this widget's other data-i18n keys (livegen-eyebrow,
-  // livegen-title, livegen-btn, etc.) are not yet defined anywhere in
-  // this file, so it currently displays in English regardless of the
-  // language toggle - a pre-existing gap, not something this key
-  // introduces. Adding it here so the new Reset button doesn't add to
-  // that list.
-  'livegen-reset-btn':        { en: 'Reset', hi: 'रीसेट करें' },
 
   // ---- Battery sizing estimator (calculator.html) ----
   'battery-eyebrow':          { en: 'Backup planning', hi: 'बैकअप योजना' },
@@ -262,7 +255,6 @@ const TRANSLATIONS = {
   'battery-chem-lithium':     { en: 'Lithium (LiFePO4)', hi: 'लिथियम (LiFePO4)' },
   'battery-chem-tubular':     { en: 'Tubular / lead-acid', hi: 'ट्यूबलर / लेड-एसिड' },
   'battery-btn':               { en: 'Estimate Battery Size', hi: 'बैटरी आकार का अनुमान लगाएं' },
-  'battery-reset-btn':         { en: 'Reset', hi: 'रीसेट करें' },
   'battery-range-label':      { en: 'Estimated usable battery capacity needed', hi: 'अनुमानित उपयोगी बैटरी क्षमता' },
   'battery-range-sub':         { en: 'Shown as a range, not a single number - see why below', hi: 'एक सीमा के रूप में दिखाया गया है, एक ही संख्या नहीं - नीचे कारण देखें' },
   'battery-load-label':       { en: 'Estimated simultaneous load', hi: 'अनुमानित एक साथ लोड' },
