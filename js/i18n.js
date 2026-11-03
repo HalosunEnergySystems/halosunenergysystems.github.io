@@ -31,24 +31,14 @@ const TRANSLATIONS = {
   'hero-title':        { en: 'Put your rooftop to work. Lower your electricity bills.', hi: 'अपनी छत को काम पर लगाएं। बिजली का बिल घटाएं।' },
   'hero-sub':          { en: 'Halosun Energy Systems designs, installs, and maintains solar systems for homes and businesses - from site survey and engineering to installation, net metering, and long-term support.',
                           hi: 'हैलोसन एनर्जी सिस्टम्स घरों और व्यवसायों के लिए सौर ऊर्जा प्रणालियों का डिज़ाइन, इंस्टॉलेशन और रखरखाव करता है - साइट सर्वे और इंजीनियरिंग से लेकर इंस्टॉलेशन, नेट मीटरिंग और दीर्घकालिक सेवा एवं सहायता तक।' },
-  'hero-cta-1':        { en: 'See How Much You Could Save →',  hi: 'देखें आप कितनी बचत कर सकते हैं →' },
+  'hero-cta-1':        { en: 'Calculate My Savings',  hi: 'मेरी बचत जानें' },
   'hero-cta-2':        { en: 'Request a Free Site Visit', hi: 'मुफ़्त साइट विज़िट के लिए अनुरोध करें' },
-  'hero-livegen-link': { en: 'Already have solar? Check what your rooftop is generating right now →',
-                          hi: 'पहले से सोलर लगा है? जानें आपकी छत अभी कितनी बिजली बना रही है →' },
   'hero-trust-1':      { en: 'MNRE Authorized Installer', hi: 'MNRE अधिकृत इंस्टॉलर' },
   'hero-trust-2':      { en: 'Subsidy Assistance',   hi: 'सब्सिडी सहायता' },
   'hero-trust-3':      { en: 'Turnkey Maintenance',  hi: 'टर्नकी रखरखाव' },
 
   'explore-eyebrow':   { en: 'Explore',               hi: 'जानिए' },
   'explore-title':     { en: 'Find what you need',    hi: 'जो चाहिए वह खोजें' },
-  // ---- Homepage: Live Generation teaser section ----
-  'home-livegen-eyebrow': { en: 'Live, right now', hi: 'लाइव, अभी' },
-  'home-livegen-title':   { en: 'What\'s your rooftop making right now?', hi: 'आपकी छत अभी कितनी बिजली बना रही है?' },
-  'home-livegen-sub':     { en: 'Pick your city and see today\'s actual sunlight conditions translated into live rooftop output - no signup needed.',
-                             hi: 'अपना शहर चुनें और देखें कि आज की असली धूप की स्थिति आपकी छत के लाइव आउटपुट में कैसे बदलती है - साइनअप की ज़रूरत नहीं।' },
-  'home-livegen-cta':     { en: 'See Live Generation →', hi: 'लाइव जनरेशन देखें →' },
-  'livegen-now-label':    { en: 'Estimated output right now', hi: 'अभी अनुमानित आउटपुट' },
-
   'card-01-title':     { en: 'Services',              hi: 'सेवाएँ' },
   'card-01-desc':      { en: 'Residential, commercial and turnkey EPC solar solutions.', hi: 'घरेलू, व्यावसायिक और टर्नकी ईपीसी सोलर समाधान।' },
   'card-02-title':     { en: 'Our Process',           hi: 'हमारी प्रक्रिया' },
@@ -286,6 +276,14 @@ const TRANSLATIONS = {
   'faq-q14-q':         { en: 'Does more panel wattage always mean a better solar system?', hi: 'क्या अधिक पैनल वाट क्षमता का मतलब हमेशा बेहतर सोलर सिस्टम होता है?' },
   'faq-q14-a':         { en: 'Not by itself. System quality depends on module performance, inverter selection, string design, shading, structure, cable sizing, protection, earthing, installation workmanship and how well the plant matches the consumer\'s load. A larger nameplate can be a poor investment if the design is wrong.',
                           hi: 'अकेले इससे नहीं। सिस्टम की गुणवत्ता मॉड्यूल प्रदर्शन, इनवर्टर चयन, स्ट्रिंग डिज़ाइन, छाया, संरचना, केबल आकार, सुरक्षा, अर्थिंग, इंस्टॉलेशन की कारीगरी और प्लांट उपभोक्ता के लोड से कितना मेल खाता है - इस पर निर्भर करती है। यदि डिज़ाइन ग़लत हो तो बड़ी नेमप्लेट क्षमता भी एक ख़राब निवेश साबित हो सकती है।' },
+
+  'faq-q15-q':         { en: 'How much does a 3 kW solar system cost in Uttar Pradesh?', hi: 'उत्तर प्रदेश में 3 kW सोलर सिस्टम की कीमत कितनी है?' },
+  'faq-q15-a':         { en: 'For a good-quality 3 kW on-grid residential system in Uttar Pradesh, the typical project cost before subsidy falls roughly in the ₹1.65–1.95 lakh range, depending on module technology, inverter brand, mounting structure and site conditions. After the PM Surya Ghar central subsidy (up to ₹78,000 for an eligible 3 kW residential system) and the applicable UPNEDA state subsidy, the amount payable is significantly lower. These are indicative market ranges, not a quotation - use Halosun\'s Savings Calculator for a number based on your own bill, or request a free site visit for a written quote.',
+                          hi: 'उत्तर प्रदेश में एक अच्छी क्वालिटी के 3 kW ऑन-ग्रिड रेसिडेंशियल सोलर सिस्टम की सब्सिडी से पहले की कीमत लगभग ₹1.65–1.95 लाख के बीच होती है, जो मॉड्यूल टेक्नोलॉजी, इनवर्टर ब्रांड, माउंटिंग स्ट्रक्चर और साइट की स्थिति पर निर्भर करती है। PM सूर्य घर केंद्रीय सब्सिडी (पात्र 3 kW रेसिडेंशियल सिस्टम के लिए ₹78,000 तक) और UPNEDA राज्य सब्सिडी के बाद, देय राशि काफ़ी कम हो जाती है। ये अनुमानित बाज़ार रेंज हैं, कोटेशन नहीं — अपने बिल के आधार पर सही आंकड़ा जानने के लिए Halosun का Savings Calculator इस्तेमाल करें, या लिखित कोटेशन के लिए मुफ़्त साइट विज़िट का अनुरोध करें।' },
+
+  'faq-q16-q':         { en: 'How many units does a 3 kW solar system generate per month?', hi: '3 kW सोलर सिस्टम एक महीने में कितनी यूनिट बिजली बनाता है?' },
+  'faq-q16-a':         { en: 'As a planning estimate, a well-installed 3 kW system in Uttar Pradesh generates roughly 3.5–4.5 units per kW per day, working out to approximately 320–400 units a month (around 4,000–4,800 units a year) under typical conditions. Actual generation depends on orientation, tilt, shading, panel quality and local weather, so treat this as a planning range rather than a guarantee - Halosun\'s Savings Calculator gives a more specific estimate based on your bill.',
+                          hi: 'एक अनुमान के तौर पर, उत्तर प्रदेश में अच्छी तरह से लगाया गया 3 kW सिस्टम प्रति kW प्रतिदिन लगभग 3.5–4.5 यूनिट बिजली बनाता है, यानी एक महीने में लगभग 320–400 यूनिट (साल में लगभग 4,000–4,800 यूनिट) सामान्य परिस्थितियों में। वास्तविक उत्पादन ओरिएंटेशन, टिल्ट, शेडिंग, पैनल की गुणवत्ता और स्थानीय मौसम पर निर्भर करता है, इसलिए इसे गारंटी नहीं बल्कि प्लानिंग रेंज मानें — Halosun का Savings Calculator आपके बिल के आधार पर अधिक सटीक अनुमान देता है।' },
 
   'faq-note-label':    { en: 'Engineering note:', hi: 'इंजीनियरिंग नोट:' },
   'faq-note-text':     { en: 'Solar generation, subsidy, net-metering rules and equipment specifications can change. Treat this page as general education and confirm project-specific numbers and current government/utility rules before installation.',
