@@ -645,6 +645,23 @@ const TRANSLATIONS = {
   'pm-eligible-4-title':  { en: 'Bank & identity details', hi: 'बैंक और पहचान विवरण' },
   'pm-eligible-4-desc':   { en: 'Keep the required consumer, bank and electricity-account details ready for portal processing.', hi: 'पोर्टल प्रोसेसिंग के लिए आवश्यक उपभोक्ता, बैंक और बिजली-खाता विवरण तैयार रखें।' },
 
+  // UP DISCOM coverage section
+  'pm-discom-eyebrow':      { en: 'Uttar Pradesh specifics', hi: 'उत्तर प्रदेश विशेष' },
+  'pm-discom-h2':           { en: 'Which UP DISCOM covers your connection?', hi: 'आपका कनेक्शन किस UP DISCOM के अंतर्गत आता है?' },
+  'pm-discom-sub':          { en: 'Uttar Pradesh\'s electricity distribution is split across five DISCOMs under UPPCL, each running its own PM Surya Ghar application queue and inspection schedule. Knowing which one covers you sets realistic expectations for how long each stage takes.',
+                              hi: 'उत्तर प्रदेश की बिजली वितरण व्यवस्था UPPCL के तहत पाँच DISCOMs में बँटी है, जिनमें प्रत्येक की अपनी PM सूर्य घर आवेदन कतार और निरीक्षण अनुसूची है। यह जानना कि आपका कनेक्शन किसके अंतर्गत है, हर चरण की अपेक्षित अवधि को स्पष्ट करता है।' },
+  'pm-discom-mvvnl-title':  { en: 'Madhyanchal (MVVNL) – Halosun\'s core service area', hi: 'मध्यांचल (MVVNL) – हैलोसन का मुख्य सेवा क्षेत्र' },
+  'pm-discom-mvvnl-desc':   { en: 'Headquartered in Lucknow, MVVNL covers Raebareli, Lucknow, Unnao, Sultanpur, Hardoi, Amethi and Barabanki. Most Halosun installations are processed through MVVNL\'s application and net-metering workflow.',
+                              hi: 'लखनऊ मुख्यालय वाली MVVNL रायबरेली, लखनऊ, उन्नाव, सुल्तानपुर, हरदोई, अमेठी और बाराबंकी को कवर करती है। अधिकांश हैलोसन इंस्टॉलेशन MVVNL की आवेदन और नेट-मीटरिंग प्रक्रिया से होते हैं।' },
+  'pm-discom-puvvnl-title': { en: 'Purvanchal (PuVVNL)', hi: 'पूर्वांचल (PuVVNL)' },
+  'pm-discom-puvvnl-desc':  { en: 'Headquartered in Varanasi, PuVVNL covers Pratapgarh and other eastern Uttar Pradesh districts. Halosun also assists customers with connections under this DISCOM.',
+                              hi: 'वाराणसी मुख्यालय वाली PuVVNL प्रतापगढ़ और पूर्वी उत्तर प्रदेश के अन्य जिलों को कवर करती है। हैलोसन इस DISCOM के अंतर्गत आने वाले ग्राहकों की भी सहायता करता है।' },
+  'pm-discom-other-title':  { en: 'Other UP DISCOMs', hi: 'अन्य UP DISCOMs' },
+  'pm-discom-other-desc':   { en: 'Paschimanchal (PVVNL) covers western UP, Dakshinanchal (DVVNL) covers the Agra region, and Kanpur Electricity Supply Company (KESCO) covers Kanpur city. All follow the same UPERC-regulated PM Surya Ghar structure.',
+                              hi: 'पश्चिमांचल (PVVNL) पश्चिमी UP, दक्षिणांचल (DVVNL) आगरा क्षेत्र और कानपुर इलेक्ट्रिसिटी सप्लाई कंपनी (KESCO) कानपुर शहर को कवर करती हैं। सभी UPERC-विनियमित PM सूर्य घर संरचना का पालन करते हैं।' },
+  'pm-discom-note':         { en: 'All five UP DISCOMs follow the same national PM Surya Ghar structure and unified UPERC tariff, but application volume, inspection scheduling and local documentation checks can vary by DISCOM. Halosun helps you prepare for the specific process that applies to your connection.',
+                              hi: 'सभी पाँच UP DISCOMs राष्ट्रीय PM सूर्य घर संरचना और एकीकृत UPERC टैरिफ का पालन करते हैं, लेकिन आवेदन की संख्या, निरीक्षण अनुसूची और स्थानीय दस्तावेज़ जाँच DISCOM के अनुसार अलग हो सकती है। हैलोसन आपके कनेक्शन पर लागू विशिष्ट प्रक्रिया की तैयारी में मदद करता है।' },
+
   'pm-docs-eyebrow': { en: '02 · Keep these ready', hi: '02 · ये तैयार रखें' },
   'pm-docs-h2':       { en: 'Documents & information checklist', hi: 'दस्तावेज़ और जानकारी की सूची' },
   'pm-docs-sub':      { en: 'Exact requirements can vary by DISCOM and application stage. Halosun can help you prepare the submission.', hi: 'सटीक आवश्यकताएँ DISCOM और आवेदन चरण के अनुसार अलग हो सकती हैं। हैलोसन आपकी प्रविष्टि तैयार करने में मदद कर सकता है।' },
@@ -747,6 +764,9 @@ const TRANSLATIONS = {
                                hi: 'मान लीजिए आपका पात्र आवासीय सिस्टम 3 kW का है। मानक केंद्रीय CFA संरचना पात्र क्षमता के लिए ₹78,000 तक प्रदान करती है। आपकी वास्तविक प्रोजेक्ट कीमत सिस्टम विनिर्देश और कोटेशन से तय होती है; सब्सिडी पात्रता का यह मतलब नहीं कि हर 3 kW इंस्टॉलेशन की कीमत एक जैसी होगी।' },
   'pm-example-number-label':  { en: 'Maximum standard central CFA', hi: 'अधिकतम मानक केंद्रीय CFA' },
   'pm-example-number-sub':    { en: 'for eligible residential capacity', hi: 'पात्र आवासीय क्षमता के लिए' },
+
+  'pm-faq-toggle-expand':   { en: 'Expand all', hi: 'सभी खोलें' },
+  'pm-faq-toggle-collapse': { en: 'Collapse all', hi: 'सभी बंद करें' },
 
   'pm-faq-eyebrow': { en: '07 · Common questions', hi: '07 · सामान्य सवाल' },
   'pm-faq-h2':       { en: 'PM Surya Ghar FAQ', hi: 'PM सूर्य घर सवाल-जवाब' },
