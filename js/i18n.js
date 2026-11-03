@@ -272,6 +272,74 @@ const TRANSLATIONS = {
   'battery-error-none':        { en: 'Select at least one appliance to back up.', hi: 'बैकअप के लिए कम से कम एक उपकरण चुनें।' },
   'battery-increase':          { en: 'Increase', hi: 'बढ़ाएं' },
   'battery-decrease':          { en: 'Decrease', hi: 'घटाएं' },
+  'battery-reset-btn':         { en: 'Reset', hi: 'रीसेट करें' },
+
+  // ---- Live Generation Estimator ----
+  'livegen-eyebrow':          { en: 'Live, right now', hi: 'लाइव, अभी' },
+  'livegen-title':            { en: 'What would your rooftop generate right now?', hi: 'आपकी छत अभी कितनी बिजली बना रही होती?' },
+  'livegen-sub':              { en: 'Pick your city and we\'ll pull today\'s actual sunlight conditions to estimate your system\'s live output - no signup needed.',
+                                hi: 'अपना शहर चुनें और हम आज की वास्तविक धूप की स्थिति से आपके सिस्टम का लाइव आउटपुट अनुमान लगाएंगे - किसी साइनअप की ज़रूरत नहीं।' },
+  'livegen-field-city':       { en: 'Your city', hi: 'आपका शहर' },
+  'livegen-city-placeholder': { en: 'Select a city', hi: 'शहर चुनें' },
+
+  // Halosun service area cities
+  'livegen-city-raebareli':   { en: 'Raebareli', hi: 'रायबरेली' },
+  'livegen-city-lucknow':     { en: 'Lucknow', hi: 'लखनऊ' },
+  'livegen-city-unnao':       { en: 'Unnao', hi: 'उन्नाव' },
+  'livegen-city-amethi':      { en: 'Amethi', hi: 'अमेठी' },
+  'livegen-city-sultanpur':   { en: 'Sultanpur', hi: 'सुल्तानपुर' },
+  'livegen-city-pratapgarh':  { en: 'Pratapgarh', hi: 'प्रतापगढ़' },
+  'livegen-city-hardoi':      { en: 'Hardoi', hi: 'हरदोई' },
+
+  // Other UP cities
+  'livegen-city-kanpur':      { en: 'Kanpur', hi: 'कानपुर' },
+  'livegen-city-varanasi':    { en: 'Varanasi', hi: 'वाराणसी' },
+  'livegen-city-prayagraj':   { en: 'Prayagraj (Allahabad)', hi: 'प्रयागराज (इलाहाबाद)' },
+  'livegen-city-agra':        { en: 'Agra', hi: 'आगरा' },
+  'livegen-city-meerut':      { en: 'Meerut', hi: 'मेरठ' },
+  'livegen-city-ghaziabad':   { en: 'Ghaziabad', hi: 'ग़ाज़ियाबाद' },
+  'livegen-city-noida':       { en: 'Noida', hi: 'नोएडा' },
+  'livegen-city-bareilly':    { en: 'Bareilly', hi: 'बरेली' },
+  'livegen-city-gorakhpur':   { en: 'Gorakhpur', hi: 'गोरखपुर' },
+  'livegen-city-moradabad':   { en: 'Moradabad', hi: 'मुरादाबाद' },
+  'livegen-city-aligarh':     { en: 'Aligarh', hi: 'अलीगढ़' },
+  'livegen-city-jhansi':      { en: 'Jhansi', hi: 'झाँसी' },
+  'livegen-city-saharanpur':  { en: 'Saharanpur', hi: 'सहारनपुर' },
+  'livegen-city-ayodhya':     { en: 'Ayodhya (Faizabad)', hi: 'अयोध्या (फ़ैज़ाबाद)' },
+  'livegen-city-mathura':     { en: 'Mathura', hi: 'मथुरा' },
+  'livegen-city-firozabad':   { en: 'Firozabad', hi: 'फ़िरोज़ाबाद' },
+  'livegen-city-sitapur':     { en: 'Sitapur', hi: 'सीतापुर' },
+
+  'livegen-field-size':       { en: 'Your system size (or the one you\'re considering)', hi: 'आपके सिस्टम का आकार (या जो आप सोच रहे हैं)' },
+  'livegen-field-shade':      { en: 'Does your roof get shade for part of the day?', hi: 'क्या आपकी छत पर दिन में कुछ समय छाया आती है?' },
+  'livegen-shade-no':         { en: 'No, full sun all day', hi: 'नहीं, पूरे दिन धूप रहती है' },
+  'livegen-shade-yes':        { en: 'Yes, some shade part of the day', hi: 'हाँ, दिन में कुछ समय छाया रहती है' },
+  'livegen-btn':              { en: 'Get Live Estimate', hi: 'लाइव अनुमान पाएं' },
+  'livegen-reset-btn':        { en: 'Reset', hi: 'रीसेट करें' },
+
+  // Live Gen result labels
+  'livegen-now-label':        { en: 'Estimated output right now', hi: 'अभी का अनुमानित आउटपुट' },
+  'livegen-today-label':      { en: 'Estimated generation today', hi: 'आज की अनुमानित जनरेशन' },
+  'livegen-weather-label':    { en: 'Current sky conditions', hi: 'वर्तमान आसमान की स्थिति' },
+  'livegen-note':             { en: 'Live estimate based on today\'s actual weather at your selected city. Assumes a well-installed, unshaded-by-default on-grid system; actual generation depends on your specific roof, equipment and site conditions - book a free site visit for a precise number.',
+                                hi: 'आपके चुने हुए शहर में आज के वास्तविक मौसम पर आधारित लाइव अनुमान। एक अच्छी तरह से लगाए गए, बिना छाया वाले ऑन-ग्रिड सिस्टम को मानते हुए; वास्तविक जनरेशन आपकी छत, उपकरण और साइट की स्थिति पर निर्भर करती है - सटीक आंकड़े के लिए मुफ़्त साइट विज़िट बुक करें।' },
+  'livegen-seasonal-heading': { en: 'Seasonal forecast — this month vs. the rest of the year', hi: 'मौसमी पूर्वानुमान — इस महीने बनाम बाकी साल' },
+  'livegen-seasonal-note':    { en: 'Based on your city\'s actual daily sunlight over the past 12 months. A single year can vary a little, but the monsoon dip shown here is a consistent seasonal pattern across Uttar Pradesh.',
+                                hi: 'आपके शहर की पिछले 12 महीनों की वास्तविक दैनिक धूप पर आधारित। एक साल में थोड़ा अंतर हो सकता है, लेकिन यहाँ दिखाई गई मानसून की गिरावट पूरे उत्तर प्रदेश में एक स्थिर मौसमी पैटर्न है।' },
+
+  // Live Gen JS-used keys (fallback exists in live-generation.js but adding here for consistency)
+  'livegen-unit-kwh':         { en: 'kWh', hi: 'यूनिट' },
+  'livegen-loading':          { en: 'Fetching live weather data…', hi: 'लाइव मौसम डेटा लाया जा रहा है…' },
+  'livegen-error-city':       { en: 'Please select a city first.', hi: 'कृपया पहले शहर चुनें।' },
+  'livegen-error-fetch':      { en: 'Could not fetch weather data. Please try again.', hi: 'मौसम डेटा नहीं मिल सका। कृपया दोबारा प्रयास करें।' },
+  'livegen-night-note':       { en: 'The sun is down — estimate is for tomorrow\'s expected daytime output.', hi: 'सूरज ढल चुका है — अनुमान कल की अपेक्षित दिन की जनरेशन के लिए है।' },
+  'livegen-cloud-suffix':     { en: '(weather-adjusted)', hi: '(मौसम-समायोजित)' },
+
+  // ---- Other missing calculator keys ----
+  'calc-sitevisit-question':  { en: 'Want an accurate system design for your roof?', hi: 'अपनी छत के लिए सटीक सिस्टम डिज़ाइन चाहते हैं?' },
+  'calc-sitevisit-btn':       { en: 'Request a Site Visit →', hi: 'साइट विज़िट का अनुरोध करें →' },
+  'backtotop-label':          { en: 'Back to top', hi: 'ऊपर जाएं' },
+  'nav-about':                { en: 'About', hi: 'हमारे बारे में' },
 
   'faq-q14-q':         { en: 'Does more panel wattage always mean a better solar system?', hi: 'क्या अधिक पैनल वाट क्षमता का मतलब हमेशा बेहतर सोलर सिस्टम होता है?' },
   'faq-q14-a':         { en: 'Not by itself. System quality depends on module performance, inverter selection, string design, shading, structure, cable sizing, protection, earthing, installation workmanship and how well the plant matches the consumer\'s load. A larger nameplate can be a poor investment if the design is wrong.',
