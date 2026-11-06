@@ -37,6 +37,13 @@ const TRANSLATIONS = {
   'hero-trust-2':      { en: 'Subsidy Assistance',   hi: 'सब्सिडी सहायता' },
   'hero-trust-3':      { en: 'Turnkey Maintenance',  hi: 'टर्नकी रखरखाव' },
 
+  // Home page – Live Generation teaser
+  'hero-livegen-link':     { en: 'Already have solar? Check what your rooftop is generating right now →', hi: 'पहले से सोलर है? देखें आपकी छत अभी कितनी बिजली बना रही है →' },
+  'home-livegen-eyebrow':  { en: 'Live, right now', hi: 'लाइव, अभी' },
+  'home-livegen-title':    { en: 'What\'s your rooftop making right now?', hi: 'आपकी छत अभी कितनी बिजली बना रही है?' },
+  'home-livegen-sub':      { en: 'Pick your city and see today\'s actual sunlight conditions translated into live rooftop output - no signup needed.', hi: 'अपना शहर चुनें और आज की वास्तविक धूप को लाइव रूफटॉप आउटपुट में बदलते देखें - कोई साइनअप नहीं।' },
+  'home-livegen-cta':      { en: 'See Live Generation →', hi: 'लाइव जनरेशन देखें →' },
+
   'explore-eyebrow':   { en: 'Explore',               hi: 'जानिए' },
   'explore-title':     { en: 'Find what you need',    hi: 'जो चाहिए वह खोजें' },
   'card-01-title':     { en: 'Services',              hi: 'सेवाएँ' },
